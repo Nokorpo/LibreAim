@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=3 uid="uid://cdbhv0p0jfr75"]
+
+[ext_resource type="Script" path="res://scripts/levels/World.gd" id="1_02ggb"]
+[ext_resource type="Script" path="res://scripts/characters/CharacterBody3D.gd" id="1_77co2"]
+[ext_resource type="Texture2D" uid="uid://mhv5qf7fdeig" path="res://assets/images/texture_08.png" id="1_s1bsx"]
+[ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="4_jkxyl"]
+[ext_resource type="Script" path="res://scripts/levels/Pause.gd" id="5_4wxgd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_i8euj"]
+sky_material = SubResource("ProceduralSkyMaterial_hein3")
+
+[sub_resource type="Environment" id="Environment_mlohy"]
+background_mode = 2
+sky = SubResource("Sky_i8euj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glx82"]
+albedo_texture = ExtResource("1_s1bsx")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trh1v"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_41626"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_02ggb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.920764, -0.390121, 0, 0.390121, -0.920764, 0, 19.0056, 0)
+omni_range = 150.0
+omni_attenuation = 0.0179484
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mlohy")
+
+[node name="Building" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23, 0)
+use_collision = true
+size = Vector3(100, 50, 100)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+operation = 2
+size = Vector3(99, 50, 99)
+material = SubResource("StandardMaterial3D_glx82")
+
+[node name="PlayerPrison" type="CSGBox3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+transparency = 1.0
+use_collision = true
+collision_layer = 4
+size = Vector3(10, 20, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="PlayerPrison"]
+operation = 2
+use_collision = true
+size = Vector3(9, 21, 9)
+
+[node name="TargetPrison" type="CSGBox3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 4, 0, 0, 0, 3, 2.08165e-12, 9, -35)
+transparency = 1.0
+use_collision = true
+collision_layer = 8
+size = Vector3(10, 20, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="TargetPrison"]
+operation = 2
+use_collision = true
+size = Vector3(9, 19, 9)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_77co2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_trh1v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000550747, 0.00400865, -0.000956774)
+mesh = SubResource("CapsuleMesh_41626")
+skeleton = NodePath("../..")
+
+[node name="Head" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -1000, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="Crosshair" type="Control" parent="Player/Head/Camera3D"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("4_jkxyl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_4wxgd")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.34902)
+metadata/_edit_use_anchors_ = true
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -33.0
+offset_right = 35.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="CanvasLayer/Pause/Buttons"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Pause/Buttons"]
+layout_mode = 2
+text = "Menu"
+
+[connection signal="pause_game" from="Player" to="CanvasLayer/Pause" method="_on_player_pause_game"]
+[connection signal="pressed" from="CanvasLayer/Pause/Buttons/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Buttons/Menu" to="CanvasLayer/Pause" method="_on_menu_pressed"]
