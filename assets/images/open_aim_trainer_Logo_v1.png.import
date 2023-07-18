@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk1uj2ccqgnpf"
-path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"
+uid="uid://bleo2dk5m4rr"
+path="res://.godot/imported/open_aim_trainer_Logo_v1.png-5c97b02f6b18435df744a1a14739b4db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"]
+source_file="res://assets/images/open_aim_trainer_Logo_v1.png"
+dest_files=["res://.godot/imported/open_aim_trainer_Logo_v1.png-5c97b02f6b18435df744a1a14739b4db.ctex"]
 
 [params]
 
