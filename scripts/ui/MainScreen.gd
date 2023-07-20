@@ -32,15 +32,12 @@ func AddGames():
 #		button.texture = preload("assets/images/" + model)
 		button.text = model
 		button.name = model
+		button.pressed.connect(startTraining.bind(button.name))
 		gamelist.add_child(button)
-#		button.connect("pressed", Callable(self, onPressed(button)))
-		button.connect("pressed", Callable(self, "onPressed"))
 
-
-func onPressed():
-	
-	print("...hola")
-#	print(button.name)
+func startTraining(type):
+		Global.game_type = type
+		get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
 
 #func AddResolutions():
 #	var count = 0
@@ -62,8 +59,9 @@ func update_resolution_label() -> void:
 
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
-	Global.game_type = "3d_multiple_basic_targets_movement_v1"
+	var random_index = randi() % models3d.size()
+	var random_element = models3d[random_index]
+	startTraining(random_element)
 
 
 #func _on_option_button_item_selected(index):
