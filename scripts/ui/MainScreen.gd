@@ -1,8 +1,8 @@
 extends Control
 
-@onready var ResOptionButton = $MarginContainer/VBoxContainer/OptionButton
-@onready var resolution_label := $MarginContainer/VBoxContainer/ResolutionLabel
-
+@onready var ResOptionButton = $MarginContainer/HBoxContainer/VBoxContainer/OptionButton
+@onready var resolution_label := $MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
+@onready var gamelist := $MarginContainer/HBoxContainer/VBoxContainer2
 
 #var Resoltuions: Dictionary = {
 #	"3840x2160" : Vector2(3840,2160),
@@ -10,11 +10,37 @@ extends Control
 #	"1920x1080" : Vector2(1920,1080)
 #	}
 
+
+var models3d = [
+	"3d_head_level_v1",
+	"3d_multiple_basic_targets_movement_v1",
+	"3d_multiple_basic_targets_v1",
+	"3d_multiple_medium_targets_v1"
+	]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	AddResolutions()
+	AddGames()
 	get_viewport().size_changed.connect(self.update_resolution_label)
 	update_resolution_label()
+	
+	
+func AddGames():
+	for model in models3d:
+		var button = Button.new()
+#		button.texture = preload("assets/images/" + model)
+		button.text = model
+		button.name = model
+		gamelist.add_child(button)
+#		button.connect("pressed", Callable(self, onPressed(button)))
+		button.connect("pressed", Callable(self, "onPressed"))
+
+
+func onPressed():
+	
+	print("...hola")
+#	print(button.name)
 
 #func AddResolutions():
 #	var count = 0

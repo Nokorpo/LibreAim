@@ -29,6 +29,10 @@ window/size/borderless=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/default_theme_scale=4.0
+
 [input]
 
 left={

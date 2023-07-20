@@ -13,40 +13,50 @@ script = ExtResource("1_lgjmg")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 83.0
+offset_bottom = 151.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play"
 
-[node name="ResolutionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resolution"
 
-[node name="QualitySlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="QualitySlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 min_value = 0.25
 max_value = 2.0
 step = 0.05
 value = 1.0
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
