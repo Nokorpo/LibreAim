@@ -3,6 +3,7 @@ extends Control
 @onready var ResOptionButton = $MarginContainer/HBoxContainer/VBoxContainer/OptionButton
 @onready var resolution_label := $MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
 @onready var gamelist := $Panel/ScrollContainer/VBoxContainer2
+@onready var slider_quality := $MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
 
 #var Resoltuions: Dictionary = {
 #	"3840x2160" : Vector2(3840,2160),
@@ -53,6 +54,10 @@ var models3d: Dictionary = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	AddResolutions()
+	
+	if DataManager.get_data("resolution"):
+		slider_quality.value = DataManager.get_data("resolution")
+	
 	AddGames()
 	get_viewport().size_changed.connect(self.update_resolution_label)
 	update_resolution_label()
@@ -123,9 +128,12 @@ func _on_play_pressed():
 
 
 func _on_quality_slider_value_changed(value: float) -> void:
+	quality_change(value)
+	DataManager.save_data("resolution", value)
+
+func quality_change(value: float) -> void:
 	get_viewport().scaling_3d_scale = value
 	update_resolution_label()
-
 
 func _on_quit_pressed():
 	get_tree().quit()
