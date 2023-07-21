@@ -2,7 +2,7 @@ extends Control
 
 @onready var ResOptionButton = $MarginContainer/HBoxContainer/VBoxContainer/OptionButton
 @onready var resolution_label := $MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
-@onready var gamelist := $MarginContainer/HBoxContainer/VBoxContainer2
+@onready var gamelist := $Panel/ScrollContainer/VBoxContainer2
 
 #var Resoltuions: Dictionary = {
 #	"3840x2160" : Vector2(3840,2160),
@@ -60,12 +60,29 @@ func _ready():
 	
 func AddGames():
 	for model in models3d:
+		var hboxc = HBoxContainer.new()
+		
 		var button = Button.new()
-#		button.texture = preload("assets/images/" + model)
 		button.text = model
 		button.name = model
 		button.pressed.connect(startTraining.bind(button.name))
-		gamelist.add_child(button)
+		
+
+
+		var texture_rect = TextureRect.new()
+		texture_rect.texture = load("res://assets/images/games/" + model +".png")
+		texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE 
+		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+		texture_rect.set_size(Vector2(300, 300))
+
+		var wrapper = Control.new()
+		wrapper.custom_minimum_size = Vector2(300, 300) 
+		wrapper.add_child(texture_rect)
+
+
+		hboxc.add_child(wrapper)
+		hboxc.add_child(button)
+		gamelist.add_child(hboxc)
 
 func startTraining(type):
 		Global.game_type = models3d[type]
