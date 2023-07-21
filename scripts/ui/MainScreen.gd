@@ -2,7 +2,7 @@ extends Control
 
 @onready var ResOptionButton = $MarginContainer/HBoxContainer/VBoxContainer/OptionButton
 @onready var resolution_label := $MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
-@onready var gamelist := $MarginContainer/HBoxContainer/VBoxContainer2
+@onready var gamelist := $Panel/ScrollContainer/VBoxContainer2
 
 #var Resoltuions: Dictionary = {
 #	"3840x2160" : Vector2(3840,2160),
@@ -11,12 +11,44 @@ extends Control
 #	}
 
 
-var models3d = [
-	"3d_head_level_v1",
-	"3d_multiple_basic_targets_movement_v1",
-	"3d_multiple_basic_targets_v1",
-	"3d_multiple_medium_targets_v1"
-	]
+var models3d: Dictionary = {
+	"3d_head_level_v1": {
+		"spawn_location_x_0": 24,
+		"spawn_location_x_1": -24,
+		"spawn_location_y_0": 4,
+		"spawn_location_y_1": 4,
+		"movment": false,
+		"size": 0.5,
+		"number_of_initial_targets": 1
+	},
+	"3d_multiple_basic_targets_movement_v1": {
+		"spawn_location_x_0": 12,
+		"spawn_location_x_1": -12,
+		"spawn_location_y_0": 4,
+		"spawn_location_y_1": 20,
+		"movment": true,
+		"size": 0.5,
+		"number_of_initial_targets": 6
+	},
+	"3d_multiple_basic_targets_v1": {
+		"spawn_location_x_0": 12,
+		"spawn_location_x_1": -12,
+		"spawn_location_y_0": 4,
+		"spawn_location_y_1": 20,
+		"movment": false,
+		"size": 0.5,
+		"number_of_initial_targets": 6
+	},
+	"3d_multiple_medium_targets_v1": {
+		"spawn_location_x_0": 11,
+		"spawn_location_x_1": -11,
+		"spawn_location_y_0": 4,
+		"spawn_location_y_1": 15,
+		"movment": false,
+		"size": 3,
+		"number_of_initial_targets": 3
+	}
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,15 +60,32 @@ func _ready():
 	
 func AddGames():
 	for model in models3d:
+		var hboxc = HBoxContainer.new()
+		
 		var button = Button.new()
-#		button.texture = preload("assets/images/" + model)
 		button.text = model
 		button.name = model
 		button.pressed.connect(startTraining.bind(button.name))
-		gamelist.add_child(button)
+		
+
+
+		var texture_rect = TextureRect.new()
+		texture_rect.texture = load("res://assets/images/games/" + model +".png")
+		texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE 
+		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+		texture_rect.set_size(Vector2(300, 300))
+
+		var wrapper = Control.new()
+		wrapper.custom_minimum_size = Vector2(300, 300) 
+		wrapper.add_child(texture_rect)
+
+
+		hboxc.add_child(wrapper)
+		hboxc.add_child(button)
+		gamelist.add_child(hboxc)
 
 func startTraining(type):
-		Global.game_type = type
+		Global.game_type = models3d[type]
 		get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
 
 #func AddResolutions():
@@ -60,7 +109,11 @@ func update_resolution_label() -> void:
 
 func _on_play_pressed():
 	var random_index = randi() % models3d.size()
-	var random_element = models3d[random_index]
+	var keys = []
+	for key in models3d.keys():
+		keys.push_back(key)
+	var value = models3d[keys[random_index]]
+	var random_element = models3d[value]
 	startTraining(random_element)
 
 
