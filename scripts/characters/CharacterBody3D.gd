@@ -7,7 +7,9 @@ const JUMP_VELOCITY = 25
 const ACCELERATION = 50.0
 const DECCELERATION = 5.0
 
-var mouse_sensitivity =  0.0198125 / 2  #Valorant 0.14 - factor de conversió a 1080p: 0.141517857142857
+var conversion_sensitivity = 0.0707589285714285
+var user_sensitivity = 0.14
+var mouse_sensitivity = 0.00990624999999999
 
 var count_down_started = false
 var damage = 10
@@ -26,6 +28,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	emit_signal("pause_game", false)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if DataManager.get_data("sensitivity_game_value"):
+		conversion_sensitivity = DataManager.get_data("sensitivity_game_value")
+	if DataManager.get_data("sensitivity"):
+		user_sensitivity = DataManager.get_data("sensitivity")
+	
+	mouse_sensitivity = user_sensitivity * conversion_sensitivity
 
 func fire():
 	if Input.is_action_just_pressed("fire"):
