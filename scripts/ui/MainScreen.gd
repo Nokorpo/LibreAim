@@ -108,13 +108,13 @@ func update_resolution_label() -> void:
 
 
 func _on_play_pressed():
-	var random_index = randi() % models3d.size()
 	var keys = []
 	for key in models3d.keys():
 		keys.push_back(key)
-	var value = models3d[keys[random_index]]
-	var random_element = models3d[value]
-	startTraining(random_element)
+	
+	var random_index = randi() % keys.size()
+	var value = keys[random_index]
+	startTraining(value)
 
 
 #func _on_option_button_item_selected(index):
