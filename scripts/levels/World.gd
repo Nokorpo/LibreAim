@@ -5,14 +5,6 @@ var location_target = Vector3()
 var count_kills = 0
 var id_spawn_target = 0
 
-#Game parameters
-var spawn_location_x_0 = 12
-var spawn_location_x_1 = -12
-var spawn_location_y_0 = 4
-var spawn_location_y_1 = 20
-var number_of_initial_targets = 1
-var size = 0.5
-var movment = false
 
 #@onready var anim_hit = $FPS/Head/Camera3D/AnimationHit
 
@@ -20,49 +12,8 @@ var movment = false
 func _ready():
 	id_spawn_target = 0
 	count_kills = 0
-	var id_game = Global.game_type
-	if(id_game == "3d_head_level_v1"):
-		spawn_location_x_0 = 24
-		spawn_location_x_1 = -24
-		spawn_location_y_0 = 4
-		spawn_location_y_1 = 4
-		movment = false
-		size = 0.5
-		number_of_initial_targets = 1
-	elif(id_game == "3d_multiple_basic_targets_movement_v1"):
-		spawn_location_x_0 = 12
-		spawn_location_x_1 = -12
-		spawn_location_y_0 = 4
-		spawn_location_y_1 = 20
-		movment = true
-		size = 0.5
-		number_of_initial_targets = 6
-	elif(id_game == "3d_multiple_basic_targets_v1"):
-		spawn_location_x_0 = 12
-		spawn_location_x_1 = -12
-		spawn_location_y_0 = 4
-		spawn_location_y_1 = 20
-		movment = false
-		size = 0.5
-		number_of_initial_targets = 6
-	elif(id_game == "3d_multiple_medium_targets_v1"):
-		spawn_location_x_0 = 11
-		spawn_location_x_1 = -11
-		spawn_location_y_0 = 4
-		spawn_location_y_1 = 15
-		movment = false
-		size = 3
-		number_of_initial_targets = 3
-	else:
-		spawn_location_x_0 = 12
-		spawn_location_x_1 = -12
-		spawn_location_y_0 = 4
-		spawn_location_y_1 = 20
-		movment = false
-		size = 0.5
-		number_of_initial_targets = 1
 	
-	for x in range(number_of_initial_targets):
+	for x in range(Global.game_type.number_of_initial_targets):
 		spawn_target()
 
 func target_killed():
@@ -71,8 +22,8 @@ func target_killed():
 
 func randomize_vector():
 	randomize()
-	var location_x = randf_range(spawn_location_x_0, spawn_location_x_1)
-	var location_y = randf_range(spawn_location_y_0, spawn_location_y_1)
+	var location_x = randf_range(Global.game_type.spawn_location_x_0, Global.game_type.spawn_location_x_1)
+	var location_y = randf_range(Global.game_type.spawn_location_y_0, Global.game_type.spawn_location_y_1)
 	var location_z = -25
 	return Vector3(location_x, location_y, location_z)
 
@@ -83,7 +34,7 @@ func check_distance():
 	#if (DataManager.last_vectors.keys().size() > 0):
 	#	for last_key in DataManager.last_vectors.keys():
 	#		distance = DataManager.last_vectors[last_key].distance_to(vector_return)
-	#		if(distance < (size * 2)):
+	#		if(distance < (Global.game_type.size * 2)):
 	#			have_distance = false
 	return [have_distance, vector_return, distance]
 
@@ -102,7 +53,7 @@ func spawn_target():
 	#DataManager.last_vectors[id_spawn_target] = vector_return
 	
 	var target = packed_target.instantiate()
-	target.init(size, id_spawn_target, movment)
+	target.init(Global.game_type.size, id_spawn_target, Global.game_type.movment)
 	target.connect("target_kill", Callable(self, "target_killed"))
 	target.set_position(location_target)
 	add_child(target)
