@@ -1,16 +1,18 @@
 extends Control
 
-@onready var ResOptionButton = $MarginContainer/HBoxContainer/VBoxContainer/OptionButton
+@onready var game = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game
 @onready var resolution_label := $MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
 @onready var gamelist := $Panel/ScrollContainer/VBoxContainer2
 @onready var slider_quality := $MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
+@onready var sensitivity := $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
 
-#var Resoltuions: Dictionary = {
-#	"3840x2160" : Vector2(3840,2160),
-#	"2560x1440" : Vector2(2560,1440),
-#	"1920x1080" : Vector2(1920,1080)
-#	}
 
+#4k
+var games_sensitivities: Dictionary = {
+	"Valorant": 0.0707589285714285,
+	"CounterStrike": 0.0222372497081799,
+	"Fortnite": 0.00561534231977053
+	}
 
 var models3d: Dictionary = {
 	"3d_head_level_v1": {
@@ -53,16 +55,22 @@ var models3d: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	AddResolutions()
-	
+	AddGamesSensitivities()
 	if DataManager.get_data("resolution"):
 		slider_quality.value = DataManager.get_data("resolution")
-	
+	if DataManager.get_data("sensitivity"):
+		sensitivity.text = str(DataManager.get_data("sensitivity"))
+	if DataManager.get_data("sensitivity_game"):
+		game.selected = DataManager.get_data("sensitivity_game")
 	AddGames()
 	get_viewport().size_changed.connect(self.update_resolution_label)
 	update_resolution_label()
-	
-	
+
+func AddGamesSensitivities():
+	for sensitivity in games_sensitivities:
+		game.add_item(sensitivity)
+
+
 func AddGames():
 	for model in models3d:
 		var hboxc = HBoxContainer.new()
@@ -93,18 +101,6 @@ func startTraining(type):
 		Global.game_type = models3d[type]
 		get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
 
-#func AddResolutions():
-#	var count = 0
-#	for resolution in Resoltuions:
-#		ResOptionButton.add_item(resolution)
-#		if Resoltuions[resolution] == get_viewport().get_visible_rect().size:
-#			ResOptionButton.selected = count
-#		count += 1
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func update_resolution_label() -> void:
 	var viewport_render_size = get_viewport().size * get_viewport().scaling_3d_scale
@@ -122,18 +118,22 @@ func _on_play_pressed():
 	startTraining(value)
 
 
-#func _on_option_button_item_selected(index):
-#	var the_size = Resoltuions.get(ResOptionButton.get_item_text(index))
-#	DisplayServer.window_set_size(the_size)
-
-
 func _on_quality_slider_value_changed(value: float) -> void:
-	quality_change(value)
-	DataManager.save_data("resolution", value)
-
-func quality_change(value: float) -> void:
 	get_viewport().scaling_3d_scale = value
 	update_resolution_label()
+	DataManager.save_data("resolution", value)
+
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_sensitivity_text_changed(new_text):
+	DataManager.save_data("sensitivity_game", game.get_selected_id())
+	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())))
+	DataManager.save_data("sensitivity", float(new_text))
+
+
+func _on_game_item_selected(index):
+	DataManager.save_data("sensitivity_game", index)
+	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)))
