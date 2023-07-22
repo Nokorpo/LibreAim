@@ -29,7 +29,6 @@ func putLabel(put_label):
 func loadSaved():
 	var all_persist_groups = get_tree().get_nodes_in_group("Persist")
 	for persist_group in all_persist_groups:
-		print(persist_group.name)
 		match persist_group.get_class():
 			"CheckButton":
 				if DataManager.get_data(persist_group.name) != null:
