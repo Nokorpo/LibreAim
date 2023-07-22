@@ -12,14 +12,14 @@ var enable_outline = true
 var crosshair_inner_enable = true
 var dot_enable = false
 
-#var global_crosshair_heigh = DataManager.get_options("heigh", "float")
+#var global_crosshair_height = DataManager.get_options("heigh", "float")
 #var global_crosshair_width = DataManager.get_options("width", "float")
 
 var dot_size = 3
 
 var global_outline_width = 0.5 * 2
 
-var global_crosshair_heigh = 1 * 2
+var global_crosshair_height = 1 * 2
 var global_crosshair_width = 4 * 2
 var global_crosshair_space = 1.5 * 2
 
@@ -35,28 +35,28 @@ var dot_crosshair = [
 
 
 var left_inner_crosshair = [
-		Vector2(-global_crosshair_width-global_crosshair_space,-global_crosshair_heigh),  #top left
-		Vector2(0-global_crosshair_space,-global_crosshair_heigh),#top right
-		Vector2(0-global_crosshair_space,global_crosshair_heigh), #bottom right
-		Vector2(-global_crosshair_width-global_crosshair_space,global_crosshair_heigh) #bottom left
+		Vector2(-global_crosshair_width-global_crosshair_space,-global_crosshair_height),  #top left
+		Vector2(0-global_crosshair_space,-global_crosshair_height),#top right
+		Vector2(0-global_crosshair_space,global_crosshair_height), #bottom right
+		Vector2(-global_crosshair_width-global_crosshair_space,global_crosshair_height) #bottom left
 	]
 var top_inner_crosshair = [
-		Vector2(-global_crosshair_heigh,-global_crosshair_width-global_crosshair_space),  #top left
-		Vector2(global_crosshair_heigh,-global_crosshair_width-global_crosshair_space),#top right
-		Vector2(global_crosshair_heigh,-global_crosshair_space), #bottom right
-		Vector2(-global_crosshair_heigh,-global_crosshair_space) #bottom left
+		Vector2(-global_crosshair_height,-global_crosshair_width-global_crosshair_space),  #top left
+		Vector2(global_crosshair_height,-global_crosshair_width-global_crosshair_space),#top right
+		Vector2(global_crosshair_height,-global_crosshair_space), #bottom right
+		Vector2(-global_crosshair_height,-global_crosshair_space) #bottom left
 	]
 var right_inner_crosshair = [
-		Vector2(0+global_crosshair_space,-global_crosshair_heigh),  #top left
-		Vector2(global_crosshair_width+global_crosshair_space,-global_crosshair_heigh),#top right
-		Vector2(global_crosshair_width+global_crosshair_space,global_crosshair_heigh),#bottom right
-		Vector2(0+global_crosshair_space,global_crosshair_heigh) #bottom left
+		Vector2(0+global_crosshair_space,-global_crosshair_height),  #top left
+		Vector2(global_crosshair_width+global_crosshair_space,-global_crosshair_height),#top right
+		Vector2(global_crosshair_width+global_crosshair_space,global_crosshair_height),#bottom right
+		Vector2(0+global_crosshair_space,global_crosshair_height) #bottom left
 	]
 var bottom_inner_crosshair = [
-		Vector2(-global_crosshair_heigh, global_crosshair_space),  #top left
-		Vector2(global_crosshair_heigh,global_crosshair_space),#top right
-		Vector2(global_crosshair_heigh,global_crosshair_space+global_crosshair_width), #bottom right
-		Vector2(-global_crosshair_heigh,global_crosshair_space+global_crosshair_width) #bottom left
+		Vector2(-global_crosshair_height, global_crosshair_space),  #top left
+		Vector2(global_crosshair_height,global_crosshair_space),#top right
+		Vector2(global_crosshair_height,global_crosshair_space+global_crosshair_width), #bottom right
+		Vector2(-global_crosshair_height,global_crosshair_space+global_crosshair_width) #bottom left
 	]
 
 func redraw(_value):

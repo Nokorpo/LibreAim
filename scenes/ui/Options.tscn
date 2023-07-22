@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://cropshnueuiqr"]
+
+[ext_resource type="Script" path="res://scripts/ui/Options.gd" id="1_4ilr3"]
+[ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="2_iu82h"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ilr3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Crosshair" type="CheckButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Crosshair"
+
+[node name="Outline" type="CheckButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Outline"
+
+[node name="Crosshair inner" type="CheckButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Crosshair inner"
+
+[node name="Dot" type="CheckButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Dot"
+
+[node name="DotSize" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "<null>"
+placeholder_text = "6"
+
+[node name="OutlineSize" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "1"
+placeholder_text = "1"
+
+[node name="CrosshairHeight" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "2"
+placeholder_text = "2"
+
+[node name="CrosshairWidth" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "8"
+placeholder_text = "8"
+
+[node name="CrosshairSpace" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "3"
+placeholder_text = "3"
+
+[node name="CrosshairColor" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Crosshair color"
+
+[node name="OutlineColor" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Outline color"
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Crosshair" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_iu82h")
+
+[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="TargetColor" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Target color"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

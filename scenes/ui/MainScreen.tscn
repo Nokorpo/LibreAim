@@ -12,9 +12,12 @@ grow_vertical = 2
 script = ExtResource("1_lgjmg")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 83.0
-offset_bottom = 151.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -83,4 +86,5 @@ layout_mode = 2
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game" to="." method="_on_game_item_selected"]
 [connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity" to="." method="_on_sensitivity_text_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
