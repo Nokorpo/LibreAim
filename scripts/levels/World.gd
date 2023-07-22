@@ -15,6 +15,8 @@ func _ready():
 	
 	for x in range(Global.game_type.number_of_initial_targets):
 		spawn_target()
+	var label = Label.new()
+
 
 func target_killed():
 	messageHit()

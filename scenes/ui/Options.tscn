@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://cropshnueuiqr"]
+
+[ext_resource type="Script" path="res://scripts/ui/Options.gd" id="1_4ilr3"]
+[ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="2_iu82h"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ilr3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelCrosshair" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Crosshair"
+uppercase = true
+
+[node name="Control" type="Control" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Crosshair" type="Control" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_iu82h")
+
+[node name="Crosshair" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Crosshair"
+
+[node name="Outline" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Outline"
+
+[node name="Crosshair inner" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Crosshair inner"
+
+[node name="Dot" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Dot"
+
+[node name="DotSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "6"
+placeholder_text = "6"
+
+[node name="OutlineSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "1"
+placeholder_text = "1"
+
+[node name="CrosshairHeight" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "2"
+placeholder_text = "2"
+
+[node name="CrosshairWidth" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "8"
+placeholder_text = "8"
+
+[node name="CrosshairSpace" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "3"
+placeholder_text = "3"
+
+[node name="CrosshairColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "Crosshair color"
+
+[node name="OutlineColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "Outline color"
+
+[node name="LabelTarget" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Target"
+uppercase = true
+
+[node name="TargetColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" groups=["PutLabel"]]
+layout_mode = 2
+text = "Target color"
+
+[node name="Back" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

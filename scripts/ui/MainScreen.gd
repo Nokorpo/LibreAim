@@ -1,10 +1,10 @@
 extends Control
 
-@onready var game = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game
-@onready var resolution_label := $MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
-@onready var gamelist := $Panel/ScrollContainer/VBoxContainer2
-@onready var slider_quality := $MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
-@onready var sensitivity := $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
+@onready var game = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game
+@onready var resolution_label := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
+@onready var gamelist := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2
+@onready var slider_quality := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
+@onready var sensitivity := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
 
 
 #4k
@@ -67,8 +67,8 @@ func _ready():
 	update_resolution_label()
 
 func AddGamesSensitivities():
-	for sensitivity in games_sensitivities:
-		game.add_item(sensitivity)
+	for sens in games_sensitivities:
+		game.add_item(sens)
 
 
 func AddGames():
@@ -137,3 +137,7 @@ func _on_sensitivity_text_changed(new_text):
 func _on_game_item_selected(index):
 	DataManager.save_data("sensitivity_game", index)
 	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)))
+
+
+func _on_options_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/Options.tscn")

@@ -11,76 +11,63 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lgjmg")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 83.0
-offset_bottom = 151.0
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play"
 
-[node name="ResolutionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ResolutionLabel" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resolution"
 
-[node name="QualitySlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="QualitySlider" type="HSlider" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 min_value = 0.25
 max_value = 2.0
 step = 0.05
 value = 1.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Game" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Game" type="OptionButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Sensitivity" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Sensitivity" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "0.215"
 placeholder_text = "0.215"
 
-[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
 
-[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1924.0
-offset_top = 8.0
-offset_right = 4.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/ScrollContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
-[connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game" to="." method="_on_game_item_selected"]
-[connection signal="text_changed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity" to="." method="_on_sensitivity_text_changed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="value_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
+[connection signal="item_selected" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game" to="." method="_on_game_item_selected"]
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity" to="." method="_on_sensitivity_text_changed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
