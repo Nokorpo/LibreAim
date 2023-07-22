@@ -15,13 +15,11 @@ var dot_enable = false
 #var global_crosshair_height = DataManager.get_options("heigh", "float")
 #var global_crosshair_width = DataManager.get_options("width", "float")
 
-var dot_size = 3
-
-var global_outline_width = 0.5 * 2
-
-var global_crosshair_height = 1 * 2
-var global_crosshair_width = 4 * 2
-var global_crosshair_space = 1.5 * 2
+var dot_size = 6
+var global_outline_width = 2
+var global_crosshair_height = 4
+var global_crosshair_width = 12
+var global_crosshair_space = 5
 
 
 

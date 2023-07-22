@@ -80,23 +80,23 @@ placeholder_text = "6"
 
 [node name="OutlineSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
-text = "1"
-placeholder_text = "1"
-
-[node name="CrosshairHeight" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
-layout_mode = 2
 text = "2"
 placeholder_text = "2"
 
+[node name="CrosshairHeight" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+layout_mode = 2
+text = "4"
+placeholder_text = "4"
+
 [node name="CrosshairWidth" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
-text = "8"
-placeholder_text = "8"
+text = "12"
+placeholder_text = "12"
 
 [node name="CrosshairSpace" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
-text = "3"
-placeholder_text = "3"
+text = "5"
+placeholder_text = "5"
 
 [node name="CrosshairColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
 layout_mode = 2
