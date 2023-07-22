@@ -54,46 +54,46 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("2_iu82h")
 
-[node name="Crosshair" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Crosshair" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist"]]
 layout_mode = 2
 button_pressed = true
 text = "Crosshair"
 
-[node name="Outline" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Outline" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist"]]
 layout_mode = 2
 button_pressed = true
 text = "Outline"
 
-[node name="Crosshair inner" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="CrosshairInner" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist"]]
 layout_mode = 2
 button_pressed = true
 text = "Crosshair inner"
 
-[node name="Dot" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Dot" type="CheckButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist"]]
 layout_mode = 2
 text = "Dot"
 
-[node name="DotSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+[node name="DotSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
 text = "6"
 placeholder_text = "6"
 
-[node name="OutlineSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+[node name="OutlineSize" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
 text = "1"
 placeholder_text = "1"
 
-[node name="CrosshairHeight" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+[node name="CrosshairHeight" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
 text = "2"
 placeholder_text = "2"
 
-[node name="CrosshairWidth" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+[node name="CrosshairWidth" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
 text = "8"
 placeholder_text = "8"
 
-[node name="CrosshairSpace" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
+[node name="CrosshairSpace" type="LineEdit" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
 layout_mode = 2
 text = "3"
 placeholder_text = "3"
@@ -119,4 +119,14 @@ text = "Target color"
 layout_mode = 2
 text = "Back"
 
+[connection signal="refresh_crosshair" from="." to="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Control/Crosshair" method="_on_options_refresh_crosshair"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Crosshair" to="." method="_on_crosshair_toggled"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Outline" to="." method="_on_outline_toggled"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairInner" to="." method="_on_crosshair_inner_toggled"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Dot" to="." method="_on_dot_toggled"]
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/DotSize" to="." method="_on_dot_size_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/OutlineSize" to="." method="_on_outline_size_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairHeight" to="." method="_on_crosshair_height_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairWidth" to="." method="_on_crosshair_width_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairSpace" to="." method="_on_crosshair_space_text_changed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
