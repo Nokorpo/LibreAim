@@ -98,12 +98,11 @@ layout_mode = 2
 text = "5"
 placeholder_text = "5"
 
-[node name="CrosshairColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="CrosshairColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
 layout_mode = 2
 text = "Crosshair color"
-color = Color(0, 1, 1, 1)
 
-[node name="OutlineColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="OutlineColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" groups=["PutLabel"]]
 layout_mode = 2
 text = "Outline color"
 
@@ -112,11 +111,9 @@ layout_mode = 2
 text = "Target"
 uppercase = true
 
-[node name="TargetColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="TargetColor" type="ColorPickerButton" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" groups=["PutLabel"]]
 layout_mode = 2
 text = "Target color"
-color = Color(1, 1, 0, 1)
-edit_alpha = false
 
 [node name="Back" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -133,6 +130,4 @@ text = "Back"
 [connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairWidth" to="." method="_on_crosshair_width_text_changed"]
 [connection signal="text_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairSpace" to="." method="_on_crosshair_space_text_changed"]
 [connection signal="color_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairColor" to="." method="_on_crosshair_color_color_changed"]
-[connection signal="color_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/OutlineColor" to="." method="_on_outline_color_color_changed"]
-[connection signal="color_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/TargetColor" to="." method="_on_target_color_color_changed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

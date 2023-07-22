@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-
+@onready var mesh := $CollisionShape3D/MeshInstance3D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -16,8 +16,11 @@ var health = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-	
+	if DataManager.get_data("TargetColor") != null:
+		var material_override = StandardMaterial3D.new()
+		material_override.set_albedo(Global.string_to_color(DataManager.get_data("TargetColor")) )
+		mesh.material_override = material_override
+
 func init(size = 0.5, id_spawn = null, movement = false):
 	randomize()
 	self.scale = Vector3(size, size, size)

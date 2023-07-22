@@ -25,7 +25,6 @@ func putLabel(put_label):
 	parent.add_child(hbox)
 	parent.move_child(hbox, index)
 
-
 func loadSaved():
 	var all_persist_groups = get_tree().get_nodes_in_group("Persist")
 	for persist_group in all_persist_groups:
@@ -36,6 +35,9 @@ func loadSaved():
 			"LineEdit":
 				if DataManager.get_data(persist_group.name) != null:
 					persist_group.text = str((DataManager.get_data(persist_group.name)))
+			"ColorPickerButton":
+				if DataManager.get_data(persist_group.name) != null:
+					persist_group.color = Global.string_to_color(DataManager.get_data(persist_group.name)) 
 			_:
 				print("Not loaded")
 		
@@ -89,5 +91,14 @@ func _on_crosshair_space_text_changed(new_text):
 	emit_signal("refresh_crosshair")
 
 
-func _on_refresh_crosshair():
-	pass # Replace with function body.
+func _on_crosshair_color_color_changed(color):
+	DataManager.save_data("CrosshairColor", str(color))
+	emit_signal("refresh_crosshair")
+
+func _on_outline_color_color_changed(color):
+	DataManager.save_data("OutlineColor", str(color))
+	emit_signal("refresh_crosshair")
+
+func _on_target_color_color_changed(color):
+	DataManager.save_data("TargetColor", str(color))
+	emit_signal("refresh_crosshair")

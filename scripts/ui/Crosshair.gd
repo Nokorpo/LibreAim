@@ -50,6 +50,10 @@ func loadSave():
 		global_crosshair_width = DataManager.get_data("CrosshairWidth")
 	if DataManager.get_data("CrosshairSpace") != null:
 		global_crosshair_space = DataManager.get_data("CrosshairSpace")
+	if DataManager.get_data("CrosshairColor") != null:
+		global_color = Global.string_to_color(DataManager.get_data("CrosshairColor"))
+	if DataManager.get_data("OutlineColor") != null:
+		global_outline_color = Global.string_to_color(DataManager.get_data("OutlineColor"))
 	dot_crosshair = [
 		Vector2(-dot_size,-dot_size), #top left
 		Vector2(dot_size,-dot_size), #top right
