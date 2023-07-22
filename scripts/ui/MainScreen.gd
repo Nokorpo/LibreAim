@@ -1,10 +1,10 @@
 extends Control
 
-@onready var game = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game
-@onready var resolution_label := $MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
-@onready var gamelist := $Panel/ScrollContainer/VBoxContainer2
-@onready var slider_quality := $MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
-@onready var sensitivity := $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
+@onready var game = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Game
+@onready var resolution_label := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ResolutionLabel
+@onready var gamelist := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2
+@onready var slider_quality := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
+@onready var sensitivity := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
 
 
 #4k

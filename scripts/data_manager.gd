@@ -18,16 +18,21 @@ func save_data(key, value):
 	file.close()
 
 func get_data(key):
-	return game_data.get(key)
+	var result = null
+	if game_data != null:
+		result = game_data.get(key)
+	return result
 
 func load_data():
-	var json = {}
+	var json = JSON.new()
+	var result = {}
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if file:
-		json = JSON.new()
 		game_data = json.parse(file.get_as_text())
 		file.close()
 	else:
 		print("File not found.")
 
-	return json.data
+	if json.data != null:
+		result = json.data
+	return result
