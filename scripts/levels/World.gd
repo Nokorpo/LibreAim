@@ -5,13 +5,17 @@ var location_target = Vector3()
 var count_kills = 0
 var id_spawn_target = 0
 
-
+@onready var animation_kill = $Player/Head/AnimationKill
+@onready var kill = $Player/Head/Kill
+@onready var kills = $Player/Head/Kills
 #@onready var anim_hit = $FPS/Head/Camera3D/AnimationHit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	id_spawn_target = 0
 	count_kills = 0
+	
+	kill.visible = false
 	
 	for x in range(Global.game_type.number_of_initial_targets):
 		spawn_target()
@@ -61,9 +65,9 @@ func spawn_target():
 	
 func messageHit():
 	count_kills += 1
-	#$FPS/Head/Camera3D/LeftVBoxContainer/Kills.set_text((str(count_kills)))
-	#if not anim_hit.is_playing():
-	#	anim_hit.play("animationHit")
+	kills.set_text((str(count_kills)))
+	if not animation_kill.is_playing():
+		animation_kill.play("kill")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass

@@ -12,15 +12,18 @@ var user_sensitivity = 0.14
 var mouse_sensitivity = 0.00990624999999999
 
 var spread_bullets = true
-var count_down_started = false
 var damage = 10
 var shot_count = 0
+
+var seconds = 5
 
 var direction = Vector3()
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var raycast = $Head/Camera3D/RayCast3D
+@onready var timer = $"../Timer"
+@onready var timer_label = $Head/Timer
 @onready var bullet_hole = preload("res://scenes/ui/BulletHole.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -28,6 +31,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	emit_signal("pause_game", false)
+	timer_label.set_text((str(seconds) + "s"))
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if DataManager.get_data("sensitivity_game_value"):
 		conversion_sensitivity = DataManager.get_data("sensitivity_game_value")
@@ -49,8 +53,8 @@ func fire():
 			if target.is_in_group("Enemy"):
 				target.health -= damage 
 		shot_count += 1
-		if (!count_down_started):
-			count_down_started = true
+		if (timer.is_stopped()):
+			timer.start()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -109,3 +113,12 @@ func random_spread() -> float:
 		velocity_spread = velocity.length()
 	randomize()
 	return deg_to_rad(randf_range(-spread, spread) * velocity_spread)
+
+
+func _on_timer_timeout():
+	seconds -= 1
+	timer_label.set_text((str(seconds) + "s"))
+	if (int(seconds) <= -1):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://scenes/ui/MainScreen.tscn")
+

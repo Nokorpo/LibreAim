@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=17 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scripts/levels/World.gd" id="1_02ggb"]
 [ext_resource type="Script" path="res://scripts/characters/CharacterBody3D.gd" id="1_77co2"]
 [ext_resource type="Texture2D" uid="uid://mhv5qf7fdeig" path="res://assets/images/texture_08.png" id="1_s1bsx"]
 [ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="4_jkxyl"]
 [ext_resource type="Script" path="res://scripts/levels/Pause.gd" id="5_4wxgd"]
+[ext_resource type="LabelSettings" uid="uid://crnxcugovdaio" path="res://assets/fonts/100_outline.tres" id="5_k01xn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,6 +29,48 @@ uv1_triplanar = true
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_41626"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rkont"]
+font_size = 300
+outline_size = 30
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_jsqua"]
+resource_name = "kill"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Head/Kill:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_8dsmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Head/Kill:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0jl0"]
+_data = {
+"RESET": SubResource("Animation_8dsmr"),
+"kill": SubResource("Animation_jsqua")
+}
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_02ggb")
@@ -116,6 +159,40 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("4_jkxyl")
 
+[node name="Kill" type="Label" parent="Player/Head"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.5
+offset_top = 50.0
+offset_right = 93.5
+offset_bottom = 462.0
+grow_horizontal = 2
+text = "X"
+label_settings = SubResource("LabelSettings_rkont")
+
+[node name="Timer" type="Label" parent="Player/Head"]
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 140.0
+offset_bottom = 138.0
+text = "60s"
+label_settings = ExtResource("5_k01xn")
+
+[node name="Kills" type="Label" parent="Player/Head"]
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 140.0
+offset_bottom = 250.0
+text = "0"
+label_settings = ExtResource("5_k01xn")
+
+[node name="AnimationKill" type="AnimationPlayer" parent="Player/Head"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_s0jl0")
+}
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause" type="Control" parent="CanvasLayer"]
@@ -161,6 +238,9 @@ text = "Resume"
 layout_mode = 2
 text = "Menu"
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="pause_game" from="Player" to="CanvasLayer/Pause" method="_on_player_pause_game"]
 [connection signal="pressed" from="CanvasLayer/Pause/Buttons/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/Buttons/Menu" to="CanvasLayer/Pause" method="_on_menu_pressed"]
+[connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
