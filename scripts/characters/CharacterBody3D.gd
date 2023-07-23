@@ -15,7 +15,7 @@ var spread_bullets = true
 var damage = 10
 var shot_count = 0
 
-var seconds = 5
+var seconds = 60
 
 var direction = Vector3()
 
