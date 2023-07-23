@@ -11,6 +11,7 @@ var conversion_sensitivity = 0.0707589285714285
 var user_sensitivity = 0.14
 var mouse_sensitivity = 0.00990624999999999
 
+var spread_bullets = true
 var count_down_started = false
 var damage = 10
 var shot_count = 0
@@ -90,7 +91,21 @@ func _physics_process(delta):
 	else:
 		# Decelerate the velocity.
 		velocity -= velocity * DECCELERATION * delta
-
+	
+	if spread_bullets:
+		# Set initial position
+		raycast.rotation = Vector3(deg_to_rad(90),0,0)
+		# sperad.
+		raycast.rotate_x(random_spread())
+		raycast.rotate_y(random_spread())
+		raycast.rotate_z(random_spread())
 	move_and_slide()
 
-
+func random_spread() -> float:
+	var spread = 2
+	var velocity_spread = 0
+	# if less than percentage no spread.
+	if velocity.length() > (SPEED * 0.3):
+		velocity_spread = velocity.length()
+	randomize()
+	return deg_to_rad(randf_range(-spread, spread) * velocity_spread)
