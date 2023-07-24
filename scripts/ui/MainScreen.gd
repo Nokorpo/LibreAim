@@ -5,7 +5,7 @@ extends Control
 @onready var gamelist := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2
 @onready var slider_quality := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/QualitySlider
 @onready var sensitivity := $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Sensitivity
-
+@onready var exit_button = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Quit
 
 #4k
 var games_sensitivities: Dictionary = {
@@ -55,6 +55,8 @@ var models3d: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if Global.IS_WEB_EXPORTED:
+		exit_button.visible = false
 	AddGamesSensitivities()
 	if DataManager.get_data("resolution"):
 		slider_quality.value = DataManager.get_data("resolution")
@@ -98,6 +100,9 @@ func AddGames():
 		gamelist.add_child(hboxc)
 
 func startTraining(type):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if Global.IS_WEB_EXPORTED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		Global.game_type = models3d[type]
 		get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
 
@@ -109,6 +114,9 @@ func update_resolution_label() -> void:
 
 
 func _on_play_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if Global.IS_WEB_EXPORTED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	var keys = []
 	for key in models3d.keys():
 		keys.push_back(key)

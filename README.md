@@ -41,9 +41,9 @@ It features a variety of different training modes, including:
 
 ### For more information:
 
-🌐 Visit the Open Aim Trainer website
+🌐 Visit the Open Aim Trainer website [Website](https://openaimtrainer.com/)
 
-💬 Join the Open Aim Trainer Discord server
+💬 Join the Open Aim Trainer Discord server [Discord](https://discord.com/invite/bbKAEF6QQs)
 
 
 ### Basic structure

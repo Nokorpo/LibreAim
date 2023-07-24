@@ -29,6 +29,8 @@ func trigger_pause(new_pause_state):
 	
 
 func _on_resume_pressed():
+	if Global.IS_WEB_EXPORTED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	trigger_pause(false)
 
 func _on_menu_pressed():
