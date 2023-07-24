@@ -1,6 +1,6 @@
 extends Node
 
-const IS_WEB_EXPORTED = true
+const IS_WEB_EXPORTED = false
 
 func string_to_vector3d(string_vector: String) -> Vector3:
 	var components_str = string_vector.substr(1, string_vector.length() - 2)
