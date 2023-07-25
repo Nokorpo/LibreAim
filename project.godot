@@ -15,6 +15,7 @@ run/main_scene="res://scenes/ui/MainScreen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/image="res://assets/images/open_aim_trainer_16_9_Logo_v1.png"
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
