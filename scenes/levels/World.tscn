@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=18 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scripts/levels/World.gd" id="1_02ggb"]
 [ext_resource type="Script" path="res://scripts/characters/CharacterBody3D.gd" id="1_77co2"]
-[ext_resource type="Texture2D" uid="uid://mhv5qf7fdeig" path="res://assets/images/texture_08.png" id="1_s1bsx"]
 [ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="4_jkxyl"]
 [ext_resource type="Script" path="res://scripts/levels/Pause.gd" id="5_4wxgd"]
 [ext_resource type="LabelSettings" uid="uid://crnxcugovdaio" path="res://assets/fonts/100_outline.tres" id="5_k01xn"]
@@ -21,7 +20,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glx82"]
-albedo_texture = ExtResource("1_s1bsx")
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
 
@@ -83,10 +81,8 @@ _data = {
 [node name="World" type="Node3D"]
 script = ExtResource("1_02ggb")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.920764, -0.390121, 0, 0.390121, -0.920764, 0, 19.0056, 0)
-omni_range = 150.0
-omni_attenuation = 0.0179484
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 80, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mlohy")

@@ -5,6 +5,8 @@ var location_target = Vector3()
 var count_kills = 0
 var id_spawn_target = 0
 
+var is_fullscreen = false
+
 @onready var animation_kill = $Player/Head/AnimationKill
 @onready var kill = $Player/Head/Kill
 @onready var kills = $Player/Head/Kills
@@ -12,6 +14,8 @@ var id_spawn_target = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if (DisplayServer.window_get_mode() < 3):
+		print('not fullscreen')
 	id_spawn_target = 0
 	count_kills = 0
 	
@@ -19,6 +23,8 @@ func _ready():
 	
 	for x in range(Global.game_type.number_of_initial_targets):
 		spawn_target()
+
+
 
 
 func target_killed():
