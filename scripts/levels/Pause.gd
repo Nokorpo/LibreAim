@@ -18,6 +18,7 @@ func _process(_delta):
 func is_already_full_screen():
 	if !(DisplayServer.window_get_mode() < 3):
 		full_screen_needed.visible = false
+		trigger_pause(false)
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
