@@ -55,7 +55,7 @@ var models3d: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Global.IS_WEB_EXPORTED:
+	if OS.has_feature("web"):
 		exit_button.visible = false
 	AddGamesSensitivities()
 	if DataManager.get_data("resolution"):
@@ -67,6 +67,10 @@ func _ready():
 	AddGames()
 	get_viewport().size_changed.connect(self.update_resolution_label)
 	update_resolution_label()
+
+func _process(_delta):
+	if Input.is_action_pressed("f_pressed"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func AddGamesSensitivities():
 	for sens in games_sensitivities:
@@ -101,8 +105,6 @@ func AddGames():
 
 func startTraining(type):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		if Global.IS_WEB_EXPORTED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		Global.game_type = models3d[type]
 		get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
 
@@ -115,8 +117,7 @@ func update_resolution_label() -> void:
 
 func _on_play_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if Global.IS_WEB_EXPORTED:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 	var keys = []
 	for key in models3d.keys():
 		keys.push_back(key)

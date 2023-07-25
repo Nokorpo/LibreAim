@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-signal pause_game(is_paused)
+signal pause_game
 
 const SPEED = 20.0
 const JUMP_VELOCITY = 25
@@ -25,12 +25,12 @@ var direction = Vector3()
 @onready var timer = $"../Timer"
 @onready var timer_label = $Head/Timer
 @onready var bullet_hole = preload("res://scenes/ui/BulletHole.tscn")
-
+@onready var paused = $"../CanvasLayer/Pause"
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	emit_signal("pause_game", false)
+	paused.visible = false
 	timer_label.set_text((str(seconds) + "s"))
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if DataManager.get_data("sensitivity_game_value"):
@@ -63,7 +63,7 @@ func _input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 	else:
 		if event.is_action_pressed("ui_cancel"):
-			emit_signal("pause_game", true)
+			emit_signal("pause_game")
 
 
 

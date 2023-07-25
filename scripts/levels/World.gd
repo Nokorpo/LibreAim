@@ -5,13 +5,18 @@ var location_target = Vector3()
 var count_kills = 0
 var id_spawn_target = 0
 
+
 @onready var animation_kill = $Player/Head/AnimationKill
 @onready var kill = $Player/Head/Kill
 @onready var kills = $Player/Head/Kills
+@onready var full_screen_needed = $CanvasLayer/FullScreenRequest
 #@onready var anim_hit = $FPS/Head/Camera3D/AnimationHit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	full_screen_needed.visible = false
+	if (DisplayServer.window_get_mode() < 3):
+		full_screen_requested()
 	id_spawn_target = 0
 	count_kills = 0
 	
@@ -19,6 +24,8 @@ func _ready():
 	
 	for x in range(Global.game_type.number_of_initial_targets):
 		spawn_target()
+
+
 
 
 func target_killed():
@@ -70,8 +77,25 @@ func messageHit():
 		animation_kill.play("kill")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
-
+	if Input.is_action_pressed("f_pressed"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		is_already_full_screen()
 
 func _on_menu_pressed():
 	pass # Replace with function body.
+
+func full_screen_requested():
+	get_tree().paused = true
+	full_screen_needed.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func is_already_full_screen():
+	if !(DisplayServer.window_get_mode() < 3):
+		full_screen_needed.visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_tree().paused = false
+
+func _on_full_screen_needed_pressed():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	is_already_full_screen()
