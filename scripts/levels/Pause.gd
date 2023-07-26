@@ -1,6 +1,6 @@
 extends Control
 
-@onready var full_screen_needed = $"../FullScreenRequest"
+#@onready var full_screen_needed = $"../FullScreenRequest"
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -29,10 +29,10 @@ extends Control
 #		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 #		is_already_full_screen()
 
-func is_already_full_screen():
-	if !(DisplayServer.window_get_mode() < 3):
-		full_screen_needed.visible = false
-		trigger_pause(false)
+#func is_already_full_screen():
+#	if !(DisplayServer.window_get_mode() < 3):
+#		full_screen_needed.visible = false
+#		trigger_pause(false)
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:

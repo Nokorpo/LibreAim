@@ -15,8 +15,7 @@ var id_spawn_target = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	full_screen_needed.visible = false
-	if (DisplayServer.window_get_mode() < 3):
-		full_screen_requested()
+	full_screen_requested()
 	id_spawn_target = 0
 	count_kills = 0
 	
@@ -87,18 +86,19 @@ func _on_menu_pressed():
 	pass # Replace with function body.
 
 func full_screen_requested():
-	get_tree().paused = true
-	full_screen_needed.visible = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if (DisplayServer.window_get_mode() < 3):
+		get_tree().paused = true
+		full_screen_needed.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
-func is_already_full_screen():
-	if !(DisplayServer.window_get_mode() < 3):
-		full_screen_needed.visible = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		get_tree().paused = false
 
 func _on_full_screen_needed_pressed():
+	print("aqui")
+	get_tree().paused = false
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	is_already_full_screen()
+	full_screen_needed.visible = false
+	var timer = Timer.new()
+	timer.set_wait_time(3)
+	timer.connect("timeout", Callable(self, "full_screen_requested"))
