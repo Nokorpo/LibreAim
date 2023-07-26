@@ -68,9 +68,9 @@ func _ready():
 	get_viewport().size_changed.connect(self.update_resolution_label)
 	update_resolution_label()
 
-func _process(_delta):
-	if Input.is_action_pressed("f_pressed"):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+#func _process(_delta):
+#	if Input.is_action_pressed("f_pressed"):
+#		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func AddGamesSensitivities():
 	for sens in games_sensitivities:

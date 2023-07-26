@@ -28,6 +28,7 @@ func _ready():
 
 
 
+
 func target_killed():
 	messageHit()
 	spawn_target()
@@ -76,10 +77,11 @@ func messageHit():
 	if not animation_kill.is_playing():
 		animation_kill.play("kill")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if Input.is_action_pressed("f_pressed"):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		is_already_full_screen()
+#func _process(_delta):
+#	if Input.is_action_pressed("f_pressed"):
+#		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+#		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#		is_already_full_screen()
 
 func _on_menu_pressed():
 	pass # Replace with function body.
@@ -98,4 +100,5 @@ func is_already_full_screen():
 
 func _on_full_screen_needed_pressed():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	is_already_full_screen()

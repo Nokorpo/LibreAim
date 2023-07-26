@@ -275,7 +275,7 @@ offset_right = 503.5
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press \"F\". Full screen is needed."
+text = "Full screen is needed."
 
 [node name="Timer" type="Timer" parent="."]
 
