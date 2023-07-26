@@ -277,10 +277,44 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Full screen is needed."
 
+[node name="MouseCapturedRequested" type="Control" parent="CanvasLayer"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MouseCapturedRequested"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.34902)
+
+[node name="MouseCapturedNeeded" type="Button" parent="CanvasLayer/MouseCapturedRequested"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -503.5
+offset_top = -60.0
+offset_right = 503.5
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mouse captured is needed."
+
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="pause_game" from="Player" to="CanvasLayer/Pause" method="_on_player_pause_game"]
 [connection signal="pressed" from="CanvasLayer/Pause/Buttons/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/Buttons/Menu" to="CanvasLayer/Pause" method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/FullScreenRequest/FullScreenNeeded" to="." method="_on_full_screen_needed_pressed"]
+[connection signal="pressed" from="CanvasLayer/MouseCapturedRequested/MouseCapturedNeeded" to="." method="_on_mouse_captured_needed_pressed"]
 [connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]

@@ -10,11 +10,13 @@ var id_spawn_target = 0
 @onready var kill = $Player/Head/Kill
 @onready var kills = $Player/Head/Kills
 @onready var full_screen_needed = $CanvasLayer/FullScreenRequest
+@onready var captured_needed = $CanvasLayer/MouseCapturedRequested
 #@onready var anim_hit = $FPS/Head/Camera3D/AnimationHit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	full_screen_needed.visible = false
+	captured_needed.visible = false
 	full_screen_requested()
 	id_spawn_target = 0
 	count_kills = 0
@@ -94,11 +96,16 @@ func full_screen_requested():
 
 
 func _on_full_screen_needed_pressed():
-	print("aqui")
-	get_tree().paused = false
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	full_screen_needed.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	captured_needed.visible = true
 	var timer = Timer.new()
 	timer.set_wait_time(3)
 	timer.connect("timeout", Callable(self, "full_screen_requested"))
+
+
+func _on_mouse_captured_needed_pressed():
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	captured_needed.visible = false
