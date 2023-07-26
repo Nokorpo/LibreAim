@@ -26,8 +26,8 @@ func _ready():
 	for x in range(Global.game_type.number_of_initial_targets):
 		spawn_target()
 
-
-
+func _process(_delta):
+	full_screen_requested()
 
 
 func target_killed():
@@ -89,9 +89,9 @@ func _on_menu_pressed():
 
 func full_screen_requested():
 	if (DisplayServer.window_get_mode() < 3):
-		get_tree().paused = true
 		full_screen_needed.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
 
 
 

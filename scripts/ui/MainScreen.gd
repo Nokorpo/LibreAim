@@ -104,6 +104,7 @@ func AddGames():
 		gamelist.add_child(hboxc)
 
 func startTraining(type):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		Global.game_type = models3d[type]
 		get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
