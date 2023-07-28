@@ -56,7 +56,12 @@ var models3d: Dictionary = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if OS.has_feature("web"):
+		slider_quality.visible = false
+		resolution_label.visible = false
 		exit_button.visible = false
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	
 	AddGamesSensitivities()
 	if DataManager.get_data("resolution"):
 		slider_quality.value = DataManager.get_data("resolution")
@@ -104,10 +109,10 @@ func AddGames():
 		gamelist.add_child(hboxc)
 
 func startTraining(type):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	if !OS.has_feature("web"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		Global.game_type = models3d[type]
-		get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
+	Global.game_type = models3d[type]
+	get_tree().change_scene_to_file("res://scenes/levels/World.tscn")
 
 
 func update_resolution_label() -> void:
@@ -117,8 +122,6 @@ func update_resolution_label() -> void:
 
 
 func _on_play_pressed():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 	var keys = []
 	for key in models3d.keys():
 		keys.push_back(key)
