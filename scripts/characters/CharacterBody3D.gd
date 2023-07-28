@@ -32,7 +32,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	paused.visible = false
 	timer_label.set_text((str(seconds) + "s"))
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if DataManager.get_data("sensitivity_game_value"):
 		conversion_sensitivity = DataManager.get_data("sensitivity_game_value")
 	if DataManager.get_data("sensitivity"):

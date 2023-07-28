@@ -89,8 +89,8 @@ func _on_menu_pressed():
 
 func full_screen_requested():
 	if (DisplayServer.window_get_mode() < 3):
-		full_screen_needed.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		full_screen_needed.visible = true
 		get_tree().paused = true
 
 
