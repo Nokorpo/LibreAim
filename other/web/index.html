@@ -11,21 +11,25 @@
         content="Open Aim Trainer, aim trainer, Godot game engine, 2D games, 3D games, improve aim, training modes, customizable settings, free, open source">
         <link rel="icon" href="icon.ico" type="image/x-icon">
         <link rel="icon" href="icon.png" type="image/png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </head>
 
 <body>
     <header>
-        <h1>OpenAimTrainer</h1>
-        <a href="https://github.com/erkkon/OpenAimTrainer" target="_blank" class="github-link">
-            <i class="fab fa-github"></i>
-        </a>
+        <div style=" display: flex;justify-content: center; vertical-align: middle;">
+        <img src="logo.svg" width="60rem" alt="GitHub" />
+        <h1 style="padding: 0px 10px 0px 10px;">OpenAimTrainer</h1>
+        <img src="github-mark-white.svg" width="60rem" alt="GitHub" style="cursor: pointer;" onclick="window.location.href='https://github.com/erkkon/OpenAimTrainer'" />
+        </div>
+        
     </header>
     <main>
-        <button class="button" onclick="window.location.href='https://github.com/erkkon/OpenAimTrainer/releases'">Install locally!</button>
-        <p class="or">or</p>
-        <button class="button" onclick="window.location.href='./game'">Run on web!</button>
+
+
+
+<button class="button" onclick="window.location.href='./game'">Play</button>
+<img src="play.svg" width="200rem" alt="Play" class="play-button" />
+<button class="button" onclick="window.location.href='https://github.com/erkkon/OpenAimTrainer/releases'">Install</button>
         <section>
             <h2>About Open Aim Trainer</h2>
             <p>🎯 <strong>Open Aim Trainer</strong> is a free and open source aim trainer that allows you to improve
@@ -103,7 +107,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Open Aim Trainer. All rights reserved.</p>
+        <p>Open Aim Trainer</p>
     </footer>
 </body>
 
@@ -111,7 +115,7 @@
 
 <style>
    /* Reset some default styles to improve consistency */
-body, h1, h2, h3, p, ul, ol {
+body,  h2, h3, p, ul, ol {
     margin: 0;
     padding: 0;
 }
@@ -123,7 +127,7 @@ body {
 }
 
 header {
-    background-color: #007BFF;
+    background-color: #FF00EC;
     padding: 1rem;
     text-align: center;
     color: #FFF;
@@ -142,6 +146,15 @@ main {
 section {
     margin-bottom: 2rem;
 }
+
+h2 {
+  color: #fff;
+}
+
+.play-button h2 {
+  color: #fff;
+}
+
 
 section h2 {
     font-size: 1.8rem;
@@ -163,7 +176,7 @@ pre {
 }
 
 a {
-    color: #007BFF;
+    color: #FF00EC;
 }
 
 footer {
@@ -209,11 +222,29 @@ footer {
   outline: none;
 }
 
-.github-link {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 3.0rem;
-    color: #FFF;
+.play-button {
+    /* border-radius: 50%; */
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    animation: play-button-animation 1s ease-in-out infinite;
+
+}
+
+
+
+
+
+@keyframes play-button-animation {
+    0% {
+    transform: scale(1);
+    }
+    50% {
+    transform: scale(1.1);
+    }
+    100% {
+    transform: scale(1);
+    }
 }
 </style>
