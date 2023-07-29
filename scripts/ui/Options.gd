@@ -3,11 +3,13 @@ extends Control
 signal refresh_crosshair
 
 @onready var crosshair = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Crosshair
+@onready var file_export = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ExportFileDialog
+@onready var file_import = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ImportFileDialog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	print(crosshair.is_pressed())
-#	crosshair.set_pressed(true)
+	file_export.visible = false
+	file_import.visible = false
 	loadSaved()
 	var all_put_labels = get_tree().get_nodes_in_group("PutLabel")
 	for put_label in all_put_labels:
@@ -102,3 +104,22 @@ func _on_outline_color_color_changed(color):
 func _on_target_color_color_changed(color):
 	DataManager.save_data("TargetColor", str(color))
 	emit_signal("refresh_crosshair")
+
+
+func _on_export_pressed():
+	file_export.current_dir = "/"
+	file_export.visible = true
+
+
+func _on_import_pressed():
+	file_import.current_dir = "/"
+	file_import.visible = true
+
+
+func _on_export_file_dialog_file_selected(path):
+	DataManager.save_all_data(path)
+
+
+func _on_import_file_dialog_file_selected(path):
+	DataManager.load_all_data(path)
+	DataManager.save_all_data()

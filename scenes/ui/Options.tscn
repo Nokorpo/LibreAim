@@ -118,6 +118,34 @@ text = "Target color"
 color = Color(1, 1, 0, 1)
 edit_alpha = false
 
+[node name="ImportExport" type="Label" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "IMPORT / EXPORT"
+uppercase = true
+
+[node name="Export" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Export"
+
+[node name="ExportFileDialog" type="FileDialog" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+initial_position = 2
+size = Vector2i(1995, 1500)
+visible = true
+access = 2
+
+[node name="Import" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Import"
+
+[node name="ImportFileDialog" type="FileDialog" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(1758, 1500)
+visible = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
 [node name="Back" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
@@ -135,4 +163,8 @@ text = "Back"
 [connection signal="color_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/CrosshairColor" to="." method="_on_crosshair_color_color_changed"]
 [connection signal="color_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/OutlineColor" to="." method="_on_outline_color_color_changed"]
 [connection signal="color_changed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/TargetColor" to="." method="_on_target_color_color_changed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Export" to="." method="_on_export_pressed"]
+[connection signal="file_selected" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ExportFileDialog" to="." method="_on_export_file_dialog_file_selected"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Import" to="." method="_on_import_pressed"]
+[connection signal="file_selected" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ImportFileDialog" to="." method="_on_import_file_dialog_file_selected"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
