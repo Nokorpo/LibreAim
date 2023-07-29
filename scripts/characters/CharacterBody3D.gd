@@ -36,8 +36,11 @@ func _ready():
 		conversion_sensitivity = DataManager.get_data("sensitivity_game_value")
 	if DataManager.get_data("sensitivity"):
 		user_sensitivity = DataManager.get_data("sensitivity")
+	if OS.has_feature("web"):
+		mouse_sensitivity = user_sensitivity * conversion_sensitivity
+	else:
+		mouse_sensitivity = user_sensitivity
 	
-	mouse_sensitivity = user_sensitivity * conversion_sensitivity
 
 func fire():
 	if Input.is_action_just_pressed("fire"):
