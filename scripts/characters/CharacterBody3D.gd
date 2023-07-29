@@ -37,9 +37,9 @@ func _ready():
 	if DataManager.get_data("sensitivity"):
 		user_sensitivity = DataManager.get_data("sensitivity")
 	if OS.has_feature("web"):
-		mouse_sensitivity = user_sensitivity * conversion_sensitivity
+		mouse_sensitivity = user_sensitivity * conversion_sensitivity * 0.67857142857142857143
 	else:
-		mouse_sensitivity = user_sensitivity
+		mouse_sensitivity = user_sensitivity * conversion_sensitivity
 	
 
 func fire():
