@@ -11,6 +11,7 @@ func _ready():
 	file_export.visible = false
 	file_import.visible = false
 	loadSaved()
+	
 	var all_put_labels = get_tree().get_nodes_in_group("PutLabel")
 	for put_label in all_put_labels:
 		putLabel(put_label)
@@ -105,15 +106,43 @@ func _on_target_color_color_changed(color):
 	DataManager.save_data("TargetColor", str(color))
 	emit_signal("refresh_crosshair")
 
+func open_file_dialog():
+	var js_code = """
+	var input = document.createElement('input');
+	input.type = 'file';
+	input.accept = '.txt'; // You can specify the allowed file types here
+	input.style.display = 'none';
+	input.addEventListener('change', function(event) {
+		var file = event.target.files[0];
+		var reader = new FileReader();
+		reader.onload = function() {
+			var content = reader.result;
+			// Do something with the file content here
+		};
+		reader.readAsText(file);
+	});
+	document.body.appendChild(input);
+	input.click();
+	document.body.removeChild(input);
+	"""
+
+
 
 func _on_export_pressed():
-	file_export.current_dir = "/"
-	file_export.visible = true
+	if OS.has_feature("web"):
+		pass
+	else:
+		file_export.current_dir = "/"
+		file_export.visible = true
+
 
 
 func _on_import_pressed():
-	file_import.current_dir = "/"
-	file_import.visible = true
+	if OS.has_feature("web"):
+		open_file_dialog()
+	else:
+		file_import.current_dir = "/"
+		file_import.visible = true
 
 
 func _on_export_file_dialog_file_selected(path):
