@@ -9,8 +9,11 @@ func _ready():
 	load_all_data()
 
 
-func save_data(key, value, file_directory = file_path) :
+func save_all_data_to_file_web():
+	var json = JSON.stringify(game_data)
+	JavaScriptBridge.download_buffer(json.to_utf8_buffer(),"open_aim_trainer.json")
 
+func save_data(key, value, file_directory = file_path) :
 	game_data[key] = value
 	var json = JSON.stringify(game_data)
 	var file = FileAccess.open(file_directory, FileAccess.WRITE)
@@ -34,7 +37,7 @@ func load_all_data(file_directory = file_path):
 	var result = {}
 	var file = FileAccess.open(file_directory, FileAccess.READ)
 	if file:
-		game_data = json.parse(file.get_as_text())
+		json.parse(file.get_as_text())
 		file.close()
 	else:
 		print("File not found.")

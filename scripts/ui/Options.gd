@@ -6,8 +6,13 @@ signal refresh_crosshair
 @onready var file_export = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ExportFileDialog
 @onready var file_import = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ImportFileDialog
 
+var fileImportCallback = JavaScriptBridge.create_callback(Callable(self, "file_parser"))
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if OS.has_feature("web"):
+		var window = JavaScriptBridge.get_interface("window")
+		window.getFile(fileImportCallback)
 	file_export.visible = false
 	file_import.visible = false
 	loadSaved()
@@ -127,10 +132,14 @@ func open_file_dialog():
 	"""
 
 
+func file_parser(args):
+	var json = JSON.new()
+	json.parse(args[0])
+	print(json.result)
 
 func _on_export_pressed():
 	if OS.has_feature("web"):
-		pass
+		DataManager.save_all_data_to_file_web()
 	else:
 		file_export.current_dir = "/"
 		file_export.visible = true
@@ -139,7 +148,8 @@ func _on_export_pressed():
 
 func _on_import_pressed():
 	if OS.has_feature("web"):
-		open_file_dialog()
+		var window = JavaScriptBridge.get_interface("window")
+		window.input.click()
 	else:
 		file_import.current_dir = "/"
 		file_import.visible = true
