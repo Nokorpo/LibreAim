@@ -1,14 +1,40 @@
 extends Control
 
+
+#Code needed on export Header web:
+#<script>
+#function getFile(callback) {
+#		window.input = document.createElement('input');
+#		input.type = 'file';
+#		input.onchange = e => {
+#			var file = e.target.files[0];
+#			var reader = new FileReader();
+#			reader.readAsText(file, 'UFT-8');
+#			reader.onload = readerEvent => {
+#				callback(readerEvent.target.result);
+#			}
+#		}
+#	}
+#</script>
+
 signal refresh_crosshair
 
 @onready var crosshair = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Crosshair
+@onready var file_export = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ExportFileDialog
+@onready var file_import = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ImportFileDialog
+
+var fileImportCallback = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	print(crosshair.is_pressed())
-#	crosshair.set_pressed(true)
+	if OS.has_feature("web"):
+		fileImportCallback = JavaScriptBridge.create_callback(Callable(self, "file_parser"))
+		var window = JavaScriptBridge.get_interface("window")
+		window.getFile(fileImportCallback)
+	file_export.visible = false
+	file_import.visible = false
 	loadSaved()
+	
 	var all_put_labels = get_tree().get_nodes_in_group("PutLabel")
 	for put_label in all_put_labels:
 		putLabel(put_label)
@@ -102,3 +128,33 @@ func _on_outline_color_color_changed(color):
 func _on_target_color_color_changed(color):
 	DataManager.save_data("TargetColor", str(color))
 	emit_signal("refresh_crosshair")
+
+
+func file_parser(args):
+	DataManager.load_all_data_from_param(args[0])
+
+func _on_export_pressed():
+	if OS.has_feature("web"):
+		DataManager.save_all_data_to_file_web()
+	else:
+		file_export.current_dir = "/"
+		file_export.visible = true
+
+
+
+func _on_import_pressed():
+	if OS.has_feature("web"):
+		var window = JavaScriptBridge.get_interface("window")
+		window.input.click()
+	else:
+		file_import.current_dir = "/"
+		file_import.visible = true
+
+
+func _on_export_file_dialog_file_selected(path):
+	DataManager.save_all_data(path)
+
+
+func _on_import_file_dialog_file_selected(path):
+	DataManager.load_all_data(path)
+	DataManager.save_all_data()
