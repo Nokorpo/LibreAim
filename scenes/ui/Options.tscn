@@ -129,8 +129,7 @@ text = "Export"
 
 [node name="ExportFileDialog" type="FileDialog" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 initial_position = 2
-size = Vector2i(1995, 1500)
-visible = true
+size = Vector2i(2483, 1500)
 access = 2
 
 [node name="Import" type="Button" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
@@ -140,8 +139,7 @@ text = "Import"
 [node name="ImportFileDialog" type="FileDialog" parent="ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 title = "Open a File"
 initial_position = 2
-size = Vector2i(1758, 1500)
-visible = true
+size = Vector2i(2017, 1500)
 ok_button_text = "Open"
 file_mode = 0
 access = 2

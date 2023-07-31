@@ -8,6 +8,14 @@ var game_data = {}
 func _ready():
 	load_all_data()
 
+func load_all_data_from_param(string_json):
+	var json = JSON.new()
+	var result = {}
+	json.parse(string_json)
+	if json.data != null:
+		result = json.data
+	game_data = result
+
 
 func save_all_data_to_file_web():
 	var json = JSON.stringify(game_data)

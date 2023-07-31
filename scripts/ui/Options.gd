@@ -1,16 +1,34 @@
 extends Control
 
+
+#Code needed on export Header web:
+#<script>
+#function getFile(callback) {
+#		window.input = document.createElement('input');
+#		input.type = 'file';
+#		input.onchange = e => {
+#			var file = e.target.files[0];
+#			var reader = new FileReader();
+#			reader.readAsText(file, 'UFT-8');
+#			reader.onload = readerEvent => {
+#				callback(readerEvent.target.result);
+#			}
+#		}
+#	}
+#</script>
+
 signal refresh_crosshair
 
 @onready var crosshair = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Crosshair
 @onready var file_export = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ExportFileDialog
 @onready var file_import = $ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/ImportFileDialog
 
-var fileImportCallback = JavaScriptBridge.create_callback(Callable(self, "file_parser"))
+var fileImportCallback = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if OS.has_feature("web"):
+		fileImportCallback = JavaScriptBridge.create_callback(Callable(self, "file_parser"))
 		var window = JavaScriptBridge.get_interface("window")
 		window.getFile(fileImportCallback)
 	file_export.visible = false
@@ -111,31 +129,9 @@ func _on_target_color_color_changed(color):
 	DataManager.save_data("TargetColor", str(color))
 	emit_signal("refresh_crosshair")
 
-func open_file_dialog():
-	var js_code = """
-	var input = document.createElement('input');
-	input.type = 'file';
-	input.accept = '.txt'; // You can specify the allowed file types here
-	input.style.display = 'none';
-	input.addEventListener('change', function(event) {
-		var file = event.target.files[0];
-		var reader = new FileReader();
-		reader.onload = function() {
-			var content = reader.result;
-			// Do something with the file content here
-		};
-		reader.readAsText(file);
-	});
-	document.body.appendChild(input);
-	input.click();
-	document.body.removeChild(input);
-	"""
-
 
 func file_parser(args):
-	var json = JSON.new()
-	json.parse(args[0])
-	print(json.result)
+	DataManager.load_all_data_from_param(args[0])
 
 func _on_export_pressed():
 	if OS.has_feature("web"):
