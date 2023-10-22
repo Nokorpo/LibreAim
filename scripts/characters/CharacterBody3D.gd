@@ -122,5 +122,5 @@ func _on_timer_timeout():
 	timer_label.set_text((str(seconds) + "s"))
 	if (int(seconds) <= -1):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().change_scene_to_file("res://scenes/ui/MainScreen.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/main_screen.tscn")
 

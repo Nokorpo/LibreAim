@@ -1,9 +1,5 @@
 extends Control
 
-
-
-
-
 var global_color = Color(0, 255, 255, 1)
 var global_outline_color = Color(0,0,0)
 
@@ -21,10 +17,7 @@ var global_crosshair_height = 4
 var global_crosshair_width = 12
 var global_crosshair_space = 5
 
-
-
 var dot_crosshair = []
-
 
 var left_inner_crosshair = []
 var top_inner_crosshair = []

@@ -53,7 +53,7 @@ func _on_resume_pressed():
 
 func _on_menu_pressed():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/ui/MainScreen.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/main_screen.tscn")
 
 func _on_player_pause_game():
 	trigger_pause(true)
