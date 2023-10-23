@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 #@onready var full_screen_needed = $"../FullScreenRequest"
 # Declare member variables here. Examples:
@@ -34,19 +34,22 @@ extends Control
 #		full_screen_needed.visible = false
 #		trigger_pause(false)
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		trigger_pause(true)
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
 		trigger_pause(true)
 
 func trigger_pause(new_pause_state):
 	get_tree().paused = new_pause_state
-	visible = new_pause_state
+	$Pause.visible = new_pause_state
 	if (new_pause_state):
-		$Buttons/Resume.grab_focus()
+		$Pause/Buttons/Resume.grab_focus()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
 
 func _on_resume_pressed():
 	trigger_pause(false)
@@ -54,8 +57,3 @@ func _on_resume_pressed():
 func _on_menu_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/ui/main_screen.tscn")
-
-func _on_player_pause_game():
-	trigger_pause(true)
-
-

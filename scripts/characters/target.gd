@@ -1,24 +1,19 @@
 extends CharacterBody3D
 
-@onready var mesh := $CollisionShape3D/MeshInstance3D
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 signal target_kill
 
+@onready var mesh := $CollisionShape3D/MeshInstance3D
+
 var id_spawn_target = null
-
 var lavelocitat = null
-
 var health = 10 
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
 	if DataManager.get_data("TargetColor") != null:
-		var material_override = StandardMaterial3D.new()
-		material_override.set_albedo(Global.string_to_color(DataManager.get_data("TargetColor")) )
+		var material_override = mesh.get_mesh().get_material()
+		material_override.set_albedo(Global.string_to_color(DataManager.get_data("TargetColor")))
+		material_override.set_emission(Global.string_to_color(DataManager.get_data("TargetColor")))
 		mesh.material_override = material_override
 
 func init(size = 0.5, id_spawn = null, movement = false):
@@ -39,5 +34,3 @@ func _physics_process(delta):
 		var collision_info = move_and_collide(lavelocitat * delta)
 		if collision_info:
 			lavelocitat = lavelocitat.bounce(collision_info.get_normal())
-
-

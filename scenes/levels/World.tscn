@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/levels/World.gd" id="1_02ggb"]
 [ext_resource type="Script" path="res://scripts/characters/CharacterBody3D.gd" id="1_77co2"]
+[ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/images/mat_filldummy.tres" id="2_1uwlb"]
 [ext_resource type="Script" path="res://scripts/ui/Crosshair.gd" id="4_jkxyl"]
-[ext_resource type="Script" path="res://scripts/levels/Pause.gd" id="5_4wxgd"]
 [ext_resource type="LabelSettings" uid="uid://crnxcugovdaio" path="res://assets/fonts/100_outline.tres" id="5_k01xn"]
+[ext_resource type="Script" path="res://scripts/levels/pause.gd" id="6_gfk58"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,14 +15,9 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_hein3")
 
 [sub_resource type="Environment" id="Environment_mlohy"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.0666667, 0.129412, 0.227451, 1)
 sky = SubResource("Sky_i8euj")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glx82"]
-uv1_scale = Vector3(0.1, 0.1, 0.1)
-uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1v5h"]
 transparency = 1
@@ -46,7 +42,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player/Head/Kill:visible")
+tracks/0/path = NodePath("CanvasLayer/GameplayUI/Kill:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +58,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player/Head/Kill:visible")
+tracks/0/path = NodePath("CanvasLayer/GameplayUI/Kill:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,8 +77,12 @@ _data = {
 [node name="World" type="Node3D"]
 script = ExtResource("1_02ggb")
 
+[node name="Timer" type="Timer" parent="."]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 80, 0)
+transform = Transform3D(0.998198, 0.0464176, 0.0380307, -0.0421491, 0.0912349, 0.994937, 0.0427129, -0.994747, 0.093027, 0, 80, 0)
+light_color = Color(0.360784, 0.615686, 1, 1)
+light_bake_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mlohy")
@@ -96,20 +96,20 @@ size = Vector3(100, 50, 100)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 operation = 2
 size = Vector3(99, 50, 99)
-material = SubResource("StandardMaterial3D_glx82")
+material = ExtResource("2_1uwlb")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.1934, -20)
+size = Vector3(99, 1.748, 0.852186)
+material = ExtResource("2_1uwlb")
 
 [node name="PlayerPrison" type="CSGBox3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -25.0111)
 material_override = SubResource("StandardMaterial3D_d1v5h")
 transparency = 1.0
 use_collision = true
 collision_layer = 4
-size = Vector3(10, 20, 10)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="PlayerPrison"]
-operation = 2
-use_collision = true
-size = Vector3(9, 21, 9)
+size = Vector3(33, 20, 10)
 
 [node name="TargetPrison" type="CSGBox3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 4, 0, 0, 0, 3, 2.08165e-12, 9, -35)
@@ -165,7 +165,18 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("4_jkxyl")
 
-[node name="Kill" type="Label" parent="Player/Head"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameplayUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Kill" type="Label" parent="CanvasLayer/GameplayUI"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -177,31 +188,34 @@ grow_horizontal = 2
 text = "X"
 label_settings = SubResource("LabelSettings_rkont")
 
-[node name="Timer" type="Label" parent="Player/Head"]
+[node name="Time" type="Label" parent="CanvasLayer/GameplayUI"]
+layout_mode = 0
 offset_left = 100.0
 offset_top = 50.0
-offset_right = 140.0
-offset_bottom = 138.0
+offset_right = 263.0
+offset_bottom = 190.0
 text = "60s"
 label_settings = ExtResource("5_k01xn")
 
-[node name="Kills" type="Label" parent="Player/Head"]
+[node name="Kills" type="Label" parent="CanvasLayer/GameplayUI"]
+layout_mode = 0
 offset_left = 100.0
 offset_top = 150.0
-offset_right = 140.0
-offset_bottom = 250.0
+offset_right = 157.0
+offset_bottom = 290.0
 text = "0"
 label_settings = ExtResource("5_k01xn")
 
-[node name="AnimationKill" type="AnimationPlayer" parent="Player/Head"]
+[node name="AnimationKill" type="AnimationPlayer" parent="CanvasLayer/GameplayUI"]
 root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_s0jl0")
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PauseManager" type="Node" parent="CanvasLayer"]
+script = ExtResource("6_gfk58")
 
-[node name="Pause" type="Control" parent="CanvasLayer"]
+[node name="Pause" type="Control" parent="CanvasLayer/PauseManager"]
 process_mode = 2
 visible = false
 layout_mode = 3
@@ -210,9 +224,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_4wxgd")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseManager/Pause"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,7 +235,7 @@ grow_vertical = 2
 color = Color(0.0745098, 0.0745098, 0.0745098, 0.34902)
 metadata/_edit_use_anchors_ = true
 
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Pause"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/PauseManager/Pause"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -236,11 +249,11 @@ offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Resume" type="Button" parent="CanvasLayer/Pause/Buttons"]
+[node name="Resume" type="Button" parent="CanvasLayer/PauseManager/Pause/Buttons"]
 layout_mode = 2
 text = "Resume"
 
-[node name="Menu" type="Button" parent="CanvasLayer/Pause/Buttons"]
+[node name="Menu" type="Button" parent="CanvasLayer/PauseManager/Pause/Buttons"]
 layout_mode = 2
 text = "Menu"
 
@@ -317,12 +330,10 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Mouse captured is needed."
 
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="pause_game" from="Player" to="CanvasLayer/Pause" method="_on_player_pause_game"]
-[connection signal="pressed" from="CanvasLayer/Pause/Buttons/Resume" to="CanvasLayer/Pause" method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/Pause/Buttons/Menu" to="CanvasLayer/Pause" method="_on_menu_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
+[connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Resume" to="CanvasLayer/PauseManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Menu" to="CanvasLayer/PauseManager" method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/FullScreenRequest/Buttons/FullScreenNeeded" to="." method="_on_full_screen_needed_pressed"]
-[connection signal="pressed" from="CanvasLayer/FullScreenRequest/Buttons/Menu" to="CanvasLayer/Pause" method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/FullScreenRequest/Buttons/Menu" to="CanvasLayer/PauseManager/Pause" method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/MouseCapturedRequested/MouseCapturedNeeded" to="." method="_on_mouse_captured_needed_pressed"]
-[connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]

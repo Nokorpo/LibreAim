@@ -5,13 +5,13 @@ var location_target = Vector3()
 var count_kills = 0
 var id_spawn_target = 0
 
-
-@onready var animation_kill = $Player/Head/AnimationKill
-@onready var kill = $Player/Head/Kill
-@onready var kills = $Player/Head/Kills
+@onready var animation_kill = $CanvasLayer/GameplayUI/AnimationKill
+@onready var kill = $CanvasLayer/GameplayUI/Kill
+@onready var kills = $CanvasLayer/GameplayUI/Kills
 @onready var full_screen_needed = $CanvasLayer/FullScreenRequest
 @onready var captured_needed = $CanvasLayer/MouseCapturedRequested
-#@onready var anim_hit = $FPS/Head/Camera3D/AnimationHit
+@onready var timer = $Timer
+@onready var timer_label = $CanvasLayer/GameplayUI/Time
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +28,30 @@ func _ready():
 
 func _process(_delta):
 	full_screen_requested()
+	update_timer_ui()
 
+func _on_full_screen_needed_pressed():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	full_screen_needed.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	captured_needed.visible = true
+	var timer = Timer.new()
+	timer.set_wait_time(3)
+	timer.connect("timeout", Callable(self, "full_screen_requested"))
+
+func _on_mouse_captured_needed_pressed():
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	captured_needed.visible = false
+
+func _on_timer_timeout():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to_file("res://scenes/ui/main_screen.tscn")
+
+func _on_player_shoot():
+	if (timer.is_stopped()):
+		timer.wait_time = 60
+		timer.start()
 
 func target_killed():
 	messageHit()
@@ -84,28 +107,11 @@ func messageHit():
 #		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 #		is_already_full_screen()
 
-func _on_menu_pressed():
-	pass # Replace with function body.
-
 func full_screen_requested():
 	if (DisplayServer.window_get_mode() < 3):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		full_screen_needed.visible = true
 		get_tree().paused = true
 
-
-
-func _on_full_screen_needed_pressed():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	full_screen_needed.visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	captured_needed.visible = true
-	var timer = Timer.new()
-	timer.set_wait_time(3)
-	timer.connect("timeout", Callable(self, "full_screen_requested"))
-
-
-func _on_mouse_captured_needed_pressed():
-	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	captured_needed.visible = false
+func update_timer_ui():
+	timer_label.set_text("%.f s" % timer.time_left)
