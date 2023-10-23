@@ -9,7 +9,6 @@ var lavelocitat = null
 var health = 10 
 
 func _ready():
-	pass
 	if DataManager.get_data("TargetColor") != null:
 		var material_override = mesh.get_mesh().get_material()
 		material_override.set_albedo(Global.string_to_color(DataManager.get_data("TargetColor")))

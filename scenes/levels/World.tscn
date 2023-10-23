@@ -130,7 +130,7 @@ collision_mask = 5
 script = ExtResource("1_77co2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_trh1v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
@@ -139,9 +139,9 @@ mesh = SubResource("CapsuleMesh_41626")
 skeleton = NodePath("../..")
 
 [node name="Head" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Player/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

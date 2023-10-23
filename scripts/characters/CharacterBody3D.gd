@@ -2,20 +2,20 @@ extends CharacterBody3D
 
 signal shoot
 
-const SPEED = 20.0
-const JUMP_VELOCITY = 25
-const ACCELERATION = 50.0
-const DECCELERATION = 5.0
+const SPEED = 5
+const JUMP_STRENGTH = 8
 
 var conversion_sensitivity = 0.0707589285714285
 var user_sensitivity = 0.14
 var mouse_sensitivity = 0.00990624999999999
 
-var spread_bullets = false
 var damage = 10
-var shot_count = 0
 
-var direction = Vector3()
+var movement_velocity: Vector3
+var rotation_target: Vector3
+
+var jump_single := true
+var jump_double := true
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -34,70 +34,71 @@ func _ready():
 	else:
 		mouse_sensitivity = user_sensitivity * conversion_sensitivity
 
-func fire():
-	shoot.emit()
-	if Input.is_action_just_pressed("fire"):
-		if raycast.is_colliding():
-			var target = raycast.get_collider()
-			var bullet_hole_instance = bullet_hole.instantiate()
-			
-			target.add_child(bullet_hole_instance)
-			bullet_hole_instance.global_transform.origin = raycast.get_collision_point()
-			bullet_hole_instance.look_at(position + Vector3.FORWARD, raycast.get_collision_normal())
-			
-			if target.is_in_group("Enemy"):
-				target.health -= damage 
-		shot_count += 1
-
 func _input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
+		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	if Input.is_action_just_pressed("shoot"):
+		player_shoot()
 
 func _physics_process(delta):
-	fire()
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= (gravity * 6) * delta
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var thedirection = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if thedirection:
-		# Check if the direction has changed.
-		if thedirection.dot(velocity.normalized()) < 0:
-			# Instantly stop the velocity.
-			velocity = Vector3.ZERO
-		else:
-			# Add acceleration to the velocity.
-			velocity += thedirection * ACCELERATION * delta
-			# Limit the velocity to the maximum speed.
-			if velocity.length() > SPEED:
-				velocity = velocity.normalized() * SPEED
-	else:
-		# Decelerate the velocity.
-		velocity -= velocity * DECCELERATION * delta
+	# Handle functions
+	handle_controls(delta)
+	handle_gravity(delta)
 	
-	if spread_bullets:
-		# Set initial position
-		raycast.rotation = Vector3(deg_to_rad(90),0,0)
-		# sperad.
-		raycast.rotate_x(random_spread())
-		raycast.rotate_y(random_spread())
-		raycast.rotate_z(random_spread())
+	# Movement
+	var applied_velocity: Vector3
+	
+	movement_velocity = transform.basis * movement_velocity # Move forward
+	
+	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
+	applied_velocity.y = -gravity
+	
+	velocity = applied_velocity
 	move_and_slide()
 
-func random_spread() -> float:
-	var spread = 2
-	var velocity_spread = 0
-	# if less than percentage no spread.
-	if velocity.length() > (SPEED * 0.3):
-		velocity_spread = velocity.length()
-	randomize()
-	return deg_to_rad(randf_range(-spread, spread) * velocity_spread)
+func handle_controls(_delta):
+	# Movement
+	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	
+	movement_velocity = Vector3(input.x, 0, input.y).normalized() * SPEED
+	
+	# Jumping
+	if Input.is_action_just_pressed("jump"):
+		
+		if jump_double:
+			
+			gravity = -JUMP_STRENGTH
+			jump_double = false
+			
+		if(jump_single): action_jump()
+
+# Handle gravity
+func handle_gravity(delta):
+	gravity += 20 * delta
+	
+	if gravity > 0 and is_on_floor():
+		jump_single = true
+		gravity = 0
+
+# Jumping
+func action_jump():
+	gravity = -JUMP_STRENGTH
+	
+	jump_single = false;
+	jump_double = true;
+
+# Shooting
+func player_shoot():
+	shoot.emit()
+	if raycast.is_colliding():
+		var target = raycast.get_collider()
+		var bullet_hole_instance = bullet_hole.instantiate()
+		
+		target.add_child(bullet_hole_instance)
+		bullet_hole_instance.global_transform.origin = raycast.get_collision_point()
+		bullet_hole_instance.look_at(position + Vector3.FORWARD, raycast.get_collision_normal())
+		
+		if target.is_in_group("Enemy"):
+			target.health -= damage 

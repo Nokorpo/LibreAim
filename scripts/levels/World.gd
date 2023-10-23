@@ -100,12 +100,6 @@ func messageHit():
 	kills.set_text((str(count_kills)))
 	if not animation_kill.is_playing():
 		animation_kill.play("kill")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(_delta):
-#	if Input.is_action_pressed("f_pressed"):
-#		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-#		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-#		is_already_full_screen()
 
 func full_screen_requested():
 	if (DisplayServer.window_get_mode() < 3):
