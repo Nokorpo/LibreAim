@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="Open Aim Trainer"
-run/main_scene="res://scenes/ui/main_screen.tscn"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
-Global="*res://scripts/global.gd"
-DataManager="*res://scripts/data_manager.gd"
+Global="*res://scenes/autoload/global.gd"
+DataManager="*res://scenes/autoload/data_manager.gd"
 
 [display]
 

@@ -1,0 +1,228 @@
+[gd_scene load_steps=15 format=3 uid="uid://c8on0ngoa3108"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
+[ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="2_n3hsc"]
+[ext_resource type="Texture2D" uid="uid://m5gaiq7pjwbv" path="res://assets/images/icons/settings.svg" id="3_8dqwy"]
+[ext_resource type="Texture2D" uid="uid://tkfbioukscgd" path="res://assets/images/icons/git.svg" id="4_nuriq"]
+[ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="5_nidys"]
+[ext_resource type="Script" path="res://scenes/main_menu/select_level.gd" id="6_5wgje"]
+[ext_resource type="Texture2D" uid="uid://db8p3tq5cc85j" path="res://assets/images/icons/play-big.svg" id="7_o4hi3"]
+[ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings.tscn" id="8_1n7gf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66yw7"]
+content_margin_left = 50.0
+content_margin_top = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bk2jx"]
+content_margin_left = 50.0
+content_margin_top = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.16, 0.16, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijt1d"]
+content_margin_left = 50.0
+content_margin_top = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nufsd"]
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+color = Color(0.160784, 0.160784, 0.160784, 1)
+thickness = 5
+vertical = true
+
+[sub_resource type="Theme" id="Theme_ks0pm"]
+Button/colors/font_color = Color(0.67451, 0.67451, 0.67451, 1)
+Button/constants/h_separation = 30
+Button/font_sizes/font_size = 38
+Button/styles/disabled = SubResource("StyleBoxFlat_66yw7")
+Button/styles/focus = SubResource("StyleBoxFlat_bk2jx")
+Button/styles/hover = SubResource("StyleBoxFlat_ijt1d")
+Button/styles/normal = SubResource("StyleBoxFlat_66yw7")
+Button/styles/pressed = SubResource("StyleBoxFlat_66yw7")
+Label/colors/font_color = Color(0.898039, 0.898039, 0.898039, 1)
+Label/font_sizes/font_size = 57
+VSeparator/styles/separator = SubResource("StyleBoxLine_nufsd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5srfh"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ks0pm")
+script = ExtResource("1_p06gh")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 150.0
+offset_top = 941.0
+offset_right = 639.0
+offset_bottom = 1061.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Game" type="OptionButton" parent="HBoxContainer2"]
+layout_mode = 2
+
+[node name="Sensitivity" type="LineEdit" parent="HBoxContainer2"]
+layout_mode = 2
+text = "0.215"
+placeholder_text = "0.215"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 140
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Open Aim Trainer"
+
+[node name="Play" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Play"
+icon = ExtResource("2_n3hsc")
+alignment = 0
+
+[node name="Settings" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Settings"
+icon = ExtResource("3_8dqwy")
+alignment = 0
+
+[node name="SourceCode" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Source code"
+icon = ExtResource("4_nuriq")
+alignment = 0
+
+[node name="Quit" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Quit"
+icon = ExtResource("5_nidys")
+alignment = 0
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5srfh")
+
+[node name="SelectLevel" type="Control" parent="HBoxContainer/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_5wgje")
+
+[node name="Control" type="Control" parent="HBoxContainer/Panel/SelectLevel"]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 562.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Panel/SelectLevel/Control"]
+layout_mode = 2
+offset_right = 562.0
+offset_bottom = 150.0
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 80
+
+[node name="Gamemodes" type="VBoxContainer" parent="HBoxContainer/Panel/SelectLevel/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel/SelectLevel/Control/MarginContainer/Gamemodes"]
+layout_mode = 2
+text = "Select a level"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/Panel/SelectLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control2" type="Control" parent="HBoxContainer/Panel/SelectLevel"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 563.0
+offset_right = 1125.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Panel/SelectLevel/Control2"]
+layout_mode = 2
+offset_right = 562.0
+offset_bottom = 150.0
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Title"
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54902, 0.54902, 0.54902, 1)
+theme_override_font_sizes/font_size = 36
+text = "Description"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Play" type="Button" parent="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "Play"
+icon = ExtResource("7_o4hi3")
+alignment = 0
+
+[node name="Settings" parent="HBoxContainer/Panel" instance=ExtResource("8_1n7gf")]
+visible = false
+layout_mode = 1
+
+[connection signal="item_selected" from="HBoxContainer2/Game" to="." method="_on_game_item_selected"]
+[connection signal="text_changed" from="HBoxContainer2/Sensitivity" to="." method="_on_sensitivity_text_changed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/SourceCode" to="." method="_on_source_code_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer/VBoxContainer/Play" to="HBoxContainer/Panel/SelectLevel" method="_on_play_pressed"]

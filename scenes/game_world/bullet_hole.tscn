@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7w6oa4fydjyq"]
+
+[ext_resource type="Script" path="res://scenes/game_world/bullet_hole.gd" id="1_a25ui"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sk88p"]
+albedo_color = Color(0.682353, 0, 0.109804, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ucilc"]
+material = SubResource("StandardMaterial3D_sk88p")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="BulletHole" type="Node3D"]
+script = ExtResource("1_a25ui")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.00438, 0, 0, 0, 1.00438, 0, 0, 0, 1.00438, 0, 0, 0)
+mesh = SubResource("BoxMesh_ucilc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
