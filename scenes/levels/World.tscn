@@ -80,7 +80,7 @@ script = ExtResource("1_02ggb")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.998198, 0.0464176, 0.0380307, -0.0421491, 0.0912349, 0.994937, 0.0427129, -0.994747, 0.093027, 0, 80, 0)
+transform = Transform3D(0.998198, 0.0464176, 0.0380308, -0.0421491, 0.0912349, 0.994937, 0.0427129, -0.994747, 0.093027, 0, 20, 0)
 light_color = Color(0.360784, 0.615686, 1, 1)
 light_bake_mode = 1
 
@@ -88,43 +88,70 @@ light_bake_mode = 1
 environment = SubResource("Environment_mlohy")
 
 [node name="Building" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 use_collision = true
-size = Vector3(100, 50, 100)
+size = Vector3(50, 25, 50)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Building"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 operation = 2
-size = Vector3(99, 50, 99)
+size = Vector3(45, 24, 45)
 material = ExtResource("2_1uwlb")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Building"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.1934, -20)
-size = Vector3(99, 1.748, 0.852186)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.5, -7)
+size = Vector3(50, 1, 0.852)
+material = ExtResource("2_1uwlb")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.5, 3)
+size = Vector3(5, 5, 5)
+material = ExtResource("2_1uwlb")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -9, 5.5)
+polygon = PackedVector2Array(0, 0, 0, 3, 8, 0)
+depth = 5.0
+material = ExtResource("2_1uwlb")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Building"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.5, -9, 0.5)
+polygon = PackedVector2Array(0, 0, 0, 3, 8, 0)
+depth = 5.0
+material = ExtResource("2_1uwlb")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Building"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2.5, -9, 5.5)
+polygon = PackedVector2Array(0, 0, 0, 3, 8, 0)
+depth = 5.0
 material = ExtResource("2_1uwlb")
 
 [node name="PlayerPrison" type="CSGBox3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -25.0111)
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -12.0608)
 material_override = SubResource("StandardMaterial3D_d1v5h")
 transparency = 1.0
 use_collision = true
 collision_layer = 4
-size = Vector3(33, 20, 10)
+size = Vector3(15.6688, 20, 10)
 
 [node name="TargetPrison" type="CSGBox3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 4, 0, 0, 0, 3, 2.08165e-12, 9, -35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 6, -16.6875)
 material_override = SubResource("StandardMaterial3D_22nld")
 transparency = 1.0
 use_collision = true
 collision_layer = 8
-size = Vector3(10, 20, 10)
+size = Vector3(40, 12, 10)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="TargetPrison"]
+[node name="TargetPrison2" type="CSGBox3D" parent="TargetPrison"]
+material_override = SubResource("StandardMaterial3D_22nld")
+transparency = 1.0
 operation = 2
 use_collision = true
-size = Vector3(9, 19, 9)
+collision_layer = 8
+size = Vector3(39, 11, 9)
 
 [node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 3)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_77co2")

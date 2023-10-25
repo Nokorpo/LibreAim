@@ -61,7 +61,7 @@ func randomize_vector():
 	randomize()
 	var location_x = randf_range(Global.game_type.spawn_location_x_0, Global.game_type.spawn_location_x_1)
 	var location_y = randf_range(Global.game_type.spawn_location_y_0, Global.game_type.spawn_location_y_1)
-	var location_z = -25
+	var location_z = -16
 	return Vector3(location_x, location_y, location_z)
 
 func check_distance():
