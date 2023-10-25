@@ -6,7 +6,6 @@ var count_kills = 0
 var id_spawn_target = 0
 
 @onready var animation_kill = $CanvasLayer/GameplayUI/AnimationKill
-@onready var kill = $CanvasLayer/GameplayUI/Kill
 @onready var kills = $CanvasLayer/GameplayUI/Kills
 @onready var full_screen_needed = $CanvasLayer/FullScreenRequest
 @onready var captured_needed = $CanvasLayer/MouseCapturedRequested
@@ -20,8 +19,6 @@ func _ready():
 	full_screen_requested()
 	id_spawn_target = 0
 	count_kills = 0
-	
-	kill.visible = false
 	
 	for x in range(Global.game_type.number_of_initial_targets):
 		spawn_target()
