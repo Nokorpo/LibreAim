@@ -50,7 +50,7 @@ func _on_player_shoot():
 		timer.wait_time = 60
 		timer.start()
 
-func target_killed():
+func _on_target_destroyed():
 	messageHit()
 	spawn_target()
 
@@ -88,7 +88,7 @@ func spawn_target():
 	
 	var target = packed_target.instantiate()
 	target.init(Global.game_type.size, id_spawn_target, Global.game_type.movment)
-	target.connect("target_kill", Callable(self, "target_killed"))
+	target.connect("destroyed", Callable(self, "_on_target_destroyed"))
 	target.set_position(location_target)
 	add_child(target)
 	

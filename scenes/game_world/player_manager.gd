@@ -5,9 +5,7 @@ signal shoot
 const SPEED = 5
 const JUMP_STRENGTH = 8
 
-var conversion_sensitivity = 0.0707589285714285
-var user_sensitivity = 0.14
-var mouse_sensitivity = 0.00990624999999999
+var mouse_sensitivity = 0.001
 
 var damage = 10
 
@@ -25,6 +23,9 @@ var jump_double := true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	var user_sensitivity = 0.14
+	var conversion_sensitivity = 0.0707589285714285
+	
 	if DataManager.get_data("sensitivity_game_value"):
 		conversion_sensitivity = DataManager.get_data("sensitivity_game_value")
 	if DataManager.get_data("sensitivity"):
@@ -68,11 +69,11 @@ func handle_controls(_delta):
 	if Input.is_action_just_pressed("jump"):
 		
 		if jump_double:
-			
 			gravity = -JUMP_STRENGTH
 			jump_double = false
 			
-		if(jump_single): action_jump()
+		if jump_single: 
+			action_jump()
 
 # Handle gravity
 func handle_gravity(delta):

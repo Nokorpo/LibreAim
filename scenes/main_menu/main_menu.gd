@@ -1,6 +1,5 @@
 extends Control
 
-@onready var game = $HBoxContainer2/Game
 @onready var panel := $HBoxContainer/Panel
 @onready var exit_button = $HBoxContainer/MarginContainer/VBoxContainer/Quit
 
@@ -28,5 +27,3 @@ func _on_source_code_pressed():
 func hide_options():
 	for child in panel.get_children():
 		child.visible = false
-
-

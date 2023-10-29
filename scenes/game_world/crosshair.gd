@@ -8,9 +8,6 @@ var enable_outline = true
 var crosshair_inner_enable = true
 var dot_enable = false
 
-#var global_crosshair_height = DataManager.get_options("heigh", "float")
-#var global_crosshair_width = DataManager.get_options("width", "float")
-
 var dot_size = 6
 var global_outline_width = 2
 var global_crosshair_height = 4
@@ -78,7 +75,6 @@ func loadSave():
 		Vector2(-global_crosshair_height,global_crosshair_space+global_crosshair_width) #bottom left
 	]
 
-
 func redraw(_value):
 	queue_redraw()
 
@@ -109,7 +105,6 @@ func outlinePolygonDrawer(polygon, outline_width, outline_color):
 		for i in range(1 , poly.size()):
 			draw_line(poly[i-1] , poly[i], outline_color , outline_width)
 		draw_line(poly[poly.size() - 1] , poly[0], outline_color , outline_width)
-
 
 func _on_options_refresh_crosshair():
 	queue_redraw()
