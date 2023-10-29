@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=29 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
 [ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="2_n3hsc"]
@@ -47,6 +47,73 @@ Button/styles/pressed = SubResource("StyleBoxFlat_66yw7")
 Label/colors/font_color = Color(0.898039, 0.898039, 0.898039, 1)
 Label/font_sizes/font_size = 57
 VSeparator/styles/separator = SubResource("StyleBoxLine_nufsd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqr84"]
+content_margin_left = 50.0
+content_margin_top = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5knyr"]
+content_margin_left = 50.0
+content_margin_top = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.16, 0.16, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v38qo"]
+content_margin_left = 50.0
+content_margin_top = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfoy0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03gfj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_csy66"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqo3r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5i3ky"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_it8v6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bufrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_46pqr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mk0sv"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_t2vp1"]
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+color = Color(0.160784, 0.160784, 0.160784, 1)
+thickness = 5
+vertical = true
+
+[sub_resource type="Theme" id="Theme_8521u"]
+Button/colors/font_color = Color(0.67451, 0.67451, 0.67451, 1)
+Button/constants/h_separation = 30
+Button/font_sizes/font_size = 24
+Button/styles/disabled = SubResource("StyleBoxFlat_nqr84")
+Button/styles/focus = SubResource("StyleBoxFlat_5knyr")
+Button/styles/hover = SubResource("StyleBoxFlat_v38qo")
+Button/styles/normal = SubResource("StyleBoxFlat_nqr84")
+Button/styles/pressed = SubResource("StyleBoxFlat_nqr84")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_pfoy0")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_03gfj")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_csy66")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_sqo3r")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_5i3ky")
+ColorPickerButton/font_sizes/font_size = 16
+ColorPickerButton/styles/disabled = SubResource("StyleBoxEmpty_it8v6")
+ColorPickerButton/styles/focus = SubResource("StyleBoxEmpty_bufrq")
+ColorPickerButton/styles/hover = SubResource("StyleBoxEmpty_46pqr")
+ColorPickerButton/styles/normal = SubResource("StyleBoxEmpty_mk0sv")
+Label/colors/font_color = Color(0.898039, 0.898039, 0.898039, 1)
+Label/font_sizes/font_size = 16
+VSeparator/styles/separator = SubResource("StyleBoxLine_t2vp1")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5srfh"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
@@ -115,6 +182,7 @@ alignment = 0
 [node name="Panel" type="Panel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_8521u")
 theme_override_styles/panel = SubResource("StyleBoxFlat_5srfh")
 
 [node name="SelectLevel" type="Control" parent="HBoxContainer/Panel"]
@@ -146,15 +214,20 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/Panel/SelectLevel/Control/MarginContainer/Gamemodes"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 57
 text = "Select a level"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/Panel/SelectLevel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 150.0
-offset_bottom = -150.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -375.0
+offset_right = 2.0
+offset_bottom = 375.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
