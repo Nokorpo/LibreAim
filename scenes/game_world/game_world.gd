@@ -6,11 +6,11 @@ var count_kills = 0
 var id_spawn_target = 0
 
 @onready var animation_kill = $CanvasLayer/GameplayUI/AnimationKill
-@onready var kills = $CanvasLayer/GameplayUI/Kills
+@onready var kills = $CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/targets/label2
 @onready var full_screen_needed = $CanvasLayer/FullScreenRequest
 @onready var captured_needed = $CanvasLayer/MouseCapturedRequested
 @onready var timer = $Timer
-@onready var timer_label = $CanvasLayer/GameplayUI/Time
+@onready var timer_label = $CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/time/label2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
