@@ -7,16 +7,13 @@ var id_spawn_target = 0
 
 @onready var animation_kill = $CanvasLayer/GameplayUI/AnimationKill
 @onready var kills = $CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/targets/label2
-@onready var full_screen_needed = $CanvasLayer/FullScreenRequest
 @onready var captured_needed = $CanvasLayer/MouseCapturedRequested
 @onready var timer = $Timer
 @onready var timer_label = $CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/time/label2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	full_screen_needed.visible = false
 	captured_needed.visible = false
-	full_screen_requested()
 	id_spawn_target = 0
 	count_kills = 0
 	
@@ -24,17 +21,7 @@ func _ready():
 		spawn_target()
 
 func _process(_delta):
-	full_screen_requested()
 	update_timer_ui()
-
-func _on_full_screen_needed_pressed():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	full_screen_needed.visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	captured_needed.visible = true
-	var timer = Timer.new()
-	timer.set_wait_time(3)
-	timer.connect("timeout", Callable(self, "full_screen_requested"))
 
 func _on_mouse_captured_needed_pressed():
 	get_tree().paused = false
@@ -97,12 +84,6 @@ func messageHit():
 	kills.set_text((str(count_kills)))
 	if not animation_kill.is_playing():
 		animation_kill.play("kill")
-
-func full_screen_requested():
-	if (DisplayServer.window_get_mode() < 3):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		full_screen_needed.visible = true
-		get_tree().paused = true
 
 func update_timer_ui():
 	timer_label.set_text("%.f s" % timer.time_left)

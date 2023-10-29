@@ -350,47 +350,6 @@ text = "Resume"
 layout_mode = 2
 text = "Menu"
 
-[node name="FullScreenRequest" type="Control" parent="CanvasLayer"]
-process_mode = 2
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/FullScreenRequest"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0745098, 0.0745098, 0.0745098, 0.34902)
-
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/FullScreenRequest"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -33.0
-offset_right = 35.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FullScreenNeeded" type="Button" parent="CanvasLayer/FullScreenRequest/Buttons"]
-layout_mode = 2
-text = "Full screen is needed."
-
-[node name="Menu" type="Button" parent="CanvasLayer/FullScreenRequest/Buttons"]
-layout_mode = 2
-text = "Menu"
-
 [node name="MouseCapturedRequested" type="Control" parent="CanvasLayer"]
 process_mode = 2
 visible = false
@@ -429,6 +388,4 @@ text = "Mouse captured is needed."
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Resume" to="CanvasLayer/PauseManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Menu" to="CanvasLayer/PauseManager" method="_on_menu_pressed"]
-[connection signal="pressed" from="CanvasLayer/FullScreenRequest/Buttons/FullScreenNeeded" to="." method="_on_full_screen_needed_pressed"]
-[connection signal="pressed" from="CanvasLayer/FullScreenRequest/Buttons/Menu" to="CanvasLayer/PauseManager/Pause" method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/MouseCapturedRequested/MouseCapturedNeeded" to="." method="_on_mouse_captured_needed_pressed"]

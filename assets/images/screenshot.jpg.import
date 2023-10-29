@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0akee1ue3gdk"
-path="res://.godot/imported/open_aim_trainer_Logo_v1.svg-765e13fbccc0e77f153fea144dda9b18.ctex"
+uid="uid://c47a1wti2un28"
+path="res://.godot/imported/screenshot.jpg-bec029a79c2c4c5058f99a6d3ae41788.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/open_aim_trainer_Logo_v1.svg"
-dest_files=["res://.godot/imported/open_aim_trainer_Logo_v1.svg-765e13fbccc0e77f153fea144dda9b18.ctex"]
+source_file="res://assets/images/screenshot.jpg"
+dest_files=["res://.godot/imported/screenshot.jpg-bec029a79c2c4c5058f99a6d3ae41788.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -7,8 +7,6 @@ func _ready():
 	hide_options()
 	if OS.has_feature("web"):
 		exit_button.visible = false
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _on_play_pressed():
 	hide_options()
