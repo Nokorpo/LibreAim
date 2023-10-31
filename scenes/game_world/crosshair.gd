@@ -1,27 +1,43 @@
 extends Control
 
-var global_color = Color(0, 255, 255, 1)
-var global_outline_color = Color(0,0,0)
+var global_color := Color(0, 255, 255, 1)
+var global_outline_color := Color(0,0,0)
 
-var enable_crosshair = true
-var enable_outline = true
-var crosshair_inner_enable = true
-var dot_enable = false
+var enable_crosshair := true
+var enable_outline := true
+var crosshair_inner_enable := true
+var dot_enable := false
 
-var dot_size = 6
-var global_outline_width = 2
-var global_crosshair_height = 4
-var global_crosshair_width = 12
-var global_crosshair_space = 5
+var dot_size := 6.0
+var global_outline_width := 2.0
+var global_crosshair_height := 4.0
+var global_crosshair_width := 12.0
+var global_crosshair_space := 5.0
 
-var dot_crosshair = []
+var current_crosshair = {
+	"top": [],
+	"right": [],
+	"bottom": [],
+	"left": [],
+	"dot": []
+}
 
-var left_inner_crosshair = []
-var top_inner_crosshair = []
-var right_inner_crosshair = []
-var bottom_inner_crosshair = []
+func _draw():
+	load_save()
+	if not enable_crosshair:
+		return
+	if crosshair_inner_enable:
+		draw_part(current_crosshair["top"], global_color, global_outline_width, global_outline_color)
+		draw_part(current_crosshair["right"], global_color, global_outline_width, global_outline_color)
+		draw_part(current_crosshair["bottom"], global_color, global_outline_width, global_outline_color)
+		draw_part(current_crosshair["left"], global_color, global_outline_width, global_outline_color)
+	if dot_enable:
+		draw_part(current_crosshair["dot"], global_color, global_outline_width, global_outline_color)
 
-func loadSave():
+func _on_options_refresh_crosshair():
+	queue_redraw()
+
+func load_save():
 	if DataManager.get_data("Crosshair") != null:
 		enable_crosshair = DataManager.get_data("Crosshair")
 	if DataManager.get_data("Outline") != null:
@@ -44,67 +60,46 @@ func loadSave():
 		global_color = Global.string_to_color(DataManager.get_data("CrosshairColor"))
 	if DataManager.get_data("OutlineColor") != null:
 		global_outline_color = Global.string_to_color(DataManager.get_data("OutlineColor"))
-	dot_crosshair = [
+	current_crosshair["dot"] = [
 		Vector2(-dot_size,-dot_size), #top left
 		Vector2(dot_size,-dot_size), #top right
 		Vector2(dot_size,dot_size), #bottom right
 		Vector2(-dot_size,dot_size) #bottom left
 	]
-	left_inner_crosshair = [
+	current_crosshair["left"] = [
 		Vector2(-global_crosshair_width-global_crosshair_space,-global_crosshair_height),  #top left
-		Vector2(0-global_crosshair_space,-global_crosshair_height),#top right
-		Vector2(0-global_crosshair_space,global_crosshair_height), #bottom right
+		Vector2(-global_crosshair_space,-global_crosshair_height), #top right
+		Vector2(-global_crosshair_space,global_crosshair_height), #bottom right
 		Vector2(-global_crosshair_width-global_crosshair_space,global_crosshair_height) #bottom left
 	]
-	top_inner_crosshair = [
-		Vector2(-global_crosshair_height,-global_crosshair_width-global_crosshair_space),  #top left
-		Vector2(global_crosshair_height,-global_crosshair_width-global_crosshair_space),#top right
+	current_crosshair["top"] = [
+		Vector2(-global_crosshair_height,-global_crosshair_width-global_crosshair_space), #top left
+		Vector2(global_crosshair_height,-global_crosshair_width-global_crosshair_space), #top right
 		Vector2(global_crosshair_height,-global_crosshair_space), #bottom right
 		Vector2(-global_crosshair_height,-global_crosshair_space) #bottom left
 	]
-	right_inner_crosshair = [
-		Vector2(0+global_crosshair_space,-global_crosshair_height),  #top left
-		Vector2(global_crosshair_width+global_crosshair_space,-global_crosshair_height),#top right
-		Vector2(global_crosshair_width+global_crosshair_space,global_crosshair_height),#bottom right
-		Vector2(0+global_crosshair_space,global_crosshair_height) #bottom left
+	current_crosshair["right"] = [
+		Vector2(global_crosshair_space,-global_crosshair_height), #top left
+		Vector2(global_crosshair_width+global_crosshair_space,-global_crosshair_height), #top right
+		Vector2(global_crosshair_width+global_crosshair_space,global_crosshair_height), #bottom right
+		Vector2(global_crosshair_space,global_crosshair_height) #bottom left
 	]
-	bottom_inner_crosshair = [
-		Vector2(-global_crosshair_height, global_crosshair_space),  #top left
-		Vector2(global_crosshair_height,global_crosshair_space),#top right
+	current_crosshair["bottom"] = [
+		Vector2(-global_crosshair_height, global_crosshair_space), #top left
+		Vector2(global_crosshair_height,global_crosshair_space), #top right
 		Vector2(global_crosshair_height,global_crosshair_space+global_crosshair_width), #bottom right
 		Vector2(-global_crosshair_height,global_crosshair_space+global_crosshair_width) #bottom left
 	]
 
-func redraw(_value):
-	queue_redraw()
-
-func _draw():
-	loadSave()
-	if dot_enable and enable_crosshair:
-		polygonDrawer(dot_crosshair, global_color, global_outline_width, global_outline_color)
-	
-	if crosshair_inner_enable and enable_crosshair:
-		polygonDrawer(left_inner_crosshair, global_color, global_outline_width, global_outline_color)
-		polygonDrawer(top_inner_crosshair, global_color, global_outline_width, global_outline_color)
-		polygonDrawer(right_inner_crosshair, global_color, global_outline_width, global_outline_color)
-		polygonDrawer(bottom_inner_crosshair, global_color, global_outline_width, global_outline_color)
-
-func polygonDrawer(polygon_points, color, outline_width, outline_color):
-	var points = PackedVector2Array()
-	var colour = PackedColorArray()
-	points = polygon_points
-	colour = [color]
-	draw_polygon(points,colour)
-	var polygon = Polygon2D.new()
+func draw_part(points: PackedVector2Array, color: Color, outline_width: float, outline_color: Color):
+	draw_polygon(points, [color])
+	var polygon := Polygon2D.new()
 	polygon.set_polygon(points)
-	outlinePolygonDrawer(polygon, outline_width, outline_color)
-	
-func outlinePolygonDrawer(polygon, outline_width, outline_color):
 	if enable_outline:
-		var poly = polygon.get_polygon()
-		for i in range(1 , poly.size()):
-			draw_line(poly[i-1] , poly[i], outline_color , outline_width)
-		draw_line(poly[poly.size() - 1] , poly[0], outline_color , outline_width)
-
-func _on_options_refresh_crosshair():
-	queue_redraw()
+		draw_outline(polygon, outline_width, outline_color)
+	
+func draw_outline(polygon: Polygon2D, outline_width: float, outline_color: Color):
+	var poly = polygon.get_polygon()
+	for i in range(1 , poly.size()):
+		draw_line(poly[i-1] , poly[i], outline_color , outline_width)
+	draw_line(poly[poly.size() - 1] , poly[0], outline_color , outline_width)
