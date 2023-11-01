@@ -1,11 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=23 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
 [ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/images/mat_filldummy.tres" id="2_ldkna"]
 [ext_resource type="Script" path="res://scenes/game_world/player_manager.gd" id="3_cvlpu"]
 [ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="4_pc15u"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
+[ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="7_7rabg"]
 [ext_resource type="Script" path="res://scenes/game_world/pause.gd" id="7_ffgmh"]
+[ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="7_gwa7l"]
+[ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="8_6pksd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -310,13 +313,13 @@ script = ExtResource("7_ffgmh")
 
 [node name="Pause" type="Control" parent="CanvasLayer/PauseManager"]
 process_mode = 2
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_gwa7l")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseManager/Pause"]
 layout_mode = 1
@@ -335,20 +338,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -33.0
-offset_right = 35.0
-offset_bottom = 33.0
+offset_left = -153.0
+offset_top = -105.0
+offset_right = 153.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseManager/Pause/Buttons"]
+layout_mode = 2
+text = "Pause"
+horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="CanvasLayer/PauseManager/Pause/Buttons"]
 layout_mode = 2
 text = "Resume"
+icon = ExtResource("7_7rabg")
+alignment = 0
 
 [node name="Menu" type="Button" parent="CanvasLayer/PauseManager/Pause/Buttons"]
 layout_mode = 2
 text = "Menu"
+icon = ExtResource("8_6pksd")
+alignment = 0
 
 [node name="MouseCapturedRequested" type="Control" parent="CanvasLayer"]
 process_mode = 2

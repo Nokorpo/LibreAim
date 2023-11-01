@@ -1,5 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=25 format=3 uid="uid://c8on0ngoa3108"]
 
+[ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_2h7x4"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
 [ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="2_n3hsc"]
 [ext_resource type="Texture2D" uid="uid://m5gaiq7pjwbv" path="res://assets/images/icons/settings.svg" id="3_8dqwy"]
@@ -8,45 +9,6 @@
 [ext_resource type="Script" path="res://scenes/main_menu/select_level.gd" id="6_5wgje"]
 [ext_resource type="Texture2D" uid="uid://db8p3tq5cc85j" path="res://assets/images/icons/play-big.svg" id="7_o4hi3"]
 [ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings.tscn" id="8_1n7gf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66yw7"]
-content_margin_left = 50.0
-content_margin_top = 25.0
-content_margin_bottom = 25.0
-bg_color = Color(0.160784, 0.160784, 0.160784, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bk2jx"]
-content_margin_left = 50.0
-content_margin_top = 25.0
-content_margin_bottom = 25.0
-bg_color = Color(0.16, 0.16, 0.16, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijt1d"]
-content_margin_left = 50.0
-content_margin_top = 25.0
-content_margin_bottom = 25.0
-bg_color = Color(0.2, 0.2, 0.2, 1)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_nufsd"]
-content_margin_top = 4.0
-content_margin_right = 0.0
-content_margin_bottom = 4.0
-color = Color(0.160784, 0.160784, 0.160784, 1)
-thickness = 5
-vertical = true
-
-[sub_resource type="Theme" id="Theme_ks0pm"]
-Button/colors/font_color = Color(0.67451, 0.67451, 0.67451, 1)
-Button/constants/h_separation = 30
-Button/font_sizes/font_size = 38
-Button/styles/disabled = SubResource("StyleBoxFlat_66yw7")
-Button/styles/focus = SubResource("StyleBoxFlat_bk2jx")
-Button/styles/hover = SubResource("StyleBoxFlat_ijt1d")
-Button/styles/normal = SubResource("StyleBoxFlat_66yw7")
-Button/styles/pressed = SubResource("StyleBoxFlat_66yw7")
-Label/colors/font_color = Color(0.898039, 0.898039, 0.898039, 1)
-Label/font_sizes/font_size = 57
-VSeparator/styles/separator = SubResource("StyleBoxLine_nufsd")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqr84"]
 content_margin_left = 50.0
@@ -125,7 +87,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_ks0pm")
+theme = ExtResource("1_2h7x4")
 script = ExtResource("1_p06gh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
