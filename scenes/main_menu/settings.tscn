@@ -275,6 +275,16 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
+[node name="FovLabel" type="Label" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Camera FOV"
+
+[node name="FovSlider" type="HSlider" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 45.0
+max_value = 130.0
+value = 80.0
+
 [node name="Controls" type="Control" parent="HBoxContainer/Control2"]
 visible = false
 layout_mode = 1
@@ -313,8 +323,8 @@ layout_mode = 2
 
 [node name="Sensitivity" type="LineEdit" parent="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "0.215"
-placeholder_text = "0.215"
+text = "1"
+placeholder_text = "1"
 
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Crosshair" to="." method="_on_crosshair_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Video" to="." method="_on_video_pressed"]
@@ -336,5 +346,6 @@ placeholder_text = "0.215"
 [connection signal="pressed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Import" to="HBoxContainer/Control2/Crosshair" method="_on_import_pressed"]
 [connection signal="file_selected" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/ImportFileDialog" to="HBoxContainer/Control2/Crosshair" method="_on_import_file_dialog_file_selected"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/ResolutionSlider" to="HBoxContainer/Control2/Video" method="_on_resolution_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FovSlider" to="HBoxContainer/Control2/Video" method="_on_fov_slider_value_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
 [connection signal="text_changed" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]

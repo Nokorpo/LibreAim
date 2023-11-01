@@ -1,7 +1,7 @@
 extends Node
 
-const file_name = "open_aim_trainer.json"
-const file_path = "user://" + file_name
+const FILE_NAME := "settings.json"
+const FILE_PATH := "user://" + FILE_NAME
 
 var game_data = {}
 
@@ -21,14 +21,14 @@ func save_all_data_to_file_web():
 	var json = JSON.stringify(game_data)
 	JavaScriptBridge.download_buffer(json.to_utf8_buffer(),"open_aim_trainer.json")
 
-func save_data(key, value, file_directory = file_path) :
+func save_data(key, value, file_directory = FILE_PATH) :
 	game_data[key] = value
 	var json = JSON.stringify(game_data)
 	var file = FileAccess.open(file_directory, FileAccess.WRITE)
 	file.store_line(json)
 	file.close()
 
-func save_all_data(file_directory = file_path) :
+func save_all_data(file_directory = FILE_PATH) :
 	var json = JSON.stringify(game_data)
 	var file = FileAccess.open(file_directory, FileAccess.WRITE)
 	file.store_line(json)
@@ -40,7 +40,7 @@ func get_data(key):
 		result = game_data.get(key)
 	return result
 
-func load_all_data(file_directory = file_path):
+func load_all_data(file_directory = FILE_PATH):
 	var json = JSON.new()
 	var result = {}
 	var file = FileAccess.open(file_directory, FileAccess.READ)

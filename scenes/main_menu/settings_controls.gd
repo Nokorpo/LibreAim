@@ -1,10 +1,7 @@
 extends Control
 
-# 4k
 const games_sensitivities: Dictionary = {
-	"Valorant": 0.0707589285714285,
-	"CounterStrike": 0.0222372497081799,
-	"Fortnite": 0.00561534231977053
+	"CounterStrike2": 0.04,
 }
 
 @onready var game = $MarginContainer/VBoxContainer/HBoxContainer2/Game
