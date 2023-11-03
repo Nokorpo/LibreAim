@@ -2,7 +2,7 @@ extends Control
 
 signal refresh_crosshair
 
-@onready var crosshair = $MarginContainer/VBoxContainer/Control/Crosshair
+@onready var crosshair = $MarginContainer/VBoxContainer/Preview/Crosshair
 @onready var file_export = $MarginContainer/VBoxContainer/ExportFileDialog
 @onready var file_import = $MarginContainer/VBoxContainer/ImportFileDialog
 
@@ -55,14 +55,6 @@ func _on_outline_toggled(button_pressed):
 
 func _on_crosshair_inner_toggled(button_pressed):
 	DataManager.save_data("CrosshairInner", button_pressed)
-	emit_signal("refresh_crosshair")
-
-func _on_dot_toggled(button_pressed):
-	DataManager.save_data("Dot", button_pressed)
-	emit_signal("refresh_crosshair")
-
-func _on_dot_size_text_changed(new_text):
-	DataManager.save_data("DotSize", float(new_text))
 	emit_signal("refresh_crosshair")
 
 func _on_outline_size_text_changed(new_text):
@@ -119,7 +111,16 @@ func _on_import_file_dialog_file_selected(path):
 	DataManager.save_all_data()
 	emit_signal("refresh_crosshair")
 
+func _on_dot_change_value(value):
+	DataManager.save_data("DotSize", float(value/10))
+	emit_signal("refresh_crosshair")
+
+func _on_dot_toggle_checkbox(value):
+	DataManager.save_data("Dot", value)
+	emit_signal("refresh_crosshair")
+	
 func set_window(window):
 	window.visible = true
 	window.size = Vector2(800, 800)
 	window.position = Vector2(0, 0)
+
