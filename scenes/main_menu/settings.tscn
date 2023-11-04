@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=18 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings.gd" id="1_4ilr3"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_gf318"]
 [ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="2_iu82h"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings_crosshair.gd" id="3_1x3bu"]
 [ext_resource type="Texture2D" uid="uid://dfccfxiw0aqif" path="res://assets/images/icons/export-file.svg" id="3_ljukx"]
-[ext_resource type="Texture2D" uid="uid://dodywvhrikacr" path="res://assets/images/icons/checkbox_unchecked.svg" id="3_pg746"]
 [ext_resource type="Texture2D" uid="uid://btgrnb8ku7dyk" path="res://assets/images/icons/import-file.svg" id="4_e248v"]
 [ext_resource type="Theme" uid="uid://dmoquhlcs0njm" path="res://assets/themes/export_dialogue.tres" id="5_ggmgo"]
 [ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="6_bpfs5"]
@@ -14,14 +13,39 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqvyl"]
-content_margin_right = 5.0
+[sub_resource type="ImageTexture" id="ImageTexture_vtpo4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bheco"]
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.65098, 0.65098, 0.65098, 1)
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydstq"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1fy7"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -30,9 +54,15 @@ corner_radius_bottom_left = 5
 [sub_resource type="Theme" id="Theme_og8m1"]
 Button/styles/normal = SubResource("StyleBoxFlat_1yvei")
 CheckBox/icons/checked = ExtResource("2_gf318")
-CheckBox/icons/unchecked = ExtResource("3_pg746")
+CheckBox/icons/unchecked = SubResource("ImageTexture_vtpo4")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_bheco")
+ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_ydstq")
 Label/font_sizes/font_size = 22
-LineEdit/styles/normal = SubResource("StyleBoxFlat_oqvyl")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_p1fy7")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b62o0"]
 bg_color = Color(0.160784, 0.160784, 0.160784, 1)
@@ -40,23 +70,6 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olgv5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p2jdb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nms2t"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n00bn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xc3aw"]
-
-[sub_resource type="Theme" id="Theme_c71ut"]
-Button/styles/disabled = SubResource("StyleBoxEmpty_olgv5")
-Button/styles/focus = SubResource("StyleBoxEmpty_p2jdb")
-Button/styles/hover = SubResource("StyleBoxEmpty_nms2t")
-Button/styles/normal = SubResource("StyleBoxEmpty_n00bn")
-Button/styles/pressed = SubResource("StyleBoxEmpty_xc3aw")
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -130,7 +143,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_og8m1")
 script = ExtResource("3_1x3bu")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control2/Crosshair"]
@@ -153,12 +165,17 @@ theme_override_font_sizes/font_size = 46
 text = "Crosshair"
 vertical_alignment = 1
 
-[node name="Preview" type="Panel" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer"]
+[node name="CrosshairSettings" type="VBoxContainer" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_og8m1")
+theme_override_constants/separation = 15
+
+[node name="Preview" type="Panel" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings"]
 custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_b62o0")
 
-[node name="Crosshair" type="Control" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Preview"]
+[node name="Crosshair" type="Control" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Preview"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -171,58 +188,67 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("2_iu82h")
 
-[node name="Dot" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer" instance=ExtResource("6_bpfs5")]
+[node name="Dot" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
 label_text = "Dot"
+max_value = 10.0
+value = 3.0
 
-[node name="Outline" type="CheckButton" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer" groups=["Persist"]]
+[node name="Length" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
-button_pressed = true
-text = "Outline"
+label_text = "Length"
+max_value = 50.0
+value = 20.0
+has_checkbox = false
 
-[node name="CrosshairInner" type="CheckButton" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer" groups=["Persist"]]
+[node name="Thickness" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
-button_pressed = true
-text = "Crosshair inner"
+label_text = "Thickness"
+max_value = 10.0
+value = 3.0
+has_checkbox = false
 
-[node name="OutlineSize" type="LineEdit" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="Gap" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
-text = "2"
-placeholder_text = "2"
+label_text = "Gap"
+max_value = 25.0
+value = 10.0
+has_checkbox = false
 
-[node name="CrosshairHeight" type="LineEdit" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="Outline" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
-text = "4"
-placeholder_text = "4"
+label_text = "Outline"
+max_value = 10.0
+value = 2.0
 
-[node name="CrosshairWidth" type="LineEdit" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="Color" type="HBoxContainer" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings"]
 layout_mode = 2
-text = "12"
-placeholder_text = "12"
 
-[node name="CrosshairSpace" type="LineEdit" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="Label" type="Label" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Color"]
 layout_mode = 2
-text = "5"
-placeholder_text = "5"
+size_flags_horizontal = 3
+text = "Color"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer"]
+[node name="CrosshairColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Color" groups=["Persist", "PutLabel"]]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-theme = SubResource("Theme_c71ut")
-
-[node name="CrosshairColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
-layout_mode = 2
-text = "Crosshair color"
 color = Color(0, 1, 1, 1)
 
-[node name="OutlineColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="OutlineColor" type="HBoxContainer" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/OutlineColor"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Outline color"
 
-[node name="TargetColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/VBoxContainer" groups=["Persist", "PutLabel"]]
+[node name="OutlineColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/OutlineColor" groups=["Persist", "PutLabel"]]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-text = "Target color"
-color = Color(1, 1, 0, 1)
-edit_alpha = false
+
+[node name="Margin" type="Control" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
 
 [node name="Export" type="Button" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -349,18 +375,16 @@ placeholder_text = "1"
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Crosshair" to="." method="_on_crosshair_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Controls" to="." method="_on_controls_pressed"]
-[connection signal="refresh_crosshair" from="HBoxContainer/Control2/Crosshair" to="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Preview/Crosshair" method="_on_options_refresh_crosshair"]
-[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_change_value"]
-[connection signal="toggle_checkbox" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_toggle_checkbox"]
-[connection signal="toggled" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Outline" to="HBoxContainer/Control2/Crosshair" method="_on_outline_toggled"]
-[connection signal="toggled" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairInner" to="HBoxContainer/Control2/Crosshair" method="_on_crosshair_inner_toggled"]
-[connection signal="text_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/OutlineSize" to="HBoxContainer/Control2/Crosshair" method="_on_outline_size_text_changed"]
-[connection signal="text_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairHeight" to="HBoxContainer/Control2/Crosshair" method="_on_crosshair_height_text_changed"]
-[connection signal="text_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairWidth" to="HBoxContainer/Control2/Crosshair" method="_on_crosshair_width_text_changed"]
-[connection signal="text_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSpace" to="HBoxContainer/Control2/Crosshair" method="_on_crosshair_space_text_changed"]
-[connection signal="color_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/VBoxContainer/CrosshairColor" to="HBoxContainer/Control2/Crosshair" method="_on_crosshair_color_color_changed"]
-[connection signal="color_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/VBoxContainer/OutlineColor" to="HBoxContainer/Control2/Crosshair" method="_on_outline_color_color_changed"]
-[connection signal="color_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/VBoxContainer/TargetColor" to="HBoxContainer/Control2/Crosshair" method="_on_target_color_color_changed"]
+[connection signal="refresh_crosshair" from="HBoxContainer/Control2/Crosshair" to="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Preview/Crosshair" method="_on_options_refresh_crosshair"]
+[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_change_value"]
+[connection signal="toggle_checkbox" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_toggle_checkbox"]
+[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Length" to="HBoxContainer/Control2/Crosshair" method="_on_length_change_value"]
+[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Thickness" to="HBoxContainer/Control2/Crosshair" method="_on_thickness_change_value"]
+[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Gap" to="HBoxContainer/Control2/Crosshair" method="_on_gap_change_value"]
+[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Outline" to="HBoxContainer/Control2/Crosshair" method="_on_outline_change_value"]
+[connection signal="toggle_checkbox" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Outline" to="HBoxContainer/Control2/Crosshair" method="_on_outline_toggle_checkbox"]
+[connection signal="color_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Color/CrosshairColor" to="HBoxContainer/Control2/Crosshair" method="_on_crosshair_color_color_changed"]
+[connection signal="color_changed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/OutlineColor/OutlineColor" to="HBoxContainer/Control2/Crosshair" method="_on_outline_color_color_changed"]
 [connection signal="pressed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Export" to="HBoxContainer/Control2/Crosshair" method="_on_export_pressed"]
 [connection signal="file_selected" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/ExportFileDialog" to="HBoxContainer/Control2/Crosshair" method="_on_export_file_dialog_file_selected"]
 [connection signal="pressed" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/Import" to="HBoxContainer/Control2/Crosshair" method="_on_import_pressed"]

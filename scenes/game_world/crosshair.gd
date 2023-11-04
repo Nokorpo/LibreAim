@@ -3,16 +3,14 @@ extends Control
 var global_color := Color(0, 255, 255, 1)
 var global_outline_color := Color(0,0,0)
 
-var enable_crosshair := true
 var enable_outline := true
-var crosshair_inner_enable := true
 var dot_enable := false
 
 var dot_size := 6.0
 var global_outline_width := 2.0
-var global_crosshair_height := 4.0
-var global_crosshair_width := 12.0
-var global_crosshair_space := 5.0
+var global_crosshair_thickness := 4.0
+var global_crosshair_length := 12.0
+var global_crosshair_gap := 5.0
 
 var current_crosshair = {
 	"top": [],
@@ -24,13 +22,11 @@ var current_crosshair = {
 
 func _draw():
 	load_save()
-	if not enable_crosshair:
-		return
-	if crosshair_inner_enable:
-		draw_part(current_crosshair["top"], global_color, global_outline_width, global_outline_color)
-		draw_part(current_crosshair["right"], global_color, global_outline_width, global_outline_color)
-		draw_part(current_crosshair["bottom"], global_color, global_outline_width, global_outline_color)
-		draw_part(current_crosshair["left"], global_color, global_outline_width, global_outline_color)
+	
+	draw_part(current_crosshair["top"], global_color, global_outline_width, global_outline_color)
+	draw_part(current_crosshair["right"], global_color, global_outline_width, global_outline_color)
+	draw_part(current_crosshair["bottom"], global_color, global_outline_width, global_outline_color)
+	draw_part(current_crosshair["left"], global_color, global_outline_width, global_outline_color)
 	if dot_enable:
 		draw_part(current_crosshair["dot"], global_color, global_outline_width, global_outline_color)
 
@@ -38,12 +34,8 @@ func _on_options_refresh_crosshair():
 	queue_redraw()
 
 func load_save():
-	if DataManager.get_data("Crosshair") != null:
-		enable_crosshair = DataManager.get_data("Crosshair")
 	if DataManager.get_data("Outline") != null:
 		enable_outline = DataManager.get_data("Outline")
-	if DataManager.get_data("CrosshairInner") != null:
-		crosshair_inner_enable = DataManager.get_data("CrosshairInner")
 	if DataManager.get_data("Dot") != null:
 		dot_enable = DataManager.get_data("Dot")
 	if DataManager.get_data("DotSize") != null:
@@ -51,11 +43,11 @@ func load_save():
 	if DataManager.get_data("OutlineSize") != null:
 		global_outline_width = DataManager.get_data("OutlineSize")
 	if DataManager.get_data("CrosshairHeight") != null:
-		global_crosshair_height = DataManager.get_data("CrosshairHeight")
-	if DataManager.get_data("CrosshairWidth") != null:
-		global_crosshair_width = DataManager.get_data("CrosshairWidth")
-	if DataManager.get_data("CrosshairSpace") != null:
-		global_crosshair_space = DataManager.get_data("CrosshairSpace")
+		global_crosshair_thickness = DataManager.get_data("CrosshairThickness")
+	if DataManager.get_data("CrosshairLength") != null:
+		global_crosshair_length = DataManager.get_data("CrosshairLength")
+	if DataManager.get_data("CrosshairGap") != null:
+		global_crosshair_gap = DataManager.get_data("CrosshairGap")
 	if DataManager.get_data("CrosshairColor") != null:
 		global_color = Global.string_to_color(DataManager.get_data("CrosshairColor"))
 	if DataManager.get_data("OutlineColor") != null:
@@ -67,28 +59,28 @@ func load_save():
 		Vector2(-dot_size,dot_size) #bottom left
 	]
 	current_crosshair["left"] = [
-		Vector2(-global_crosshair_width-global_crosshair_space,-global_crosshair_height),  #top left
-		Vector2(-global_crosshair_space,-global_crosshair_height), #top right
-		Vector2(-global_crosshair_space,global_crosshair_height), #bottom right
-		Vector2(-global_crosshair_width-global_crosshair_space,global_crosshair_height) #bottom left
+		Vector2(-global_crosshair_length-global_crosshair_gap,-global_crosshair_thickness),  #top left
+		Vector2(-global_crosshair_gap,-global_crosshair_thickness), #top right
+		Vector2(-global_crosshair_gap,global_crosshair_thickness), #bottom right
+		Vector2(-global_crosshair_length-global_crosshair_gap,global_crosshair_thickness) #bottom left
 	]
 	current_crosshair["top"] = [
-		Vector2(-global_crosshair_height,-global_crosshair_width-global_crosshair_space), #top left
-		Vector2(global_crosshair_height,-global_crosshair_width-global_crosshair_space), #top right
-		Vector2(global_crosshair_height,-global_crosshair_space), #bottom right
-		Vector2(-global_crosshair_height,-global_crosshair_space) #bottom left
+		Vector2(-global_crosshair_thickness,-global_crosshair_length-global_crosshair_gap), #top left
+		Vector2(global_crosshair_thickness,-global_crosshair_length-global_crosshair_gap), #top right
+		Vector2(global_crosshair_thickness,-global_crosshair_gap), #bottom right
+		Vector2(-global_crosshair_thickness,-global_crosshair_gap) #bottom left
 	]
 	current_crosshair["right"] = [
-		Vector2(global_crosshair_space,-global_crosshair_height), #top left
-		Vector2(global_crosshair_width+global_crosshair_space,-global_crosshair_height), #top right
-		Vector2(global_crosshair_width+global_crosshair_space,global_crosshair_height), #bottom right
-		Vector2(global_crosshair_space,global_crosshair_height) #bottom left
+		Vector2(global_crosshair_gap,-global_crosshair_thickness), #top left
+		Vector2(global_crosshair_length+global_crosshair_gap,-global_crosshair_thickness), #top right
+		Vector2(global_crosshair_length+global_crosshair_gap,global_crosshair_thickness), #bottom right
+		Vector2(global_crosshair_gap,global_crosshair_thickness) #bottom left
 	]
 	current_crosshair["bottom"] = [
-		Vector2(-global_crosshair_height, global_crosshair_space), #top left
-		Vector2(global_crosshair_height,global_crosshair_space), #top right
-		Vector2(global_crosshair_height,global_crosshair_space+global_crosshair_width), #bottom right
-		Vector2(-global_crosshair_height,global_crosshair_space+global_crosshair_width) #bottom left
+		Vector2(-global_crosshair_thickness, global_crosshair_gap), #top left
+		Vector2(global_crosshair_thickness,global_crosshair_gap), #top right
+		Vector2(global_crosshair_thickness,global_crosshair_gap+global_crosshair_length), #bottom right
+		Vector2(-global_crosshair_thickness,global_crosshair_gap+global_crosshair_length) #bottom left
 	]
 
 func draw_part(points: PackedVector2Array, color: Color, outline_width: float, outline_color: Color):
