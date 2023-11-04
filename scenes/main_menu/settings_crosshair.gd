@@ -17,14 +17,6 @@ func _ready():
 	file_import.visible = false
 	load_saved()
 
-func _on_crosshair_color_color_changed(color):
-	DataManager.save_data("CrosshairColor", str(color))
-	emit_signal("refresh_crosshair")
-
-func _on_outline_color_color_changed(color):
-	DataManager.save_data("OutlineColor", str(color))
-	emit_signal("refresh_crosshair")
-
 func _on_export_pressed():
 	if OS.has_feature("web"):
 		DataManager.save_all_data_to_file_web()
@@ -69,6 +61,12 @@ func _on_outline_change_value(value):
 func _on_gap_change_value(value):
 	change_value("CrosshairGap", float(value))
 
+func _on_crosshair_color_color_changed(color):
+	change_value("CrosshairColor", str(color))
+
+func _on_outline_color_color_changed(color):
+	change_value("OutlineColor", str(color))
+	
 func change_value(key, value):
 	DataManager.save_data(key, value)
 	emit_signal("refresh_crosshair")
@@ -82,17 +80,30 @@ func file_parser(args):
 	DataManager.load_all_data_from_param(args[0])
 
 func load_saved():
-	var all_persist_groups = get_tree().get_nodes_in_group("Persist")
-	for persist_group in all_persist_groups:
-		match persist_group.get_class():
-			"CheckButton":
-				if DataManager.get_data(persist_group.name) != null:
-					persist_group.set_pressed(DataManager.get_data(persist_group.name))
-			"LineEdit":
-				if DataManager.get_data(persist_group.name) != null:
-					persist_group.text = str((DataManager.get_data(persist_group.name)))
-			"ColorPickerButton":
-				if DataManager.get_data(persist_group.name) != null:
-					persist_group.color = Global.string_to_color(DataManager.get_data(persist_group.name)) 
-			_:
-				print("Not loaded")
+	if DataManager.get_data("Dot") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.checkbox_value \
+			= DataManager.get_data("Dot")
+	if DataManager.get_data("DotSize") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.value \
+			= DataManager.get_data("DotSize")
+	if DataManager.get_data("CrosshairLength") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Length.value \
+			= DataManager.get_data("CrosshairLength")
+	if DataManager.get_data("CrosshairThickness") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Thickness.value \
+			= DataManager.get_data("CrosshairThickness")
+	if DataManager.get_data("CrosshairGap") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Gap.value \
+			= DataManager.get_data("CrosshairGap")
+	if DataManager.get_data("Outline") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.checkbox_value \
+			= DataManager.get_data("Outline")
+	if DataManager.get_data("OutlineSize") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.value \
+			= DataManager.get_data("OutlineSize")
+	if DataManager.get_data("CrosshairColor") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/Color/CrosshairColor.color \
+			= Global.string_to_color(DataManager.get_data("CrosshairColor"))
+	if DataManager.get_data("OutlineColor") != null:
+		$MarginContainer/VBoxContainer/CrosshairSettings/OutlineColor/OutlineColor.color \
+			= Global.string_to_color(DataManager.get_data("OutlineColor"))

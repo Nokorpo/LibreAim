@@ -39,7 +39,8 @@ signal toggle_checkbox(value)
 
 @export var checkbox_value := true:
 	set(value):
-		checkbox_value = value 
+		checkbox_value = value
+		$CheckBox.button_pressed = value
 
 @onready var slider = $Slider
 
@@ -51,5 +52,3 @@ func _on_slider_value_changed(new_value):
 
 func _on_check_box_toggled(button_pressed):
 	toggle_checkbox.emit(button_pressed)
-
-

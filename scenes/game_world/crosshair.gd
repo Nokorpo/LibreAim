@@ -7,8 +7,8 @@ var enable_outline := true
 var dot_enable := false
 
 var dot_size := 6.0
-var global_outline_width := 2.0
-var global_crosshair_thickness := 4.0
+var global_outline_width := 1.0
+var global_crosshair_thickness := 2.0
 var global_crosshair_length := 12.0
 var global_crosshair_gap := 5.0
 
@@ -34,20 +34,20 @@ func _on_options_refresh_crosshair():
 	queue_redraw()
 
 func load_save():
-	if DataManager.get_data("Outline") != null:
-		enable_outline = DataManager.get_data("Outline")
 	if DataManager.get_data("Dot") != null:
 		dot_enable = DataManager.get_data("Dot")
 	if DataManager.get_data("DotSize") != null:
 		dot_size = DataManager.get_data("DotSize")
-	if DataManager.get_data("OutlineSize") != null:
-		global_outline_width = DataManager.get_data("OutlineSize")
-	if DataManager.get_data("CrosshairHeight") != null:
-		global_crosshair_thickness = DataManager.get_data("CrosshairThickness")
 	if DataManager.get_data("CrosshairLength") != null:
 		global_crosshair_length = DataManager.get_data("CrosshairLength")
+	if DataManager.get_data("CrosshairThickness") != null:
+		global_crosshair_thickness = DataManager.get_data("CrosshairThickness")
 	if DataManager.get_data("CrosshairGap") != null:
 		global_crosshair_gap = DataManager.get_data("CrosshairGap")
+	if DataManager.get_data("Outline") != null:
+		enable_outline = DataManager.get_data("Outline")
+	if DataManager.get_data("OutlineSize") != null:
+		global_outline_width = DataManager.get_data("OutlineSize")
 	if DataManager.get_data("CrosshairColor") != null:
 		global_color = Global.string_to_color(DataManager.get_data("CrosshairColor"))
 	if DataManager.get_data("OutlineColor") != null:

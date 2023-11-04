@@ -137,6 +137,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Crosshair" type="Control" parent="HBoxContainer/Control2"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,21 +206,21 @@ has_checkbox = false
 layout_mode = 2
 label_text = "Thickness"
 max_value = 10.0
-value = 3.0
+value = 10.0
 has_checkbox = false
 
 [node name="Gap" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
 label_text = "Gap"
 max_value = 25.0
-value = 10.0
+value = 25.0
 has_checkbox = false
 
 [node name="Outline" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
 label_text = "Outline"
 max_value = 10.0
-value = 2.0
+value = 10.0
 
 [node name="Color" type="HBoxContainer" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings"]
 layout_mode = 2
