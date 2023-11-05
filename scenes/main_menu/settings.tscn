@@ -193,7 +193,7 @@ script = ExtResource("2_iu82h")
 layout_mode = 2
 label_text = "Dot"
 max_value = 10.0
-value = 3.0
+value = 10.0
 
 [node name="Length" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings" instance=ExtResource("6_bpfs5")]
 layout_mode = 2

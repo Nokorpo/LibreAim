@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=26 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_2h7x4"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
 [ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="2_n3hsc"]
 [ext_resource type="Texture2D" uid="uid://m5gaiq7pjwbv" path="res://assets/images/icons/settings.svg" id="3_8dqwy"]
+[ext_resource type="Texture2D" uid="uid://c4b2m50txi00g" path="res://icon.svg" id="3_kq7as"]
 [ext_resource type="Texture2D" uid="uid://tkfbioukscgd" path="res://assets/images/icons/git.svg" id="4_nuriq"]
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="5_nidys"]
 [ext_resource type="Script" path="res://scenes/main_menu/select_level.gd" id="6_5wgje"]
@@ -109,9 +110,21 @@ theme_override_constants/margin_right = 140
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Title" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Open Aim Trainer"
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Libre Aim"
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(84, 84)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_kq7as")
+expand_mode = 1
 
 [node name="Play" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
