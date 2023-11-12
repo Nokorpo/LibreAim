@@ -13,6 +13,7 @@ var id_spawn_target = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	timer.wait_time = 60
 	captured_needed.visible = false
 	id_spawn_target = 0
 	count_kills = 0
@@ -21,7 +22,10 @@ func _ready():
 		spawn_target()
 
 func _process(_delta):
-	update_timer_ui()
+	if timer.is_stopped():
+		update_timer_ui(timer.wait_time)
+	else:
+		update_timer_ui(timer.time_left)
 
 func _on_mouse_captured_needed_pressed():
 	get_tree().paused = false
@@ -33,9 +37,9 @@ func _on_timer_timeout():
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 
 func _on_player_shoot():
-	if (timer.is_stopped()):
-		timer.wait_time = 60
+	if timer.is_stopped():
 		timer.start()
+		$CanvasLayer/GameplayUI/PressAny.queue_free()
 
 func _on_target_destroyed():
 	messageHit()
@@ -85,5 +89,5 @@ func messageHit():
 	if not animation_kill.is_playing():
 		animation_kill.play("kill")
 
-func update_timer_ui():
-	timer_label.set_text("%.f s" % timer.time_left)
+func update_timer_ui(time_left):
+	timer_label.set_text("%.f s" % time_left)
