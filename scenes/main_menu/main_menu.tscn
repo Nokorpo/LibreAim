@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=28 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_2h7x4"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu/select_level.gd" id="6_5wgje"]
 [ext_resource type="Texture2D" uid="uid://db8p3tq5cc85j" path="res://assets/images/icons/play-big.svg" id="7_o4hi3"]
 [ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings.tscn" id="8_1n7gf"]
+[ext_resource type="Texture2D" uid="uid://drihvhiutdffn" path="res://assets/images/gamemodes/random.svg" id="9_am488"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqr84"]
 content_margin_left = 50.0
@@ -80,6 +81,13 @@ VSeparator/styles/separator = SubResource("StyleBoxLine_t2vp1")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5srfh"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0qci"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -231,10 +239,24 @@ theme_override_font_sizes/font_size = 46
 text = "Title"
 vertical_alignment = 1
 
+[node name="Panel" type="Panel" parent="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m0qci")
+
+[node name="Miniature" type="TextureRect" parent="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_am488")
+
 [node name="Description" type="Label" parent="HBoxContainer/Panel/SelectLevel/Control2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.54902, 0.54902, 0.54902, 1)
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 24
 text = "Description"
 vertical_alignment = 1
 autowrap_mode = 2

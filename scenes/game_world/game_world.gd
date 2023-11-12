@@ -13,7 +13,7 @@ var id_spawn_target = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer.wait_time = 60
+	timer.wait_time = Global.game_type.time
 	captured_needed.visible = false
 	id_spawn_target = 0
 	count_kills = 0

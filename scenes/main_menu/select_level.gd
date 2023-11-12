@@ -1,35 +1,38 @@
 extends Control
 
 const gamemodes: Dictionary = {
-	"3d_multiple_medium_targets_v1": {
+	"random": {
 		"title": "Random targets",
-		"description": "Random static targets",
+		"description": "Random static targets.",
 		"spawn_location_x_0": 5,
 		"spawn_location_x_1": -5,
 		"spawn_location_y_0": 1,
 		"spawn_location_y_1": 9,
+		"time": 30,
 		"movment": false,
 		"size": 2,
 		"number_of_initial_targets": 3
 	},
-	"3d_head_level_v1": {
+	"horizontal": {
 		"title": "Horizontal targets",
-		"description": "All targets spawn at the same height",
+		"description": "All targets spawn at the same height.",
 		"spawn_location_x_0": 15,
 		"spawn_location_x_1": -15,
 		"spawn_location_y_0": 5,
 		"spawn_location_y_1": 5,
+		"time": 30,
 		"movment": false,
 		"size": 1,
 		"number_of_initial_targets": 1
 	},
-	"3d_multiple_basic_targets_movement_v1": {
+	"moving": {
 		"title": "Moving targets",
-		"description": "Targets move in random patterns",
+		"description": "Targets move in random patterns.",
 		"spawn_location_x_0": 15,
 		"spawn_location_x_1": -15,
 		"spawn_location_y_0": 1,
 		"spawn_location_y_1": 9,
+		"time": 30,
 		"movment": true,
 		"size": 2,
 		"number_of_initial_targets": 6
@@ -42,7 +45,7 @@ const gamemodes: Dictionary = {
 
 func _ready():
 	add_gamemodes()
-	select_gamemode("3d_multiple_medium_targets_v1")
+	select_gamemode("random")
 
 func _on_play_pressed():
 	start_gamemode(Global.game_type)
@@ -59,7 +62,9 @@ func add_gamemodes():
 func select_gamemode(type):
 	Global.game_type = gamemodes[type]
 	title.text = gamemodes[type].title
-	description.text = gamemodes[type].description
+	description.text = "%s\nTime: %s s" % [str(gamemodes[type].description), gamemodes[type].time]
+	$Control2/MarginContainer/VBoxContainer/Panel/Miniature.texture \
+		= load("res://assets/images/gamemodes/%s.svg" % type)
 
 func start_gamemode(type):
 	if !OS.has_feature("web"):
