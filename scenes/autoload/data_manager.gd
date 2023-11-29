@@ -38,6 +38,18 @@ func save_data(key, value, category: categories, file_directory = FILE_PATH):
 	file.store_line(json)
 	file.close()
 
+func save_high_score(key, value):
+	if is_high_score(key, value):
+		DataManager.save_data(key, value, DataManager.categories.HIGH_SCORE)
+
+func is_high_score(key, value) -> bool:
+	var category_key = CATEGORIES_ROUTES[DataManager.categories.HIGH_SCORE]
+	if game_data.has(category_key) \
+		and game_data[category_key].has(key):
+		return value > game_data[category_key][key]
+	else:
+		return true
+
 func save_all_data(file_directory = FILE_PATH) :
 	var json = JSON.stringify(game_data, "\t")
 	var file = FileAccess.open(file_directory, FileAccess.WRITE)

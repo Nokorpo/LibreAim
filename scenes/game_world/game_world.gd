@@ -11,14 +11,13 @@ var id_spawn_target = 0
 @onready var timer = $Timer
 @onready var timer_label = $CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/time/label2
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	timer.wait_time = Global.game_type.time
+	timer.wait_time = Global.current_gamemode.time
 	captured_needed.visible = false
 	id_spawn_target = 0
 	count_kills = 0
 	
-	for x in range(Global.game_type.number_of_initial_targets):
+	for x in range(Global.current_gamemode.number_of_initial_targets):
 		spawn_target()
 
 func _process(_delta):
@@ -34,6 +33,7 @@ func _on_mouse_captured_needed_pressed():
 
 func _on_timer_timeout():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	DataManager.save_high_score(Global.current_gamemode.id, count_kills)
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 
 func _on_player_shoot():
@@ -47,8 +47,8 @@ func _on_target_destroyed():
 
 func randomize_vector():
 	randomize()
-	var location_x = randf_range(Global.game_type.spawn_location_x_0, Global.game_type.spawn_location_x_1)
-	var location_y = randf_range(Global.game_type.spawn_location_y_0, Global.game_type.spawn_location_y_1)
+	var location_x = randf_range(Global.current_gamemode.spawn_location_x_0, Global.current_gamemode.spawn_location_x_1)
+	var location_y = randf_range(Global.current_gamemode.spawn_location_y_0, Global.current_gamemode.spawn_location_y_1)
 	var location_z = -16
 	return Vector3(location_x, location_y, location_z)
 
@@ -59,7 +59,7 @@ func check_distance():
 	#if (DataManager.last_vectors.keys().size() > 0):
 	#	for last_key in DataManager.last_vectors.keys():
 	#		distance = DataManager.last_vectors[last_key].distance_to(vector_return)
-	#		if(distance < (Global.game_type.size * 2)):
+	#		if(distance < (Global.current_gamemode.size * 2)):
 	#			have_distance = false
 	return [have_distance, vector_return, distance]
 
@@ -78,7 +78,7 @@ func spawn_target():
 	#DataManager.last_vectors[id_spawn_target] = vector_return
 	
 	var target = packed_target.instantiate()
-	target.init(Global.game_type.size, id_spawn_target, Global.game_type.movment)
+	target.init(Global.current_gamemode.size, id_spawn_target, Global.current_gamemode.movment)
 	target.connect("destroyed", Callable(self, "_on_target_destroyed"))
 	target.set_position(location_target)
 	add_child(target)

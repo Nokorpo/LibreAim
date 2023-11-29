@@ -1,5 +1,48 @@
 extends Node
 
+const gamemodes: Dictionary = {
+	"random": {
+		"id": "random",
+		"title": "Random targets",
+		"description": "Random static targets.",
+		"spawn_location_x_0": 5,
+		"spawn_location_x_1": -5,
+		"spawn_location_y_0": 1,
+		"spawn_location_y_1": 9,
+		"time": 30,
+		"movment": false,
+		"size": 2,
+		"number_of_initial_targets": 3
+	},
+	"horizontal": {
+		"id": "horizontal",
+		"title": "Horizontal targets",
+		"description": "All targets spawn at the same height.",
+		"spawn_location_x_0": 15,
+		"spawn_location_x_1": -15,
+		"spawn_location_y_0": 5,
+		"spawn_location_y_1": 5,
+		"time": 30,
+		"movment": false,
+		"size": 1,
+		"number_of_initial_targets": 1
+	},
+	"moving": {
+		"id": "moving",
+		"title": "Moving targets",
+		"description": "Targets move in random patterns.",
+		"spawn_location_x_0": 15,
+		"spawn_location_x_1": -15,
+		"spawn_location_y_0": 1,
+		"spawn_location_y_1": 9,
+		"time": 30,
+		"movment": true,
+		"size": 2,
+		"number_of_initial_targets": 6
+	}
+}
+
+var current_gamemode : Dictionary
 
 func string_to_vector3d(string_vector: String) -> Vector3:
 	var components_str = string_vector.substr(1, string_vector.length() - 2)
@@ -14,7 +57,6 @@ func string_to_vector3d(string_vector: String) -> Vector3:
 	return Vector3(x, y, z)
 
 func string_to_color(string_vector: String) -> Color:
-
 	var components_str = string_vector.substr(1, string_vector.length() - 2)
 	var components = components_str.split(",")
 
@@ -26,14 +68,3 @@ func string_to_color(string_vector: String) -> Color:
 
 	# Create the Vector3D object
 	return Color(r, g, b, a)
-
-var game_type: Dictionary =  {
-	"spawn_location_x_0": 12,
-	"spawn_location_x_1": -12,
-	"spawn_location_y_0": 4,
-	"spawn_location_y_1": 20,
-	"time": 30,
-	"movment": false,
-	"size": 0.5,
-	"number_of_initial_targets": 6
-}
