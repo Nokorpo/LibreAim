@@ -18,11 +18,11 @@ func _ready():
 func _on_resolution_slider_value_changed(value: float) -> void:
 	get_viewport().scaling_3d_scale = value
 	update_resolution_label()
-	DataManager.save_data("resolution", value)
+	DataManager.save_data("resolution", value, DataManager.categories.SETTINGS)
 
 func _on_fov_slider_value_changed(value):
 	update_fov_label()
-	DataManager.save_data("camera_fov", value)
+	DataManager.save_data("camera_fov", value, DataManager.categories.SETTINGS)
 
 func update_resolution_label() -> void:
 	var viewport_render_size = get_viewport().size * get_viewport().scaling_3d_scale

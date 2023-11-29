@@ -19,10 +19,15 @@ func AddGamesSensitivities():
 		game.add_item(sens)
 
 func _on_sensitivity_text_changed(new_text):
-	DataManager.save_data("sensitivity_game", game.get_selected_id())
-	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())))
-	DataManager.save_data("sensitivity", float(new_text))
+	DataManager.save_data("sensitivity_game", game.get_selected_id(), \
+		DataManager.categories.SETTINGS)
+	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())), \
+		DataManager.categories.SETTINGS)
+	DataManager.save_data("sensitivity", float(new_text), \
+		DataManager.categories.SETTINGS)
 
 func _on_game_item_selected(index):
-	DataManager.save_data("sensitivity_game", index)
-	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)))
+	DataManager.save_data("sensitivity_game", index, \
+		DataManager.categories.SETTINGS)
+	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)), \
+		DataManager.categories.SETTINGS)

@@ -68,7 +68,7 @@ func _on_outline_color_color_changed(color):
 	change_value("OutlineColor", str(color))
 	
 func change_value(key, value):
-	DataManager.save_data(key, value)
+	DataManager.save_data(key, value, DataManager.categories.CROSSHAIR)
 	emit_signal("refresh_crosshair")
 
 func set_window(window):
