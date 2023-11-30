@@ -366,10 +366,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GameplayUI/PressAny"]
-autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_y2pta")
 }
+autoplay = "idle"
 
 [node name="PauseManager" type="Node" parent="CanvasLayer"]
 script = ExtResource("7_ffgmh")
