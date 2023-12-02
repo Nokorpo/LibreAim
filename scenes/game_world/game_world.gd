@@ -52,30 +52,13 @@ func randomize_vector():
 	var location_z = -16
 	return Vector3(location_x, location_y, location_z)
 
-func check_distance():
-	var vector_return = randomize_vector()
-	var distance = 0
-	var have_distance = true
-	#if (DataManager.last_vectors.keys().size() > 0):
-	#	for last_key in DataManager.last_vectors.keys():
-	#		distance = DataManager.last_vectors[last_key].distance_to(vector_return)
-	#		if(distance < (Global.current_gamemode.size * 2)):
-	#			have_distance = false
-	return [have_distance, vector_return, distance]
-
 func spawn_target():
 	id_spawn_target += 1
-	var return_distance_array = check_distance()
 	var count_max = 0
-	while return_distance_array[0] != true and count_max < 100:
-		count_max += 1
-		return_distance_array = check_distance()
-	var vector_return = return_distance_array[1]
+	var vector_return = randomize_vector()
 	location_target.x = vector_return.x
 	location_target.y = vector_return.y
 	location_target.z = vector_return.z
-	
-	#DataManager.last_vectors[id_spawn_target] = vector_return
 	
 	var target = packed_target.instantiate()
 	target.init(Global.current_gamemode.size, id_spawn_target, Global.current_gamemode.movment)
