@@ -23,7 +23,7 @@ func load_all_data_from_param(string_json):
 	if json.data != null:
 		result = json.data
 	game_data = result
-	
+
 func save_all_data_to_file_web():
 	var json = JSON.stringify(game_data)
 	JavaScriptBridge.download_buffer(json.to_utf8_buffer(),"open_aim_trainer.json")
@@ -49,6 +49,13 @@ func is_high_score(key, value) -> bool:
 		return value > game_data[category_key][key]
 	else:
 		return true
+
+func get_high_score(key) -> int:
+	var category_key = CATEGORIES_ROUTES[DataManager.categories.HIGH_SCORE]
+	if game_data.has(category_key) \
+		and game_data[category_key].has(key):
+			return game_data[category_key][key]
+	return 0
 
 func save_all_data(file_directory = FILE_PATH) :
 	var json = JSON.stringify(game_data, "\t")

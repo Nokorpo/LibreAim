@@ -23,7 +23,10 @@ func add_gamemodes():
 func select_gamemode(type):
 	Global.current_gamemode = Global.gamemodes[type]
 	title.text = Global.gamemodes[type].title
-	description.text = "%s\nTime: %s s" % [str(Global.gamemodes[type].description), Global.gamemodes[type].time]
+	description.text = "%s\nTime: %s s\nHigh score: %s"\
+		% [str(Global.gamemodes[type].description),\
+		Global.gamemodes[type].time, \
+		DataManager.get_high_score(Global.gamemodes[type].id)]
 	$Control2/MarginContainer/VBoxContainer/Panel/Miniature.texture \
 		= load("res://assets/images/gamemodes/%s.svg" % type)
 
