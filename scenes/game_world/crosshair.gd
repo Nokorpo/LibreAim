@@ -34,24 +34,25 @@ func _on_options_refresh_crosshair():
 	queue_redraw()
 
 func load_save():
-	if DataManager.get_data("Dot") != null:
-		dot_enable = DataManager.get_data("Dot")
-	if DataManager.get_data("DotSize") != null:
-		dot_size = DataManager.get_data("DotSize")
-	if DataManager.get_data("CrosshairLength") != null:
-		global_crosshair_length = DataManager.get_data("CrosshairLength")
-	if DataManager.get_data("CrosshairThickness") != null:
-		global_crosshair_thickness = DataManager.get_data("CrosshairThickness")
-	if DataManager.get_data("CrosshairGap") != null:
-		global_crosshair_gap = DataManager.get_data("CrosshairGap")
-	if DataManager.get_data("Outline") != null:
-		enable_outline = DataManager.get_data("Outline")
-	if DataManager.get_data("OutlineSize") != null:
-		global_outline_width = DataManager.get_data("OutlineSize")
-	if DataManager.get_data("CrosshairColor") != null:
-		global_color = Global.string_to_color(DataManager.get_data("CrosshairColor"))
-	if DataManager.get_data("OutlineColor") != null:
-		global_outline_color = Global.string_to_color(DataManager.get_data("OutlineColor"))
+	var category = DataManager.categories.CROSSHAIR
+	if DataManager.get_data(category, "Dot") != null:
+		dot_enable = DataManager.get_data(category, "Dot")
+	if DataManager.get_data(category, "DotSize") != null:
+		dot_size = DataManager.get_data(category, "DotSize")
+	if DataManager.get_data(category, "CrosshairLength") != null:
+		global_crosshair_length = DataManager.get_data(category, "CrosshairLength")
+	if DataManager.get_data(category, "CrosshairThickness") != null:
+		global_crosshair_thickness = DataManager.get_data(category, "CrosshairThickness")
+	if DataManager.get_data(category, "CrosshairGap") != null:
+		global_crosshair_gap = DataManager.get_data(category, "CrosshairGap")
+	if DataManager.get_data(category, "Outline") != null:
+		enable_outline = DataManager.get_data(category, "Outline")
+	if DataManager.get_data(category, "OutlineSize") != null:
+		global_outline_width = DataManager.get_data(category, "OutlineSize")
+	if DataManager.get_data(category, "CrosshairColor") != null:
+		global_color = Global.string_to_color(DataManager.get_data(category, "CrosshairColor"))
+	if DataManager.get_data(category, "OutlineColor") != null:
+		global_outline_color = Global.string_to_color(DataManager.get_data(category, "OutlineColor"))
 	current_crosshair["dot"] = [
 		Vector2(-dot_size,-dot_size), #top left
 		Vector2(dot_size,-dot_size), #top right

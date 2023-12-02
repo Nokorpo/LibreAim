@@ -9,10 +9,11 @@ const games_sensitivities: Dictionary = {
 
 func _ready():
 	AddGamesSensitivities()
-	if DataManager.get_data("sensitivity"):
-		sensitivity.text = str(DataManager.get_data("sensitivity"))
-	if DataManager.get_data("sensitivity_game"):
-		game.selected = DataManager.get_data("sensitivity_game")
+	var category = DataManager.categories.SETTINGS
+	if DataManager.get_data(category, "sensitivity"):
+		sensitivity.text = str(DataManager.get_data(category, "sensitivity"))
+	if DataManager.get_data(category, "sensitivity_game"):
+		game.selected = DataManager.get_data(category, "sensitivity_game")
 
 func AddGamesSensitivities():
 	for sens in games_sensitivities:

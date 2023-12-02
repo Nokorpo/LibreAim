@@ -25,17 +25,18 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	var user_sensitivity = 1
 	var conversion_sensitivity = 0.04
+	var category = DataManager.categories.SETTINGS
 	
-	if DataManager.get_data("sensitivity_game_value"):
-		conversion_sensitivity = DataManager.get_data("sensitivity_game_value")
-	if DataManager.get_data("sensitivity"):
-		user_sensitivity = DataManager.get_data("sensitivity")
+	if DataManager.get_data(category, "sensitivity_game_value"):
+		conversion_sensitivity = DataManager.get_data(category, "sensitivity_game_value")
+	if DataManager.get_data(category, "sensitivity"):
+		user_sensitivity = DataManager.get_data(category, "sensitivity")
 	if OS.has_feature("web"):
 		mouse_sensitivity = user_sensitivity * conversion_sensitivity * 0.67857142857142857143
 	else:
 		mouse_sensitivity = user_sensitivity * conversion_sensitivity
-	if DataManager.get_data("camera_fov"):
-		camera.fov = DataManager.get_data("camera_fov")
+	if DataManager.get_data(category, "camera_fov"):
+		camera.fov = DataManager.get_data(category, "camera_fov")
 
 func _input(event):
 	if event is InputEventMouseMotion:

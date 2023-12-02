@@ -80,30 +80,31 @@ func file_parser(args):
 	DataManager.load_all_data_from_param(args[0])
 
 func load_saved():
-	if DataManager.get_data("Dot") != null:
+	var categories = DataManager.categories.CROSSHAIR
+	if DataManager.get_data(categories, "Dot") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.checkbox_value \
-			= DataManager.get_data("Dot")
-	if DataManager.get_data("DotSize") != null:
+			= DataManager.get_data(categories, "Dot")
+	if DataManager.get_data(categories, "DotSize") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.value \
-			= DataManager.get_data("DotSize")
-	if DataManager.get_data("CrosshairLength") != null:
+			= DataManager.get_data(categories, "DotSize")
+	if DataManager.get_data(categories, "CrosshairLength") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Length.value \
-			= DataManager.get_data("CrosshairLength")
-	if DataManager.get_data("CrosshairThickness") != null:
+			= DataManager.get_data(categories, "CrosshairLength")
+	if DataManager.get_data(categories, "CrosshairThickness") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Thickness.value \
-			= DataManager.get_data("CrosshairThickness")
-	if DataManager.get_data("CrosshairGap") != null:
+			= DataManager.get_data(categories, "CrosshairThickness")
+	if DataManager.get_data(categories, "CrosshairGap") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Gap.value \
-			= DataManager.get_data("CrosshairGap")
-	if DataManager.get_data("Outline") != null:
+			= DataManager.get_data(categories, "CrosshairGap")
+	if DataManager.get_data(categories, "Outline") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.checkbox_value \
-			= DataManager.get_data("Outline")
-	if DataManager.get_data("OutlineSize") != null:
+			= DataManager.get_data(categories, "Outline")
+	if DataManager.get_data(categories, "OutlineSize") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.value \
-			= DataManager.get_data("OutlineSize")
-	if DataManager.get_data("CrosshairColor") != null:
+			= DataManager.get_data(categories, "OutlineSize")
+	if DataManager.get_data(categories, "CrosshairColor") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Color/CrosshairColor.color \
-			= Global.string_to_color(DataManager.get_data("CrosshairColor"))
-	if DataManager.get_data("OutlineColor") != null:
+			= Global.string_to_color(DataManager.get_data(categories, "CrosshairColor"))
+	if DataManager.get_data(categories, "OutlineColor") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/OutlineColor/OutlineColor.color \
-			= Global.string_to_color(DataManager.get_data("OutlineColor"))
+			= Global.string_to_color(DataManager.get_data(categories, "OutlineColor"))

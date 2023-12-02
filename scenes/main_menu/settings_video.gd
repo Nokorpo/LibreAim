@@ -9,11 +9,12 @@ func _ready():
 	update_fov_label()
 	update_resolution_label()
 	get_viewport().size_changed.connect(self.update_resolution_label)
+	var category = DataManager.categories.SETTINGS
 	
-	if DataManager.get_data("resolution"):
-		resolution_slider.value = DataManager.get_data("resolution")
-	if DataManager.get_data("camera_fov"):
-		fov_slider.value = DataManager.get_data("camera_fov")
+	if DataManager.get_data(category, "resolution"):
+		resolution_slider.value = DataManager.get_data(category, "resolution")
+	if DataManager.get_data(category, "camera_fov"):
+		fov_slider.value = DataManager.get_data(category, "camera_fov")
 
 func _on_resolution_slider_value_changed(value: float) -> void:
 	get_viewport().scaling_3d_scale = value

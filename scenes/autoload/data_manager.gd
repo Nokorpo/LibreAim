@@ -63,10 +63,10 @@ func save_all_data(file_directory = FILE_PATH) :
 	file.store_line(json)
 	file.close()
 	
-func get_data(key):
+func get_data(category: categories, key):
 	var result = null
 	if game_data != null:
-		result = game_data.get(key)
+		result = game_data.get(CATEGORIES_ROUTES[category]).get(key)
 	return result
 
 func load_all_data(file_directory = FILE_PATH):
