@@ -41,31 +41,31 @@ func _on_import_file_dialog_file_selected(path):
 	emit_signal("refresh_crosshair")
 
 func _on_dot_change_value(value):
-	change_value("DotSize", float(value))
+	change_value("dot_size", float(value))
 
 func _on_dot_toggle_checkbox(value):
-	change_value("Dot", value)
+	change_value("dot", value)
 
 func _on_length_change_value(value):
-	change_value("CrosshairLength", float(value))
+	change_value("crosshair_length", float(value))
 
 func _on_thickness_change_value(value):
-	change_value("CrosshairThickness", float(value))
+	change_value("crosshair_thickness", float(value))
 
 func _on_outline_toggle_checkbox(value):
-	change_value("Outline", value)
+	change_value("outline_enable", value)
 
 func _on_outline_change_value(value):
-	change_value("OutlineSize", float(value))
+	change_value("outline_width", float(value))
 
 func _on_gap_change_value(value):
-	change_value("CrosshairGap", float(value))
+	change_value("crosshair_gap", float(value))
 
 func _on_crosshair_color_color_changed(color):
-	change_value("CrosshairColor", str(color))
+	change_value("color", str(color))
 
 func _on_outline_color_color_changed(color):
-	change_value("OutlineColor", str(color))
+	change_value("outline_color", str(color))
 	
 func change_value(key, value):
 	DataManager.save_data(key, value, DataManager.categories.CROSSHAIR)
@@ -81,30 +81,30 @@ func file_parser(args):
 
 func load_saved():
 	var categories = DataManager.categories.CROSSHAIR
-	if DataManager.get_data(categories, "Dot") != null:
+	if DataManager.get_data(categories, "dot") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.checkbox_value \
-			= DataManager.get_data(categories, "Dot")
-	if DataManager.get_data(categories, "DotSize") != null:
+			= DataManager.get_data(categories, "dot")
+	if DataManager.get_data(categories, "dot_size") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.value \
-			= DataManager.get_data(categories, "DotSize")
-	if DataManager.get_data(categories, "CrosshairLength") != null:
+			= DataManager.get_data(categories, "dot_size")
+	if DataManager.get_data(categories, "crosshair_length") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Length.value \
-			= DataManager.get_data(categories, "CrosshairLength")
-	if DataManager.get_data(categories, "CrosshairThickness") != null:
+			= DataManager.get_data(categories, "crosshair_length")
+	if DataManager.get_data(categories, "crosshair_thickness") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Thickness.value \
-			= DataManager.get_data(categories, "CrosshairThickness")
-	if DataManager.get_data(categories, "CrosshairGap") != null:
+			= DataManager.get_data(categories, "crosshair_thickness")
+	if DataManager.get_data(categories, "crosshair_gap") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Gap.value \
-			= DataManager.get_data(categories, "CrosshairGap")
-	if DataManager.get_data(categories, "Outline") != null:
+			= DataManager.get_data(categories, "crosshair_gap")
+	if DataManager.get_data(categories, "outline_enable") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.checkbox_value \
-			= DataManager.get_data(categories, "Outline")
-	if DataManager.get_data(categories, "OutlineSize") != null:
+			= DataManager.get_data(categories, "outline_enable")
+	if DataManager.get_data(categories, "outline_width") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.value \
-			= DataManager.get_data(categories, "OutlineSize")
-	if DataManager.get_data(categories, "CrosshairColor") != null:
+			= DataManager.get_data(categories, "outline_width")
+	if DataManager.get_data(categories, "color") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/Color/CrosshairColor.color \
-			= Global.string_to_color(DataManager.get_data(categories, "CrosshairColor"))
-	if DataManager.get_data(categories, "OutlineColor") != null:
+			= Global.string_to_color(DataManager.get_data(categories, "color"))
+	if DataManager.get_data(categories, "outline_color") != null:
 		$MarginContainer/VBoxContainer/CrosshairSettings/OutlineColor/OutlineColor.color \
-			= Global.string_to_color(DataManager.get_data(categories, "OutlineColor"))
+			= Global.string_to_color(DataManager.get_data(categories, "outline_color"))

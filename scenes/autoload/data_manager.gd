@@ -65,7 +65,9 @@ func save_all_data(file_directory = FILE_PATH) :
 	
 func get_data(category: categories, key):
 	var result = null
-	if game_data != null:
+	if game_data != null \
+		and game_data.has(CATEGORIES_ROUTES[category]) \
+		and game_data.get(CATEGORIES_ROUTES[category]).has(key):
 		result = game_data.get(CATEGORIES_ROUTES[category]).get(key)
 	return result
 

@@ -1,16 +1,16 @@
 extends Control
 
-var global_color := Color(0, 255, 255, 1)
-var global_outline_color := Color(0,0,0)
+var color := Color(0, 255, 255, 1)
+var outline_color := Color(0,0,0)
 
 var enable_outline := true
 var dot_enable := false
 
 var dot_size := 6.0
-var global_outline_width := 1.0
-var global_crosshair_thickness := 2.0
-var global_crosshair_length := 12.0
-var global_crosshair_gap := 5.0
+var outline_width := 1.0
+var crosshair_thickness := 2.0
+var crosshair_length := 12.0
+var crosshair_gap := 5.0
 
 var current_crosshair = {
 	"top": [],
@@ -23,36 +23,28 @@ var current_crosshair = {
 func _draw():
 	load_save()
 	
-	draw_part(current_crosshair["top"], global_color, global_outline_width, global_outline_color)
-	draw_part(current_crosshair["right"], global_color, global_outline_width, global_outline_color)
-	draw_part(current_crosshair["bottom"], global_color, global_outline_width, global_outline_color)
-	draw_part(current_crosshair["left"], global_color, global_outline_width, global_outline_color)
+	draw_part(current_crosshair["top"], color, outline_width, outline_color)
+	draw_part(current_crosshair["right"], color, outline_width, outline_color)
+	draw_part(current_crosshair["bottom"], color, outline_width, outline_color)
+	draw_part(current_crosshair["left"], color, outline_width, outline_color)
 	if dot_enable:
-		draw_part(current_crosshair["dot"], global_color, global_outline_width, global_outline_color)
+		draw_part(current_crosshair["dot"], color, outline_width, outline_color)
 
 func _on_options_refresh_crosshair():
 	queue_redraw()
 
 func load_save():
 	var category = DataManager.categories.CROSSHAIR
-	if DataManager.get_data(category, "Dot") != null:
-		dot_enable = DataManager.get_data(category, "Dot")
-	if DataManager.get_data(category, "DotSize") != null:
-		dot_size = DataManager.get_data(category, "DotSize")
-	if DataManager.get_data(category, "CrosshairLength") != null:
-		global_crosshair_length = DataManager.get_data(category, "CrosshairLength")
-	if DataManager.get_data(category, "CrosshairThickness") != null:
-		global_crosshair_thickness = DataManager.get_data(category, "CrosshairThickness")
-	if DataManager.get_data(category, "CrosshairGap") != null:
-		global_crosshair_gap = DataManager.get_data(category, "CrosshairGap")
-	if DataManager.get_data(category, "Outline") != null:
-		enable_outline = DataManager.get_data(category, "Outline")
-	if DataManager.get_data(category, "OutlineSize") != null:
-		global_outline_width = DataManager.get_data(category, "OutlineSize")
-	if DataManager.get_data(category, "CrosshairColor") != null:
-		global_color = Global.string_to_color(DataManager.get_data(category, "CrosshairColor"))
-	if DataManager.get_data(category, "OutlineColor") != null:
-		global_outline_color = Global.string_to_color(DataManager.get_data(category, "OutlineColor"))
+	dot_enable = set_parameter_if_exists(dot_enable, "dot")
+	dot_size = set_parameter_if_exists(dot_size, "dot_size")
+	crosshair_length = set_parameter_if_exists(crosshair_length, "crosshair_length")
+	crosshair_thickness = set_parameter_if_exists(crosshair_thickness, "crosshair_thickness")
+	crosshair_gap = set_parameter_if_exists(crosshair_gap, "crosshair_gap")
+	enable_outline = set_parameter_if_exists(enable_outline, "outline_enable")
+	outline_width = set_parameter_if_exists(outline_width, "outline_width")
+	color = set_color_if_exists(color, "color")
+	outline_color = set_color_if_exists(outline_color, "outline_color")
+	
 	current_crosshair["dot"] = [
 		Vector2(-dot_size,-dot_size), #top left
 		Vector2(dot_size,-dot_size), #top right
@@ -60,29 +52,42 @@ func load_save():
 		Vector2(-dot_size,dot_size) #bottom left
 	]
 	current_crosshair["left"] = [
-		Vector2(-global_crosshair_length-global_crosshair_gap,-global_crosshair_thickness),  #top left
-		Vector2(-global_crosshair_gap,-global_crosshair_thickness), #top right
-		Vector2(-global_crosshair_gap,global_crosshair_thickness), #bottom right
-		Vector2(-global_crosshair_length-global_crosshair_gap,global_crosshair_thickness) #bottom left
+		Vector2(-crosshair_length-crosshair_gap,-crosshair_thickness),  #top left
+		Vector2(-crosshair_gap,-crosshair_thickness), #top right
+		Vector2(-crosshair_gap,crosshair_thickness), #bottom right
+		Vector2(-crosshair_length-crosshair_gap,crosshair_thickness) #bottom left
 	]
 	current_crosshair["top"] = [
-		Vector2(-global_crosshair_thickness,-global_crosshair_length-global_crosshair_gap), #top left
-		Vector2(global_crosshair_thickness,-global_crosshair_length-global_crosshair_gap), #top right
-		Vector2(global_crosshair_thickness,-global_crosshair_gap), #bottom right
-		Vector2(-global_crosshair_thickness,-global_crosshair_gap) #bottom left
+		Vector2(-crosshair_thickness,-crosshair_length-crosshair_gap), #top left
+		Vector2(crosshair_thickness,-crosshair_length-crosshair_gap), #top right
+		Vector2(crosshair_thickness,-crosshair_gap), #bottom right
+		Vector2(-crosshair_thickness,-crosshair_gap) #bottom left
 	]
 	current_crosshair["right"] = [
-		Vector2(global_crosshair_gap,-global_crosshair_thickness), #top left
-		Vector2(global_crosshair_length+global_crosshair_gap,-global_crosshair_thickness), #top right
-		Vector2(global_crosshair_length+global_crosshair_gap,global_crosshair_thickness), #bottom right
-		Vector2(global_crosshair_gap,global_crosshair_thickness) #bottom left
+		Vector2(crosshair_gap,-crosshair_thickness), #top left
+		Vector2(crosshair_length+crosshair_gap,-crosshair_thickness), #top right
+		Vector2(crosshair_length+crosshair_gap,crosshair_thickness), #bottom right
+		Vector2(crosshair_gap,crosshair_thickness) #bottom left
 	]
 	current_crosshair["bottom"] = [
-		Vector2(-global_crosshair_thickness, global_crosshair_gap), #top left
-		Vector2(global_crosshair_thickness,global_crosshair_gap), #top right
-		Vector2(global_crosshair_thickness,global_crosshair_gap+global_crosshair_length), #bottom right
-		Vector2(-global_crosshair_thickness,global_crosshair_gap+global_crosshair_length) #bottom left
+		Vector2(-crosshair_thickness, crosshair_gap), #top left
+		Vector2(crosshair_thickness,crosshair_gap), #top right
+		Vector2(crosshair_thickness,crosshair_gap+crosshair_length), #bottom right
+		Vector2(-crosshair_thickness,crosshair_gap+crosshair_length) #bottom left
 	]
+
+func set_parameter_if_exists(parameter, key: String):
+	var category = DataManager.categories.CROSSHAIR
+	var new_value = DataManager.get_data(category, key)
+	if new_value != null:
+		return new_value
+	return parameter
+
+func set_color_if_exists(parameter, key: String):
+	var color = set_parameter_if_exists(parameter, key)
+	if color != null and color is String:
+		color = Global.string_to_color(color)
+	return color
 
 func draw_part(points: PackedVector2Array, color: Color, outline_width: float, outline_color: Color):
 	draw_polygon(points, [color])
