@@ -465,7 +465,7 @@ grow_vertical = 2
 text = "Mouse captured is needed."
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
+[connection signal="shoot" from="Player" to="CanvasLayer/GameplayUI" method="_on_player_shoot"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Resume" to="CanvasLayer/PauseManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Menu" to="CanvasLayer/PauseManager" method="_on_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/MouseCapturedRequest/MouseCapturedNeeded" to="CanvasLayer/MouseCapturedRequest" method="_on_mouse_captured_needed_pressed"]

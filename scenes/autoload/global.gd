@@ -5,40 +5,40 @@ const gamemodes: Dictionary = {
 		"id": "random",
 		"title": "Random targets",
 		"description": "Random static targets.",
-		"spawn_location_x_0": 5,
-		"spawn_location_x_1": -5,
-		"spawn_location_y_0": 1,
-		"spawn_location_y_1": 9,
+		"spawn_location": {
+			"x": [-5, 5],
+			"y": [1, 9]
+		},
 		"time": 30,
-		"movment": false,
+		"movement": false,
 		"size": 2,
-		"number_of_initial_targets": 3
+		"initial_targets": 3
 	},
 	"horizontal": {
 		"id": "horizontal",
 		"title": "Horizontal targets",
 		"description": "All targets spawn at the same height.",
-		"spawn_location_x_0": 15,
-		"spawn_location_x_1": -15,
-		"spawn_location_y_0": 5,
-		"spawn_location_y_1": 5,
+		"spawn_location": {
+			"x": [-15, 15],
+			"y": [5, 5]
+		},
 		"time": 30,
-		"movment": false,
+		"movement": false,
 		"size": 1,
-		"number_of_initial_targets": 1
+		"initial_targets": 1
 	},
 	"moving": {
 		"id": "moving",
 		"title": "Moving targets",
 		"description": "Targets move in random patterns.",
-		"spawn_location_x_0": 15,
-		"spawn_location_x_1": -15,
-		"spawn_location_y_0": 1,
-		"spawn_location_y_1": 9,
+		"spawn_location": {
+			"x": [-15, 15],
+			"y": [1, 9]
+		},
 		"time": 30,
-		"movment": true,
+		"movement": true,
 		"size": 2,
-		"number_of_initial_targets": 6
+		"initial_targets": 6
 	}
 }
 

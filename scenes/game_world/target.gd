@@ -20,8 +20,7 @@ func _ready():
 		material_override.set_emission(Global.string_to_color(DataManager.get_data(category, "TargetColor")))
 		mesh.material_override = material_override
 
-func init(size = 0.5, id_spawn = null, movement = false):
-	randomize()
+func init(size = 0.5, movement = false):
 	self.scale = Vector3(size, size, size)
 	if movement:
 		current_velocity = Vector3(randf_range(-10, 10), randf_range(-10, 10), randf_range(-10, 10))

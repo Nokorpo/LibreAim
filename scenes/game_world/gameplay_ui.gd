@@ -13,3 +13,8 @@ func update_kills(value: int):
 
 func update_timer_ui(time_left):
 	timer_label.set_text("%.f s" % time_left)
+
+func _on_player_shoot() -> void:
+	if timer.is_stopped():
+		timer.start()
+		$PressAny.queue_free()
