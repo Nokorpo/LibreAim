@@ -1,14 +1,16 @@
-[gd_scene load_steps=26 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=28 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
 [ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/images/mat_filldummy.tres" id="2_ldkna"]
 [ext_resource type="Script" path="res://scenes/game_world/player_manager.gd" id="3_cvlpu"]
 [ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="4_pc15u"]
+[ext_resource type="Script" path="res://scenes/game_world/gameplay_ui.gd" id="5_of43n"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
 [ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="7_7rabg"]
 [ext_resource type="Script" path="res://scenes/game_world/pause.gd" id="7_ffgmh"]
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="7_gwa7l"]
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="8_6pksd"]
+[ext_resource type="Script" path="res://scenes/game_world/mouse_capture.gd" id="10_vngrv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -273,6 +275,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_agxdx")
+script = ExtResource("5_of43n")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/GameplayUI"]
 layout_mode = 1
@@ -426,7 +429,7 @@ text = "Menu"
 icon = ExtResource("8_6pksd")
 alignment = 0
 
-[node name="MouseCapturedRequested" type="Control" parent="CanvasLayer"]
+[node name="MouseCapturedRequest" type="Control" parent="CanvasLayer"]
 process_mode = 2
 visible = false
 layout_mode = 3
@@ -435,8 +438,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("10_vngrv")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MouseCapturedRequested"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MouseCapturedRequest"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -445,7 +449,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0745098, 0.0745098, 0.0745098, 0.34902)
 
-[node name="MouseCapturedNeeded" type="Button" parent="CanvasLayer/MouseCapturedRequested"]
+[node name="MouseCapturedNeeded" type="Button" parent="CanvasLayer/MouseCapturedRequest"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -464,4 +468,4 @@ text = "Mouse captured is needed."
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Resume" to="CanvasLayer/PauseManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Menu" to="CanvasLayer/PauseManager" method="_on_menu_pressed"]
-[connection signal="pressed" from="CanvasLayer/MouseCapturedRequested/MouseCapturedNeeded" to="." method="_on_mouse_captured_needed_pressed"]
+[connection signal="pressed" from="CanvasLayer/MouseCapturedRequest/MouseCapturedNeeded" to="CanvasLayer/MouseCapturedRequest" method="_on_mouse_captured_needed_pressed"]

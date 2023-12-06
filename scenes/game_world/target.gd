@@ -4,7 +4,6 @@ signal destroyed
 
 @onready var mesh := $CollisionShape3D/MeshInstance3D
 
-var id_spawn_target = null
 var current_velocity = null
 var health = 10 :
 	set(value):
@@ -26,7 +25,6 @@ func init(size = 0.5, id_spawn = null, movement = false):
 	self.scale = Vector3(size, size, size)
 	if movement:
 		current_velocity = Vector3(randf_range(-10, 10), randf_range(-10, 10), randf_range(-10, 10))
-	id_spawn_target = id_spawn
 
 func _physics_process(delta):
 	if current_velocity:
