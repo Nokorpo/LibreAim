@@ -9,7 +9,7 @@ func _ready():
 	select_gamemode("random")
 
 func _on_play_pressed():
-	start_gamemode(Global.current_gamemode)
+	start_gamemode()
 
 func add_gamemodes():
 	for gamemode in Global.gamemodes:
@@ -30,7 +30,7 @@ func select_gamemode(type):
 	$Control2/MarginContainer/VBoxContainer/Panel/Miniature.texture \
 		= load("res://assets/images/gamemodes/%s.svg" % type)
 
-func start_gamemode(type):
+func start_gamemode():
 	if !OS.has_feature("web"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().change_scene_to_file("res://scenes/game_world/game_world.tscn")

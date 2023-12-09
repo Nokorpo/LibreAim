@@ -23,18 +23,17 @@ var current_crosshair = {
 func _draw():
 	load_save()
 	
-	draw_part(current_crosshair["top"], color, outline_width, outline_color)
-	draw_part(current_crosshair["right"], color, outline_width, outline_color)
-	draw_part(current_crosshair["bottom"], color, outline_width, outline_color)
-	draw_part(current_crosshair["left"], color, outline_width, outline_color)
+	draw_part(current_crosshair["top"])
+	draw_part(current_crosshair["right"])
+	draw_part(current_crosshair["bottom"])
+	draw_part(current_crosshair["left"])
 	if dot_enable:
-		draw_part(current_crosshair["dot"], color, outline_width, outline_color)
+		draw_part(current_crosshair["dot"])
 
 func _on_options_refresh_crosshair():
 	queue_redraw()
 
 func load_save():
-	var category = DataManager.categories.CROSSHAIR
 	dot_enable = set_parameter_if_exists(dot_enable, "dot")
 	dot_size = set_parameter_if_exists(dot_size, "dot_size")
 	crosshair_length = set_parameter_if_exists(crosshair_length, "crosshair_length")
@@ -84,19 +83,19 @@ func set_parameter_if_exists(parameter, key: String):
 	return parameter
 
 func set_color_if_exists(parameter, key: String):
-	var color = set_parameter_if_exists(parameter, key)
-	if color != null and color is String:
-		color = Global.string_to_color(color)
-	return color
+	var new_color = set_parameter_if_exists(parameter, key)
+	if new_color != null and new_color is String:
+		new_color = Global.string_to_color(new_color)
+	return new_color
 
-func draw_part(points: PackedVector2Array, color: Color, outline_width: float, outline_color: Color):
+func draw_part(points: PackedVector2Array):
 	draw_polygon(points, [color])
 	var polygon := Polygon2D.new()
 	polygon.set_polygon(points)
 	if enable_outline:
-		draw_outline(polygon, outline_width, outline_color)
+		draw_outline(polygon)
 	
-func draw_outline(polygon: Polygon2D, outline_width: float, outline_color: Color):
+func draw_outline(polygon: Polygon2D):
 	var poly = polygon.get_polygon()
 	for i in range(1 , poly.size()):
 		draw_line(poly[i-1] , poly[i], outline_color , outline_width)
