@@ -8,8 +8,7 @@ const DAMAGE = 10
 
 var mouse_sensitivity := 0.001
 
-var jump_single := true
-var jump_double := true
+var jumps := [true, true]
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -38,14 +37,10 @@ func _input(event)  -> void:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-	if Input.is_action_just_pressed("shoot"):
+	if event.is_action_pressed("shoot"):
 		shoot()
-	if Input.is_action_just_pressed("jump"):
-		if jump_double:
-			gravity = -JUMP_STRENGTH
-			jump_double = false
-		if jump_single:
-			jump()
+	if event.is_action_pressed("jump"):
+		jump()
 
 func _physics_process(delta) -> void:
 	handle_gravity(delta)
@@ -62,13 +57,16 @@ func _physics_process(delta) -> void:
 func handle_gravity(delta):
 	gravity += 20 * delta
 	if gravity > 0 and is_on_floor():
-		jump_single = true
+		for i in range(jumps.size()):
+			jumps[i] = true
 		gravity = 0
 
 func jump():
-	gravity = -JUMP_STRENGTH
-	jump_single = false;
-	jump_double = true;
+	for i in range(jumps.size()):
+		if jumps[i]:
+			jumps[i] = false
+			gravity = -JUMP_STRENGTH
+			return
 
 func shoot():
 	shooted.emit()
