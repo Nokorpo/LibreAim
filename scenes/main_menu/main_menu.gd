@@ -20,7 +20,7 @@ func _on_settings_pressed():
 	$HBoxContainer/Panel/Settings.visible = true
 	
 func _on_source_code_pressed():
-	OS.shell_open("https://github.com/antimundo/OpenAimTrainer") 
+	OS.shell_open("https://github.com/antimundo/libre-aim") 
 	
 func hide_options():
 	for child in panel.get_children():
