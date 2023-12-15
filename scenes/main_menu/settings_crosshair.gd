@@ -39,6 +39,7 @@ func _on_import_file_dialog_file_selected(path):
 	DataManager.load_all_data(path)
 	DataManager.save_all_data()
 	emit_signal("refresh_crosshair")
+	load_saved()
 
 func _on_dot_change_value(value):
 	change_value("dot_size", float(value))
