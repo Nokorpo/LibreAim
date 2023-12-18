@@ -22,7 +22,7 @@ func _on_export_pressed():
 		DataManager.save_all_data_to_file_web()
 	else:
 		file_export.current_dir = "/"
-		set_window(file_export)
+		file_export.visible = true
 
 func _on_import_pressed():
 	if OS.has_feature("web"):
@@ -30,7 +30,7 @@ func _on_import_pressed():
 		window.input.click()
 	else:
 		file_import.current_dir = "/"
-		set_window(file_import)
+		file_import.visible = true
 
 func _on_export_file_dialog_file_selected(path):
 	DataManager.save_all_data(path)
@@ -48,10 +48,10 @@ func _on_dot_toggle_checkbox(value):
 	change_value("dot", value)
 
 func _on_length_change_value(value):
-	change_value("crosshair_length", float(value))
+	change_value("length", float(value))
 
 func _on_thickness_change_value(value):
-	change_value("crosshair_thickness", float(value))
+	change_value("thickness", float(value))
 
 func _on_outline_toggle_checkbox(value):
 	change_value("outline_enable", value)
@@ -60,7 +60,7 @@ func _on_outline_change_value(value):
 	change_value("outline_width", float(value))
 
 func _on_gap_change_value(value):
-	change_value("crosshair_gap", float(value))
+	change_value("gap", float(value))
 
 func _on_crosshair_color_color_changed(color):
 	change_value("color", str(color))
@@ -72,40 +72,25 @@ func change_value(key, value):
 	DataManager.save_data(key, value, DataManager.categories.CROSSHAIR)
 	emit_signal("refresh_crosshair")
 
-func set_window(window):
-	window.visible = true
-	window.size = Vector2(800, 800)
-	window.position = Vector2(0, 0)
-
 func file_parser(args):
 	DataManager.load_all_data_from_param(args[0])
 
 func load_saved():
 	var categories = DataManager.categories.CROSSHAIR
-	if DataManager.get_data(categories, "dot") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.checkbox_value \
-			= DataManager.get_data(categories, "dot")
-	if DataManager.get_data(categories, "dot_size") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Dot.value \
-			= DataManager.get_data(categories, "dot_size")
-	if DataManager.get_data(categories, "crosshair_length") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Length.value \
-			= DataManager.get_data(categories, "crosshair_length")
-	if DataManager.get_data(categories, "crosshair_thickness") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Thickness.value \
-			= DataManager.get_data(categories, "crosshair_thickness")
-	if DataManager.get_data(categories, "crosshair_gap") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Gap.value \
-			= DataManager.get_data(categories, "crosshair_gap")
-	if DataManager.get_data(categories, "outline_enable") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.checkbox_value \
-			= DataManager.get_data(categories, "outline_enable")
-	if DataManager.get_data(categories, "outline_width") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Outline.value \
-			= DataManager.get_data(categories, "outline_width")
-	if DataManager.get_data(categories, "color") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/Color/CrosshairColor.color \
-			= Global.string_to_color(DataManager.get_data(categories, "color"))
-	if DataManager.get_data(categories, "outline_color") != null:
-		$MarginContainer/VBoxContainer/CrosshairSettings/OutlineColor/OutlineColor.color \
-			= Global.string_to_color(DataManager.get_data(categories, "outline_color"))
+	var container = $MarginContainer/VBoxContainer/CrosshairSettings
+	var dot = container.get_node("Dot")
+	dot.checkbox_value = DataManager.set_parameter_if_exists(categories, dot.checkbox_value, "dot")
+	dot.value = DataManager.set_parameter_if_exists(categories, dot.value, "dot_size")
+	var length = container.get_node("Length")
+	length.value = DataManager.set_parameter_if_exists(categories, length.value, "length")
+	var thickness = container.get_node("Thickness")
+	thickness.value = DataManager.set_parameter_if_exists(categories, thickness.value, "thickness")
+	var gap = container.get_node("Gap")
+	gap.value = DataManager.set_parameter_if_exists(categories, gap.value, "gap")
+	var outline = container.get_node("Outline")
+	outline.checkbox_value = DataManager.set_parameter_if_exists(categories, outline.checkbox_value, "outline_enable")
+	outline.value = DataManager.set_parameter_if_exists(categories, outline.value, "outline_width")
+	var crosshair_color = container.get_node("Color/CrosshairColor")
+	crosshair_color.color = DataManager.set_color_if_exists(categories, crosshair_color.color, "color")
+	var outline_color = container.get_node("OutlineColor/OutlineColor")
+	outline_color.color = DataManager.set_color_if_exists(categories, outline_color.color, "color")

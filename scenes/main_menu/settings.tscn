@@ -270,6 +270,7 @@ alignment = 0
 [node name="ImportFileDialog" type="FileDialog" parent="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer"]
 title = "Open a File"
 size = Vector2i(1280, 720)
+ok_button_text = "Open"
 file_mode = 0
 access = 2
 use_native_dialog = true
