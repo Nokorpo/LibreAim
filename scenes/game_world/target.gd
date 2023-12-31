@@ -5,7 +5,7 @@ signal destroyed
 @onready var mesh := $CollisionShape3D/MeshInstance3D
 
 var current_velocity = null
-var health = 10 :
+var health = 1:
 	set(value):
 		health = value
 		if health <= 0:

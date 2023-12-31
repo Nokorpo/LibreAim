@@ -2,15 +2,13 @@ extends CharacterBody3D
 
 signal shooted
 
-const SPEED = 5
-const JUMP_STRENGTH = 8
-const DAMAGE = 10
+const SPEED := 5
+const JUMP_STRENGTH := 8
 
 var mouse_sensitivity := 0.001
 
 var jumps := [true, true]
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity := 0.0
 
 @onready var camera = $Head/Camera3D
 @onready var raycast = $Head/Camera3D/RayCast3D
@@ -21,16 +19,10 @@ func _ready() -> void:
 	var conversion_sensitivity := 0.04
 	var category := DataManager.categories.SETTINGS
 	
-	if DataManager.get_data(category, "sensitivity_game_value"):
-		conversion_sensitivity = DataManager.get_data(category, "sensitivity_game_value")
-	if DataManager.get_data(category, "sensitivity"):
-		user_sensitivity = DataManager.get_data(category, "sensitivity")
-	if DataManager.get_data(category, "camera_fov"):
-		camera.fov = DataManager.get_data(category, "camera_fov")
-	if OS.has_feature("web"):
-		mouse_sensitivity = user_sensitivity * conversion_sensitivity * 0.67857142857142857143
-	else:
-		mouse_sensitivity = user_sensitivity * conversion_sensitivity
+	conversion_sensitivity = DataManager.set_parameter_if_exists(category, conversion_sensitivity, "sensitivity_game_value")
+	user_sensitivity = DataManager.set_parameter_if_exists(category, user_sensitivity, "sensitivity")
+	camera.fov = DataManager.set_parameter_if_exists(category, camera.fov, "camera_fov")
+	mouse_sensitivity = user_sensitivity * conversion_sensitivity
 
 func _input(event)  -> void:
 	if event is InputEventMouseMotion:
@@ -79,4 +71,4 @@ func shoot():
 		bullet_hole_instance.look_at(position + Vector3.FORWARD, raycast.get_collision_normal())
 		
 		if target.is_in_group("Enemy"):
-			target.health -= DAMAGE 
+			target.health -= 1 
