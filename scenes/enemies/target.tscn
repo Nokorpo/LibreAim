@@ -17,6 +17,7 @@ rings = 16
 
 [node name="Target" type="CharacterBody3D" groups=["Enemy"]]
 collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_mc4da")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

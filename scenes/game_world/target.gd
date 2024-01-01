@@ -21,9 +21,9 @@ func _ready():
 		mesh.material_override = material_override
 
 func init(size = 0.5, movement = false):
-	self.scale = Vector3(size, size, size)
+	scale = Vector3(size, size, size)
 	if movement:
-		current_velocity = Vector3(randf_range(-10, 10), randf_range(-10, 10), randf_range(-10, 10))
+		current_velocity = Vector3(randf_range(-10, 10), randf_range(-10, 10), 0)
 
 func _physics_process(delta):
 	if current_velocity:
