@@ -211,7 +211,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 6, -16.6875)
 material_override = SubResource("StandardMaterial3D_22nld")
 transparency = 1.0
 use_collision = true
-collision_layer = 8
+collision_layer = 2
 size = Vector3(40, 12, 10)
 
 [node name="TargetPrison2" type="CSGBox3D" parent="TargetPrison"]

@@ -12,9 +12,11 @@ emission_energy_multiplier = 0.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_gr1eg"]
 material = SubResource("StandardMaterial3D_nkxxc")
+radial_segments = 32
+rings = 16
 
 [node name="Target" type="CharacterBody3D" groups=["Enemy"]]
-collision_mask = 9
+collision_mask = 2
 script = ExtResource("1_mc4da")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
