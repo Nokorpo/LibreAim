@@ -24,6 +24,8 @@ func _on_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 
 func _on_target_destroyed() -> void:
+	$DestroyedSound.pitch_scale = randf_range(0.95, 1.05)
+	$DestroyedSound.play()
 	count_kills += 1
 	gameplay_ui.update_kills(count_kills)
 	spawn_target()
