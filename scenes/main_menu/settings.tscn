@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=18 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings.gd" id="1_4ilr3"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_gf318"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="6_bpfs5"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings_video.gd" id="6_tj5ad"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings_controls.gd" id="7_1g678"]
+[ext_resource type="Script" path="res://scenes/main_menu/audio.gd" id="10_0bjg8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
 
@@ -123,6 +124,11 @@ alignment = 0
 [node name="Controls" type="Button" parent="HBoxContainer/Control/MarginContainer/Gamemodes"]
 layout_mode = 2
 text = "Sensitivity"
+alignment = 0
+
+[node name="Audio" type="Button" parent="HBoxContainer/Control/MarginContainer/Gamemodes"]
+layout_mode = 2
+text = "Audio"
 alignment = 0
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
@@ -367,9 +373,50 @@ layout_mode = 2
 text = "1"
 placeholder_text = "1"
 
+[node name="Audio" type="Control" parent="HBoxContainer/Control2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_0bjg8")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control2/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control2/Audio/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Audio"
+vertical_alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Crosshair" to="." method="_on_crosshair_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="HBoxContainer/Control/MarginContainer/Gamemodes/Audio" to="." method="_on_audio_pressed"]
 [connection signal="refresh_crosshair" from="HBoxContainer/Control2/Crosshair" to="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Preview/Crosshair" method="_on_options_refresh_crosshair"]
 [connection signal="change_value" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_change_value"]
 [connection signal="toggle_checkbox" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/CrosshairSettings/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_toggle_checkbox"]
@@ -388,3 +435,4 @@ placeholder_text = "1"
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FovSlider" to="HBoxContainer/Control2/Video" method="_on_fov_slider_value_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
 [connection signal="text_changed" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]
+[connection signal="value_changed" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]

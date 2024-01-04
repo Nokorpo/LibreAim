@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=30 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
 [ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/images/mat_filldummy.tres" id="2_ldkna"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="8_6pksd"]
 [ext_resource type="Script" path="res://scenes/game_world/mouse_capture.gd" id="10_vngrv"]
 [ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://scenes/enemies/beep.ogg" id="12_xv1t2"]
+[ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -467,6 +468,7 @@ text = "Mouse captured is needed."
 
 [node name="DestroyedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_xv1t2")
+script = ExtResource("13_mss18")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="shooted" from="Player" to="CanvasLayer/GameplayUI" method="_on_player_shoot"]
