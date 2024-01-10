@@ -24,7 +24,7 @@ func _ready() -> void:
 	camera.fov = DataManager.set_parameter_if_exists(category, camera.fov, "camera_fov")
 	mouse_sensitivity = user_sensitivity * conversion_sensitivity
 
-func _input(event)  -> void:
+func _input(event) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))

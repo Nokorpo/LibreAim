@@ -21,7 +21,11 @@ func _process(_delta) -> void:
 func _on_timer_timeout() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	DataManager.save_high_score(Global.current_gamemode.id, count_kills)
-	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
+	timer.stop()
+	$Player.queue_free()
+	$CanvasLayer/EndGameCanvas.set_score(count_kills)
+	$CanvasLayer/GameplayUI.visible = false
+	$CanvasLayer/EndGameCanvas.visible = true
 
 func _on_target_destroyed() -> void:
 	$DestroyedSound.pitch_scale = randf_range(0.95, 1.05)

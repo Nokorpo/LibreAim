@@ -16,6 +16,7 @@ bg_color = Color(0.16, 0.16, 0.16, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijt1d"]
 content_margin_left = 50.0
 content_margin_top = 25.0
+content_margin_right = 50.0
 content_margin_bottom = 25.0
 bg_color = Color(0.2, 0.2, 0.2, 1)
 
