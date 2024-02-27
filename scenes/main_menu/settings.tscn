@@ -333,6 +333,19 @@ min_value = 45.0
 max_value = 130.0
 value = 80.0
 
+[node name="WindowModeLabel" type="Label" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Window mode"
+
+[node name="WindowModeOptions" type="OptionButton" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "fullscreen"
+popup/item_0/id = 1
+popup/item_1/text = "windowed"
+popup/item_1/id = 0
+
 [node name="Controls" type="Control" parent="HBoxContainer/Control2"]
 visible = false
 layout_mode = 1
@@ -448,6 +461,7 @@ layout_mode = 2
 [connection signal="file_selected" from="HBoxContainer/Control2/Crosshair/MarginContainer/VBoxContainer/ImportFileDialog" to="HBoxContainer/Control2/Crosshair" method="_on_import_file_dialog_file_selected"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/ResolutionSlider" to="HBoxContainer/Control2/Video" method="_on_resolution_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FovSlider" to="HBoxContainer/Control2/Video" method="_on_fov_slider_value_changed"]
+[connection signal="item_selected" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WindowModeOptions" to="HBoxContainer/Control2/Video" method="_on_window_mode_options_item_selected"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
 [connection signal="text_changed" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]
