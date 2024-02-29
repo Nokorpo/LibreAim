@@ -1,48 +1,39 @@
 extends Node
 
-const gamemodes: Dictionary = {
-	"random": {
-		"id": "random",
-		"title": "Random targets",
-		"description": "Random static targets.",
-		"spawn_location": {
-			"x": [-5, 5],
-			"y": [1, 9]
-		},
-		"time": 30,
-		"movement": false,
-		"size": 2,
-		"initial_targets": 3
-	},
-	"horizontal": {
-		"id": "horizontal",
-		"title": "Horizontal targets",
-		"description": "All targets spawn at the same height.",
-		"spawn_location": {
-			"x": [-15, 15],
-			"y": [5, 5]
-		},
-		"time": 30,
-		"movement": false,
-		"size": 1,
-		"initial_targets": 1
-	},
-	"moving": {
-		"id": "moving",
-		"title": "Moving targets",
-		"description": "Targets move in random patterns.",
-		"spawn_location": {
-			"x": [-15, 15],
-			"y": [1, 9]
-		},
-		"time": 30,
-		"movement": true,
-		"size": 2,
-		"initial_targets": 6
-	}
-}
-
+var gamemodes : Dictionary
 var current_gamemode : Dictionary
+
+func _ready():
+	Input.set_use_accumulated_input(false)
+	load_gamemodes()
+
+func load_gamemodes():
+	const PATH = "res://assets/gamemodes/"
+	
+	var dir = DirAccess.open(PATH)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				pass
+			else:
+				var config = ConfigFile.new()
+				config.load(PATH + file_name)
+				var id = config.get_value("", "id")
+				var this_gamemode : Dictionary
+				this_gamemode.id = config.get_value("", "id")
+				this_gamemode.title = config.get_value("", "title")
+				this_gamemode.description = config.get_value("", "description")
+				this_gamemode.time = config.get_value("", "time")
+				this_gamemode.movement = config.get_value("", "movement")
+				this_gamemode.size = config.get_value("", "size")
+				this_gamemode.initial_targets = config.get_value("", "initial_targets")
+				this_gamemode.spawn_location = config.get_value("", "spawn_location")
+				gamemodes[id] = this_gamemode
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
 
 func string_to_vector3d(string_vector: String) -> Vector3:
 	var components_str = string_vector.substr(1, string_vector.length() - 2)

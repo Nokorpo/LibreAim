@@ -27,8 +27,15 @@ func select_gamemode(type):
 		% [str(Global.gamemodes[type].description),\
 		Global.gamemodes[type].time, \
 		DataManager.get_high_score(Global.gamemodes[type].id)]
+
 	$Control2/MarginContainer/VBoxContainer/Panel/Miniature.texture \
-		= load("res://assets/images/gamemodes/%s.svg" % type)
+		= get_gamemode_texture(type)
+
+func get_gamemode_texture(type: String):
+	var texture_path = "res://assets/images/gamemodes/%s.svg" % type
+	if ResourceLoader.exists(texture_path):
+		return load(texture_path)
+	return load("res://assets/images/gamemodes/missing.svg")
 
 func start_gamemode():
 	if !OS.has_feature("web"):
