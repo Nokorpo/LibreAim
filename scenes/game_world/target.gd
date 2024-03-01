@@ -20,10 +20,10 @@ func _ready():
 		material_override.set_emission(Global.string_to_color(DataManager.get_data(category, "TargetColor")))
 		mesh.material_override = material_override
 
-func init(size = 0.5, movement = false):
+func init(size = 0.5, movement = {"x": 0, "y": 0}):
 	scale = Vector3(size, size, size)
-	if movement:
-		current_velocity = Vector3(randf_range(-10, 10), randf_range(-10, 10), 0)
+	current_velocity = Vector3(randf_range(-movement.x, movement.x),\
+		 randf_range(-movement.y, movement.y), 0)
 
 func _physics_process(delta):
 	if current_velocity:
