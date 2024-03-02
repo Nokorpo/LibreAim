@@ -21,8 +21,11 @@ func _ready():
 		material_override.set_emission(Global.string_to_color(DataManager.get_data(category, "TargetColor")))
 		mesh.material_override = material_override
 
-func init(size = 0.5, movement = {"x": 0, "y": 0}):
-	scale = Vector3(size, size, size)
+func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}):
+	$CollisionShape3D.shape.radius = size.radius
+	$CollisionShape3D.shape.height = size.height
+	$CollisionShape3D/MeshInstance3D.mesh.radius = size.radius
+	$CollisionShape3D/MeshInstance3D.mesh.height = size.height
 	current_velocity = Vector3(randf_range(-movement.x, movement.x),\
 		 randf_range(-movement.y, movement.y), 0)
 

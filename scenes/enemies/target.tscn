@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/game_world/target.gd" id="1_mc4da"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ccits"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_do5mn"]
+height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkxxc"]
 albedo_color = Color(1, 1, 0, 1)
@@ -10,10 +11,10 @@ emission_enabled = true
 emission = Color(1, 0.74902, 0, 1)
 emission_energy_multiplier = 0.5
 
-[sub_resource type="SphereMesh" id="SphereMesh_gr1eg"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xrxto"]
 material = SubResource("StandardMaterial3D_nkxxc")
+height = 1.0
 radial_segments = 32
-rings = 16
 
 [node name="Target" type="CharacterBody3D" groups=["Enemy"]]
 collision_mask = 2
@@ -21,8 +22,8 @@ motion_mode = 1
 script = ExtResource("1_mc4da")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_ccits")
+shape = SubResource("CapsuleShape3D_do5mn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("SphereMesh_gr1eg")
+mesh = SubResource("CapsuleMesh_xrxto")
 skeleton = NodePath("../..")
