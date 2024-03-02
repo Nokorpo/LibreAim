@@ -29,10 +29,21 @@ func _input(event) -> void:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-	if event.is_action_pressed("shoot"):
-		shoot()
+	if Global.current_gamemode.health == 0:
+		if event.is_action_pressed("shoot"):
+			shoot(1)
 	if event.is_action_pressed("jump"):
 		jump()
+
+var elapsed: float
+func _process(delta):
+	const COOLDOWN = .2
+	if Global.current_gamemode.health > 0:
+		elapsed += delta
+		if elapsed > COOLDOWN:
+			if Input.is_action_pressed("shoot"):
+				shoot(COOLDOWN)
+				elapsed = 0
 
 func _physics_process(delta) -> void:
 	handle_gravity(delta)
@@ -60,15 +71,16 @@ func jump():
 			gravity = -JUMP_STRENGTH
 			return
 
-func shoot():
+func shoot(damage: float):
 	shooted.emit()
 	if raycast.is_colliding():
 		var target = raycast.get_collider()
-		var bullet_hole_instance = bullet_hole.instantiate()
-		
-		target.add_child(bullet_hole_instance)
-		bullet_hole_instance.global_transform.origin = raycast.get_collision_point()
-		bullet_hole_instance.look_at(position + Vector3.FORWARD, raycast.get_collision_normal())
-		
-		if target.is_in_group("Enemy"):
-			target.health -= 1 
+		if target != null:
+			var bullet_hole_instance = bullet_hole.instantiate()
+			
+			target.add_child(bullet_hole_instance)
+			bullet_hole_instance.global_transform.origin = raycast.get_collision_point()
+			bullet_hole_instance.look_at(position + Vector3.FORWARD, raycast.get_collision_normal())
+			
+			if target.is_in_group("Enemy"):
+				target.health -= damage

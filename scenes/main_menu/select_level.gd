@@ -15,6 +15,8 @@ func add_gamemodes():
 	for gamemode in Global.gamemodes:
 		var button := Button.new()
 		button.text = Global.gamemodes[gamemode].title
+		button.icon = get_gamemode_texture(gamemode)
+		button.set_expand_icon(true)
 		button.name = gamemode
 		button.set_text_alignment(HORIZONTAL_ALIGNMENT_LEFT)
 		button.pressed.connect(select_gamemode.bind(button.name))

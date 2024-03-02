@@ -2,9 +2,9 @@ extends Control
 ## Gameplay UI with game stats
 
 @onready var animation_kill = $AnimationKill
-@onready var kills = $Panel/MarginContainer/VBoxContainer/targets/label2
+@onready var kills = $MarginContainer/Panel/MarginContainer/VBoxContainer/targets/label2
 @onready var timer = $"../../Timer"
-@onready var timer_label = $Panel/MarginContainer/VBoxContainer/time/label2
+@onready var timer_label = $MarginContainer/Panel/MarginContainer/VBoxContainer/time/label2
 
 func update_kills(value: int):
 	kills.set_text((str(value)))

@@ -5,14 +5,15 @@ signal destroyed
 @onready var mesh := $CollisionShape3D/MeshInstance3D
 
 var current_velocity = null
-var health = 1:
+var health = 0.0:
 	set(value):
 		health = value
-		if health <= 0:
+		if health < 0.0:
 			emit_signal("destroyed")
 			queue_free()
 
 func _ready():
+	health = Global.current_gamemode.health
 	var category = DataManager.categories.SETTINGS
 	if DataManager.get_data(category, "TargetColor") != null:
 		var material_override = mesh.get_mesh().get_material()

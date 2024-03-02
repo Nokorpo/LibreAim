@@ -21,12 +21,13 @@ func load_gamemodes():
 				var config = ConfigFile.new()
 				config.load(PATH + file_name)
 				var id = config.get_value("", "id")
-				var this_gamemode : Dictionary
+				var this_gamemode : Dictionary = { }
 				this_gamemode.id = config.get_value("", "id")
 				this_gamemode.title = config.get_value("", "title")
 				this_gamemode.description = config.get_value("", "description")
 				this_gamemode.time = config.get_value("", "time")
 				this_gamemode.movement = config.get_value("", "movement")
+				this_gamemode.health = config.get_value("", "health")
 				this_gamemode.size = config.get_value("", "size")
 				this_gamemode.initial_targets = config.get_value("", "initial_targets")
 				this_gamemode.spawn_location = config.get_value("", "spawn_location")

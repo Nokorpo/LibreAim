@@ -283,15 +283,26 @@ grow_vertical = 2
 theme = SubResource("Theme_agxdx")
 script = ExtResource("5_of43n")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/GameplayUI"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameplayUI"]
 layout_mode = 1
-offset_left = 76.0
-offset_top = 66.0
-offset_right = 302.0
-offset_bottom = 214.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/GameplayUI/MarginContainer"]
+custom_minimum_size = Vector2(220, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fembj")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameplayUI/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -302,34 +313,34 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameplayUI/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="time" type="HBoxContainer" parent="CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer"]
+[node name="time" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/time"]
+[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/time"]
 layout_mode = 2
 theme = SubResource("Theme_p6jab")
 text = "Time "
 vertical_alignment = 1
 uppercase = true
 
-[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/time"]
+[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/time"]
 layout_mode = 2
 text = "60 s"
 
-[node name="targets" type="HBoxContainer" parent="CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer"]
+[node name="targets" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/targets"]
+[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/targets"]
 layout_mode = 2
 theme = SubResource("Theme_p6jab")
 text = "Targets "
 vertical_alignment = 1
 uppercase = true
 
-[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/Panel/MarginContainer/VBoxContainer/targets"]
+[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/targets"]
 layout_mode = 2
 text = "0"
 
