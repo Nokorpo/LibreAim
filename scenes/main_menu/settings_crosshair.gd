@@ -93,4 +93,4 @@ func load_saved():
 	var crosshair_color = container.get_node("Color/CrosshairColor")
 	crosshair_color.color = DataManager.set_color_if_exists(categories, crosshair_color.color, "color")
 	var outline_color = container.get_node("OutlineColor/OutlineColor")
-	outline_color.color = DataManager.set_color_if_exists(categories, outline_color.color, "color")
+	outline_color.color = DataManager.set_color_if_exists(categories, outline_color.color, "outline_color")
