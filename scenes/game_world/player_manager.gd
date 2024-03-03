@@ -32,7 +32,7 @@ func _input(event) -> void:
 	if Global.current_gamemode.health == 0:
 		if event.is_action_pressed("shoot"):
 			shoot(1)
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("jump") and Global.current_gamemode.player_movement:
 		jump()
 
 var elapsed: float
@@ -46,16 +46,17 @@ func _process(delta):
 				elapsed = 0
 
 func _physics_process(delta) -> void:
-	handle_gravity(delta)
-	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var movement_velocity := Vector3(input.x, 0, input.y).normalized() * SPEED
-	movement_velocity = transform.basis * movement_velocity
-	
-	var applied_velocity := velocity.lerp(movement_velocity, delta * 10)
-	applied_velocity.y = -gravity
-	
-	velocity = applied_velocity
-	move_and_slide()
+	if Global.current_gamemode.player_movement:
+		handle_gravity(delta)
+		var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+		var movement_velocity := Vector3(input.x, 0, input.y).normalized() * SPEED
+		movement_velocity = transform.basis * movement_velocity
+		
+		var applied_velocity := velocity.lerp(movement_velocity, delta * 10)
+		applied_velocity.y = -gravity
+		
+		velocity = applied_velocity
+		move_and_slide()
 
 func handle_gravity(delta):
 	gravity += 20 * delta
