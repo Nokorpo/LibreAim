@@ -37,6 +37,34 @@ func load_gamemodes():
 	else:
 		print("An error occurred when trying to access the path.")
 
+func get_world_textures() -> Array:
+	var textures: Array = []
+	var dir = DirAccess.open(get_world_textures_path())
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				pass
+			elif file_name.get_extension() == "png":
+				#print(PATH + file_name)
+				textures.append(file_name)
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	return textures
+
+func get_current_world_texture() -> Texture2D:
+	const CATEGORY = DataManager.categories.SETTINGS
+	var current_texture = DataManager.get_data(CATEGORY, "world_texture")
+	if !current_texture:
+		current_texture = "checkerboard.png"
+	return load(get_world_textures_path() + current_texture)
+	
+
+func get_world_textures_path() -> String:
+	return "res://assets/images/world/"
+
 func string_to_vector3d(string_vector: String) -> Vector3:
 	var components_str = string_vector.substr(1, string_vector.length() - 2)
 	var components = components_str.split(",")

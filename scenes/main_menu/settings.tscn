@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=21 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings.gd" id="1_4ilr3"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_gf318"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="6_bpfs5"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings_video.gd" id="6_tj5ad"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings_controls.gd" id="7_1g678"]
+[ext_resource type="Script" path="res://scenes/main_menu/settings_world_appareance.gd" id="9_78isq"]
 [ext_resource type="Script" path="res://scenes/main_menu/audio.gd" id="10_0bjg8"]
+[ext_resource type="Texture2D" uid="uid://b6xs7w20eke54" path="res://assets/images/checkerboard.png" id="10_tgbab"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="11_yfmwu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
@@ -346,6 +348,38 @@ popup/item_0/id = 1
 popup/item_1/text = "windowed"
 popup/item_1/id = 0
 
+[node name="WorldAppareance" type="VBoxContainer" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("9_78isq")
+
+[node name="WorldAppareanceLabel" type="Label" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance"]
+layout_mode = 2
+text = "World appareance"
+
+[node name="WorldColor" type="HBoxContainer" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Color"
+
+[node name="Color" type="ColorPickerButton" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldColor" groups=["Persist", "PutLabel"]]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme = SubResource("Theme_og8m1")
+color = Color(0.360784, 0.615686, 1, 1)
+
+[node name="WorldTexture" type="OptionButton" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance"]
+layout_mode = 2
+expand_icon = true
+
+[node name="Preview" type="TextureRect" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+texture = ExtResource("10_tgbab")
+stretch_mode = 1
+
 [node name="Controls" type="Control" parent="HBoxContainer/Control2"]
 visible = false
 layout_mode = 1
@@ -462,6 +496,8 @@ layout_mode = 2
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/ResolutionSlider" to="HBoxContainer/Control2/Video" method="_on_resolution_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FovSlider" to="HBoxContainer/Control2/Video" method="_on_fov_slider_value_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WindowModeOptions" to="HBoxContainer/Control2/Video" method="_on_window_mode_options_item_selected"]
+[connection signal="color_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldColor/Color" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance" method="_on_color_color_changed"]
+[connection signal="item_selected" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldTexture" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance" method="_on_world_texture_item_selected"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
 [connection signal="text_changed" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]
