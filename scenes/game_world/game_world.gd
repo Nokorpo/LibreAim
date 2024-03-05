@@ -11,6 +11,7 @@ func _ready() -> void:
 	
 	for target: int in range(Global.current_gamemode.initial_targets):
 		spawn_target()
+	update_world_environment()
 
 func _process(_delta) -> void:
 	if timer.is_stopped():
@@ -28,7 +29,6 @@ func _on_timer_timeout() -> void:
 	$CanvasLayer/EndGameCanvas.set_score(count_kills, high_score)
 	$CanvasLayer/GameplayUI.visible = false
 	$CanvasLayer/EndGameCanvas.visible = true
-	
 
 func _on_target_destroyed() -> void:
 	$DestroyedSound.pitch_scale = randf_range(0.95, 1.05)
@@ -52,3 +52,10 @@ func spawn_target() -> void:
 	target.connect("destroyed", Callable(self, "_on_target_destroyed"))
 	target.set_position(spawn_position)
 	add_child(target)
+
+func update_world_environment():
+	var world_material = preload("res://assets/images/mat_filldummy.tres")
+	world_material.albedo_texture = Global.get_current_world_texture()
+	const CATEGORY = DataManager.categories.SETTINGS
+	$DirectionalLight3D.light_color = DataManager.set_color_if_exists(CATEGORY, \
+		$DirectionalLight3D.light_color, "world_color")
