@@ -4,6 +4,7 @@ extends Control
 @onready var exit_button = $HBoxContainer/MarginContainer/VBoxContainer/Quit
 
 func _ready() -> void:
+	$HBoxContainer/MarginContainer/VBoxContainer/Play.grab_focus()
 	hide_options()
 	if OS.has_feature("web"):
 		exit_button.visible = false

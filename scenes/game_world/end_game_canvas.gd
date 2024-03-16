@@ -1,6 +1,7 @@
 extends Control
 
 func set_score(score: int, high_score: int) -> void:
+	$Button.grab_focus()
 	var text = "Score: " + str(score)
 	if score > high_score:
 		text += "\nNew high score!"

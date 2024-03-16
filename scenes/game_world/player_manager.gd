@@ -4,6 +4,7 @@ signal shooted
 
 const SPEED := 5
 const JUMP_STRENGTH := 8
+const MAX_CAMERA_ANGLE := 89 ### Max vertical angle of the camera
 
 var mouse_sensitivity := 0.001
 
@@ -28,7 +29,7 @@ func _input(event) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
 	if Global.current_gamemode.health == 0:
 		if event.is_action_pressed("shoot"):
 			shoot(1)
@@ -44,12 +45,14 @@ func _process(delta):
 			if Input.is_action_pressed("shoot"):
 				shoot(COOLDOWN)
 				elapsed = 0
+	
+	handle_joypad_rotation(delta)
 
 func _physics_process(delta) -> void:
 	if Global.current_gamemode.player_movement:
 		handle_gravity(delta)
 		var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-		var movement_velocity := Vector3(input.x, 0, input.y).normalized() * SPEED
+		var movement_velocity := Vector3(input.x, 0, input.y) * SPEED
 		movement_velocity = transform.basis * movement_velocity
 		
 		var applied_velocity := velocity.lerp(movement_velocity, delta * 10)
@@ -57,6 +60,13 @@ func _physics_process(delta) -> void:
 		
 		velocity = applied_velocity
 		move_and_slide()
+
+func handle_joypad_rotation(delta):
+	var joypad_dir: Vector2 = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	if joypad_dir.length() > 0:
+		rotate_y(deg_to_rad(-joypad_dir.x * mouse_sensitivity * delta * 1000))
+		camera.rotate_x(deg_to_rad(-joypad_dir.y * mouse_sensitivity * delta * 1000))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
 
 func handle_gravity(delta):
 	gravity += 20 * delta
