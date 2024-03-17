@@ -30,16 +30,16 @@ func _input(event) -> void:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
-	if Global.current_gamemode.health == 0:
+	if Global.current_gamemode and Global.current_gamemode.health == 0:
 		if event.is_action_pressed("shoot"):
 			shoot(1)
-	if event.is_action_pressed("jump") and Global.current_gamemode.player_movement:
+	if event.is_action_pressed("jump") and ((Global.current_gamemode and Global.current_gamemode.player_movement) or Global.current_gamemode.is_empty()):
 		jump()
 
 var elapsed: float
 func _process(delta):
 	const COOLDOWN = .2
-	if Global.current_gamemode.health > 0:
+	if Global.current_gamemode and Global.current_gamemode.health > 0:
 		elapsed += delta
 		if elapsed > COOLDOWN:
 			if Input.is_action_pressed("shoot"):
@@ -49,7 +49,7 @@ func _process(delta):
 	handle_joypad_rotation(delta)
 
 func _physics_process(delta) -> void:
-	if Global.current_gamemode.player_movement:
+	if (Global.current_gamemode and Global.current_gamemode.player_movement) or Global.current_gamemode.is_empty():
 		handle_gravity(delta)
 		var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 		var movement_velocity := Vector3(input.x, 0, input.y) * SPEED

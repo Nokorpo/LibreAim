@@ -7,10 +7,11 @@ var count_kills := 0
 @onready var gameplay_ui = $CanvasLayer/GameplayUI
 
 func _ready() -> void:
-	timer.wait_time = Global.current_gamemode.time
-	
-	for target: int in range(Global.current_gamemode.initial_targets):
-		spawn_target()
+	if Global.current_gamemode:
+		timer.wait_time = Global.current_gamemode.time
+		
+		for target: int in range(Global.current_gamemode.initial_targets):
+			spawn_target()
 	update_world_environment()
 
 func _process(_delta) -> void:
