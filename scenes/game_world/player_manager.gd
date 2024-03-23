@@ -6,7 +6,7 @@ const SPEED := 5
 const JUMP_STRENGTH := 8
 const MAX_CAMERA_ANGLE := 89 ### Max vertical angle of the camera
 
-var mouse_sensitivity := 0.001
+var mouse_sensitivity := 0.01
 
 var jumps := [true, true]
 var gravity := 0.0
@@ -17,7 +17,7 @@ var gravity := 0.0
 
 func _ready() -> void:
 	var user_sensitivity := 1
-	var conversion_sensitivity := 0.04
+	var conversion_sensitivity := 0.022
 	var category := DataManager.categories.SETTINGS
 	
 	conversion_sensitivity = DataManager.set_parameter_if_exists(category, conversion_sensitivity, "sensitivity_game_value")
