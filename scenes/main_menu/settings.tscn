@@ -501,5 +501,6 @@ layout_mode = 2
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
 [connection signal="text_changed" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/VolumeSlider" to="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/Preview/AudioStreamPlayer" method="_on_volume_updated"]
 [connection signal="pressed" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/Preview" to="HBoxContainer/Control2/Audio" method="_on_preview_pressed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/OptionButton" to="HBoxContainer/Control2/Audio" method="_on_option_button_item_selected"]
