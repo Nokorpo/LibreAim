@@ -40,6 +40,5 @@ func get_gamemode_texture(type: String):
 	return load("res://assets/images/gamemodes/missing.svg")
 
 func start_gamemode():
-	if !OS.has_feature("web"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().change_scene_to_file("res://scenes/game_world/game_world.tscn")

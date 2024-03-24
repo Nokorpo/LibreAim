@@ -9,28 +9,17 @@ signal refresh_crosshair
 var fileImportCallback = null
 
 func _ready():
-	if OS.has_feature("web"):
-		fileImportCallback = JavaScriptBridge.create_callback(Callable(self, "file_parser"))
-		var window = JavaScriptBridge.get_interface("window")
-		window.getFile(fileImportCallback)
 	file_export.visible = false
 	file_import.visible = false
 	load_saved()
 
 func _on_export_pressed():
-	if OS.has_feature("web"):
-		DataManager.save_all_data_to_file_web()
-	else:
-		file_export.current_dir = "/"
-		file_export.visible = true
+	file_export.current_dir = "/"
+	file_export.visible = true
 
 func _on_import_pressed():
-	if OS.has_feature("web"):
-		var window = JavaScriptBridge.get_interface("window")
-		window.input.click()
-	else:
-		file_import.current_dir = "/"
-		file_import.visible = true
+	file_import.current_dir = "/"
+	file_import.visible = true
 
 func _on_export_file_dialog_file_selected(path):
 	DataManager.save_all_data(path)

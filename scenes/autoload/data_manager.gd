@@ -24,10 +24,6 @@ func load_all_data_from_param(string_json):
 		result = json.data
 	game_data = result
 
-func save_all_data_to_file_web():
-	var json = JSON.stringify(game_data)
-	JavaScriptBridge.download_buffer(json.to_utf8_buffer(),"open_aim_trainer.json")
-
 func save_data(key, value, category: categories, file_directory = FILE_PATH):
 	var category_key = CATEGORIES_ROUTES[category]
 	if !game_data.has(category_key):
