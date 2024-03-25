@@ -24,6 +24,7 @@ func _ready() -> void:
 	user_sensitivity = DataManager.set_parameter_if_exists(category, user_sensitivity, "sensitivity")
 	camera.fov = DataManager.set_parameter_if_exists(category, camera.fov, "camera_fov")
 	mouse_sensitivity = user_sensitivity * conversion_sensitivity
+	print(str(user_sensitivity) + " " + str(conversion_sensitivity))
 
 func _input(event) -> void:
 	if event is InputEventMouseMotion:

@@ -3,7 +3,7 @@ extends AudioStreamPlayer
 func _ready():
 	update_hit_sound()
 
-func _on_volume_updated(value: float):
+func _on_volume_updated(_value: float):
 	update_hit_sound()
 
 func update_hit_sound():

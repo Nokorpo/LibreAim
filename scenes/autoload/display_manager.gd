@@ -7,6 +7,10 @@ func _ready():
 	if DataManager.get_data(category, "window_mode"):
 		var selected = DataManager.get_data(category, "window_mode")
 		set_window_mode(get_window_mode_from_string(selected))
+	var fps_limit = 120
+	if DataManager.get_data(category, "fps_limit"):
+		fps_limit = int(DataManager.get_data(category, "window_mode"))
+	set_max_fps(fps_limit)
 
 func _input(event):
 	if event.is_action_pressed("fullscreen"):
@@ -41,3 +45,6 @@ func set_window_mode(window_mode: DisplayServer.WindowMode):
 		DataManager.save_data("window_mode", "fullscreen", DataManager.categories.SETTINGS)
 	elif window_mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
 		DataManager.save_data("window_mode", "windowed", DataManager.categories.SETTINGS)
+
+func set_max_fps(value) -> void:
+	Engine.set_max_fps(value)

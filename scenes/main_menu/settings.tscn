@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=23 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings.gd" id="1_4ilr3"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_gf318"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu/settings_world_appareance.gd" id="9_78isq"]
 [ext_resource type="Script" path="res://scenes/main_menu/audio.gd" id="10_0bjg8"]
 [ext_resource type="Texture2D" uid="uid://b6xs7w20eke54" path="res://assets/images/checkerboard.png" id="10_tgbab"]
+[ext_resource type="Script" path="res://scenes/main_menu/settings_fps_limit.gd" id="11_8bk84"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="11_yfmwu"]
 [ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="13_8vd46"]
 
@@ -286,7 +287,6 @@ access = 2
 use_native_dialog = true
 
 [node name="Video" type="Control" parent="HBoxContainer/Control2"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -380,6 +380,21 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 texture = ExtResource("10_tgbab")
 stretch_mode = 1
+
+[node name="FPSLimit" type="VBoxContainer" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("11_8bk84")
+
+[node name="FPSLimitLabel" type="Label" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FPSLimit"]
+layout_mode = 2
+text = "Fps limit"
+
+[node name="FPSLimitSlider" type="HSlider" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FPSLimit"]
+layout_mode = 2
+min_value = 60.0
+max_value = 360.0
+step = 5.0
+value = 120.0
 
 [node name="Controls" type="Control" parent="HBoxContainer/Control2"]
 visible = false
@@ -501,6 +516,7 @@ layout_mode = 2
 [connection signal="item_selected" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WindowModeOptions" to="HBoxContainer/Control2/Video" method="_on_window_mode_options_item_selected"]
 [connection signal="color_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldColor/Color" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance" method="_on_color_color_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldTexture" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance" method="_on_world_texture_item_selected"]
+[connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FPSLimit/FPSLimitSlider" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FPSLimit" method="_on_fps_limit_slider_value_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
 [connection signal="text_changed" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]
