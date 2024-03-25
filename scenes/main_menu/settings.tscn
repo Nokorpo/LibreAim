@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=22 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings.gd" id="1_4ilr3"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_gf318"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu/audio.gd" id="10_0bjg8"]
 [ext_resource type="Texture2D" uid="uid://b6xs7w20eke54" path="res://assets/images/checkerboard.png" id="10_tgbab"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="11_yfmwu"]
+[ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="13_8vd46"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
 
@@ -126,7 +127,7 @@ alignment = 0
 
 [node name="Controls" type="Button" parent="HBoxContainer/Control/MarginContainer/Gamemodes"]
 layout_mode = 2
-text = "Sensitivity"
+text = "Controls"
 alignment = 0
 
 [node name="Audio" type="Button" parent="HBoxContainer/Control/MarginContainer/Gamemodes"]
@@ -468,6 +469,8 @@ text = "Hit sound"
 [node name="Preview" type="Button" parent="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Preview sound"
+icon = ExtResource("13_8vd46")
+alignment = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer/Control2/Audio/MarginContainer/VBoxContainer/Preview"]
 script = ExtResource("11_yfmwu")
