@@ -5,6 +5,7 @@ extends VBoxContainer
 
 func _on_fps_limit_slider_value_changed(value):
 	DataManager.save_data("fps_limit", value, DataManager.categories.SETTINGS)
+	DisplayManager.set_max_fps(value)
 	update_label()
 
 func _ready():

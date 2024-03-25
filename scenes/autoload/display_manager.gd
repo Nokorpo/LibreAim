@@ -9,7 +9,7 @@ func _ready():
 		set_window_mode(get_window_mode_from_string(selected))
 	var fps_limit = 120
 	if DataManager.get_data(category, "fps_limit"):
-		fps_limit = int(DataManager.get_data(category, "window_mode"))
+		fps_limit = int(DataManager.get_data(category, "fps_limit"))
 	set_max_fps(fps_limit)
 
 func _input(event):
