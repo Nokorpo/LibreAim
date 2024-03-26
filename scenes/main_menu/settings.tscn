@@ -363,7 +363,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldColor"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Color"
+text = "World color"
 
 [node name="Color" type="ColorPickerButton" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldColor" groups=["Persist", "PutLabel"]]
 custom_minimum_size = Vector2(220, 0)
@@ -371,15 +371,45 @@ layout_mode = 2
 theme = SubResource("Theme_og8m1")
 color = Color(0.360784, 0.615686, 1, 1)
 
+[node name="TargetColor" type="HBoxContainer" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/TargetColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Targets color"
+
+[node name="TargetColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/TargetColor" groups=["Persist", "PutLabel"]]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme = SubResource("Theme_og8m1")
+color = Color(1, 0.74902, 0, 1)
+
 [node name="WorldTexture" type="OptionButton" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance"]
 layout_mode = 2
 expand_icon = true
 
 [node name="Preview" type="TextureRect" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance"]
+self_modulate = Color(0.360784, 0.615686, 1, 1)
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 texture = ExtResource("10_tgbab")
 stretch_mode = 1
+
+[node name="TargetPreview" type="ColorRect" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/Preview"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.74902, 0, 1)
 
 [node name="FPSLimit" type="VBoxContainer" parent="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -515,6 +545,7 @@ layout_mode = 2
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FovSlider" to="HBoxContainer/Control2/Video" method="_on_fov_slider_value_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WindowModeOptions" to="HBoxContainer/Control2/Video" method="_on_window_mode_options_item_selected"]
 [connection signal="color_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldColor/Color" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance" method="_on_color_color_changed"]
+[connection signal="color_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/TargetColor/TargetColor" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance" method="_on_target_color_color_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance/WorldTexture" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/WorldAppareance" method="_on_world_texture_item_selected"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FPSLimit/FPSLimitSlider" to="HBoxContainer/Control2/Video/MarginContainer/VBoxContainer/FPSLimit" method="_on_fps_limit_slider_value_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/MarginContainer/VBoxContainer/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
