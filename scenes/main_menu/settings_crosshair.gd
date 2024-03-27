@@ -1,4 +1,5 @@
 extends Control
+## Crosshair settings
 
 signal refresh_crosshair
 

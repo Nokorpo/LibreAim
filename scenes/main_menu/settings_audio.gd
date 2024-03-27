@@ -1,5 +1,6 @@
 extends Control
 class_name Audio
+## Audio settings
 
 const hit_sounds: Dictionary = {
 	"beep": "res://scenes/enemies/beep.ogg",

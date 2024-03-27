@@ -1,4 +1,5 @@
 extends Control
+## Controls settings
 
 const games_sensitivities: Dictionary = {
 	"Counter Strike 2": 0.022,

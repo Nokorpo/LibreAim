@@ -10,7 +10,7 @@ func _ready() -> void:
 
 ## Adds the gamemodes button list
 func _add_gamemode_buttons() -> void:
-	var gamemode_list := $Control/MarginContainer/Gamemodes
+	var gamemode_list := $ListGamemodes/Gamemodes
 	for gamemode in Global.gamemodes:
 		var button := Button.new()
 		button.text = Global.gamemodes[gamemode].title
@@ -27,18 +27,18 @@ func _select_gamemode(type: String) -> void:
 	
 	_set_current_gamemode_title(type)
 	_set_current_gamemode_description(type)
-	var thumbnail: TextureRect = $Control2/MarginContainer/VBoxContainer/Panel/Thumbnail
+	var thumbnail: TextureRect = $CurrentGamemode/VBoxContainer/Panel/Thumbnail
 	thumbnail.texture \
 		= _get_gamemode_thumbnail(type)
 
 ## Sets the gamemode title
 func _set_current_gamemode_title(type: String) -> void:
-	var title: Label = $Control2/MarginContainer/VBoxContainer/Title
+	var title: Label = $CurrentGamemode/VBoxContainer/Title
 	title.text = Global.gamemodes[type].title
 
 ## Sets the gamemode description
 func _set_current_gamemode_description(type: String) -> void:
-	var description: Label = $Control2/MarginContainer/VBoxContainer/Description
+	var description: Label = $CurrentGamemode/VBoxContainer/Description
 	description.text = "%s\nTime: %s s\nHigh score: %s"\
 		% [str(Global.gamemodes[type].description),\
 		Global.gamemodes[type].time, \

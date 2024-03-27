@@ -1,4 +1,5 @@
 extends VBoxContainer
+## World appareance settings
 
 const CATEGORY = DataManager.categories.SETTINGS
 

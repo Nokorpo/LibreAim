@@ -1,4 +1,5 @@
 extends Control
+## Video settings
 
 @onready var resolution_slider = $ResolutionSlider
 @onready var fov_label = $FovLabel

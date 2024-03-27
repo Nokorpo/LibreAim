@@ -1,5 +1,5 @@
 extends Control
-###
+## Main menu settings
 
 @onready var control_2 = $HBoxContainer/Control2
 

@@ -16,14 +16,6 @@ var game_data := {}
 func _ready() -> void:
 	load_all_data()
 
-func load_all_data_from_param(string_json) -> void:
-	var json = JSON.new()
-	var result = {}
-	json.parse(string_json)
-	if json.data != null:
-		result = json.data
-	game_data = result
-
 func save_data(key, value, category: categories, file_directory = FILE_PATH) -> void:
 	var category_key = CATEGORIES_ROUTES[category]
 	if !game_data.has(category_key):
@@ -34,11 +26,11 @@ func save_data(key, value, category: categories, file_directory = FILE_PATH) -> 
 	file.store_line(json)
 	file.close()
 
-func save_high_score(key, value) -> void:
+func save_high_score(key: String, value) -> void:
 	if is_high_score(key, value):
 		DataManager.save_data(key, value, DataManager.categories.HIGH_SCORE)
 
-func is_high_score(key, value) -> bool:
+func is_high_score(key: String, value) -> bool:
 	var category_key = CATEGORIES_ROUTES[DataManager.categories.HIGH_SCORE]
 	if game_data.has(category_key) \
 		and game_data[category_key].has(key):
@@ -46,7 +38,7 @@ func is_high_score(key, value) -> bool:
 	else:
 		return true
 
-func get_high_score(key) -> int:
+func get_high_score(key: String) -> int:
 	var category_key = CATEGORIES_ROUTES[DataManager.categories.HIGH_SCORE]
 	if game_data.has(category_key) \
 		and game_data[category_key].has(key):
@@ -59,7 +51,7 @@ func save_all_data(file_directory: String = FILE_PATH) -> void:
 	file.store_line(json)
 	file.close()
 
-func get_data(category: categories, key):
+func get_data(category: categories, key: String):
 	var result = null
 	if game_data != null \
 		and game_data.has(CATEGORIES_ROUTES[category]) \
@@ -67,7 +59,7 @@ func get_data(category: categories, key):
 		result = game_data.get(CATEGORIES_ROUTES[category]).get(key)
 	return result
 
-func load_all_data(file_directory = FILE_PATH) -> void:
+func load_all_data(file_directory: String = FILE_PATH) -> void:
 	var json = JSON.new()
 	var result = {}
 	var file = FileAccess.open(file_directory, FileAccess.READ)

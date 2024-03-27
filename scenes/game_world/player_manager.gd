@@ -3,8 +3,8 @@ extends CharacterBody3D
 signal shooted
 
 const SPEED := 5
-const JUMP_STRENGTH := 8
-const MAX_CAMERA_ANGLE := 89 ### Max vertical angle of the camera
+const JUMP_FORCE := 8
+const MAX_CAMERA_ANGLE := 89 ## Max vertical angle of the camera
 
 var mouse_sensitivity := 0.01
 
@@ -80,7 +80,7 @@ func jump():
 	for i in range(jumps.size()):
 		if jumps[i]:
 			jumps[i] = false
-			gravity = -JUMP_STRENGTH
+			gravity = -JUMP_FORCE
 			return
 
 func shoot(damage: float):
