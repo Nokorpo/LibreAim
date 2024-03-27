@@ -7,8 +7,8 @@ const games_sensitivities: Dictionary = {
 	"Valorant": 0.07,
 }
 
-@onready var game = $MarginContainer/VBoxContainer/HBoxContainer2/Game
-@onready var sensitivity = $MarginContainer/VBoxContainer/HBoxContainer2/Sensitivity
+@onready var game = $HBoxContainer2/Game
+@onready var sensitivity = $HBoxContainer2/Sensitivity
 
 func _ready() -> void:
 	for sens in games_sensitivities:
@@ -19,7 +19,7 @@ func _ready() -> void:
 	if DataManager.get_data(category, "sensitivity_game"):
 		game.selected = DataManager.get_data(category, "sensitivity_game")
 
-func _on_sensitivity_text_changed(new_text) -> void:
+func _on_sensitivity_text_changed(new_text: String) -> void:
 	DataManager.save_data("sensitivity_game", game.get_selected_id(), \
 		DataManager.categories.SETTINGS)
 	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())), \
@@ -27,7 +27,7 @@ func _on_sensitivity_text_changed(new_text) -> void:
 	DataManager.save_data("sensitivity", float(new_text), \
 		DataManager.categories.SETTINGS)
 
-func _on_game_item_selected(index) -> void:
+func _on_game_item_selected(index: int) -> void:
 	DataManager.save_data("sensitivity_game", index, \
 		DataManager.categories.SETTINGS)
 	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)), \

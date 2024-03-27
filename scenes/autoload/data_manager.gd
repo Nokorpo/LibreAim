@@ -13,10 +13,10 @@ enum categories { SETTINGS, CROSSHAIR, HIGH_SCORE }
 
 var game_data := {}
 
-func _ready():
+func _ready() -> void:
 	load_all_data()
 
-func load_all_data_from_param(string_json):
+func load_all_data_from_param(string_json) -> void:
 	var json = JSON.new()
 	var result = {}
 	json.parse(string_json)
@@ -24,7 +24,7 @@ func load_all_data_from_param(string_json):
 		result = json.data
 	game_data = result
 
-func save_data(key, value, category: categories, file_directory = FILE_PATH):
+func save_data(key, value, category: categories, file_directory = FILE_PATH) -> void:
 	var category_key = CATEGORIES_ROUTES[category]
 	if !game_data.has(category_key):
 		game_data[category_key] = {}
@@ -34,7 +34,7 @@ func save_data(key, value, category: categories, file_directory = FILE_PATH):
 	file.store_line(json)
 	file.close()
 
-func save_high_score(key, value):
+func save_high_score(key, value) -> void:
 	if is_high_score(key, value):
 		DataManager.save_data(key, value, DataManager.categories.HIGH_SCORE)
 
@@ -53,12 +53,12 @@ func get_high_score(key) -> int:
 			return game_data[category_key][key]
 	return 0
 
-func save_all_data(file_directory = FILE_PATH) :
+func save_all_data(file_directory: String = FILE_PATH) -> void:
 	var json = JSON.stringify(game_data, "\t")
 	var file = FileAccess.open(file_directory, FileAccess.WRITE)
 	file.store_line(json)
 	file.close()
-	
+
 func get_data(category: categories, key):
 	var result = null
 	if game_data != null \
@@ -67,7 +67,7 @@ func get_data(category: categories, key):
 		result = game_data.get(CATEGORIES_ROUTES[category]).get(key)
 	return result
 
-func load_all_data(file_directory = FILE_PATH):
+func load_all_data(file_directory = FILE_PATH) -> void:
 	var json = JSON.new()
 	var result = {}
 	var file = FileAccess.open(file_directory, FileAccess.READ)
@@ -87,7 +87,7 @@ func set_parameter_if_exists(category, parameter, key: String):
 		return new_value
 	return parameter
 
-func set_color_if_exists(category, parameter, key: String):
+func set_color_if_exists(category, parameter, key: String) -> Color:
 	var new_color = set_parameter_if_exists(category, parameter, key)
 	if new_color != null and new_color is String:
 		new_color = Global.string_to_color(new_color)
