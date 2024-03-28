@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_controls.gd" id="7_1g678"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_world_appareance.gd" id="9_78isq"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_audio.gd" id="10_0bjg8"]
-[ext_resource type="Texture2D" uid="uid://b6xs7w20eke54" path="res://assets/images/checkerboard.png" id="10_tgbab"]
+[ext_resource type="Texture2D" uid="uid://dpwdl2106eu1o" path="res://assets/images/world/checkerboard.png" id="10_tgbab"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_fps_limit.gd" id="11_8bk84"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="11_yfmwu"]
 [ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="13_8vd46"]
