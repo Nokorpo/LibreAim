@@ -54,7 +54,7 @@ func spawn_target() -> void:
 	target.set_position(spawn_position)
 	add_child(target)
 
-func update_world_environment():
+func update_world_environment() -> void:
 	var world_material = preload("res://assets/images/mat_filldummy.tres")
 	world_material.albedo_texture = Global.get_current_world_texture()
 	const CATEGORY = DataManager.categories.SETTINGS

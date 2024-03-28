@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="5_nidys"]
 [ext_resource type="Script" path="res://scenes/main_menu/select_gamemode.gd" id="6_5wgje"]
 [ext_resource type="Texture2D" uid="uid://db8p3tq5cc85j" path="res://assets/images/icons/play-big.svg" id="7_o4hi3"]
-[ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings.tscn" id="8_1n7gf"]
+[ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings/settings.tscn" id="8_1n7gf"]
 [ext_resource type="Texture2D" uid="uid://drihvhiutdffn" path="res://assets/images/gamemodes/random.svg" id="9_am488"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqr84"]

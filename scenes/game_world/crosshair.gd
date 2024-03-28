@@ -1,4 +1,5 @@
 extends Control
+## Renders the user crosshair
 
 var color := Color(0, 255, 255, 1)
 var outline_color := Color(0,0,0)
@@ -12,7 +13,7 @@ var thickness := 2.0
 var length := 12.0
 var gap := 5.0
 
-var current_crosshair = {
+var current_crosshair := {
 	"top": [],
 	"right": [],
 	"bottom": [],
@@ -20,20 +21,21 @@ var current_crosshair = {
 	"dot": []
 }
 
-func _draw():
-	load_save()
+func _draw() -> void:
+	_load_save()
+	_load_crosshair()
 	
-	draw_part(current_crosshair["top"])
-	draw_part(current_crosshair["right"])
-	draw_part(current_crosshair["bottom"])
-	draw_part(current_crosshair["left"])
+	_draw_part(current_crosshair["top"])
+	_draw_part(current_crosshair["right"])
+	_draw_part(current_crosshair["bottom"])
+	_draw_part(current_crosshair["left"])
 	if dot_enable:
-		draw_part(current_crosshair["dot"])
+		_draw_part(current_crosshair["dot"])
 
-func _on_options_refresh_crosshair():
+func _on_options_refresh_crosshair() -> void:
 	queue_redraw()
 
-func load_save():
+func _load_save() -> void:
 	var category = DataManager.categories.CROSSHAIR
 	dot_enable = DataManager.set_parameter_if_exists(category, dot_enable, "dot")
 	dot_size = DataManager.set_parameter_if_exists(category, dot_size, "dot_size")
@@ -44,46 +46,47 @@ func load_save():
 	outline_width = DataManager.set_parameter_if_exists(category, outline_width, "outline_width")
 	color = DataManager.set_color_if_exists(category, color, "color")
 	outline_color = DataManager.set_color_if_exists(category, outline_color, "outline_color")
-	
+
+func _load_crosshair() -> void:
 	current_crosshair["dot"] = [
-		Vector2(-dot_size, -dot_size), #top left
-		Vector2(dot_size, -dot_size), #top right
-		Vector2(dot_size, dot_size), #bottom right
-		Vector2(-dot_size, dot_size) #bottom left
+		Vector2(-dot_size, -dot_size), # top left
+		Vector2(dot_size, -dot_size), # top right
+		Vector2(dot_size, dot_size), # bottom right
+		Vector2(-dot_size, dot_size) # bottom left
 	]
 	current_crosshair["left"] = [
-		Vector2(-length-gap, -thickness),  #top left
-		Vector2(-gap, -thickness), #top right
-		Vector2(-gap, thickness), #bottom right
-		Vector2(-length-gap, thickness) #bottom left
+		Vector2(-length-gap, -thickness), # top left
+		Vector2(-gap, -thickness), # top right
+		Vector2(-gap, thickness), # bottom right
+		Vector2(-length-gap, thickness) # bottom left
 	]
 	current_crosshair["top"] = [
-		Vector2(-thickness, -length-gap), #top left
-		Vector2(thickness, -length-gap), #top right
-		Vector2(thickness, -gap), #bottom right
-		Vector2(-thickness, -gap) #bottom left
+		Vector2(-thickness, -length-gap), # top left
+		Vector2(thickness, -length-gap), # top right
+		Vector2(thickness, -gap), # bottom right
+		Vector2(-thickness, -gap) # bottom left
 	]
 	current_crosshair["right"] = [
-		Vector2(gap,-thickness), #top left
-		Vector2(length+gap,-thickness), #top right
-		Vector2(length+gap,thickness), #bottom right
-		Vector2(gap,thickness) #bottom left
+		Vector2(gap,-thickness), # top left
+		Vector2(length+gap,-thickness), # top right
+		Vector2(length+gap,thickness), # bottom right
+		Vector2(gap,thickness) # bottom left
 	]
 	current_crosshair["bottom"] = [
-		Vector2(-thickness, gap), #top left
-		Vector2(thickness,gap), #top right
-		Vector2(thickness,gap+length), #bottom right
-		Vector2(-thickness,gap+length) #bottom left
+		Vector2(-thickness, gap), # top left
+		Vector2(thickness,gap), # top right
+		Vector2(thickness,gap+length), # bottom right
+		Vector2(-thickness,gap+length) # bottom left
 	]
 
-func draw_part(points: PackedVector2Array):
+func _draw_part(points: PackedVector2Array) -> void:
 	draw_polygon(points, [color])
 	var polygon := Polygon2D.new()
 	polygon.set_polygon(points)
 	if enable_outline:
-		draw_outline(polygon)
-	
-func draw_outline(polygon: Polygon2D):
+		_draw_outline(polygon)
+
+func _draw_outline(polygon: Polygon2D) -> void:
 	var poly = polygon.get_polygon()
 	for i in range(1 , poly.size()):
 		draw_line(poly[i-1] , poly[i], outline_color , outline_width)

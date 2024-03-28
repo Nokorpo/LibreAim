@@ -73,13 +73,13 @@ func load_all_data(file_directory: String = FILE_PATH) -> void:
 		result = json.data
 	game_data = result
 
-func set_parameter_if_exists(category, parameter, key: String):
+func set_parameter_if_exists(category: categories, parameter, key: String):
 	var new_value = DataManager.get_data(category, key)
 	if new_value != null:
 		return new_value
 	return parameter
 
-func set_color_if_exists(category, parameter, key: String) -> Color:
+func set_color_if_exists(category: categories, parameter: Color, key: String) -> Color:
 	var new_color = set_parameter_if_exists(category, parameter, key)
 	if new_color != null and new_color is String:
 		new_color = Global.string_to_color(new_color)

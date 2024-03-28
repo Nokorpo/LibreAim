@@ -3,11 +3,11 @@ extends Node
 var gamemodes : Dictionary
 var current_gamemode : Dictionary
 
-func _ready():
+func _ready() -> void:
 	Input.set_use_accumulated_input(false)
 	load_gamemodes()
 
-func load_gamemodes():
+func load_gamemodes() -> void:
 	const PATH = "res://assets/gamemodes/"
 	
 	var dir = DirAccess.open(PATH)
@@ -60,7 +60,6 @@ func get_current_world_texture() -> Texture2D:
 	if !current_texture:
 		current_texture = "checkerboard.png"
 	return load(get_world_textures_path() + current_texture)
-	
 
 func get_world_textures_path() -> String:
 	return "res://assets/images/world/"

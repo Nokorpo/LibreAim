@@ -1,4 +1,5 @@
 extends Control
+## Canvas shown when game ends
 
 func set_score(score: int, high_score: int) -> void:
 	$Button.grab_focus()

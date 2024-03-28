@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkiet13jnna2m"]
 
-[ext_resource type="Script" path="res://scenes/game_world/player_manager.gd" id="1_txs4e"]
+[ext_resource type="Script" path="res://scenes/game_world/player/player_manager.gd" id="1_txs4e"]
 [ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="2_w1fsa"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trh1v"]
