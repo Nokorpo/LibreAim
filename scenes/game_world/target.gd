@@ -5,6 +5,7 @@ signal destroyed
 @onready var mesh := $CollisionShape3D/MeshInstance3D
 
 var current_velocity = null
+var max_health: float
 var health: float = 0.0:
 	set(value):
 		health = value
@@ -13,7 +14,10 @@ var health: float = 0.0:
 			queue_free()
 
 func _ready() -> void:
-	health = Global.current_gamemode.health
+	max_health = Global.current_gamemode.health
+	health = max_health
+	if health > 0:
+		$HealthSlider.enable()
 	var category = DataManager.categories.SETTINGS
 	if DataManager.get_data(category, "target_color") != null:
 		var material_override = mesh.get_mesh().get_material()

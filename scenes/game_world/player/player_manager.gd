@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 signal shooted
 
-const SHOOT_COOLDOWN = 0.2
+const SHOOT_COOLDOWN = 0.1
 const SPEED := 5
 const JUMP_FORCE := 8
 const MAX_CAMERA_ANGLE := 89 ## Max vertical angle of the camera
