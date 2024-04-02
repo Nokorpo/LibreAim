@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=30 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings.gd" id="1_4ilr3"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_gf318"]
@@ -14,7 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://dpwdl2106eu1o" path="res://assets/images/world/checkerboard.png" id="10_tgbab"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_fps_limit.gd" id="11_8bk84"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="11_yfmwu"]
+[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_fps_overlay.gd" id="12_nk5o3"]
 [ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="13_8vd46"]
+[ext_resource type="Texture2D" uid="uid://dodywvhrikacr" path="res://assets/images/icons/checkbox_unchecked.svg" id="13_w1qd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
 
@@ -75,6 +77,16 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5u36"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0honh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7lkr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1wm2h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcput"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -385,6 +397,26 @@ max_value = 360.0
 step = 5.0
 value = 120.0
 
+[node name="FPSOverlay" type="HBoxContainer" parent="HBoxContainer/Control2/Video"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("12_nk5o3")
+
+[node name="FPSOverlayLabel" type="Label" parent="HBoxContainer/Control2/Video/FPSOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fps Overlay: "
+
+[node name="FPSOverlayCheckBox" type="CheckBox" parent="HBoxContainer/Control2/Video/FPSOverlay"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("2_gf318")
+theme_override_icons/unchecked = ExtResource("13_w1qd3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_u5u36")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0honh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_s7lkr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1wm2h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pcput")
+
 [node name="Controls" type="VBoxContainer" parent="HBoxContainer/Control2"]
 visible = false
 layout_mode = 2
@@ -469,6 +501,7 @@ layout_mode = 2
 [connection signal="color_changed" from="HBoxContainer/Control2/Video/WorldAppareance/TargetColor/TargetColor" to="HBoxContainer/Control2/Video/WorldAppareance" method="_on_target_color_color_changed"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Video/WorldAppareance/WorldTexture" to="HBoxContainer/Control2/Video/WorldAppareance" method="_on_world_texture_item_selected"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/FPSLimit/FPSLimitSlider" to="HBoxContainer/Control2/Video/FPSLimit" method="_on_fps_limit_slider_value_changed"]
+[connection signal="toggled" from="HBoxContainer/Control2/Video/FPSOverlay/FPSOverlayCheckBox" to="HBoxContainer/Control2/Video/FPSOverlay" method="_on_fps_overlay_check_box_toggled"]
 [connection signal="item_selected" from="HBoxContainer/Control2/Controls/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
 [connection signal="text_changed" from="HBoxContainer/Control2/Controls/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Audio/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]
