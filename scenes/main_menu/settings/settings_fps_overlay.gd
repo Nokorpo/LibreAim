@@ -8,5 +8,5 @@ func _on_fps_overlay_check_box_toggled(value: bool):
 func _ready() :
 	var category = DataManager.categories.SETTINGS
 	
-	if DataManager.get_data(category, "fps_limit"):
+	if DataManager.get_data(category, "fps_overlay"):
 		fps_overlay_checkbox.button_pressed = DataManager.get_data(category, "fps_overlay")
