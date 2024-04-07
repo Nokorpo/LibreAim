@@ -2,6 +2,7 @@ extends Node3D
 
 var packed_target = preload("res://scenes/enemies/target.tscn")
 var count_kills := 0
+var missed_shots := 0
 
 @onready var timer: Timer = $Timer
 @onready var gameplay_ui = $CanvasLayer/GameplayUI
@@ -13,6 +14,7 @@ func _ready() -> void:
 		for target: int in range(Global.current_gamemode.initial_targets):
 			spawn_target()
 	update_world_environment()
+	$Player.connect("missed", Callable(self, "_on_target_missed"))
 
 func _process(_delta) -> void:
 	if timer.is_stopped():
@@ -27,7 +29,7 @@ func _on_timer_timeout() -> void:
 	DataManager.save_high_score(Global.current_gamemode.id, count_kills)
 	$Player.queue_free()
 	$CanvasLayer/PauseManager.queue_free()
-	$CanvasLayer/EndGameCanvas.set_score(count_kills, high_score)
+	$CanvasLayer/EndGameCanvas.set_score(count_kills, high_score, missed_shots)
 	$CanvasLayer/GameplayUI.visible = false
 	$CanvasLayer/EndGameCanvas.visible = true
 
@@ -37,6 +39,9 @@ func _on_target_destroyed() -> void:
 	count_kills += 1
 	gameplay_ui.update_kills(count_kills)
 	spawn_target()
+
+func _on_target_missed() -> void:
+	missed_shots += 1
 
 func randomize_vector() -> Vector3:
 	var positions: Dictionary = Global.current_gamemode.spawn_location

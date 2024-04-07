@@ -2,6 +2,7 @@ extends CharacterBody3D
 ## First person character controller
 
 signal shooted
+signal missed
 
 const SHOOT_COOLDOWN = 0.1
 const SPEED := 5
@@ -101,3 +102,5 @@ func _shoot(damage: float) -> void:
 			
 			if target.is_in_group("Enemy"):
 				target.health -= damage
+			else:
+				emit_signal("missed")
