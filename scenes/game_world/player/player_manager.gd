@@ -1,8 +1,8 @@
 extends CharacterBody3D
 ## First person character controller
 
-signal shooted
-signal missed
+signal shooted ## When player shoots
+signal missed ## When player mises a shot
 
 const SHOOT_COOLDOWN = 0.1
 const SPEED := 5

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 signal destroyed
 
-@onready var mesh := $CollisionShape3D/MeshInstance3D
+@onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
 
 var current_velocity = null
 var max_health: float
@@ -14,16 +14,9 @@ var health: float = 0.0:
 			queue_free()
 
 func _ready() -> void:
-	max_health = Global.current_gamemode.health
-	health = max_health
-	if health > 0:
-		$HealthSlider.enable()
-	var category = DataManager.categories.SETTINGS
-	if DataManager.get_data(category, "target_color") != null:
-		var material_override = mesh.get_mesh().get_material()
-		material_override.set_albedo(Global.string_to_color(DataManager.get_data(category, "target_color")))
-		material_override.set_emission(Global.string_to_color(DataManager.get_data(category, "target_color")))
-		mesh.material_override = material_override
+	_set_health()
+	_set_health_slider()
+	_set_target_material()
 
 func _physics_process(delta: float) -> void:
 	if current_velocity:
@@ -32,9 +25,27 @@ func _physics_process(delta: float) -> void:
 			current_velocity = current_velocity.bounce(collision_info.get_normal())
 
 func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}) -> void:
-	$CollisionShape3D.shape.radius = size.radius
-	$CollisionShape3D.shape.height = size.height
-	$CollisionShape3D/MeshInstance3D.mesh.radius = size.radius
-	$CollisionShape3D/MeshInstance3D.mesh.height = size.height
+	await ready
+	var collision_shape: CollisionShape3D = $CollisionShape3D
+	collision_shape.shape.radius = size.radius
+	collision_shape.shape.height = size.height
+	_mesh_instance.mesh.radius = size.radius
+	_mesh_instance.mesh.height = size.height
 	current_velocity = Vector3(randf_range(-movement.x, movement.x),\
 		 randf_range(-movement.y, movement.y), 0)
+
+func _set_health() -> void:
+	max_health = Global.current_gamemode.health
+	health = max_health
+
+func _set_health_slider() -> void:
+	if health > 0:
+		$HealthSlider.enable()
+
+func _set_target_material() -> void:
+	var category = DataManager.categories.SETTINGS
+	if DataManager.get_data(category, "target_color") != null:
+		var material_override = _mesh_instance.get_mesh().get_material()
+		material_override.set_albedo(Global.string_to_color(DataManager.get_data(category, "target_color")))
+		material_override.set_emission(Global.string_to_color(DataManager.get_data(category, "target_color")))
+		_mesh_instance.material_override = material_override
