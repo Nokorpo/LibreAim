@@ -418,26 +418,30 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1wm2h")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pcput")
 
 [node name="Controls" type="VBoxContainer" parent="HBoxContainer/Control2"]
-visible = false
 layout_mode = 2
 script = ExtResource("7_1g678")
 
-[node name="Label" type="Label" parent="HBoxContainer/Control2/Controls"]
+[node name="Title" type="Label" parent="HBoxContainer/Control2/Controls"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 46
 text = "Controls"
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/Control2/Controls"]
+[node name="GameLabel" type="Label" parent="HBoxContainer/Control2/Controls"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="Game" type="OptionButton" parent="HBoxContainer/Control2/Controls"]
 layout_mode = 2
 
-[node name="Game" type="OptionButton" parent="HBoxContainer/Control2/Controls/HBoxContainer2"]
+[node name="Sensitivity" parent="HBoxContainer/Control2/Controls" instance=ExtResource("6_bpfs5")]
 layout_mode = 2
-
-[node name="Sensitivity" type="LineEdit" parent="HBoxContainer/Control2/Controls/HBoxContainer2"]
-layout_mode = 2
-text = "1"
-placeholder_text = "1"
+theme = SubResource("Theme_og8m1")
+label_text = "Sensitivity"
+max_value = 5.0
+value = 1.0
+has_checkbox = false
+checkbox_value = false
 
 [node name="Audio" type="VBoxContainer" parent="HBoxContainer/Control2"]
 visible = false
@@ -502,8 +506,8 @@ layout_mode = 2
 [connection signal="item_selected" from="HBoxContainer/Control2/Video/WorldAppareance/WorldTexture" to="HBoxContainer/Control2/Video/WorldAppareance" method="_on_world_texture_item_selected"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Video/FPSLimit/FPSLimitSlider" to="HBoxContainer/Control2/Video/FPSLimit" method="_on_fps_limit_slider_value_changed"]
 [connection signal="toggled" from="HBoxContainer/Control2/Video/FPSOverlay/FPSOverlayCheckBox" to="HBoxContainer/Control2/Video/FPSOverlay" method="_on_fps_overlay_check_box_toggled"]
-[connection signal="item_selected" from="HBoxContainer/Control2/Controls/HBoxContainer2/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
-[connection signal="text_changed" from="HBoxContainer/Control2/Controls/HBoxContainer2/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_text_changed"]
+[connection signal="item_selected" from="HBoxContainer/Control2/Controls/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
+[connection signal="change_value" from="HBoxContainer/Control2/Controls/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_change_value"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Audio/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/Control2/Audio/VolumeSlider" to="HBoxContainer/Control2/Audio/Preview/AudioStreamPlayer" method="_on_volume_updated"]
 [connection signal="pressed" from="HBoxContainer/Control2/Audio/Preview" to="HBoxContainer/Control2/Audio" method="_on_preview_pressed"]
