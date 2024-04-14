@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-signal destroyed
+signal destroyed ## When player destroys the target
+signal hitted ## When player when player hits the target
 
 @onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
 
@@ -8,15 +9,12 @@ var _current_velocity: Vector3 = Vector3.ZERO
 var max_health: float
 var health: float = 0.0:
 	set(value):
+		if value < health:
+			hitted.emit()
 		health = value
 		if health < 0.0:
 			emit_signal("destroyed")
 			queue_free()
-
-func _ready() -> void:
-	_set_health()
-	_set_health_slider()
-	_set_target_material()
 
 func _physics_process(delta: float) -> void:
 	if _current_velocity != Vector3.ZERO:
@@ -33,6 +31,10 @@ func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}) -> vo
 	_mesh_instance.mesh.height = size.height
 	_current_velocity = Vector3(randf_range(-movement.x, movement.x),\
 		 randf_range(-movement.y, movement.y), 0)
+	
+	_set_health()
+	_set_health_slider()
+	_set_target_material()
 
 func _set_health() -> void:
 	max_health = Global.current_gamemode.health

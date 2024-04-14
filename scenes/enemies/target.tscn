@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://baj568pnwc4ph"]
+[gd_scene load_steps=12 format=3 uid="uid://baj568pnwc4ph"]
 
 [ext_resource type="Script" path="res://scenes/enemies/target.gd" id="1_nte11"]
 [ext_resource type="Script" path="res://scenes/enemies/health_slider.gd" id="2_usxmj"]
+[ext_resource type="AudioStream" uid="uid://kf70w8cqg0y" path="res://scenes/enemies/hit.ogg" id="3_o7ev4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_do5mn"]
 height = 1.0
@@ -25,6 +26,43 @@ emission = Color(1, 1, 1, 1)
 material = SubResource("StandardMaterial3D_18ew3")
 size = Vector2(3, 0.3)
 
+[sub_resource type="Animation" id="Animation_7m7wm"]
+resource_name = "shot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(1, 0.294118, 0.360784, 1), Color(1, 0.294118, 0.360784, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_adj6b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqfqo"]
+_data = {
+"RESET": SubResource("Animation_adj6b"),
+"shot": SubResource("Animation_7m7wm")
+}
+
 [node name="Target" type="CharacterBody3D" groups=["Enemy"]]
 collision_mask = 2
 motion_mode = 1
@@ -39,6 +77,17 @@ skeleton = NodePath("../..")
 
 [node name="HealthSlider" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.7, 0)
-visible = false
 mesh = SubResource("PlaneMesh_4njml")
 script = ExtResource("2_usxmj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HealthSlider"]
+libraries = {
+"": SubResource("AnimationLibrary_nqfqo")
+}
+autoplay = "RESET"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HealthSlider"]
+stream = ExtResource("3_o7ev4")
+volume_db = -10.0
+
+[connection signal="hitted" from="." to="HealthSlider" method="_on_target_hitted"]
