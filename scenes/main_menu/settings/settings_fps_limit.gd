@@ -1,4 +1,5 @@
 extends VBoxContainer
+## FPS limit settings
 
 @onready var fps_limit_slider = $FPSLimitSlider
 @onready var fps_limit_label = $FPSLimitLabel

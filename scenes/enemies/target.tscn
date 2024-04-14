@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://baj568pnwc4ph"]
 
-[ext_resource type="Script" path="res://scenes/game_world/target.gd" id="1_mc4da"]
+[ext_resource type="Script" path="res://scenes/enemies/target.gd" id="1_nte11"]
 [ext_resource type="Script" path="res://scenes/enemies/health_slider.gd" id="2_usxmj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_do5mn"]
@@ -28,7 +28,7 @@ size = Vector2(3, 0.3)
 [node name="Target" type="CharacterBody3D" groups=["Enemy"]]
 collision_mask = 2
 motion_mode = 1
-script = ExtResource("1_mc4da")
+script = ExtResource("1_nte11")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_do5mn")

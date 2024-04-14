@@ -1,12 +1,12 @@
 extends Control
 ## Gamemode selection in main menu
 
-func _on_play_pressed() -> void:
-	_start_gamemode()
-
 func _ready() -> void:
 	_add_gamemode_buttons()
 	_select_gamemode("random")
+
+func _on_play_pressed() -> void:
+	_start_gamemode()
 
 ## Adds the gamemodes button list
 func _add_gamemode_buttons() -> void:

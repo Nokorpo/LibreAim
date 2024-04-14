@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
-[ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/images/mat_filldummy.tres" id="2_ldkna"]
+[ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/material_default.tres" id="2_ldkna"]
 [ext_resource type="Script" path="res://scenes/game_world/player/player_manager.gd" id="3_cvlpu"]
 [ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="4_pc15u"]
 [ext_resource type="Script" path="res://scenes/game_world/gameplay_ui.gd" id="5_of43n"]

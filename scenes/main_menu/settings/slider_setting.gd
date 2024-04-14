@@ -1,8 +1,9 @@
 @tool
 extends Node
+## A component to make settings options
 
-signal change_value(value)
-signal toggle_checkbox(value)
+signal change_value(value: float)
+signal toggle_checkbox(value: bool)
 
 @export var label_text := "Label":
 	set(new_value):
@@ -44,11 +45,11 @@ signal toggle_checkbox(value)
 
 @onready var slider = $Slider
 
-func _on_spin_box_value_changed(new_value):
+func _on_spin_box_value_changed(new_value: float) -> void:
 	value = new_value
 
-func _on_slider_value_changed(new_value):
+func _on_slider_value_changed(new_value: float) -> void:
 	value = new_value
 
-func _on_check_box_toggled(button_pressed):
+func _on_check_box_toggled(button_pressed: bool) -> void:
 	toggle_checkbox.emit(button_pressed)

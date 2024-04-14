@@ -4,7 +4,7 @@ signal destroyed
 
 @onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
 
-var current_velocity = null
+var _current_velocity: Vector3 = Vector3.ZERO
 var max_health: float
 var health: float = 0.0:
 	set(value):
@@ -19,10 +19,10 @@ func _ready() -> void:
 	_set_target_material()
 
 func _physics_process(delta: float) -> void:
-	if current_velocity:
-		var collision_info = move_and_collide(current_velocity * delta)
+	if _current_velocity != Vector3.ZERO:
+		var collision_info = move_and_collide(_current_velocity * delta)
 		if collision_info:
-			current_velocity = current_velocity.bounce(collision_info.get_normal())
+			_current_velocity = _current_velocity.bounce(collision_info.get_normal())
 
 func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}) -> void:
 	await ready
@@ -31,7 +31,7 @@ func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}) -> vo
 	collision_shape.shape.height = size.height
 	_mesh_instance.mesh.radius = size.radius
 	_mesh_instance.mesh.height = size.height
-	current_velocity = Vector3(randf_range(-movement.x, movement.x),\
+	_current_velocity = Vector3(randf_range(-movement.x, movement.x),\
 		 randf_range(-movement.y, movement.y), 0)
 
 func _set_health() -> void:

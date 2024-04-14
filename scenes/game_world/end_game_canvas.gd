@@ -11,5 +11,5 @@ func set_score(score: int, high_score: int, missed_shots: int) -> void:
 	text += "\nShots missed: " + str(missed_shots)
 	$Score.text = text
 
-func _on_button_pressed():
+func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")

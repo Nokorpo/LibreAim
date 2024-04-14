@@ -1,4 +1,5 @@
 extends HBoxContainer
+## FPS Overlay settings
 
 @onready var fps_overlay_checkbox = $FPSOverlayCheckBox
 
