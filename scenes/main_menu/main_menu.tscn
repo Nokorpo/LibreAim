@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=26 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_2h7x4"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
@@ -8,10 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://c4b2m50txi00g" path="res://icon.svg" id="3_kq7as"]
 [ext_resource type="Texture2D" uid="uid://tkfbioukscgd" path="res://assets/images/icons/git.svg" id="4_nuriq"]
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="5_nidys"]
-[ext_resource type="Script" path="res://scenes/main_menu/select_gamemode.gd" id="6_5wgje"]
-[ext_resource type="Texture2D" uid="uid://db8p3tq5cc85j" path="res://assets/images/icons/play-big.svg" id="7_o4hi3"]
 [ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings/settings.tscn" id="8_1n7gf"]
-[ext_resource type="Texture2D" uid="uid://drihvhiutdffn" path="res://assets/images/gamemodes/random.svg" id="9_am488"]
+[ext_resource type="PackedScene" uid="uid://bx5lej1m0kvgb" path="res://scenes/main_menu/select_gamemode.tscn" id="9_lii3m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqr84"]
 content_margin_left = 50.0
@@ -83,15 +81,7 @@ VSeparator/styles/separator = SubResource("StyleBoxLine_t2vp1")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5srfh"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0qci"]
-bg_color = Color(0.160784, 0.160784, 0.160784, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[node name="MainScreen" type="Control"]
-layout_mode = 3
+[node name="MainMenu" type="HBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -100,44 +90,36 @@ grow_vertical = 2
 theme = ExtResource("1_2h7x4")
 script = ExtResource("1_p06gh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="LeftControl" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 140
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftControl"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftControl/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftControl/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="LeftControl/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Libre Aim"
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="LeftControl/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.662745, 0.662745, 0.662745, 1)
 theme_override_font_sizes/font_size = 16
 text = "Version"
 script = ExtResource("3_kmn6w")
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="LeftControl/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(84, 84)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -145,128 +127,48 @@ size_flags_vertical = 4
 texture = ExtResource("3_kq7as")
 expand_mode = 1
 
-[node name="Play" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="LeftControl/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Play"
 icon = ExtResource("2_n3hsc")
 alignment = 0
 
-[node name="Settings" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="LeftControl/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Settings"
 icon = ExtResource("3_8dqwy")
 alignment = 0
 
-[node name="SourceCode" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="SourceCode" type="Button" parent="LeftControl/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Source code"
 icon = ExtResource("4_nuriq")
 alignment = 0
 
-[node name="Quit" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="LeftControl/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Quit"
 icon = ExtResource("5_nidys")
 alignment = 0
 
-[node name="RightPanel" type="Panel" parent="HBoxContainer"]
+[node name="RightControl" type="Panel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_8521u")
 theme_override_styles/panel = SubResource("StyleBoxFlat_5srfh")
 
-[node name="SelectGamemode" type="HBoxContainer" parent="HBoxContainer/RightPanel"]
+[node name="SelectGamemode" parent="RightControl" instance=ExtResource("9_lii3m")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_5wgje")
 
-[node name="ListGamemodes" type="MarginContainer" parent="HBoxContainer/RightPanel/SelectGamemode"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 150
-theme_override_constants/margin_right = 80
-
-[node name="Gamemodes" type="VBoxContainer" parent="HBoxContainer/RightPanel/SelectGamemode/ListGamemodes"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/RightPanel/SelectGamemode/ListGamemodes/Gamemodes"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 57
-text = "Select a level"
-
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer/RightPanel/SelectGamemode"]
-custom_minimum_size = Vector2(0, 750)
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-
-[node name="CurrentGamemode" type="MarginContainer" parent="HBoxContainer/RightPanel/SelectGamemode"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 150
-theme_override_constants/margin_right = 80
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightPanel/SelectGamemode/CurrentGamemode"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="HBoxContainer/RightPanel/SelectGamemode/CurrentGamemode/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 46
-text = "Title"
-vertical_alignment = 1
-
-[node name="Panel" type="Panel" parent="HBoxContainer/RightPanel/SelectGamemode/CurrentGamemode/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_m0qci")
-
-[node name="Thumbnail" type="TextureRect" parent="HBoxContainer/RightPanel/SelectGamemode/CurrentGamemode/VBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -100.0
-offset_right = 200.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_am488")
-
-[node name="Description" type="Label" parent="HBoxContainer/RightPanel/SelectGamemode/CurrentGamemode/VBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.54902, 0.54902, 0.54902, 1)
-theme_override_font_sizes/font_size = 24
-text = "Description"
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Play" type="Button" parent="HBoxContainer/RightPanel/SelectGamemode/CurrentGamemode/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 90
-text = "Play"
-icon = ExtResource("7_o4hi3")
-alignment = 0
-
-[node name="Settings" parent="HBoxContainer/RightPanel" instance=ExtResource("8_1n7gf")]
+[node name="Settings" parent="RightControl" instance=ExtResource("8_1n7gf")]
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/SourceCode" to="." method="_on_source_code_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/SelectGamemode/CurrentGamemode/VBoxContainer/Play" to="HBoxContainer/RightPanel/SelectGamemode" method="_on_play_pressed"]
+[connection signal="pressed" from="LeftControl/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="LeftControl/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="LeftControl/VBoxContainer/SourceCode" to="." method="_on_source_code_pressed"]
+[connection signal="pressed" from="LeftControl/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

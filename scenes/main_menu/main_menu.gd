@@ -1,10 +1,10 @@
 extends Control
 ## Main menu manager
 
-@onready var right_panel := $HBoxContainer/RightPanel
+@onready var right_panel := $RightControl
 
 func _ready() -> void:
-	$HBoxContainer/MarginContainer/VBoxContainer/Play.grab_focus()
+	$LeftControl/VBoxContainer/Play.grab_focus()
 	_hide_options()
 
 func _on_play_pressed() -> void:

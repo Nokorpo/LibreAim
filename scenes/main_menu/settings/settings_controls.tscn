@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://1lrvcwbqgnw5"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_controls.gd" id="1_04o0j"]
+[ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="2_ktgul"]
+[ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="3_uc5cd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_vtpo4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bheco"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydstq"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1fy7"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_og8m1"]
+Button/styles/normal = SubResource("StyleBoxFlat_1yvei")
+CheckBox/icons/checked = ExtResource("3_uc5cd")
+CheckBox/icons/unchecked = SubResource("ImageTexture_vtpo4")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_bheco")
+ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_ydstq")
+Label/font_sizes/font_size = 22
+LineEdit/styles/normal = SubResource("StyleBoxFlat_p1fy7")
+
+[node name="Controls" type="VBoxContainer"]
+offset_right = 333.0
+offset_bottom = 150.0
+script = ExtResource("1_04o0j")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Controls"
+vertical_alignment = 1
+
+[node name="GameLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Resolution"
+
+[node name="Game" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="Sensitivity" parent="." instance=ExtResource("2_ktgul")]
+layout_mode = 2
+theme = SubResource("Theme_og8m1")
+label_text = "Sensitivity"
+max_value = 5.0
+value = 5.0
+has_checkbox = false
+checkbox_value = false
+
+[connection signal="item_selected" from="Game" to="." method="_on_game_item_selected"]
+[connection signal="change_value" from="Sensitivity" to="." method="_on_sensitivity_change_value"]

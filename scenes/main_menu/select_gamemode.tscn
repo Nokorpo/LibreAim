@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx5lej1m0kvgb"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/select_gamemode.gd" id="1_4by86"]
+[ext_resource type="Texture2D" uid="uid://drihvhiutdffn" path="res://assets/images/gamemodes/random.svg" id="2_et2sy"]
+[ext_resource type="Texture2D" uid="uid://db8p3tq5cc85j" path="res://assets/images/icons/play-big.svg" id="3_0b1an"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0qci"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="SelectGamemode" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4by86")
+
+[node name="ListGamemodes" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 80
+
+[node name="Gamemodes" type="VBoxContainer" parent="ListGamemodes"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ListGamemodes/Gamemodes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 57
+text = "Select a level"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+custom_minimum_size = Vector2(0, 750)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="CurrentGamemode" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CurrentGamemode"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CurrentGamemode/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Title"
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="CurrentGamemode/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m0qci")
+
+[node name="Thumbnail" type="TextureRect" parent="CurrentGamemode/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_et2sy")
+
+[node name="Description" type="Label" parent="CurrentGamemode/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.54902, 0.54902, 0.54902, 1)
+theme_override_font_sizes/font_size = 24
+text = "Description"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Play" type="Button" parent="CurrentGamemode/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "Play"
+icon = ExtResource("3_0b1an")
+alignment = 0
+
+[connection signal="pressed" from="CurrentGamemode/VBoxContainer/Play" to="." method="_on_play_pressed"]

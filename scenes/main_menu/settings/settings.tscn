@@ -1,514 +1,85 @@
-[gd_scene load_steps=30 format=3 uid="uid://cropshnueuiqr"]
+[gd_scene load_steps=6 format=3 uid="uid://cropshnueuiqr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings.gd" id="1_4ilr3"]
-[ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_gf318"]
-[ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="2_iu82h"]
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_crosshair.gd" id="3_1x3bu"]
-[ext_resource type="Texture2D" uid="uid://dfccfxiw0aqif" path="res://assets/images/icons/export-file.svg" id="3_ljukx"]
-[ext_resource type="Texture2D" uid="uid://btgrnb8ku7dyk" path="res://assets/images/icons/import-file.svg" id="4_e248v"]
-[ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="6_bpfs5"]
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_video.gd" id="6_tj5ad"]
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_controls.gd" id="7_1g678"]
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_world_appareance.gd" id="9_78isq"]
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_audio.gd" id="10_0bjg8"]
-[ext_resource type="Texture2D" uid="uid://dpwdl2106eu1o" path="res://assets/images/world/checkerboard.png" id="10_tgbab"]
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_fps_limit.gd" id="11_8bk84"]
-[ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="11_yfmwu"]
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_fps_overlay.gd" id="12_nk5o3"]
-[ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="13_8vd46"]
-[ext_resource type="Texture2D" uid="uid://dodywvhrikacr" path="res://assets/images/icons/checkbox_unchecked.svg" id="13_w1qd3"]
+[ext_resource type="PackedScene" uid="uid://dcqej3022gbdk" path="res://scenes/main_menu/settings/settings_crosshair.tscn" id="2_ofn7e"]
+[ext_resource type="PackedScene" uid="uid://defuaijvpgkhn" path="res://scenes/main_menu/settings/settings_video.tscn" id="3_exihx"]
+[ext_resource type="PackedScene" uid="uid://1lrvcwbqgnw5" path="res://scenes/main_menu/settings/settings_controls.tscn" id="4_l5su2"]
+[ext_resource type="PackedScene" uid="uid://dhe0v0qwojerb" path="res://scenes/main_menu/settings/settings_audio.tscn" id="5_3v276"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_vtpo4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bheco"]
-bg_color = Color(0.101961, 0.101961, 0.101961, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.160784, 0.160784, 0.160784, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydstq"]
-bg_color = Color(0.160784, 0.160784, 0.160784, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.160784, 0.160784, 0.160784, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1fy7"]
-bg_color = Color(0.101961, 0.101961, 0.101961, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.160784, 0.160784, 0.160784, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="Theme" id="Theme_og8m1"]
-Button/styles/normal = SubResource("StyleBoxFlat_1yvei")
-CheckBox/icons/checked = ExtResource("2_gf318")
-CheckBox/icons/unchecked = SubResource("ImageTexture_vtpo4")
-CheckBox/styles/focus = SubResource("StyleBoxFlat_bheco")
-CheckBox/styles/hover = SubResource("StyleBoxFlat_bheco")
-CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_bheco")
-CheckBox/styles/normal = SubResource("StyleBoxFlat_bheco")
-CheckBox/styles/pressed = SubResource("StyleBoxFlat_bheco")
-ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_ydstq")
-Label/font_sizes/font_size = 22
-LineEdit/styles/normal = SubResource("StyleBoxFlat_p1fy7")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b62o0"]
-bg_color = Color(0.160784, 0.160784, 0.160784, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5u36"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0honh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7lkr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1wm2h"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcput"]
-
-[node name="Settings" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_4ilr3")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
+[node name="Settings" type="HBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+script = ExtResource("1_4ilr3")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="LeftControl" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 80
 
-[node name="Gamemodes" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="SettingsList" type="VBoxContainer" parent="LeftControl"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/Gamemodes"]
+[node name="Label" type="Label" parent="LeftControl/SettingsList"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 57
 text = "Settings"
 
-[node name="Crosshair" type="Button" parent="HBoxContainer/MarginContainer/Gamemodes"]
+[node name="Crosshair" type="Button" parent="LeftControl/SettingsList"]
 layout_mode = 2
 text = "Crosshair"
 alignment = 0
 
-[node name="Video" type="Button" parent="HBoxContainer/MarginContainer/Gamemodes"]
+[node name="Video" type="Button" parent="LeftControl/SettingsList"]
 layout_mode = 2
 text = "Video"
 alignment = 0
 
-[node name="Controls" type="Button" parent="HBoxContainer/MarginContainer/Gamemodes"]
+[node name="Controls" type="Button" parent="LeftControl/SettingsList"]
 layout_mode = 2
 text = "Controls"
 alignment = 0
 
-[node name="Audio" type="Button" parent="HBoxContainer/MarginContainer/Gamemodes"]
+[node name="Audio" type="Button" parent="LeftControl/SettingsList"]
 layout_mode = 2
 text = "Audio"
 alignment = 0
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="."]
 custom_minimum_size = Vector2(0, 750)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Control2" type="MarginContainer" parent="HBoxContainer"]
+[node name="RightControl" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 90
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 80
 
-[node name="Crosshair" type="VBoxContainer" parent="HBoxContainer/Control2"]
+[node name="Crosshair" parent="RightControl" instance=ExtResource("2_ofn7e")]
 visible = false
 layout_mode = 2
-script = ExtResource("3_1x3bu")
 
-[node name="Title" type="Label" parent="HBoxContainer/Control2/Crosshair"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 46
-text = "Crosshair"
-vertical_alignment = 1
-
-[node name="CrosshairSettings" type="VBoxContainer" parent="HBoxContainer/Control2/Crosshair"]
-layout_mode = 2
-theme = SubResource("Theme_og8m1")
-theme_override_constants/separation = 15
-
-[node name="Preview" type="Panel" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings"]
-custom_minimum_size = Vector2(200, 150)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b62o0")
-
-[node name="Crosshair" type="Control" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings/Preview"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("2_iu82h")
-
-[node name="Dot" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings" instance=ExtResource("6_bpfs5")]
-layout_mode = 2
-label_text = "Dot"
-max_value = 10.0
-value = 10.0
-
-[node name="Length" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings" instance=ExtResource("6_bpfs5")]
-layout_mode = 2
-label_text = "Length"
-max_value = 50.0
-value = 20.0
-has_checkbox = false
-
-[node name="Thickness" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings" instance=ExtResource("6_bpfs5")]
-layout_mode = 2
-label_text = "Thickness"
-max_value = 10.0
-value = 10.0
-has_checkbox = false
-
-[node name="Gap" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings" instance=ExtResource("6_bpfs5")]
-layout_mode = 2
-label_text = "Gap"
-max_value = 25.0
-value = 25.0
-has_checkbox = false
-
-[node name="Outline" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings" instance=ExtResource("6_bpfs5")]
-layout_mode = 2
-label_text = "Outline"
-max_value = 10.0
-value = 10.0
-
-[node name="Color" type="HBoxContainer" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings/Color"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Color"
-
-[node name="CrosshairColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings/Color" groups=["Persist", "PutLabel"]]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-color = Color(0, 1, 1, 1)
-
-[node name="OutlineColor" type="HBoxContainer" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings/OutlineColor"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Outline color"
-
-[node name="OutlineColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Crosshair/CrosshairSettings/OutlineColor" groups=["Persist", "PutLabel"]]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-
-[node name="Margin" type="Control" parent="HBoxContainer/Control2/Crosshair"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
-[node name="Export" type="Button" parent="HBoxContainer/Control2/Crosshair"]
-layout_mode = 2
-text = "Export"
-icon = ExtResource("3_ljukx")
-alignment = 0
-
-[node name="ExportFileDialog" type="FileDialog" parent="HBoxContainer/Control2/Crosshair"]
-size = Vector2i(1280, 720)
-access = 2
-use_native_dialog = true
-
-[node name="Import" type="Button" parent="HBoxContainer/Control2/Crosshair"]
-layout_mode = 2
-text = "Import"
-icon = ExtResource("4_e248v")
-alignment = 0
-
-[node name="ImportFileDialog" type="FileDialog" parent="HBoxContainer/Control2/Crosshair"]
-title = "Open a File"
-size = Vector2i(1280, 720)
-ok_button_text = "Open"
-file_mode = 0
-access = 2
-use_native_dialog = true
-
-[node name="Video" type="VBoxContainer" parent="HBoxContainer/Control2"]
+[node name="Video" parent="RightControl" instance=ExtResource("3_exihx")]
 visible = false
 layout_mode = 2
-script = ExtResource("6_tj5ad")
 
-[node name="Label" type="Label" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 46
-text = "Video"
-vertical_alignment = 1
-
-[node name="ResolutionLabel" type="Label" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-text = "Resolution"
-
-[node name="ResolutionSlider" type="HSlider" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-min_value = 0.1
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="FovLabel" type="Label" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-text = "Camera FOV"
-
-[node name="FovSlider" type="HSlider" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-min_value = 45.0
-max_value = 130.0
-value = 80.0
-
-[node name="WindowModeLabel" type="Label" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-text = "Window mode"
-
-[node name="WindowModeOptions" type="OptionButton" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-item_count = 2
-selected = 0
-popup/item_0/text = "fullscreen"
-popup/item_0/id = 1
-popup/item_1/text = "windowed"
-popup/item_1/id = 0
-
-[node name="WorldAppareance" type="VBoxContainer" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-script = ExtResource("9_78isq")
-
-[node name="WorldAppareanceLabel" type="Label" parent="HBoxContainer/Control2/Video/WorldAppareance"]
-layout_mode = 2
-text = "World appareance"
-
-[node name="WorldColor" type="HBoxContainer" parent="HBoxContainer/Control2/Video/WorldAppareance"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/Control2/Video/WorldAppareance/WorldColor"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "World color"
-
-[node name="Color" type="ColorPickerButton" parent="HBoxContainer/Control2/Video/WorldAppareance/WorldColor" groups=["Persist", "PutLabel"]]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-theme = SubResource("Theme_og8m1")
-color = Color(0.360784, 0.615686, 1, 1)
-
-[node name="TargetColor" type="HBoxContainer" parent="HBoxContainer/Control2/Video/WorldAppareance"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/Control2/Video/WorldAppareance/TargetColor"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Targets color"
-
-[node name="TargetColor" type="ColorPickerButton" parent="HBoxContainer/Control2/Video/WorldAppareance/TargetColor" groups=["Persist", "PutLabel"]]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-theme = SubResource("Theme_og8m1")
-color = Color(1, 0.74902, 0, 1)
-
-[node name="WorldTexture" type="OptionButton" parent="HBoxContainer/Control2/Video/WorldAppareance"]
-layout_mode = 2
-expand_icon = true
-
-[node name="Preview" type="TextureRect" parent="HBoxContainer/Control2/Video/WorldAppareance"]
-self_modulate = Color(0.360784, 0.615686, 1, 1)
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-texture = ExtResource("10_tgbab")
-stretch_mode = 1
-
-[node name="TargetPreview" type="ColorRect" parent="HBoxContainer/Control2/Video/WorldAppareance/Preview"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.74902, 0, 1)
-
-[node name="FPSLimit" type="VBoxContainer" parent="HBoxContainer/Control2/Video"]
-layout_mode = 2
-script = ExtResource("11_8bk84")
-
-[node name="FPSLimitLabel" type="Label" parent="HBoxContainer/Control2/Video/FPSLimit"]
-layout_mode = 2
-text = "Fps limit"
-
-[node name="FPSLimitSlider" type="HSlider" parent="HBoxContainer/Control2/Video/FPSLimit"]
-layout_mode = 2
-min_value = 60.0
-max_value = 360.0
-step = 5.0
-value = 120.0
-
-[node name="FPSOverlay" type="HBoxContainer" parent="HBoxContainer/Control2/Video"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-script = ExtResource("12_nk5o3")
-
-[node name="FPSOverlayLabel" type="Label" parent="HBoxContainer/Control2/Video/FPSOverlay"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fps Overlay: "
-
-[node name="FPSOverlayCheckBox" type="CheckBox" parent="HBoxContainer/Control2/Video/FPSOverlay"]
-layout_mode = 2
-theme_override_icons/checked = ExtResource("2_gf318")
-theme_override_icons/unchecked = ExtResource("13_w1qd3")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_u5u36")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0honh")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_s7lkr")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1wm2h")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pcput")
-
-[node name="Controls" type="VBoxContainer" parent="HBoxContainer/Control2"]
-layout_mode = 2
-script = ExtResource("7_1g678")
-
-[node name="Title" type="Label" parent="HBoxContainer/Control2/Controls"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 46
-text = "Controls"
-vertical_alignment = 1
-
-[node name="GameLabel" type="Label" parent="HBoxContainer/Control2/Controls"]
-layout_mode = 2
-text = "Resolution"
-
-[node name="Game" type="OptionButton" parent="HBoxContainer/Control2/Controls"]
-layout_mode = 2
-
-[node name="Sensitivity" parent="HBoxContainer/Control2/Controls" instance=ExtResource("6_bpfs5")]
-layout_mode = 2
-theme = SubResource("Theme_og8m1")
-label_text = "Sensitivity"
-max_value = 5.0
-value = 1.0
-has_checkbox = false
-checkbox_value = false
-
-[node name="Audio" type="VBoxContainer" parent="HBoxContainer/Control2"]
+[node name="Controls" parent="RightControl" instance=ExtResource("4_l5su2")]
 visible = false
 layout_mode = 2
-script = ExtResource("10_0bjg8")
 
-[node name="Label" type="Label" parent="HBoxContainer/Control2/Audio"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 46
-text = "Audio"
-vertical_alignment = 1
-
-[node name="VolumeLabel" type="Label" parent="HBoxContainer/Control2/Audio"]
-layout_mode = 2
-text = "Volume"
-
-[node name="VolumeSlider" type="HSlider" parent="HBoxContainer/Control2/Audio"]
-layout_mode = 2
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="HitsoundLabel" type="Label" parent="HBoxContainer/Control2/Audio"]
-layout_mode = 2
-text = "Hit sound"
-
-[node name="Preview" type="Button" parent="HBoxContainer/Control2/Audio"]
-layout_mode = 2
-text = "Preview sound"
-icon = ExtResource("13_8vd46")
-alignment = 0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer/Control2/Audio/Preview"]
-script = ExtResource("11_yfmwu")
-
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer/Control2/Audio"]
+[node name="Audio" parent="RightControl" instance=ExtResource("5_3v276")]
+visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="HBoxContainer/MarginContainer/Gamemodes/Crosshair" to="." method="_on_crosshair_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/Gamemodes/Video" to="." method="_on_video_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/Gamemodes/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/Gamemodes/Audio" to="." method="_on_audio_pressed"]
-[connection signal="refresh_crosshair" from="HBoxContainer/Control2/Crosshair" to="HBoxContainer/Control2/Crosshair/CrosshairSettings/Preview/Crosshair" method="_on_options_refresh_crosshair"]
-[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_change_value"]
-[connection signal="toggle_checkbox" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Dot" to="HBoxContainer/Control2/Crosshair" method="_on_dot_toggle_checkbox"]
-[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Length" to="HBoxContainer/Control2/Crosshair" method="_on_length_change_value"]
-[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Thickness" to="HBoxContainer/Control2/Crosshair" method="_on_thickness_change_value"]
-[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Gap" to="HBoxContainer/Control2/Crosshair" method="_on_gap_change_value"]
-[connection signal="change_value" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Outline" to="HBoxContainer/Control2/Crosshair" method="_on_outline_change_value"]
-[connection signal="toggle_checkbox" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Outline" to="HBoxContainer/Control2/Crosshair" method="_on_outline_toggle_checkbox"]
-[connection signal="color_changed" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/Color/CrosshairColor" to="HBoxContainer/Control2/Crosshair" method="_on_crosshair_color_color_changed"]
-[connection signal="color_changed" from="HBoxContainer/Control2/Crosshair/CrosshairSettings/OutlineColor/OutlineColor" to="HBoxContainer/Control2/Crosshair" method="_on_outline_color_color_changed"]
-[connection signal="pressed" from="HBoxContainer/Control2/Crosshair/Export" to="HBoxContainer/Control2/Crosshair" method="_on_export_pressed"]
-[connection signal="file_selected" from="HBoxContainer/Control2/Crosshair/ExportFileDialog" to="HBoxContainer/Control2/Crosshair" method="_on_export_file_dialog_file_selected"]
-[connection signal="pressed" from="HBoxContainer/Control2/Crosshair/Import" to="HBoxContainer/Control2/Crosshair" method="_on_import_pressed"]
-[connection signal="file_selected" from="HBoxContainer/Control2/Crosshair/ImportFileDialog" to="HBoxContainer/Control2/Crosshair" method="_on_import_file_dialog_file_selected"]
-[connection signal="value_changed" from="HBoxContainer/Control2/Video/ResolutionSlider" to="HBoxContainer/Control2/Video" method="_on_resolution_slider_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/Control2/Video/FovSlider" to="HBoxContainer/Control2/Video" method="_on_fov_slider_value_changed"]
-[connection signal="item_selected" from="HBoxContainer/Control2/Video/WindowModeOptions" to="HBoxContainer/Control2/Video" method="_on_window_mode_options_item_selected"]
-[connection signal="color_changed" from="HBoxContainer/Control2/Video/WorldAppareance/WorldColor/Color" to="HBoxContainer/Control2/Video/WorldAppareance" method="_on_color_color_changed"]
-[connection signal="color_changed" from="HBoxContainer/Control2/Video/WorldAppareance/TargetColor/TargetColor" to="HBoxContainer/Control2/Video/WorldAppareance" method="_on_target_color_color_changed"]
-[connection signal="item_selected" from="HBoxContainer/Control2/Video/WorldAppareance/WorldTexture" to="HBoxContainer/Control2/Video/WorldAppareance" method="_on_world_texture_item_selected"]
-[connection signal="value_changed" from="HBoxContainer/Control2/Video/FPSLimit/FPSLimitSlider" to="HBoxContainer/Control2/Video/FPSLimit" method="_on_fps_limit_slider_value_changed"]
-[connection signal="toggled" from="HBoxContainer/Control2/Video/FPSOverlay/FPSOverlayCheckBox" to="HBoxContainer/Control2/Video/FPSOverlay" method="_on_fps_overlay_check_box_toggled"]
-[connection signal="item_selected" from="HBoxContainer/Control2/Controls/Game" to="HBoxContainer/Control2/Controls" method="_on_game_item_selected"]
-[connection signal="change_value" from="HBoxContainer/Control2/Controls/Sensitivity" to="HBoxContainer/Control2/Controls" method="_on_sensitivity_change_value"]
-[connection signal="value_changed" from="HBoxContainer/Control2/Audio/VolumeSlider" to="HBoxContainer/Control2/Audio" method="_on_volume_slider_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/Control2/Audio/VolumeSlider" to="HBoxContainer/Control2/Audio/Preview/AudioStreamPlayer" method="_on_volume_updated"]
-[connection signal="pressed" from="HBoxContainer/Control2/Audio/Preview" to="HBoxContainer/Control2/Audio" method="_on_preview_pressed"]
-[connection signal="item_selected" from="HBoxContainer/Control2/Audio/OptionButton" to="HBoxContainer/Control2/Audio" method="_on_option_button_item_selected"]
+[connection signal="pressed" from="LeftControl/SettingsList/Crosshair" to="." method="_on_crosshair_pressed"]
+[connection signal="pressed" from="LeftControl/SettingsList/Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="LeftControl/SettingsList/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="LeftControl/SettingsList/Audio" to="." method="_on_audio_pressed"]

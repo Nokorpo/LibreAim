@@ -1,0 +1,204 @@
+[gd_scene load_steps=14 format=3 uid="uid://dcqej3022gbdk"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_crosshair.gd" id="1_8jhp0"]
+[ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_a8xsi"]
+[ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="3_uw2kl"]
+[ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="4_2iwqj"]
+[ext_resource type="Texture2D" uid="uid://dfccfxiw0aqif" path="res://assets/images/icons/export-file.svg" id="5_i2t3j"]
+[ext_resource type="Texture2D" uid="uid://btgrnb8ku7dyk" path="res://assets/images/icons/import-file.svg" id="6_bq5ho"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_vtpo4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bheco"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydstq"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1fy7"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_og8m1"]
+Button/styles/normal = SubResource("StyleBoxFlat_1yvei")
+CheckBox/icons/checked = ExtResource("2_a8xsi")
+CheckBox/icons/unchecked = SubResource("ImageTexture_vtpo4")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_bheco")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_bheco")
+ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_ydstq")
+Label/font_sizes/font_size = 22
+LineEdit/styles/normal = SubResource("StyleBoxFlat_p1fy7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b62o0"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Crosshair" type="VBoxContainer"]
+offset_right = 361.0
+offset_bottom = 687.0
+script = ExtResource("1_8jhp0")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Crosshair"
+vertical_alignment = 1
+
+[node name="CrosshairSettings" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_og8m1")
+theme_override_constants/separation = 15
+
+[node name="Preview" type="Panel" parent="CrosshairSettings"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b62o0")
+
+[node name="Crosshair" type="Control" parent="CrosshairSettings/Preview"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_uw2kl")
+
+[node name="Dot" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+layout_mode = 2
+label_text = "Dot"
+max_value = 10.0
+value = 10.0
+
+[node name="Length" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+layout_mode = 2
+label_text = "Length"
+max_value = 50.0
+value = 20.0
+has_checkbox = false
+
+[node name="Thickness" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+layout_mode = 2
+label_text = "Thickness"
+max_value = 10.0
+value = 10.0
+has_checkbox = false
+
+[node name="Gap" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+layout_mode = 2
+label_text = "Gap"
+max_value = 25.0
+value = 25.0
+has_checkbox = false
+
+[node name="Outline" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+layout_mode = 2
+label_text = "Outline"
+max_value = 10.0
+value = 10.0
+
+[node name="Color" type="HBoxContainer" parent="CrosshairSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CrosshairSettings/Color"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Color"
+
+[node name="CrosshairColor" type="ColorPickerButton" parent="CrosshairSettings/Color" groups=["Persist", "PutLabel"]]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+color = Color(0, 1, 1, 1)
+
+[node name="OutlineColor" type="HBoxContainer" parent="CrosshairSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CrosshairSettings/OutlineColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Outline color"
+
+[node name="OutlineColor" type="ColorPickerButton" parent="CrosshairSettings/OutlineColor" groups=["Persist", "PutLabel"]]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+
+[node name="Margin" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Export" type="Button" parent="."]
+layout_mode = 2
+text = "Export"
+icon = ExtResource("5_i2t3j")
+alignment = 0
+
+[node name="ExportFileDialog" type="FileDialog" parent="."]
+size = Vector2i(1280, 720)
+access = 2
+use_native_dialog = true
+
+[node name="Import" type="Button" parent="."]
+layout_mode = 2
+text = "Import"
+icon = ExtResource("6_bq5ho")
+alignment = 0
+
+[node name="ImportFileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(1280, 720)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[connection signal="refresh_crosshair" from="." to="CrosshairSettings/Preview/Crosshair" method="_on_options_refresh_crosshair"]
+[connection signal="change_value" from="CrosshairSettings/Dot" to="." method="_on_dot_change_value"]
+[connection signal="toggle_checkbox" from="CrosshairSettings/Dot" to="." method="_on_dot_toggle_checkbox"]
+[connection signal="change_value" from="CrosshairSettings/Length" to="." method="_on_length_change_value"]
+[connection signal="change_value" from="CrosshairSettings/Thickness" to="." method="_on_thickness_change_value"]
+[connection signal="change_value" from="CrosshairSettings/Gap" to="." method="_on_gap_change_value"]
+[connection signal="change_value" from="CrosshairSettings/Outline" to="." method="_on_outline_change_value"]
+[connection signal="toggle_checkbox" from="CrosshairSettings/Outline" to="." method="_on_outline_toggle_checkbox"]
+[connection signal="color_changed" from="CrosshairSettings/Color/CrosshairColor" to="." method="_on_crosshair_color_color_changed"]
+[connection signal="color_changed" from="CrosshairSettings/OutlineColor/OutlineColor" to="." method="_on_outline_color_color_changed"]
+[connection signal="pressed" from="Export" to="." method="_on_export_pressed"]
+[connection signal="file_selected" from="ExportFileDialog" to="." method="_on_export_file_dialog_file_selected"]
+[connection signal="pressed" from="Import" to="." method="_on_import_pressed"]
+[connection signal="file_selected" from="ImportFileDialog" to="." method="_on_import_file_dialog_file_selected"]
