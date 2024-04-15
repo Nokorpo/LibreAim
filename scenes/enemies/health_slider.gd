@@ -15,7 +15,7 @@ func enable() -> void:
 	enabled = true
 	position.y = ($"../CollisionShape3D/MeshInstance3D".mesh.height / 2) + 0.4
 
-func _on_target_hitted():
+func _on_target_hitted() -> void:
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer.pitch_scale = randf_range(0.97, 1.03)
 	$AnimationPlayer.play("RESET")

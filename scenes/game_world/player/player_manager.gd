@@ -4,15 +4,15 @@ extends CharacterBody3D
 signal shooted ## When player shoots
 signal missed ## When player mises a shot
 
-const SHOOT_COOLDOWN = 0.1
-const SPEED := 5
-const JUMP_FORCE := 8
-const MAX_CAMERA_ANGLE := 89 ## Max vertical angle of the camera
+const SHOOT_COOLDOWN: float = 0.1
+const SPEED: int = 5
+const JUMP_FORCE: int = 8
+const MAX_CAMERA_ANGLE: int = 89 ## Max vertical angle of the camera
 
-var mouse_sensitivity := 0.01
+var mouse_sensitivity: float = 0.01
 
-var jumps := [true, true]
-var gravity := 0.0
+var jumps: Array[bool] = [true, true]
+var gravity: float = 0.0
 var current_shoot_cooldown: float
 
 @onready var camera = $Head/Camera3D
