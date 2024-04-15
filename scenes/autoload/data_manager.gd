@@ -1,9 +1,9 @@
 extends Node
 
-const FILE_NAME := "settings.json"
-const FILE_PATH := "user://" + FILE_NAME
+const FILE_NAME: String = "settings.json"
+const FILE_PATH: String = "user://" + FILE_NAME
 ## JSON file is divided in categories in order to keep things organized.
-const CATEGORIES_ROUTES := {
+const CATEGORIES_ROUTES: Dictionary = {
 	categories.SETTINGS: "settings",
 	categories.CROSSHAIR: "crosshair",
 	categories.HIGH_SCORE: "high_score"
@@ -11,7 +11,7 @@ const CATEGORIES_ROUTES := {
 
 enum categories { SETTINGS, CROSSHAIR, HIGH_SCORE }
 
-var game_data := {}
+var game_data: Dictionary = {}
 
 func _ready() -> void:
 	load_all_data()

@@ -7,13 +7,13 @@ var _outline_color := Color(0,0,0)
 var _enable_outline := true
 var _dot_enable := false
 
-var _dot_size := 6.0
-var _outline_width := 1.0
-var _thickness := 2.0
-var _length := 12.0
-var _gap := 5.0
+var _dot_size: float = 6.0
+var _outline_width: float = 1.0
+var _thickness: float = 2.0
+var _length: float = 12.0
+var _gap: float = 5.0
 
-var current_crosshair := {
+var current_crosshair: Dictionary = {
 	"top": [],
 	"right": [],
 	"bottom": [],
