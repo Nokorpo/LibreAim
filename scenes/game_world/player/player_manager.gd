@@ -62,8 +62,8 @@ func _physics_process(delta: float) -> void:
 
 func _get_mouse_sensitivity() -> float:
 	const CATEGORY := DataManager.categories.SETTINGS
-	var user_sensitivity := 1
-	var conversion_sensitivity := 0.022
+	var user_sensitivity: float = 1
+	var conversion_sensitivity: float = 0.022
 	conversion_sensitivity = DataManager.set_parameter_if_exists(CATEGORY, conversion_sensitivity, "sensitivity_game_value")
 	user_sensitivity = DataManager.set_parameter_if_exists(CATEGORY, user_sensitivity, "sensitivity")
 	return user_sensitivity * conversion_sensitivity
