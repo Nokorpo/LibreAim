@@ -6,6 +6,8 @@ var _packed_target: PackedScene = preload("res://scenes/enemies/target.tscn")
 ## Number of targets destroyed by the player
 var _targets_destroyed: int = 0
 ## Number of shots missed by the player
+var _hitted_shots: int = 0
+## Number of shots missed by the player
 var _missed_shots: int = 0
 
 @onready var _timer: Timer = $Timer
@@ -31,23 +33,38 @@ func _on_timer_timeout() -> void:
 	DataManager.save_high_score(Global.current_gamemode.id, _targets_destroyed)
 	$Player.queue_free()
 	$CanvasLayer/PauseManager.queue_free()
-	$CanvasLayer/EndGameCanvas.set_score(_targets_destroyed, high_score, _missed_shots)
+	$CanvasLayer/EndGameCanvas.set_score(_get_score(), high_score, _missed_shots)
 	$CanvasLayer/GameplayUI.visible = false
 	$CanvasLayer/EndGameCanvas.visible = true
 
 func _on_target_destroyed() -> void:
 	_play_destroyed_sound()
 	_targets_destroyed += 1
-	_gameplay_ui.update_kills(_targets_destroyed)
 	_spawn_target()
+
+func _on_target_missed() -> void:
+	_missed_shots += 1
+	_gameplay_ui.update_score(_get_score(), _get_accuracy())
+
+func _on_target_hitted() -> void:
+	_hitted_shots += 1
+	_gameplay_ui.update_score(_get_score(), _get_accuracy())
 
 func _play_destroyed_sound():
 	var destroyed_sound: AudioStreamPlayer = $DestroyedSound
 	destroyed_sound.pitch_scale = randf_range(0.95, 1.05)
 	destroyed_sound.play()
 
-func _on_target_missed() -> void:
-	_missed_shots += 1
+func _get_score() -> int:
+	return _hitted_shots - _missed_shots
+
+func _get_accuracy() -> float:
+	if _missed_shots == 0:
+		return 100
+	if _hitted_shots == 0:
+		return 0
+	print()
+	return (float(_hitted_shots) / (float(_hitted_shots) + float(_missed_shots))) * 100
 
 func _get_random_target_spawn_position() -> Vector3:
 	var positions: Dictionary = Global.current_gamemode.spawn_location
@@ -61,6 +78,7 @@ func _spawn_target() -> void:
 	var target: Node3D = _packed_target.instantiate()
 	target.init(Global.current_gamemode.size, Global.current_gamemode.movement)
 	target.connect("destroyed", Callable(self, "_on_target_destroyed"))
+	target.connect("hitted", Callable(self, "_on_target_hitted"))
 	target.set_position(spawn_position)
 	add_child(target)
 

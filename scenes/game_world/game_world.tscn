@@ -295,7 +295,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CanvasLayer/GameplayUI/MarginContainer"]
-custom_minimum_size = Vector2(220, 150)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -305,7 +305,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_fembj")
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 202.0
+offset_right = 302.0
 grow_vertical = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
@@ -329,19 +329,33 @@ uppercase = true
 layout_mode = 2
 text = "60 s"
 
-[node name="targets" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="score" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/targets"]
+[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/score"]
 layout_mode = 2
 theme = SubResource("Theme_p6jab")
-text = "Targets "
+text = "Score "
 vertical_alignment = 1
 uppercase = true
 
-[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/targets"]
+[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/score"]
 layout_mode = 2
 text = "0"
+
+[node name="accuracy" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/accuracy"]
+layout_mode = 2
+theme = SubResource("Theme_p6jab")
+text = "Accuracy "
+vertical_alignment = 1
+uppercase = true
+
+[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/accuracy"]
+layout_mode = 2
+text = "100%"
 
 [node name="HitMarker" type="TextureRect" parent="CanvasLayer/GameplayUI"]
 modulate = Color(1, 1, 1, 0)
