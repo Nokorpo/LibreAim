@@ -82,22 +82,29 @@ func load_file(file_path: String) -> ConfigFile:
 	var config := ConfigFile.new()
 	config.load(USER_PATH + file_path + "."+FORMAT)
 	
-	var default_path := DEFAULT_PATH + file_path + ".gd"
-	if ResourceLoader.exists(default_path):
-		var script := load(default_path) as Script
-		var defaultConfig := ConfigFile.new()
-		var err := defaultConfig.parse(script.data)
-		if err == OK:
-			for section in defaultConfig.get_sections():
-				for key in defaultConfig.get_section_keys(section):
-					if config.has_section_key(section, key):
-						continue
-					var val = defaultConfig.get_value(section, key)
-					config.set_value(section, key, val)
-	else:
-		print("default does not exist: %s"%default_path)
+	var defaultConfig := load_default_file(file_path)
+	if defaultConfig != null:
+		_merge_config(config, defaultConfig)
 	
 	return config
+
+func load_default_file(file_path :String) -> ConfigFile:
+	var default_path := DEFAULT_PATH + file_path + ".gd"
+	if not ResourceLoader.exists(default_path):
+		return null
+	var script := load(default_path) as Script
+	var defaultConfig := ConfigFile.new()
+	var err := defaultConfig.parse(script.data)
+	assert(err == OK, "Error %s parsing default data file: %s"%[err, default_path])
+	return defaultConfig
+
+func _merge_config(config: ConfigFile, to_merge: ConfigFile):
+	for section in to_merge.get_sections():
+		for key in to_merge.get_section_keys(section):
+			if config.has_section_key(section, key):
+				continue
+			var val = to_merge.get_value(section, key)
+			config.set_value(section, key, val)
 
 # these are old functions
 # i made them function and left it here for now to minimize changes
