@@ -55,26 +55,11 @@ func get_world_textures() -> Array:
 	return textures
 
 func get_current_world_texture() -> Texture2D:
-	const CATEGORY = DataManager.categories.SETTINGS
-	var current_texture = DataManager.get_data(CATEGORY, "world_texture")
-	if !current_texture:
-		current_texture = "checkerboard.png"
+	var current_texture = DataManager.get_data(DataManager.SETTINGS_FILE_PATH, "world", "world_texture")
 	return load(get_world_textures_path() + current_texture)
 
 func get_world_textures_path() -> String:
 	return "res://assets/images/world/"
-
-func string_to_vector3d(string_vector: String) -> Vector3:
-	var components_str = string_vector.substr(1, string_vector.length() - 2)
-	var components = components_str.split(",")
-
-	# Convert each component from string to float
-	var x = components[0].to_float()
-	var y = components[1].to_float()
-	var z = components[2].to_float()
-
-	# Create the Vector3D object
-	return Vector3(x, y, z)
 
 func string_to_color(string_vector: String) -> Color:
 	var components_str = string_vector.substr(1, string_vector.length() - 2)

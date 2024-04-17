@@ -89,6 +89,5 @@ func _spawn_initial_targets():
 func _update_world_appareance() -> void:
 	var world_material: StandardMaterial3D = preload("res://assets/material_default.tres")
 	world_material.albedo_texture = Global.get_current_world_texture()
-	const CATEGORY = DataManager.categories.SETTINGS
-	$DirectionalLight3D.light_color = DataManager.set_color_if_exists(CATEGORY, \
-		$DirectionalLight3D.light_color, "world_color")
+	var wrapper = DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "world")
+	$DirectionalLight3D.light_color = wrapper.get_data("world_color")

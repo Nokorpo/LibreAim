@@ -11,25 +11,22 @@ const games_sensitivities: Dictionary = {
 @onready var game = $Game
 @onready var sensitivity = $Sensitivity
 
+
+var data_wrapper:DataManager.SectionWrapper:
+	get:
+		return DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "user")
+
 func _ready() -> void:
 	for sens in games_sensitivities:
 		game.add_item(sens)
-	var category = DataManager.categories.SETTINGS
-	if DataManager.get_data(category, "sensitivity"):
-		sensitivity.value = DataManager.get_data(category, "sensitivity")
-	if DataManager.get_data(category, "sensitivity_game"):
-		game.selected = DataManager.get_data(category, "sensitivity_game")
+	sensitivity.value = data_wrapper.get_data("sensitivity")
+	game.selected = data_wrapper.get_data("sensitivity_game")
 
 func _on_sensitivity_change_value(value) -> void:
-	DataManager.save_data("sensitivity_game", game.get_selected_id(), \
-		DataManager.categories.SETTINGS)
-	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())), \
-		DataManager.categories.SETTINGS)
-	DataManager.save_data("sensitivity", float(value), \
-		DataManager.categories.SETTINGS)
+	data_wrapper.set_data("sensitivity_game", game.get_selected_id(), )
+	data_wrapper.set_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())) )
+	data_wrapper.set_data("sensitivity", float(value))
 
 func _on_game_item_selected(index: int) -> void:
-	DataManager.save_data("sensitivity_game", index, \
-		DataManager.categories.SETTINGS)
-	DataManager.save_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)), \
-		DataManager.categories.SETTINGS)
+	data_wrapper.set_data("sensitivity_game", index)
+	data_wrapper.set_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(index)) )

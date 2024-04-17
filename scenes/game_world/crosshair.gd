@@ -1,17 +1,17 @@
 extends Control
 ## Renders the user crosshair
 
-var _color := Color(0, 255, 255, 1)
-var _outline_color := Color(0,0,0)
+var _color :Color
+var _outline_color :Color
 
-var _enable_outline := true
-var _dot_enable := false
+var _enable_outline :bool
+var _dot_enable :bool
 
-var _dot_size: float = 6.0
-var _outline_width: float = 1.0
-var _thickness: float = 2.0
-var _length: float = 12.0
-var _gap: float = 5.0
+var _dot_size: float
+var _outline_width: float
+var _thickness: float
+var _length: float
+var _gap: float
 
 var current_crosshair: Dictionary = {
 	"top": [],
@@ -36,16 +36,16 @@ func _on_options_refresh_crosshair() -> void:
 	queue_redraw()
 
 func _load_save() -> void:
-	var category = DataManager.categories.CROSSHAIR
-	_dot_enable = DataManager.set_parameter_if_exists(category, _dot_enable, "dot")
-	_dot_size = DataManager.set_parameter_if_exists(category, _dot_size, "dot_size")
-	_length = DataManager.set_parameter_if_exists(category, _length, "length")
-	_thickness = DataManager.set_parameter_if_exists(category, _thickness, "thickness")
-	_gap = DataManager.set_parameter_if_exists(category, _gap, "gap")
-	_enable_outline = DataManager.set_parameter_if_exists(category, _enable_outline, "outline_enable")
-	_outline_width = DataManager.set_parameter_if_exists(category, _outline_width, "outline_width")
-	_color = DataManager.set_color_if_exists(category, _color, "color")
-	_outline_color = DataManager.set_color_if_exists(category, _outline_color, "outline_color")
+	var wrapper := DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "crosshair")
+	_dot_enable = wrapper.get_data("dot_enable")
+	_dot_size = wrapper.get_data("dot_size")
+	_length = wrapper.get_data("length")
+	_thickness = wrapper.get_data("thickness")
+	_gap = wrapper.get_data("gap")
+	_enable_outline = wrapper.get_data("enable_outline")
+	_outline_width = wrapper.get_data("outline_width")
+	_color = wrapper.get_data("color")
+	_outline_color = wrapper.get_data("outline_color")
 
 func _load_crosshair() -> void:
 	current_crosshair["dot"] = [
