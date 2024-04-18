@@ -60,16 +60,3 @@ func get_current_world_texture() -> Texture2D:
 
 func get_world_textures_path() -> String:
 	return "res://assets/images/world/"
-
-func string_to_color(string_vector: String) -> Color:
-	var components_str = string_vector.substr(1, string_vector.length() - 2)
-	var components = components_str.split(",")
-
-	# Convert each component from string to float
-	var r = components[0].to_float()
-	var g = components[1].to_float()
-	var b = components[2].to_float()
-	var a = components[3].to_float()
-
-	# Create the Vector3D object
-	return Color(r, g, b, a)
