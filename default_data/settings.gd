@@ -7,27 +7,27 @@ const data :="""
 [user]
 fps_overlay=false
 sensitivity=1.0
-sensitivity_game="Counter Strike 2"
+sensitivity_game=0
 sensitivity_game_value=0.022
 
 [crosshair]
-color=Color(0,255,255,1)
-outline_color=Color(0,0,0,1)
-enable_outline=true
-dot_enable=true
-dot_size=6.0
+color=Color(0, 255, 0, 1)
+outline_color=Color(0, 0, 0, 1)
+enable_outline=false
+dot_enable=false
+dot_size=2.0
 outline_width=1.0
-thickness=2.0
-length=12.0
+thickness=1.0
+length=10.0
 gap=5.0
 
 [world]
 world_texture="checkerboard.png"
-world_color=Color(0.361,0.616,1,1)
-target_color=Color(1,0.749,0,1)
+world_color=Color(0.361, 0.616, 1, 1)
+target_color=Color(1, 0.749, 0, 1)
 
 [video]
-fov=75.0
+fov=80
 window_mode="fullscreen"
 resolution=1.0
 fps_limit=120
