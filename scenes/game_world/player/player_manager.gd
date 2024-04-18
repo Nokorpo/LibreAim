@@ -20,8 +20,7 @@ var current_shoot_cooldown: float
 @onready var bullet_hole = preload("res://scenes/game_world/bullet_hole.tscn")
 
 func _ready() -> void:
-	const CATEGORY := DataManager.categories.SETTINGS
-	camera.fov = DataManager.set_parameter_if_exists(CATEGORY, camera.fov, "camera_fov")
+	camera.fov = DataManager.get_data("settings", "video", "fov")
 	mouse_sensitivity = _get_mouse_sensitivity()
 
 func _input(event: InputEvent) -> void:
@@ -61,11 +60,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func _get_mouse_sensitivity() -> float:
-	const CATEGORY := DataManager.categories.SETTINGS
-	var user_sensitivity: float = 1
-	var conversion_sensitivity: float = 0.022
-	conversion_sensitivity = DataManager.set_parameter_if_exists(CATEGORY, conversion_sensitivity, "sensitivity_game_value")
-	user_sensitivity = DataManager.set_parameter_if_exists(CATEGORY, user_sensitivity, "sensitivity")
+	var user_sensitivity: float = DataManager.get_data("settings", "user", "sensitivity")
+	var conversion_sensitivity: float = DataManager.get_data("settings", "user", "sensitivity_game_value")
 	return user_sensitivity * conversion_sensitivity
 
 func _handle_joypad_rotation(delta: float) -> void:

@@ -2,15 +2,14 @@ extends Node
 
 signal window_mode_updated(window_mode: DisplayServer.WindowMode)
 
+var data_wrapper:DataManager.SectionWrapper:
+	get:
+		return DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "video")
+
 func _ready() -> void:
-	var category = DataManager.categories.SETTINGS
-	if DataManager.get_data(category, "window_mode"):
-		var selected = DataManager.get_data(category, "window_mode")
-		set_window_mode(get_window_mode_from_string(selected))
-	var fps_limit = 120
-	if DataManager.get_data(category, "fps_limit"):
-		fps_limit = int(DataManager.get_data(category, "fps_limit"))
-	set_max_fps(fps_limit)
+	var selected = data_wrapper.get_data("window_mode")
+	set_window_mode(get_window_mode_from_string(selected))
+	set_max_fps( data_wrapper.get_data("fps_limit") )
 
 func _input(event) -> void:
 	if event.is_action_pressed("fullscreen"):
@@ -42,9 +41,9 @@ func set_window_mode(window_mode: DisplayServer.WindowMode) -> void:
 	window_mode_updated.emit(window_mode)
 	DisplayServer.window_set_mode(window_mode)
 	if window_mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-		DataManager.save_data("window_mode", "fullscreen", DataManager.categories.SETTINGS)
+		data_wrapper.set_data("window_mode", "fullscreen")
 	elif window_mode == DisplayServer.WINDOW_MODE_MAXIMIZED:
-		DataManager.save_data("window_mode", "windowed", DataManager.categories.SETTINGS)
+		data_wrapper.set_data("window_mode", "windowed")
 
 func set_max_fps(value) -> void:
 	Engine.set_max_fps(value)

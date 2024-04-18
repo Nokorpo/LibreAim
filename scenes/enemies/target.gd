@@ -45,9 +45,8 @@ func _set_health_slider() -> void:
 		$HealthSlider.enable()
 
 func _set_target_material() -> void:
-	var category = DataManager.categories.SETTINGS
-	if DataManager.get_data(category, "target_color") != null:
-		var material_override = _mesh_instance.get_mesh().get_material()
-		material_override.set_albedo(Global.string_to_color(DataManager.get_data(category, "target_color")))
-		material_override.set_emission(Global.string_to_color(DataManager.get_data(category, "target_color")))
-		_mesh_instance.material_override = material_override
+	var material_override = _mesh_instance.get_mesh().get_material()
+	var col = DataManager.get_data(DataManager.SETTINGS_FILE_PATH, "world", "target_color")
+	material_override.set_albedo(col)
+	material_override.set_emission(col)
+	_mesh_instance.material_override = material_override

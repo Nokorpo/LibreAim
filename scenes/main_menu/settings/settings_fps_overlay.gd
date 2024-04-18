@@ -3,11 +3,12 @@ extends HBoxContainer
 
 @onready var fps_overlay_checkbox = $FPSOverlayCheckBox
 
+var data_wrapper:DataManager.SectionWrapper:
+	get:
+		return DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "user")
+
 func _on_fps_overlay_check_box_toggled(value: bool) -> void:
-	DataManager.save_data("fps_overlay", value, DataManager.categories.SETTINGS)
+	data_wrapper.set_data("fps_overlay", value)
 
 func _ready() -> void:
-	var category = DataManager.categories.SETTINGS
-	
-	if DataManager.get_data(category, "fps_overlay"):
-		fps_overlay_checkbox.button_pressed = DataManager.get_data(category, "fps_overlay")
+	fps_overlay_checkbox.set_pressed_no_signal(data_wrapper.get_data("fps_overlay"))

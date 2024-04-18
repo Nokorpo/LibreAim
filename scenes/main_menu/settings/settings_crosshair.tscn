@@ -101,34 +101,39 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("3_uw2kl")
 
-[node name="Dot" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+[node name="dot_size" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+unique_name_in_owner = true
 layout_mode = 2
 label_text = "Dot"
 max_value = 10.0
 value = 10.0
 
-[node name="Length" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+[node name="length" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+unique_name_in_owner = true
 layout_mode = 2
 label_text = "Length"
 max_value = 50.0
 value = 20.0
 has_checkbox = false
 
-[node name="Thickness" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+[node name="thickness" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+unique_name_in_owner = true
 layout_mode = 2
 label_text = "Thickness"
 max_value = 10.0
 value = 10.0
 has_checkbox = false
 
-[node name="Gap" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+[node name="gap" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+unique_name_in_owner = true
 layout_mode = 2
 label_text = "Gap"
 max_value = 25.0
 value = 25.0
 has_checkbox = false
 
-[node name="Outline" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+[node name="outline_width" parent="CrosshairSettings" instance=ExtResource("4_2iwqj")]
+unique_name_in_owner = true
 layout_mode = 2
 label_text = "Outline"
 max_value = 10.0
@@ -142,7 +147,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Color"
 
-[node name="CrosshairColor" type="ColorPickerButton" parent="CrosshairSettings/Color" groups=["Persist", "PutLabel"]]
+[node name="crosshair_color" type="ColorPickerButton" parent="CrosshairSettings/Color" groups=["Persist", "PutLabel"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 color = Color(0, 1, 1, 1)
@@ -155,7 +161,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Outline color"
 
-[node name="OutlineColor" type="ColorPickerButton" parent="CrosshairSettings/OutlineColor" groups=["Persist", "PutLabel"]]
+[node name="outline_color" type="ColorPickerButton" parent="CrosshairSettings/OutlineColor" groups=["Persist", "PutLabel"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 
@@ -189,15 +196,15 @@ access = 2
 use_native_dialog = true
 
 [connection signal="refresh_crosshair" from="." to="CrosshairSettings/Preview/Crosshair" method="_on_options_refresh_crosshair"]
-[connection signal="change_value" from="CrosshairSettings/Dot" to="." method="_on_dot_change_value"]
-[connection signal="toggle_checkbox" from="CrosshairSettings/Dot" to="." method="_on_dot_toggle_checkbox"]
-[connection signal="change_value" from="CrosshairSettings/Length" to="." method="_on_length_change_value"]
-[connection signal="change_value" from="CrosshairSettings/Thickness" to="." method="_on_thickness_change_value"]
-[connection signal="change_value" from="CrosshairSettings/Gap" to="." method="_on_gap_change_value"]
-[connection signal="change_value" from="CrosshairSettings/Outline" to="." method="_on_outline_change_value"]
-[connection signal="toggle_checkbox" from="CrosshairSettings/Outline" to="." method="_on_outline_toggle_checkbox"]
-[connection signal="color_changed" from="CrosshairSettings/Color/CrosshairColor" to="." method="_on_crosshair_color_color_changed"]
-[connection signal="color_changed" from="CrosshairSettings/OutlineColor/OutlineColor" to="." method="_on_outline_color_color_changed"]
+[connection signal="change_value" from="CrosshairSettings/dot_size" to="." method="_on_dot_change_value"]
+[connection signal="toggle_checkbox" from="CrosshairSettings/dot_size" to="." method="_on_dot_toggle_checkbox"]
+[connection signal="change_value" from="CrosshairSettings/length" to="." method="_on_length_change_value"]
+[connection signal="change_value" from="CrosshairSettings/thickness" to="." method="_on_thickness_change_value"]
+[connection signal="change_value" from="CrosshairSettings/gap" to="." method="_on_gap_change_value"]
+[connection signal="change_value" from="CrosshairSettings/outline_width" to="." method="_on_outline_change_value"]
+[connection signal="toggle_checkbox" from="CrosshairSettings/outline_width" to="." method="_on_outline_toggle_checkbox"]
+[connection signal="color_changed" from="CrosshairSettings/Color/crosshair_color" to="." method="_on_crosshair_color_color_changed"]
+[connection signal="color_changed" from="CrosshairSettings/OutlineColor/outline_color" to="." method="_on_outline_color_color_changed"]
 [connection signal="pressed" from="Export" to="." method="_on_export_pressed"]
 [connection signal="file_selected" from="ExportFileDialog" to="." method="_on_export_file_dialog_file_selected"]
 [connection signal="pressed" from="Import" to="." method="_on_import_pressed"]
