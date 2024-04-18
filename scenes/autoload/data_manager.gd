@@ -89,14 +89,10 @@ func _load_file(file_path: String) -> ConfigFile:
 	return config
 
 func _load_default_file(file_path :String) -> ConfigFile:
-	var default_path := DEFAULT_PATH + file_path + ".gd"
-	if not ResourceLoader.exists(default_path):
-		return null
-	var script := load(default_path) as Script
-	var defaultConfig := ConfigFile.new()
-	var err := defaultConfig.parse(script.data)
-	assert(err == OK, "Error %s parsing default data file: %s"%[err, default_path])
-	return defaultConfig
+	var default_path := DEFAULT_PATH + file_path + ".cfg"
+	var config_file = ConfigFile.new()
+	config_file.load(default_path)
+	return config_file
 
 func _merge_config(config: ConfigFile, to_merge: ConfigFile):
 	for section in to_merge.get_sections():
