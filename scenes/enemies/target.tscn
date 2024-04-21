@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/enemies/target.gd" id="1_nte11"]
 [ext_resource type="Script" path="res://scenes/enemies/health_slider.gd" id="2_usxmj"]
 [ext_resource type="AudioStream" uid="uid://kf70w8cqg0y" path="res://scenes/enemies/hit.ogg" id="3_o7ev4"]
+[ext_resource type="PackedScene" uid="uid://bf8b30xdqlg21" path="res://scenes/enemies/progress_bar.tscn" id="4_5i7pn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_do5mn"]
 height = 1.0
@@ -18,49 +19,44 @@ material = SubResource("StandardMaterial3D_nkxxc")
 height = 1.0
 radial_segments = 32
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18ew3"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
+[sub_resource type="ViewportTexture" id="ViewportTexture_fogxd"]
+viewport_path = NodePath("HealthSlider/HealthSliderViewport")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_4njml"]
-material = SubResource("StandardMaterial3D_18ew3")
-size = Vector2(3, 0.3)
-
-[sub_resource type="Animation" id="Animation_adj6b"]
+[sub_resource type="Animation" id="Animation_ry4bo"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:mesh:material:emission")
+tracks/0/path = NodePath("HealthSliderViewport/ProgressBar:theme_override_styles/fill:bg_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_7m7wm"]
+[sub_resource type="Animation" id="Animation_m1o2j"]
 resource_name = "shot"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:mesh:material:emission")
+tracks/0/path = NodePath("HealthSliderViewport/ProgressBar:theme_override_styles/fill:bg_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 0.294118, 0.360784, 1), Color(1, 0.294118, 0.360784, 1), Color(1, 1, 1, 1)]
+"values": [Color(0.339735, 3.33907e-07, 1.08294e-07, 1), Color(0.341176, 0, 0, 1), Color(1, 0, 0, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqfqo"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7684"]
 _data = {
-"RESET": SubResource("Animation_adj6b"),
-"shot": SubResource("Animation_7m7wm")
+"RESET": SubResource("Animation_ry4bo"),
+"change_color": SubResource("Animation_m1o2j")
 }
 
 [node name="Target" type="CharacterBody3D" groups=["Enemy"]]
@@ -75,19 +71,25 @@ shape = SubResource("CapsuleShape3D_do5mn")
 mesh = SubResource("CapsuleMesh_xrxto")
 skeleton = NodePath("../..")
 
-[node name="HealthSlider" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.7, 0)
-mesh = SubResource("PlaneMesh_4njml")
+[node name="HealthSlider" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2737, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_fogxd")
 script = ExtResource("2_usxmj")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HealthSlider"]
-libraries = {
-"": SubResource("AnimationLibrary_nqfqo")
-}
-autoplay = "RESET"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HealthSlider"]
 stream = ExtResource("3_o7ev4")
 volume_db = -10.0
+
+[node name="HealthSliderViewport" type="SubViewport" parent="HealthSlider"]
+disable_3d = true
+transparent_bg = true
+
+[node name="ProgressBar" parent="HealthSlider/HealthSliderViewport" instance=ExtResource("4_5i7pn")]
+
+[node name="ColorAnimationPlayer" type="AnimationPlayer" parent="HealthSlider"]
+libraries = {
+"": SubResource("AnimationLibrary_r7684")
+}
 
 [connection signal="hitted" from="." to="HealthSlider" method="_on_target_hitted"]
