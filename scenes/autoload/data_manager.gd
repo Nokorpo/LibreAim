@@ -65,8 +65,13 @@ func cancel_pending() -> void:
 
 func _get_config(file_path: String) -> ConfigFile:
 	if not file_data.has(file_path):
-		file_data[file_path] = _load_file(file_path)
+		_load_file(file_path)
 	return file_data[file_path]
+
+func _get_default_config(file_path: String) -> ConfigFile:
+	if not default_file_data.has(file_path):
+		_load_default_file(file_path)
+	return default_file_data[file_path]
 
 func _save_file(file_path:String) -> void:
 	if not file_data.has(file_path):
@@ -78,21 +83,19 @@ func _save_file(file_path:String) -> void:
 	var res := config.save(full_path)
 	assert(res == OK, "Error saving data: %s path: %s"%[res, full_path])
 
-func _load_file(file_path: String) -> ConfigFile:
+func _load_file(file_path: String):
 	var config := ConfigFile.new()
 	config.load(USER_PATH + file_path + "."+FORMAT)
 	
-	var default_config := _load_default_file(file_path)
-	if default_config != null:
-		_merge_config(config, default_config)
+	_merge_config(config, _get_default_config(file_path))
 	
-	return config
+	file_data[file_path] = config
 
-func _load_default_file(file_path :String) -> ConfigFile:
+func _load_default_file(file_path :String):
 	var default_path := DEFAULT_PATH + file_path + ".cfg"
 	var config_file = ConfigFile.new()
 	config_file.load(default_path)
-	return config_file
+	default_file_data[file_path] = config_file
 
 func _merge_config(config: ConfigFile, to_merge: ConfigFile) -> void:
 	for section in to_merge.get_sections():
