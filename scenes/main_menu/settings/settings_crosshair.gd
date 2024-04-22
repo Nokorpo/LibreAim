@@ -11,7 +11,7 @@ signal refresh_crosshair
 func _ready() -> void:
 	file_export.visible = false
 	file_import.visible = false
-	load_saved()
+	_load_saved()
 
 func _on_export_pressed() -> void:
 	file_export.current_dir = "/"
@@ -37,8 +37,8 @@ func _on_import_file_dialog_file_selected(path: String) -> void:
 	var wrapper := DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "crosshair")
 	for key in cfg.get_section_keys(wrapper.section):
 		wrapper.set_data(key, cfg.get_value(wrapper.section, key))
-	load_saved()
-	queue_refresh_crosshair()
+	_load_saved()
+	_queue_refresh_crosshair()
 
 func _on_dot_change_value(value: float) -> void:
 	change_value("dot_size", float(value))
@@ -69,18 +69,18 @@ func _on_outline_color_color_changed(color: Color) -> void:
 
 func change_value(key: String, value) -> void:
 	DataManager.set_data(DataManager.SETTINGS_FILE_PATH, "crosshair", key, value)
-	queue_refresh_crosshair()
+	_queue_refresh_crosshair()
 
-func queue_refresh_crosshair():
+func _queue_refresh_crosshair():
 	# delay changes so we do not spam this event in load_saved()
 	if not get_tree().process_frame.is_connected(emit_signal.bind("refresh_crosshair")):
 		get_tree().process_frame.connect(emit_signal.bind("refresh_crosshair"), CONNECT_ONE_SHOT)
 
-func load_saved() -> void:
+func _load_saved() -> void:
 	crosshair._load_save()
-	const plainValueChanges := ["dot_size", "length", "thickness", "gap", "outline_width"]
-	for param in plainValueChanges:
-		get_node("%"+param).value = crosshair.get("_"+param)
+	const plain_value_changes := ["dot_size", "length", "thickness", "gap", "outline_width"]
+	for param in plain_value_changes:
+		get_node("%" + param).value = crosshair.get("_" + param)
 	%dot_size.checkbox_value = crosshair._dot_enable
 	%outline_width.checkbox_value = crosshair._enable_outline
 	%crosshair_color.color = crosshair._color

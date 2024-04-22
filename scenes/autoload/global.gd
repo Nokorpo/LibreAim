@@ -35,7 +35,7 @@ func load_gamemodes() -> void:
 				gamemodes[id] = this_gamemode
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
+		push_warning("An error occurred when trying to access the path.")
 
 func get_world_textures() -> Array:
 	var textures: Array = []
@@ -49,11 +49,10 @@ func get_world_textures() -> Array:
 			if file_name.get_extension() == "import":
 				var my_file_name = file_name.replace('.import', '') 
 				if my_file_name.get_extension() == "png":
-					#print(PATH + my_file_name)
 					textures.append(my_file_name)
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
+		push_warning("An error occurred when trying to access the path.")
 	return textures
 
 func get_current_world_texture() -> Texture2D:

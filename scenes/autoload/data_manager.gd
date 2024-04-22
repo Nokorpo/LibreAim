@@ -58,17 +58,17 @@ func save_all_data() -> void:
 		_save_file(file_path)
 	pending_file_changes.clear()
 
-func _save_pending():
+func _save_pending() -> void:
 	for file_path in pending_file_changes:
 		_save_file(file_path)
 	pending_file_changes.clear()
 
-func _cancel_pending():
+func _cancel_pending() -> void:
 	for file_path in pending_file_changes:
 		_load_file(file_path)
 	pending_file_changes.clear()
 
-func _save_file(file_path:String):
+func _save_file(file_path:String) -> void:
 	if not file_data.has(file_path):
 		push_error("Data file does not exist: %s"%file_path)
 		return
@@ -94,7 +94,7 @@ func _load_default_file(file_path :String) -> ConfigFile:
 	config_file.load(default_path)
 	return config_file
 
-func _merge_config(config: ConfigFile, to_merge: ConfigFile):
+func _merge_config(config: ConfigFile, to_merge: ConfigFile) -> void:
 	for section in to_merge.get_sections():
 		for key in to_merge.get_section_keys(section):
 			if config.has_section_key(section, key):

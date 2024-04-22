@@ -63,7 +63,6 @@ func _get_accuracy() -> float:
 		return 100
 	if _hitted_shots == 0:
 		return 0
-	print()
 	return (float(_hitted_shots) / (float(_hitted_shots) + float(_missed_shots))) * 100
 
 func _get_random_target_spawn_position() -> Vector3:
