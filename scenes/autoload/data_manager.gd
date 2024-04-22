@@ -34,7 +34,7 @@ func get_data(file_path: String, section: String, key :String, default :Variant 
 	var config := _get_config(file_path)
 	return config.get_value(section, key, default)
 
-func set_data(file_path: String, section: String, key: String, value: Variant):
+func set_data(file_path: String, section: String, key: String, value: Variant) -> void:
 	var config := _get_config(file_path)
 	config.set_value(section, key, value)
 	pending_file_changes[file_path] = true
@@ -95,7 +95,7 @@ func _save_file(file_path:String) -> void:
 	var res := config.save(full_path)
 	assert(res == OK, "Error saving data: %s path: %s"%[res, full_path])
 
-func _load_file(file_path: String):
+func _load_file(file_path: String) -> void:
 	var config := ConfigFile.new()
 	config.load(USER_PATH + file_path + "."+FORMAT)
 	
@@ -103,7 +103,7 @@ func _load_file(file_path: String):
 	
 	file_data[file_path] = config
 
-func _load_default_file(file_path :String):
+func _load_default_file(file_path :String) -> void:
 	var default_path := DEFAULT_PATH + file_path + ".cfg"
 	var config_file = ConfigFile.new()
 	config_file.load(default_path)
@@ -120,7 +120,7 @@ func _merge_config(config: ConfigFile, to_merge: ConfigFile) -> void:
 class SectionWrapper:
 	var file_path:String
 	var section:String
-	func set_data(key: String, value: Variant):
+	func set_data(key: String, value: Variant) -> void:
 		DataManager.set_data(file_path, section, key, value)
 	func get_data(key: String, default: Variant = null) -> Variant:
 		return DataManager.get_data(file_path, section, key, default)
