@@ -9,7 +9,7 @@ const HIGHSCORE_FILE_PATH := "highscores"
 const HIGHSCORE_SECTION := "user"
 const LOAD_ON_READY_PATHS := [SETTINGS_FILE_PATH, HIGHSCORE_FILE_PATH]
 
-var default_data :Dictionary = {}
+var default_file_data :Dictionary = {}
 var file_data: Dictionary = {}
 var pending_file_changes :Dictionary = {}
 
@@ -34,8 +34,8 @@ func set_data(file_path: String, section: String, key: String, value: Variant):
 	var config := _get_config(file_path)
 	config.set_value(section, key, value)
 	pending_file_changes[file_path] = true
-	if auto_apply_changes and not get_tree().process_frame.is_connected(_save_pending):
-		get_tree().process_frame.connect(_save_pending, CONNECT_ONE_SHOT)
+	if auto_apply_changes and not get_tree().process_frame.is_connected(save_pending):
+		get_tree().process_frame.connect(save_pending, CONNECT_ONE_SHOT)
 
 func save_high_score(key: String, value) -> void:
 	if is_high_score(key, value):
@@ -47,26 +47,26 @@ func is_high_score(key: String, value) -> bool:
 func get_high_score(key: String) -> int:
 	return get_data(HIGHSCORE_FILE_PATH, HIGHSCORE_SECTION, key, 0)
 
-func _get_config(file_path: String) -> ConfigFile:
-	if not file_data.has(file_path):
-		file_data[file_path] = _load_file(file_path)
-	return file_data[file_path]
-
 # there's no reason to use this, but it's good to have it for completeness
 func save_all_data() -> void:
 	for file_path in file_data:
 		_save_file(file_path)
 	pending_file_changes.clear()
 
-func _save_pending() -> void:
+func save_pending() -> void:
 	for file_path in pending_file_changes:
 		_save_file(file_path)
 	pending_file_changes.clear()
 
-func _cancel_pending() -> void:
+func cancel_pending() -> void:
 	for file_path in pending_file_changes:
 		_load_file(file_path)
 	pending_file_changes.clear()
+
+func _get_config(file_path: String) -> ConfigFile:
+	if not file_data.has(file_path):
+		file_data[file_path] = _load_file(file_path)
+	return file_data[file_path]
 
 func _save_file(file_path:String) -> void:
 	if not file_data.has(file_path):
