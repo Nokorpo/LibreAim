@@ -1,5 +1,7 @@
 extends Node
 
+const TEXTURES_FOLDER := "world_textures"
+
 var gamemodes : Dictionary
 var current_gamemode : Dictionary
 
@@ -37,27 +39,15 @@ func load_gamemodes() -> void:
 	else:
 		push_warning("An error occurred when trying to access the path.")
 
-func get_world_textures() -> Array:
-	var textures: Array = []
-	var dir = DirAccess.open(get_world_textures_path())
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				pass
-			if file_name.get_extension() == "import":
-				var my_file_name = file_name.replace('.import', '') 
-				if my_file_name.get_extension() == "png":
-					textures.append(my_file_name)
-			file_name = dir.get_next()
-	else:
-		push_warning("An error occurred when trying to access the path.")
-	return textures
+func get_world_textures() -> PackedStringArray:
+	return CustomResourceManager.get_file_list(TEXTURES_FOLDER, "png")
 
 func get_current_world_texture() -> Texture2D:
-	var current_texture = DataManager.get_data(DataManager.SETTINGS_FILE_PATH, "world", "world_texture")
-	return load(get_world_textures_path() + current_texture)
-
-func get_world_textures_path() -> String:
-	return "res://assets/images/world/"
+	var wrapper := DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "world")
+	var current_texture = wrapper.get_data("world_texture")
+	if not CustomResourceManager.file_exists(current_texture):
+		push_warning("Texture not found: %s"%current_texture)
+		current_texture = wrapper.get_default_data("world_texture")
+		wrapper.set_data("world_texture", current_texture)
+	var image := CustomResourceManager.get_image(current_texture)
+	return image

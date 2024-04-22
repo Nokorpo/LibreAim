@@ -2,7 +2,7 @@ extends Node
 
 const USER_PATH: String = "user://data/"
 const FORMAT: String = "cfg"
-const DEFAULT_PATH :String = "res://default_data/"
+const DEFAULT_PATH :String = "res://default/data/"
 
 const SETTINGS_FILE_PATH := "settings"
 const HIGHSCORE_FILE_PATH := "highscores"
