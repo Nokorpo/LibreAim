@@ -46,9 +46,11 @@ func get_world_textures() -> Array:
 		while file_name != "":
 			if dir.current_is_dir():
 				pass
-			elif file_name.get_extension() == "png":
-				#print(PATH + file_name)
-				textures.append(file_name)
+			if file_name.get_extension() == "import":
+				var my_file_name = file_name.replace('.import', '') 
+				if my_file_name.get_extension() == "png":
+					#print(PATH + my_file_name)
+					textures.append(my_file_name)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
