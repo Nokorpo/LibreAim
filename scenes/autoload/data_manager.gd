@@ -26,6 +26,10 @@ func get_wrapper(file_path: String, section: String) -> SectionWrapper:
 	wrapper.section = section
 	return wrapper
 
+func has_data(file_path: String, section: String, key :String) -> bool:
+	var config := _get_config(file_path)
+	return config.has_section_key(section, key)
+
 func get_data(file_path: String, section: String, key :String, default :Variant = null) -> Variant:
 	var config := _get_config(file_path)
 	return config.get_value(section, key, default)
@@ -36,6 +40,14 @@ func set_data(file_path: String, section: String, key: String, value: Variant):
 	pending_file_changes[file_path] = true
 	if auto_apply_changes and not get_tree().process_frame.is_connected(save_pending):
 		get_tree().process_frame.connect(save_pending, CONNECT_ONE_SHOT)
+
+func has_default_data(file_path: String, section: String, key :String) -> bool:
+	var config := _get_default_config(file_path)
+	return config.has_section_key(section, key)
+
+func get_default_data(file_path: String, section: String, key :String, default :Variant = null) -> Variant:
+	var config := _get_default_config(file_path)
+	return config.get_value(section, key, default)
 
 func save_high_score(key: String, value) -> void:
 	if is_high_score(key, value):
@@ -112,5 +124,11 @@ class SectionWrapper:
 		DataManager.set_data(file_path, section, key, value)
 	func get_data(key: String, default: Variant = null) -> Variant:
 		return DataManager.get_data(file_path, section, key, default)
+	func has_data(key: String) -> bool:
+		return DataManager.has_data(file_path, section, key)
+	func get_default_data(key: String, default: Variant = null) -> Variant:
+		return DataManager.get_default_data(file_path, section, key, default)
+	func has_default_data(key: String) -> bool:
+		return DataManager.has_default_data(file_path, section, key)
 	func get_keys() -> PackedStringArray:
 		return DataManager.get_config(file_path).get_section_keys(section)
