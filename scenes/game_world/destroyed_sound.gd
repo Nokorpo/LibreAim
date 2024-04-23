@@ -16,6 +16,5 @@ func update_hit_sound() -> void:
 	if volume != null:
 		var this_bus := AudioServer.get_bus_index("Master")
 		AudioServer.set_bus_volume_db(this_bus, lerpf(-20, 0, volume))
-		AudioServer.set_bus_mute(this_bus, volume == 0)
-	var selected = data_wrapper.get_data("hit_sound")
-	stream = load(Audio.hit_sounds[selected])
+		AudioServer.set_bus_mute(this_bus, volume == 0)	
+	stream = Global.get_current_hit_sound()

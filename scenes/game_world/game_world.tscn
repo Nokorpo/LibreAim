@@ -11,7 +11,7 @@
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="7_gwa7l"]
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="8_6pksd"]
 [ext_resource type="Script" path="res://scenes/game_world/end_game_canvas.gd" id="12_w3gpo"]
-[ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://scenes/enemies/beep.ogg" id="12_xv1t2"]
+[ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://default/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
