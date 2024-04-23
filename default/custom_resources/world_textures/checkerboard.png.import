@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://driiesvyeknwv"
-path.s3tc="res://.godot/imported/flat.png-0407ed08a51199b32bce791b0f575980.s3tc.ctex"
+uid="uid://dpwdl2106eu1o"
+path.s3tc="res://.godot/imported/checkerboard.png-13d45234fe6a1755f92cd17a07fa8f3b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/images/world/flat.png"
-dest_files=["res://.godot/imported/flat.png-0407ed08a51199b32bce791b0f575980.s3tc.ctex"]
+source_file="res://default/custom_resources/world_textures/checkerboard.png"
+dest_files=["res://.godot/imported/checkerboard.png-13d45234fe6a1755f92cd17a07fa8f3b.s3tc.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_video.gd" id="1_wsyhu"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_world_appareance.gd" id="2_tonjr"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="3_ct4oh"]
-[ext_resource type="Texture2D" uid="uid://dpwdl2106eu1o" path="res://assets/images/world/checkerboard.png" id="4_cyyde"]
+[ext_resource type="Texture2D" uid="uid://dpwdl2106eu1o" path="res://default/custom_resources/world_textures/checkerboard.png" id="4_rr6tq"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_fps_limit.gd" id="5_awey5"]
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_fps_overlay.gd" id="6_p4dxm"]
 [ext_resource type="Texture2D" uid="uid://dodywvhrikacr" path="res://assets/images/icons/checkbox_unchecked.svg" id="7_s4g6u"]
@@ -160,7 +160,7 @@ expand_icon = true
 self_modulate = Color(0.360784, 0.615686, 1, 1)
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-texture = ExtResource("4_cyyde")
+texture = ExtResource("4_rr6tq")
 stretch_mode = 1
 
 [node name="TargetPreview" type="ColorRect" parent="WorldAppareance/Preview"]

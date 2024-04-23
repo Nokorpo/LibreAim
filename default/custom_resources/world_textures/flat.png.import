@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bospw24wmdnxh"
-path.s3tc="res://.godot/imported/squares.png-ddf824e2b5d0ddc59d502ad221ca8676.s3tc.ctex"
+uid="uid://driiesvyeknwv"
+path.s3tc="res://.godot/imported/flat.png-187d379e2361b719ea04ed5366fdc786.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/images/world/squares.png"
-dest_files=["res://.godot/imported/squares.png-ddf824e2b5d0ddc59d502ad221ca8676.s3tc.ctex"]
+source_file="res://default/custom_resources/world_textures/flat.png"
+dest_files=["res://.godot/imported/flat.png-187d379e2361b719ea04ed5366fdc786.s3tc.ctex"]
 
 [params]
 
