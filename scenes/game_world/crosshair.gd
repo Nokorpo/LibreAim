@@ -1,18 +1,6 @@
 extends Control
 ## Renders the user crosshair
 
-var _color :Color
-var _outline_color :Color
-
-var _enable_outline :bool
-var _dot_enable :bool
-
-var _dot_size: float
-var _outline_width: float
-var _thickness: float
-var _length: float
-var _gap: float
-
 var current_crosshair: Dictionary = {
 	"top": [],
 	"right": [],
@@ -20,6 +8,18 @@ var current_crosshair: Dictionary = {
 	"left": [],
 	"dot": []
 }
+
+var _color: Color
+var _outline_color: Color
+
+var _enable_outline: bool
+var _dot_enable: bool
+
+var _dot_size: float
+var _outline_width: float
+var _thickness: float
+var _length: float
+var _gap: float
 
 func _draw() -> void:
 	_load_save()
