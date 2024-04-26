@@ -99,8 +99,8 @@ text = "Camera FOV"
 
 [node name="FovSlider" type="HSlider" parent="."]
 layout_mode = 2
-min_value = 45.0
-max_value = 130.0
+min_value = 60.0
+max_value = 140.0
 value = 80.0
 
 [node name="WindowModeLabel" type="Label" parent="."]
