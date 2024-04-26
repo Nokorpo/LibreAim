@@ -70,7 +70,7 @@ vertical_alignment = 1
 
 [node name="GameLabel" type="Label" parent="."]
 layout_mode = 2
-text = "Resolution"
+text = "Game"
 
 [node name="Game" type="OptionButton" parent="."]
 layout_mode = 2
