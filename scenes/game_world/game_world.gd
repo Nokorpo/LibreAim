@@ -38,6 +38,7 @@ func _on_timer_timeout() -> void:
 	$CanvasLayer/EndGameCanvas.visible = true
 
 func _on_target_destroyed() -> void:
+	_gameplay_ui.target_destroyed(_get_score(), _get_accuracy())
 	_play_destroyed_sound()
 	_targets_destroyed += 1
 	_spawn_target()
