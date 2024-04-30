@@ -3,9 +3,6 @@ extends CharacterBody3D
 signal destroyed ## When player destroys the target
 signal hitted ## When player when player hits the target
 
-@onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
-
-var _current_velocity: Vector3 = Vector3.ZERO
 var max_health: float
 var health: float = 0.0:
 	set(value):
@@ -15,6 +12,10 @@ var health: float = 0.0:
 		if health < 0.0:
 			emit_signal("destroyed")
 			queue_free()
+
+var _current_velocity: Vector3 = Vector3.ZERO
+
+@onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
 
 func _physics_process(delta: float) -> void:
 	if _current_velocity != Vector3.ZERO:
