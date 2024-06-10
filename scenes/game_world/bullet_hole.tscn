@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://scenes/game_world/bullet_hole.gd" id="1_a25ui"]
 [ext_resource type="Texture2D" uid="uid://cqospwtedgwrg" path="res://assets/images/hole.png" id="2_bi3vi"]
 
-[node name="BulletHole" type="Decal"]
-size = Vector3(0.2, 0.2, 0.2)
-texture_albedo = ExtResource("2_bi3vi")
+[node name="BulletHole" type="Sprite3D"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+modulate = Color(1, 1, 1, 0.784314)
+texture = ExtResource("2_bi3vi")
 script = ExtResource("1_a25ui")
