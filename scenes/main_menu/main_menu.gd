@@ -19,7 +19,7 @@ func _on_settings_pressed() -> void:
 	_right_panel.get_node("Settings").visible = true
 
 func _on_source_code_pressed() -> void:
-	OS.shell_open("https://github.com/antimundo/libre-aim") 
+	OS.shell_open("https://github.com/Nokorpo/LibreAim") 
 
 func _on_user_folder_pressed():
 	OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://"))
