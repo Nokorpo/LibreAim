@@ -22,6 +22,8 @@ func load_gamemodes() -> void:
 		this_gamemode.description = config.get_value("metadata", "description")
 		this_gamemode.time = config.get_value("settings", "time")
 		this_gamemode.player_movement = config.get_value("settings", "player_movement")
+		this_gamemode.score_per_hit = config.get_value("score", "score_per_hit")
+		this_gamemode.acuraccy_multiplier = config.get_value("score", "acuraccy_multiplier")
 		this_gamemode.movement = config.get_value("target", "movement")
 		this_gamemode.health = config.get_value("target", "health")
 		this_gamemode.size = config.get_value("target", "size")

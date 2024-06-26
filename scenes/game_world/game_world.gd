@@ -57,7 +57,13 @@ func _play_destroyed_sound():
 	destroyed_sound.play()
 
 func _get_score() -> int:
-	return _hitted_shots - _missed_shots
+	if Global.current_gamemode:
+		var score = _hitted_shots * Global.current_gamemode.score_per_hit
+		if Global.current_gamemode.acuraccy_multiplier:
+			score = score * (_get_accuracy() / 100)
+		return score
+	else:
+		return _hitted_shots
 
 func _get_accuracy() -> float:
 	if _missed_shots == 0:
