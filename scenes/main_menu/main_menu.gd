@@ -21,7 +21,11 @@ func _on_settings_pressed() -> void:
 func _on_source_code_pressed() -> void:
 	OS.shell_open("https://github.com/antimundo/libre-aim") 
 
+func _on_user_folder_pressed():
+	OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://"))
+
 ## Hide all right panel options
 func _hide_options() -> void:
 	for child in _right_panel.get_children():
 		child.visible = false 
+

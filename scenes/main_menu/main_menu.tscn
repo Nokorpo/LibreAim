@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=27 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_2h7x4"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://tkfbioukscgd" path="res://assets/images/icons/git.svg" id="4_nuriq"]
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="5_nidys"]
 [ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings/settings.tscn" id="8_1n7gf"]
+[ext_resource type="Texture2D" uid="uid://crtp1xg7nyhki" path="res://assets/images/icons/folder.svg" id="8_cvdmj"]
 [ext_resource type="PackedScene" uid="uid://bx5lej1m0kvgb" path="res://scenes/main_menu/select_gamemode.tscn" id="9_lii3m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqr84"]
@@ -141,6 +142,13 @@ text = "Settings"
 icon = ExtResource("3_8dqwy")
 alignment = 0
 
+[node name="UserFolder" type="Button" parent="LeftControl/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "User folder"
+icon = ExtResource("8_cvdmj")
+alignment = 0
+
 [node name="SourceCode" type="Button" parent="LeftControl/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -170,5 +178,6 @@ layout_mode = 1
 
 [connection signal="pressed" from="LeftControl/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="LeftControl/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="LeftControl/VBoxContainer/UserFolder" to="." method="_on_user_folder_pressed"]
 [connection signal="pressed" from="LeftControl/VBoxContainer/SourceCode" to="." method="_on_source_code_pressed"]
 [connection signal="pressed" from="LeftControl/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
