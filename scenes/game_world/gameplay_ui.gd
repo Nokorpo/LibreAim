@@ -22,4 +22,5 @@ func update_timer_ui(time_left: float) -> void:
 func _on_player_shoot() -> void:
 	if _timer.is_stopped():
 		_timer.start()
-		$PressAny.queue_free()
+		if get_node_or_null("PressAny") != null:
+			get_node("PressAny").queue_free()
