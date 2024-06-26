@@ -94,7 +94,8 @@ func _shoot(damage: float) -> void:
 			
 			target.add_child(bullet_hole_instance)
 			bullet_hole_instance.global_transform.origin = raycast.get_collision_point() + raycast.get_collision_normal() * 0.001
-			bullet_hole_instance.look_at(bullet_hole_instance.global_position + raycast.get_collision_normal(), Vector3.FORWARD )
+			if abs(raycast.get_collision_normal().dot(Vector3.FORWARD)) != 1:
+				bullet_hole_instance.look_at(bullet_hole_instance.global_position + raycast.get_collision_normal(), Vector3.FORWARD )
 			
 			if target.is_in_group("Enemy"):
 				target.health -= damage
