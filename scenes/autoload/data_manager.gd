@@ -9,6 +9,8 @@ const HIGHSCORE_FILE_PATH := "highscores"
 const HIGHSCORE_SECTION := "user"
 const LOAD_ON_READY_PATHS := [SETTINGS_FILE_PATH, HIGHSCORE_FILE_PATH]
 
+const PROGRESS_PATH := "progress/"
+
 var default_file_data :Dictionary = {}
 var file_data: Dictionary = {}
 var pending_file_changes :Dictionary = {}
@@ -52,6 +54,10 @@ func get_default_data(file_path: String, section: String, key :String, default :
 func save_high_score(key: String, value) -> void:
 	if is_high_score(key, value):
 		set_data(HIGHSCORE_FILE_PATH, HIGHSCORE_SECTION, key, value)
+	var time_dict: Dictionary = Time.get_datetime_dict_from_system()
+	var time_string: String = "%s_%s_%s" % \
+		[time_dict.hour, time_dict.minute, time_dict.second] 
+	set_data(PROGRESS_PATH + Global.current_gamemode.id, Time.get_date_string_from_system(), time_string, value)
 
 func is_high_score(key: String, value) -> bool:
 	return value > get_high_score(key)
