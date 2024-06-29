@@ -34,6 +34,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 57
 text = "Select a level"
 
+[node name="ScrollContainer" type="ScrollContainer" parent="ListGamemodes/Gamemodes"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gamemodes" type="VBoxContainer" parent="ListGamemodes/Gamemodes/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="VSeparator" type="VSeparator" parent="."]
 custom_minimum_size = Vector2(0, 750)
 layout_mode = 2

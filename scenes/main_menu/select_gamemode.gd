@@ -10,7 +10,7 @@ func _on_play_pressed() -> void:
 
 ## Adds the gamemodes button list
 func _add_gamemode_buttons() -> void:
-	var gamemode_list := $ListGamemodes/Gamemodes
+	var gamemode_list := $ListGamemodes/Gamemodes/ScrollContainer/Gamemodes
 	for gamemode in Global.gamemodes:
 		var button := Button.new()
 		button.text = Global.gamemodes[gamemode].title
