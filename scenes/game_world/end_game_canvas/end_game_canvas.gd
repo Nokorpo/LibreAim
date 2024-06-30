@@ -8,7 +8,14 @@ func _ready():
 
 func set_score(score: int, high_score: int, acuraccy: int) -> void:
 	$MarginContainer/VBoxContainer/Replay.grab_focus()
-	$MarginContainer/VBoxContainer/Container/NewHighScore.visible = score > high_score
+	if score > high_score:
+		$MarginContainer/VBoxContainer/Container/NewHighScore.visible = true
+		$MarginContainer/VBoxContainer/Container/CurrentHighScore.visible = false
+	else:
+		$MarginContainer/VBoxContainer/Container/NewHighScore.visible = false
+		$MarginContainer/VBoxContainer/Container/CurrentHighScore.visible = true
+		$MarginContainer/VBoxContainer/Container/CurrentHighScore/Label.text = "CURRENT HIGH SCORE: " + str(high_score)
+		
 	$MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score/Value.text = str(score)
 	$MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy/Value.text = str(acuraccy) + "%"
 	$ProgressChart.initialize()

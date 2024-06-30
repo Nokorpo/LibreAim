@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpoik4f7kx6aj"]
+[gd_scene load_steps=12 format=3 uid="uid://cpoik4f7kx6aj"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_412ve"]
 [ext_resource type="Script" path="res://scenes/game_world/end_game_canvas/end_game_canvas.gd" id="2_yb1ar"]
@@ -10,6 +10,13 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvp45"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88eqq"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocgsg"]
 bg_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
@@ -85,6 +92,21 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 theme_override_font_sizes/font_size = 38
 text = "NEW HIGH SCORE"
+horizontal_alignment = 1
+
+[node name="CurrentHighScore" type="PanelContainer" parent="MarginContainer/VBoxContainer/Container"]
+visible = false
+layout_mode = 2
+offset_right = 560.0
+offset_bottom = 50.0
+pivot_offset = Vector2(280, 25)
+theme_override_styles/panel = SubResource("StyleBoxFlat_88eqq")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Container/CurrentHighScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
+theme_override_font_sizes/font_size = 32
+text = "CURRENT HIGH SCORE: 0"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
