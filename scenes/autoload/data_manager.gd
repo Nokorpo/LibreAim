@@ -1,7 +1,7 @@
 extends Node
 
 const USER_PATH: String = "user://data/"
-const FORMAT: String = "cfg"
+const FORMAT: String = ".cfg"
 const DEFAULT_PATH :String = "res://default/data/"
 
 const SETTINGS_FILE_PATH := "settings"
@@ -20,7 +20,7 @@ var auto_apply_changes := true
 
 func _ready() -> void:
 	for file_path in LOAD_ON_READY_PATHS:
-		_get_config(file_path)
+		get_config(file_path)
 
 func get_wrapper(file_path: String, section: String) -> SectionWrapper:
 	var wrapper := SectionWrapper.new()
@@ -29,15 +29,15 @@ func get_wrapper(file_path: String, section: String) -> SectionWrapper:
 	return wrapper
 
 func has_data(file_path: String, section: String, key :String) -> bool:
-	var config := _get_config(file_path)
+	var config := get_config(file_path)
 	return config.has_section_key(section, key)
 
 func get_data(file_path: String, section: String, key :String, default :Variant = null) -> Variant:
-	var config := _get_config(file_path)
+	var config := get_config(file_path)
 	return config.get_value(section, key, default)
 
 func set_data(file_path: String, section: String, key: String, value: Variant) -> void:
-	var config := _get_config(file_path)
+	var config := get_config(file_path)
 	config.set_value(section, key, value)
 	pending_file_changes[file_path] = true
 	if auto_apply_changes and not get_tree().process_frame.is_connected(save_pending):
@@ -81,7 +81,7 @@ func cancel_pending() -> void:
 		_load_file(file_path)
 	pending_file_changes.clear()
 
-func _get_config(file_path: String) -> ConfigFile:
+func get_config(file_path: String) -> ConfigFile:
 	if not file_data.has(file_path):
 		_load_file(file_path)
 	return file_data[file_path]
@@ -95,22 +95,22 @@ func _save_file(file_path:String) -> void:
 	if not file_data.has(file_path):
 		push_error("Data file does not exist: %s"%file_path)
 		return
-	var config := _get_config(file_path)
-	var full_path := USER_PATH + file_path + "."+FORMAT
+	var config := get_config(file_path)
+	var full_path := USER_PATH + file_path + FORMAT
 	DirAccess.make_dir_recursive_absolute(full_path.get_base_dir())
 	var res := config.save(full_path)
 	assert(res == OK, "Error saving data: %s path: %s"%[res, full_path])
 
 func _load_file(file_path: String) -> void:
 	var config := ConfigFile.new()
-	config.load(USER_PATH + file_path + "."+FORMAT)
+	config.load(USER_PATH + file_path + FORMAT)
 	
 	_merge_config(config, _get_default_config(file_path))
 	
 	file_data[file_path] = config
 
 func _load_default_file(file_path :String) -> void:
-	var default_path := DEFAULT_PATH + file_path + ".cfg"
+	var default_path := DEFAULT_PATH + file_path + FORMAT
 	var config_file = ConfigFile.new()
 	config_file.load(default_path)
 	default_file_data[file_path] = config_file

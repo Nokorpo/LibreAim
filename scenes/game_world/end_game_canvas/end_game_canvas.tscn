@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpoik4f7kx6aj"]
+[gd_scene load_steps=11 format=3 uid="uid://cpoik4f7kx6aj"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_412ve"]
 [ext_resource type="Script" path="res://scenes/game_world/end_game_canvas/end_game_canvas.gd" id="2_yb1ar"]
@@ -6,9 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://dd5ad41ec0su" path="res://assets/images/gamemodes/missing.svg" id="3_co2ru"]
 [ext_resource type="Texture2D" uid="uid://bpmyh0dukwim3" path="res://scenes/game_world/end_game_canvas/high_score_panel.svg" id="4_iveiv"]
 [ext_resource type="Texture2D" uid="uid://bhbhhys4d8rhp" path="res://assets/images/icons/home.svg" id="4_orngi"]
+[ext_resource type="Script" path="res://scenes/game_world/end_game_canvas/progress_chart.gd" id="7_68ev1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvp45"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocgsg"]
+bg_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="Gradient" id="Gradient_nnx5e"]
+colors = PackedColorArray(0.160784, 0.160784, 0.160784, 1, 1, 0.709804, 0.27451, 1)
 
 [node name="EndGameCanvas" type="Panel"]
 anchors_preset = 15
@@ -136,6 +147,36 @@ mouse_default_cursor_shape = 2
 text = "Back to main menu"
 icon = ExtResource("4_orngi")
 alignment = 0
+
+[node name="ProgressChart" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 268.0
+offset_right = 1758.0
+offset_bottom = 918.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ocgsg")
+script = ExtResource("7_68ev1")
+
+[node name="Label" type="Label" parent="ProgressChart"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "SCORE LAST GAMES"
+horizontal_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="ProgressChart"]
+position = Vector2(50, 550)
+points = PackedVector2Array(0, 0, 70, 0, 140, 0, 210, 0, 280, 0, 350, 0, 420, 0, 490, 0, 560, 0, 630, 0, 700, 0)
+width = 8.0
+default_color = Color(1, 0.709804, 0.27451, 1)
+gradient = SubResource("Gradient_nnx5e")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

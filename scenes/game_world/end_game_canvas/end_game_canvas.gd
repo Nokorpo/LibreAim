@@ -11,6 +11,7 @@ func set_score(score: int, high_score: int, acuraccy: int) -> void:
 	$MarginContainer/VBoxContainer/Container/NewHighScore.visible = score > high_score
 	$MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score/Value.text = str(score)
 	$MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy/Value.text = str(acuraccy) + "%"
+	$ProgressChart.initialize()
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
