@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=30 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
 [ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/material_default.tres" id="2_ldkna"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scenes/game_world/pause.gd" id="7_ffgmh"]
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="7_gwa7l"]
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="8_6pksd"]
-[ext_resource type="Script" path="res://scenes/game_world/end_game_canvas.gd" id="12_w3gpo"]
+[ext_resource type="PackedScene" uid="uid://cpoik4f7kx6aj" path="res://scenes/game_world/end_game_canvas/end_game_canvas.tscn" id="11_hrjw4"]
 [ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://default/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
 
@@ -147,9 +147,6 @@ _data = {
 "RESET": SubResource("Animation_ybjr1"),
 "idle": SubResource("Animation_8c12g")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecmy3"]
-bg_color = Color(0, 0, 0, 0.588235)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_4pv4x")
@@ -459,75 +456,8 @@ text = "Menu"
 icon = ExtResource("8_6pksd")
 alignment = 0
 
-[node name="EndGameCanvas" type="Control" parent="CanvasLayer"]
+[node name="EndGameCanvas" parent="CanvasLayer" instance=ExtResource("11_hrjw4")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7_gwa7l")
-script = ExtResource("12_w3gpo")
-
-[node name="Panel" type="Panel" parent="CanvasLayer/EndGameCanvas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ecmy3")
-
-[node name="Label" type="Label" parent="CanvasLayer/EndGameCanvas"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.5
-offset_top = -209.0
-offset_right = 120.5
-offset_bottom = -151.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 42
-text = "GAME OVER"
-
-[node name="Score" type="Label" parent="CanvasLayer/EndGameCanvas"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -68.0
-offset_right = 121.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 42
-text = "Score: 0"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/EndGameCanvas"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -227.5
-offset_top = 57.0
-offset_right = 227.5
-offset_bottom = 160.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_default_cursor_shape = 2
-text = "Back to main menu"
-icon = ExtResource("7_7rabg")
 
 [node name="DestroyedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_xv1t2")
@@ -537,4 +467,3 @@ script = ExtResource("13_mss18")
 [connection signal="shooted" from="Player" to="CanvasLayer/GameplayUI" method="_on_player_shoot"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Resume" to="CanvasLayer/PauseManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Menu" to="CanvasLayer/PauseManager" method="_on_menu_pressed"]
-[connection signal="pressed" from="CanvasLayer/EndGameCanvas/Button" to="CanvasLayer/EndGameCanvas" method="_on_button_pressed"]

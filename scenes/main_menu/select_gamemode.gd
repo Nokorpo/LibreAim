@@ -14,7 +14,7 @@ func _add_gamemode_buttons() -> void:
 	for gamemode in Global.gamemodes:
 		var button := Button.new()
 		button.text = Global.gamemodes[gamemode].title
-		button.icon = _get_gamemode_thumbnail(gamemode)
+		button.icon = Global.get_gamemode_thumbnail(gamemode)
 		button.set_expand_icon(true)
 		button.name = gamemode
 		button.set_text_alignment(HORIZONTAL_ALIGNMENT_LEFT)
@@ -29,7 +29,7 @@ func _select_gamemode(type: String) -> void:
 	_set_current_gamemode_description(type)
 	var thumbnail: TextureRect = $CurrentGamemode/VBoxContainer/Panel/Thumbnail
 	thumbnail.texture \
-		= _get_gamemode_thumbnail(type)
+		= Global.get_gamemode_thumbnail(type)
 
 ## Sets the gamemode title
 func _set_current_gamemode_title(type: String) -> void:
@@ -43,13 +43,6 @@ func _set_current_gamemode_description(type: String) -> void:
 		% [str(Global.gamemodes[type].description),\
 		Global.gamemodes[type].time, \
 		DataManager.get_high_score(Global.gamemodes[type].id)]
-
-## Returns the gamemode thumbnail
-func _get_gamemode_thumbnail(type: String) -> CompressedTexture2D:
-	var texture_path = "res://assets/images/gamemodes/%s.svg" % type
-	if ResourceLoader.exists(texture_path):
-		return load(texture_path)
-	return load("res://assets/images/gamemodes/missing.svg")
 
 ## Loads the gamemode
 func _start_gamemode() -> void:

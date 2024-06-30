@@ -37,6 +37,13 @@ func get_world_textures() -> PackedStringArray:
 func get_gamemodes() -> PackedStringArray:
 	return CustomResourceManager.get_file_list(GAMEMODES_FOLDER, "cfg")
 
+## Returns the gamemode thumbnail
+func get_gamemode_thumbnail(id: String) -> CompressedTexture2D:
+	var texture_path = "res://assets/images/gamemodes/%s.svg" % id
+	if ResourceLoader.exists(texture_path):
+		return load(texture_path)
+	return load("res://assets/images/gamemodes/missing.svg")
+
 func get_destroy_sounds() -> PackedStringArray:
 	return CustomResourceManager.get_file_list(DESTROY_SOUNDS_FOLDER, "ogg")
 

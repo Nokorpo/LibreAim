@@ -1,0 +1,141 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpoik4f7kx6aj"]
+
+[ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_412ve"]
+[ext_resource type="Script" path="res://scenes/game_world/end_game_canvas/end_game_canvas.gd" id="2_yb1ar"]
+[ext_resource type="Texture2D" uid="uid://c67itufrdktq0" path="res://assets/images/icons/replay.svg" id="3_3y3at"]
+[ext_resource type="Texture2D" uid="uid://dd5ad41ec0su" path="res://assets/images/gamemodes/missing.svg" id="3_co2ru"]
+[ext_resource type="Texture2D" uid="uid://bpmyh0dukwim3" path="res://scenes/game_world/end_game_canvas/high_score_panel.svg" id="4_iveiv"]
+[ext_resource type="Texture2D" uid="uid://bhbhhys4d8rhp" path="res://assets/images/icons/home.svg" id="4_orngi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvp45"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[node name="EndGameCanvas" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_412ve")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvp45")
+script = ExtResource("2_yb1ar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 960.0
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Gamemode" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.270588, 0.352941, 0.392157, 1)
+theme_override_font_sizes/font_size = 36
+text = "GAMEMODE"
+horizontal_alignment = 1
+
+[node name="GamemodeIcon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+texture = ExtResource("3_co2ru")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Margin2" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Container" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 88.08)
+layout_mode = 2
+
+[node name="NewHighScore" type="TextureRect" parent="MarginContainer/VBoxContainer/Container"]
+layout_mode = 2
+offset_right = 560.0
+offset_bottom = 50.0
+pivot_offset = Vector2(280, 25)
+texture = ExtResource("4_iveiv")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Container/NewHighScore"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 38
+text = "NEW HIGH SCORE"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
+theme_override_font_sizes/font_size = 36
+text = "SCORE"
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.709804, 0.27451, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+vertical_alignment = 2
+
+[node name="Accuracy" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
+theme_override_font_sizes/font_size = 36
+text = "ACCURACY"
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
+theme_override_font_sizes/font_size = 36
+text = "100%"
+vertical_alignment = 2
+
+[node name="Margin" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Replay" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Replay"
+icon = ExtResource("3_3y3at")
+alignment = 0
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Back to main menu"
+icon = ExtResource("4_orngi")
+alignment = 0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -33,7 +33,7 @@ func _on_timer_timeout() -> void:
 	DataManager.save_high_score(Global.current_gamemode.id, _targets_destroyed)
 	$Player.queue_free()
 	$CanvasLayer/PauseManager.queue_free()
-	$CanvasLayer/EndGameCanvas.set_score(_get_score(), high_score, _missed_shots)
+	$CanvasLayer/EndGameCanvas.set_score(_get_score(), high_score, _get_accuracy())
 	$CanvasLayer/GameplayUI.visible = false
 	$CanvasLayer/EndGameCanvas.visible = true
 
