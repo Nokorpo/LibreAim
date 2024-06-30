@@ -30,7 +30,7 @@ func _on_timer_timeout() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_timer.stop()
 	var high_score := DataManager.get_high_score(Global.current_gamemode.id)
-	DataManager.save_high_score(Global.current_gamemode.id, _targets_destroyed)
+	DataManager.save_high_score(Global.current_gamemode.id, _get_score())
 	$Player.queue_free()
 	$CanvasLayer/PauseManager.queue_free()
 	$CanvasLayer/EndGameCanvas.set_score(_get_score(), high_score, _get_accuracy())
