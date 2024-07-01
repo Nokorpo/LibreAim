@@ -1,14 +1,18 @@
 extends Panel
 
-func initialize():
+func initialize() -> void:
 	var last_games := _get_last_games()
+	
 	var max_value = 0
 	var min_value = 999999999999
+	
 	for key in last_games:
 		if key > max_value:
 			max_value = key
-		elif key < min_value:
+		if key < min_value:
 			min_value = key
+	if max_value == min_value:
+		min_value -= 1
 	
 	var i := 0
 	for key in last_games:

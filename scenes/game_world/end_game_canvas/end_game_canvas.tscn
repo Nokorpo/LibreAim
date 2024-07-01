@@ -172,10 +172,10 @@ alignment = 0
 
 [node name="ProgressChart" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 958.0
-offset_top = 268.0
-offset_right = 1758.0
-offset_bottom = 918.0
+offset_left = 920.0
+offset_top = 215.0
+offset_right = 1720.0
+offset_bottom = 865.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ocgsg")
 script = ExtResource("7_68ev1")
 
