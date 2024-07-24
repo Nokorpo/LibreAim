@@ -12,6 +12,8 @@ var health: float = 0.0:
 		if health < 0.0:
 			emit_signal("destroyed")
 			queue_free()
+var min_position: Vector3
+var max_position: Vector3
 
 var _current_velocity: Vector3 = Vector3.ZERO
 
@@ -19,9 +21,20 @@ var _current_velocity: Vector3 = Vector3.ZERO
 
 func _physics_process(delta: float) -> void:
 	if _current_velocity != Vector3.ZERO:
-		var collision_info = move_and_collide(_current_velocity * delta)
-		if collision_info:
-			_current_velocity = _current_velocity.bounce(collision_info.get_normal())
+		## TODO: Refactor this ugly code
+		if position.x > max_position.x:
+			_current_velocity = _current_velocity.bounce(Vector3(1, 0, 0))
+		if position.y > max_position.y:
+			_current_velocity = _current_velocity.bounce(Vector3(0, 1, 0))
+		if position.z > max_position.z:
+			_current_velocity = _current_velocity.bounce(Vector3(0, 0, 1))
+		if position.x < min_position.x:
+			_current_velocity = _current_velocity.bounce(Vector3(-1, 0, 0))
+		if position.y < min_position.y:
+			_current_velocity = _current_velocity.bounce(Vector3(0, -1, 0))
+		if position.z < min_position.z:
+			_current_velocity = _current_velocity.bounce(Vector3(0, 0, -1))
+		move_and_collide(_current_velocity * delta)
 
 func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}) -> void:
 	await ready

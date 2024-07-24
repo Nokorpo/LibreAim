@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
 [ext_resource type="Material" uid="uid://dsqe2mx1kgicf" path="res://assets/material_default.tres" id="2_ldkna"]
 [ext_resource type="Script" path="res://scenes/game_world/player/player_manager.gd" id="3_cvlpu"]
+[ext_resource type="Script" path="res://scenes/game_world/target_spawner.gd" id="3_tavht"]
 [ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="4_pc15u"]
 [ext_resource type="Script" path="res://scenes/game_world/gameplay_ui.gd" id="5_of43n"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
@@ -27,10 +28,6 @@ background_color = Color(0.0666667, 0.129412, 0.227451, 1)
 sky = SubResource("Sky_i8euj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1v5h"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22nld"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
@@ -208,21 +205,9 @@ use_collision = true
 collision_layer = 4
 size = Vector3(15.6688, 20, 10)
 
-[node name="TargetPrison" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 6, -16.6875)
-material_override = SubResource("StandardMaterial3D_22nld")
-transparency = 1.0
-use_collision = true
-collision_layer = 2
-size = Vector3(40, 12, 10)
-
-[node name="TargetPrison2" type="CSGBox3D" parent="TargetPrison"]
-material_override = SubResource("StandardMaterial3D_22nld")
-transparency = 1.0
-operation = 2
-use_collision = true
-collision_layer = 8
-size = Vector3(39, 11, 9)
+[node name="TargetSpawner" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -14)
+script = ExtResource("3_tavht")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 3)

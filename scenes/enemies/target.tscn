@@ -64,7 +64,7 @@ _data = {
 }
 
 [node name="Target" type="CharacterBody3D" groups=["Enemy"]]
-collision_mask = 2
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_nte11")
 

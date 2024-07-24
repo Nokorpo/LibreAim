@@ -1,8 +1,6 @@
 extends Node3D
 ## Manager of the game world during gameplay
 
-## Packed scene of the target
-var _packed_target: PackedScene = preload("res://scenes/enemies/target.tscn")
 ## Number of targets destroyed by the player
 var _targets_destroyed: int = 0
 ## Number of shots missed by the player
@@ -16,7 +14,6 @@ var _missed_shots: int = 0
 func _ready() -> void:
 	if Global.current_gamemode:
 		_timer.wait_time = Global.current_gamemode.time
-		_spawn_initial_targets()
 	_update_world_appareance()
 	$Player.connect("missed", Callable(self, "_on_target_missed"))
 
@@ -41,7 +38,6 @@ func _on_target_destroyed() -> void:
 	_gameplay_ui.target_destroyed(_get_score(), _get_accuracy())
 	_play_destroyed_sound()
 	_targets_destroyed += 1
-	_spawn_target()
 
 func _on_target_missed() -> void:
 	_missed_shots += 1
@@ -71,26 +67,6 @@ func _get_accuracy() -> float:
 	if _hitted_shots == 0:
 		return 0
 	return (float(_hitted_shots) / (float(_hitted_shots) + float(_missed_shots))) * 100
-
-func _get_random_target_spawn_position() -> Vector3:
-	var positions: Dictionary = Global.current_gamemode.spawn_location
-	var x := randf_range(positions.x[0], positions.x[1])
-	var y := randf_range(positions.y[0], positions.y[1])
-	var z := -16
-	return Vector3(x, y, z)
-
-func _spawn_target() -> void:
-	var spawn_position: Vector3 = _get_random_target_spawn_position()
-	var target: Node3D = _packed_target.instantiate()
-	target.init(Global.current_gamemode.size, Global.current_gamemode.movement)
-	target.connect("destroyed", Callable(self, "_on_target_destroyed"))
-	target.connect("hitted", Callable(self, "_on_target_hitted"))
-	target.set_position(spawn_position)
-	add_child(target)
-
-func _spawn_initial_targets():
-	for target: int in range(Global.current_gamemode.initial_targets):
-		_spawn_target()
 
 func _update_world_appareance() -> void:
 	var world_material: StandardMaterial3D = preload("res://assets/material_default.tres")
