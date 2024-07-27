@@ -6,7 +6,7 @@ func _ready() -> void:
 	$MarginContainer/VBoxContainer/GamemodeIcon.texture = \
 		Global.get_gamemode_thumbnail(Global.current_gamemode.id)
 
-func set_score(score: int, high_score: int, acuraccy: int) -> void:
+func set_score(score: int, high_score: int, accuracy: int) -> void:
 	$MarginContainer/VBoxContainer/Replay.grab_focus()
 	if score > high_score:
 		$MarginContainer/VBoxContainer/Container/NewHighScore.visible = true
@@ -17,7 +17,7 @@ func set_score(score: int, high_score: int, acuraccy: int) -> void:
 		$MarginContainer/VBoxContainer/Container/CurrentHighScore/Label.text = "CURRENT HIGH SCORE: " + str(high_score)
 		
 	$MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score/Value.text = str(score)
-	$MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy/Value.text = str(acuraccy) + "%"
+	$MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy/Value.text = str(accuracy) + "%"
 	$ProgressChart.initialize()
 
 func _on_main_menu_pressed() -> void:
