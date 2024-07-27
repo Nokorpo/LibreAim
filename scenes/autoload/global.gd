@@ -64,6 +64,5 @@ func get_current_hit_sound() -> AudioStream:
 		push_warning("Sound not found: %s" % current_sound)
 		current_sound = wrapper.get_default_data("hit_sound")
 		wrapper.set_data("hit_sound", current_sound)
-		print(current_sound)
 	var sound := CustomResourceManager.get_sound(current_sound)
 	return sound

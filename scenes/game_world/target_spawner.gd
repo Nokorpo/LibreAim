@@ -31,6 +31,9 @@ func _on_target_destroyed() -> void:
 	$".."._on_target_destroyed()
 	_spawn_target()
 
+func _on_target_hitted() -> void:
+	$".."._on_target_hitted()
+
 func _on_target_missed() -> void:
 	$".."._on_target_destroyed()
 

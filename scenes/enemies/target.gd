@@ -10,7 +10,7 @@ var health: float = 0.0:
 			hitted.emit()
 		health = value
 		if health < 0.0:
-			emit_signal("destroyed")
+			destroyed.emit()
 			queue_free()
 var min_position: Vector3
 var max_position: Vector3

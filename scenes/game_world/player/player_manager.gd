@@ -100,4 +100,4 @@ func _shoot(damage: float) -> void:
 			if target.is_in_group("Enemy"):
 				target.health -= damage
 			else:
-				emit_signal("missed")
+				missed.emit()

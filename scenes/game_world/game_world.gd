@@ -3,7 +3,7 @@ extends Node3D
 
 ## Number of targets destroyed by the player
 var _targets_destroyed: int = 0
-## Number of shots missed by the player
+## Number of shots hitted by the player
 var _hitted_shots: int = 0
 ## Number of shots missed by the player
 var _missed_shots: int = 0
@@ -35,9 +35,9 @@ func _on_timer_timeout() -> void:
 	$CanvasLayer/EndGameCanvas.visible = true
 
 func _on_target_destroyed() -> void:
-	_gameplay_ui.target_destroyed(_get_score(), _get_accuracy())
 	_play_destroyed_sound()
 	_targets_destroyed += 1
+	_gameplay_ui.target_destroyed(_get_score(), _get_accuracy())
 
 func _on_target_missed() -> void:
 	_missed_shots += 1
