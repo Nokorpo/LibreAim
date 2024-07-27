@@ -101,3 +101,5 @@ func _shoot(damage: float) -> void:
 				target.health -= damage
 			else:
 				missed.emit()
+	else:
+		missed.emit()
