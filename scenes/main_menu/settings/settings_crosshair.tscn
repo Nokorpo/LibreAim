@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcqej3022gbdk"]
+[gd_scene load_steps=15 format=3 uid="uid://dcqej3022gbdk"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/settings/settings_crosshair.gd" id="1_8jhp0"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_a8xsi"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="4_2iwqj"]
 [ext_resource type="Texture2D" uid="uid://dfccfxiw0aqif" path="res://assets/images/icons/export-file.svg" id="5_i2t3j"]
 [ext_resource type="Texture2D" uid="uid://btgrnb8ku7dyk" path="res://assets/images/icons/import-file.svg" id="6_bq5ho"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ohdm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yvei"]
 
@@ -48,6 +50,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_og8m1"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_1ohdm")
 Button/styles/normal = SubResource("StyleBoxFlat_1yvei")
 CheckBox/icons/checked = ExtResource("2_a8xsi")
 CheckBox/icons/unchecked = SubResource("ImageTexture_vtpo4")
