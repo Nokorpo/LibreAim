@@ -73,8 +73,11 @@ func change_value(key: String, value) -> void:
 
 func _queue_refresh_crosshair():
 	# delay changes so we do not spam this event in load_saved()
-	if not get_tree().process_frame.is_connected(emit_signal.bind("refresh_crosshair")):
-		get_tree().process_frame.connect(emit_signal.bind("refresh_crosshair"), CONNECT_ONE_SHOT)
+	if not get_tree().process_frame.is_connected(_call_refresh_crosshair):
+		get_tree().process_frame.connect(_call_refresh_crosshair, CONNECT_ONE_SHOT)
+
+func _call_refresh_crosshair() -> void:
+	refresh_crosshair.emit()
 
 func _load_saved() -> void:
 	crosshair._load_save()
