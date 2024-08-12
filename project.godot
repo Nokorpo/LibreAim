@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LibreAim"
-config/version="v0.1.0-alpha"
+config/version="v0.2.0-alpha"
 run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
