@@ -61,15 +61,15 @@ ColorPickerButton/styles/normal = SubResource("StyleBoxFlat_ydstq")
 Label/font_sizes/font_size = 22
 LineEdit/styles/normal = SubResource("StyleBoxFlat_p1fy7")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5u36"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0honh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7lkr"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcput"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1wm2h"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcput"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7lkr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0honh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5u36"]
 
 [node name="Video" type="VBoxContainer"]
 offset_right = 325.0
@@ -109,12 +109,11 @@ text = "Window mode"
 
 [node name="WindowModeOptions" type="OptionButton" parent="."]
 layout_mode = 2
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "fullscreen"
 popup/item_0/id = 1
 popup/item_1/text = "windowed"
-popup/item_1/id = 0
 
 [node name="WorldAppareance" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -205,13 +204,13 @@ text = "Fps Overlay: "
 
 [node name="FPSOverlayCheckBox" type="CheckBox" parent="FPSOverlay"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pcput")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1wm2h")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_s7lkr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0honh")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_u5u36")
 theme_override_icons/checked = ExtResource("3_ct4oh")
 theme_override_icons/unchecked = ExtResource("7_s4g6u")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_u5u36")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0honh")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_s7lkr")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1wm2h")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pcput")
 
 [connection signal="value_changed" from="ResolutionSlider" to="." method="_on_resolution_slider_value_changed"]
 [connection signal="value_changed" from="FovSlider" to="." method="_on_fov_slider_value_changed"]

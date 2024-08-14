@@ -83,6 +83,3 @@ max_value = 5.0
 value = 5.0
 has_checkbox = false
 checkbox_value = false
-
-[connection signal="item_selected" from="Game" to="." method="_on_game_item_selected"]
-[connection signal="change_value" from="Sensitivity" to="." method="_on_sensitivity_change_value"]

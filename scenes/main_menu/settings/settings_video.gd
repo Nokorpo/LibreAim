@@ -41,7 +41,7 @@ func _on_display_manager_window_mode_updated(window_mode):
 	var selected = DisplayManager.get_string_from_window_mode(window_mode)
 	for i in range(window_mode_options.item_count):
 		if selected == window_mode_options.get_item_text(i):
-			window_mode_options.select(i) 
+			window_mode_options.select(i)
 
 func _update_resolution_label() -> void:
 	var viewport_render_size = get_viewport().size * get_viewport().scaling_3d_scale
