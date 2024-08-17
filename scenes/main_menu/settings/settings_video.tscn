@@ -114,6 +114,7 @@ item_count = 2
 popup/item_0/text = "fullscreen"
 popup/item_0/id = 1
 popup/item_1/text = "windowed"
+popup/item_1/id = 1
 
 [node name="WorldAppareance" type="VBoxContainer" parent="."]
 layout_mode = 2

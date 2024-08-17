@@ -46,10 +46,12 @@ signal toggle_checkbox(value: bool)
 @onready var slider = $Slider
 
 func _on_spin_box_value_changed(new_value: float) -> void:
+	$Slider.step = 0
 	value = new_value
 
 func _on_slider_value_changed(new_value: float) -> void:
 	value = new_value
+	$Slider.step = 0.1
 
 func _on_check_box_toggled(button_pressed: bool) -> void:
 	toggle_checkbox.emit(button_pressed)

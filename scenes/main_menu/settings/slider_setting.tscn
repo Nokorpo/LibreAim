@@ -18,7 +18,7 @@ layout_mode = 2
 [node name="SpinBox" type="SpinBox" parent="."]
 layout_mode = 2
 theme_override_icons/updown = SubResource("ImageTexture_3nqkf")
-step = 0.1
+step = 0.001
 alignment = 1
 
 [node name="Slider" type="HSlider" parent="."]
