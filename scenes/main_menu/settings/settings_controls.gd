@@ -9,7 +9,7 @@ const games_sensitivities: Dictionary = {
 }
 
 @onready var game: OptionButton = $Game
-@onready var sensitivity = $Sensitivity
+@onready var sensitivity: Control = $Sensitivity
 
 
 var data_wrapper:DataManager.SectionWrapper:
@@ -25,13 +25,14 @@ func _ready() -> void:
 	for i in range(game.item_count):
 		if selected == game.get_item_text(i):
 			game.select(i)
-	game.item_selected.connect(_on_sensitivity_change_value)
+	sensitivity.change_value.connect(_on_sensitivity_change_value)
 	game.item_selected.connect(_on_game_item_selected)
 
 func _on_sensitivity_change_value(value) -> void:
 	data_wrapper.set_data("sensitivity_game", game.get_selected_id(), )
 	data_wrapper.set_data("sensitivity_game_value", games_sensitivities.get(game.get_item_text(game.get_selected_id())) )
 	data_wrapper.set_data("sensitivity", float(value))
+	print(data_wrapper.get_data("sensitivity"))
 
 func _on_game_item_selected(index: int) -> void:
 	data_wrapper.set_data("sensitivity_game", game.get_item_text(index))
