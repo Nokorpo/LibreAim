@@ -17,7 +17,7 @@ func _spawn_initial_targets():
 		_spawn_target()
 
 func _spawn_target() -> void:
-	var spawn_position: Vector3 = _get_random_target_spawn_position()
+	var spawn_position: Vector3 = _get_valid_target_spawn_position()
 	var target: Node3D = _packed_target.instantiate()
 	target.init(Global.current_gamemode.size, Global.current_gamemode.movement)
 	target.min_position = min_position
@@ -36,6 +36,24 @@ func _on_target_hitted() -> void:
 
 func _on_target_missed() -> void:
 	$".."._on_target_destroyed()
+
+func _get_valid_target_spawn_position() -> Vector3:
+	var is_position_valid := false
+	var selected_position: Vector3 
+	var valid_distance := 2.0
+	while !is_position_valid:
+		selected_position = _get_random_target_spawn_position()
+		is_position_valid = _is_position_valid(selected_position, valid_distance)
+		valid_distance *= 0.9
+	return selected_position
+
+## Returns false if targets are overlapping
+func _is_position_valid(this_position: Vector3, valid_distance: float) -> bool:
+	for child: Node3D in get_children():
+		var distance: Vector3 = child.position - this_position
+		if distance.length() < valid_distance:
+			return false
+	return true
 
 func _get_random_target_spawn_position() -> Vector3:
 	return Vector3(\
