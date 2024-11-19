@@ -64,14 +64,14 @@ func _get_random_target_spawn_position() -> Vector3:
 		randf_range(min_position.z, max_position.z))
 
 func _get_min_position() -> Vector3:
-	var positions: Dictionary = Global.current_gamemode.spawn_location
+	var positions: Dictionary = Global.get_current_gamemode_value("spawn_location")
 	var x: float = positions.x[0]
 	var y: float = positions.y[0]
 	var z := 0.0
 	return Vector3(x, y, z)
 
 func _get_max_position() -> Vector3:
-	var positions: Dictionary = Global.current_gamemode.spawn_location
+	var positions: Dictionary = Global.get_current_gamemode_value("spawn_location")
 	var x: float = positions.x[1]
 	var y: float = positions.y[1]
 	var z := 0.0

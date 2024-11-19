@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpmyh0dukwim3"
-path="res://.godot/imported/high_score_panel.svg-e957fe8cd218b22e4a38ebc9cb04c328.ctex"
+path="res://.godot/imported/high_score_panel.svg-445bac3bae14152b044cb7740794c6c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_world/end_game_canvas/high_score_panel.svg"
-dest_files=["res://.godot/imported/high_score_panel.svg-e957fe8cd218b22e4a38ebc9cb04c328.ctex"]
+source_file="res://scenes/game_world/end_game_ui/high_score_panel.svg"
+dest_files=["res://.godot/imported/high_score_panel.svg-445bac3bae14152b044cb7740794c6c8.ctex"]
 
 [params]
 

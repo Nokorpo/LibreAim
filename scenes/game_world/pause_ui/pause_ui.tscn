@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcd6yn8pmwkf"]
+
+[ext_resource type="Script" path="res://scenes/game_world/pause_ui/pause.gd" id="1_vgykr"]
+[ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="2_yj2n1"]
+[ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="3_af0kr"]
+[ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="4_q5h2w"]
+
+[node name="PauseUI" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_vgykr")
+
+[node name="Pause" type="Control" parent="."]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_yj2n1")
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.34902)
+metadata/_edit_use_anchors_ = true
+
+[node name="Buttons" type="VBoxContainer" parent="Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -105.0
+offset_right = 153.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Pause/Buttons"]
+layout_mode = 2
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Pause/Buttons"]
+layout_mode = 2
+text = "Resume"
+icon = ExtResource("3_af0kr")
+alignment = 0
+
+[node name="Menu" type="Button" parent="Pause/Buttons"]
+layout_mode = 2
+text = "Menu"
+icon = ExtResource("4_q5h2w")
+alignment = 0
+
+[connection signal="pressed" from="Pause/Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/Buttons/Menu" to="." method="_on_menu_pressed"]

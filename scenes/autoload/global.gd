@@ -31,6 +31,11 @@ func load_gamemodes() -> void:
 		this_gamemode.spawn_location = config.get_value("target", "spawn_location")
 		gamemodes[id] = this_gamemode
 
+func get_current_gamemode_value(value: String) -> Variant:
+	if Global.current_gamemode.is_empty():
+		Global.current_gamemode = Global.gamemodes["random"]
+	return current_gamemode[value]
+
 func get_world_textures() -> PackedStringArray:
 	return CustomResourceManager.get_file_list(TEXTURES_FOLDER, "png")
 

@@ -2,17 +2,11 @@
 
 [ext_resource type="Script" path="res://scenes/autoload/overlay_ui_label.gd" id="1_m21yi"]
 
-[node name="OverlayUi" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="OverlayUI" type="CanvasLayer"]
+editor_description = "An overlay to display extra debug information to the player, like the current FPS."
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.392157)
-layout_mode = 0
 offset_left = 10.0
 offset_top = 5.0
 offset_right = 50.0

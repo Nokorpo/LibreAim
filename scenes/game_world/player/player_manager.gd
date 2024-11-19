@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name PlayerManager
 ## First person character controller
 
 signal shooted ## When player shoots

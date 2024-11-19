@@ -1,51 +1,15 @@
-[gd_scene load_steps=33 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=30 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
 [ext_resource type="Script" path="res://scenes/game_world/world_mesh.gd" id="2_nbo86"]
+[ext_resource type="PackedScene" uid="uid://dcd6yn8pmwkf" path="res://scenes/game_world/pause_ui/pause_ui.tscn" id="2_tp74x"]
 [ext_resource type="Script" path="res://scenes/game_world/target_spawner.gd" id="3_tavht"]
 [ext_resource type="PackedScene" uid="uid://dkiet13jnna2m" path="res://scenes/game_world/player/player.tscn" id="4_50ilh"]
-[ext_resource type="Script" path="res://scenes/game_world/gameplay_ui.gd" id="5_of43n"]
+[ext_resource type="Script" path="res://scenes/game_world/gameplay_ui/gameplay_ui.gd" id="5_of43n"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
-[ext_resource type="Texture2D" uid="uid://nng31j22g6fh" path="res://assets/images/icons/play.svg" id="7_7rabg"]
-[ext_resource type="Script" path="res://scenes/game_world/pause.gd" id="7_ffgmh"]
-[ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="7_gwa7l"]
-[ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="8_6pksd"]
-[ext_resource type="PackedScene" uid="uid://cpoik4f7kx6aj" path="res://scenes/game_world/end_game_canvas/end_game_canvas.tscn" id="11_hrjw4"]
+[ext_resource type="PackedScene" uid="uid://cpoik4f7kx6aj" path="res://scenes/game_world/end_game_ui/end_game_ui.tscn" id="11_hrjw4"]
 [ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://default/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_i8euj"]
-sky_material = SubResource("ProceduralSkyMaterial_hein3")
-
-[sub_resource type="Environment" id="Environment_mlohy"]
-background_mode = 1
-background_color = Color(0.0666667, 0.129412, 0.227451, 1)
-sky = SubResource("Sky_i8euj")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_5avlg"]
-size = Vector2(24, 8)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1kpnf"]
-data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h7lj4"]
-data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7igs4"]
-data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_lv1jd"]
-size = Vector2(24, 24)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bmlc6"]
-data = PackedVector3Array(12, 0, 12, -12, 0, 12, 12, 0, -12, -12, 0, 12, -12, 0, -12, 12, 0, -12)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gsn2x"]
-plane = Plane(0, 0, 1, 0)
 
 [sub_resource type="Theme" id="Theme_agxdx"]
 Label/font_sizes/font_size = 42
@@ -62,7 +26,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/GameplayUI/HitMarker:scale")
+tracks/0/path = NodePath("GameplayUI/GameplayUI/HitMarker:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,7 +38,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/GameplayUI/HitMarker:modulate")
+tracks/1/path = NodePath("GameplayUI/GameplayUI/HitMarker:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -90,7 +54,7 @@ length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/GameplayUI/HitMarker:scale")
+tracks/0/path = NodePath("GameplayUI/GameplayUI/HitMarker:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,7 +66,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/GameplayUI/HitMarker:modulate")
+tracks/1/path = NodePath("GameplayUI/GameplayUI/HitMarker:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -156,8 +120,183 @@ _data = {
 "idle": SubResource("Animation_8c12g")
 }
 
-[node name="World" type="Node3D"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_i8euj"]
+sky_material = SubResource("ProceduralSkyMaterial_hein3")
+
+[sub_resource type="Environment" id="Environment_mlohy"]
+background_mode = 1
+background_color = Color(0.0666667, 0.129412, 0.227451, 1)
+sky = SubResource("Sky_i8euj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5avlg"]
+size = Vector2(24, 8)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1kpnf"]
+data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h7lj4"]
+data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7igs4"]
+data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lv1jd"]
+size = Vector2(24, 24)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bmlc6"]
+data = PackedVector3Array(12, 0, 12, -12, 0, 12, 12, 0, -12, -12, 0, 12, -12, 0, -12, 12, 0, -12)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gsn2x"]
+plane = Plane(0, 0, 1, 0)
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("_timer", "_gameplay_ui")]
 script = ExtResource("1_4pv4x")
+_timer = NodePath("Timer")
+_gameplay_ui = NodePath("GameplayUI")
+
+[node name="PauseUI" parent="." instance=ExtResource("2_tp74x")]
+visible = false
+
+[node name="EndGameUI" parent="." instance=ExtResource("11_hrjw4")]
+visible = false
+
+[node name="GameplayUI" type="CanvasLayer" parent="."]
+script = ExtResource("5_of43n")
+
+[node name="GameplayUI" type="Control" parent="GameplayUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_agxdx")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameplayUI/GameplayUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="GameplayUI/GameplayUI/MarginContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fembj")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameplayUI/GameplayUI/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 302.0
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="time" type="HBoxContainer" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/time"]
+layout_mode = 2
+theme = SubResource("Theme_p6jab")
+text = "Time "
+vertical_alignment = 1
+uppercase = true
+
+[node name="label2" type="Label" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/time"]
+layout_mode = 2
+text = "60 s"
+
+[node name="score" type="HBoxContainer" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/score"]
+layout_mode = 2
+theme = SubResource("Theme_p6jab")
+text = "Score "
+vertical_alignment = 1
+uppercase = true
+
+[node name="label2" type="Label" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/score"]
+layout_mode = 2
+text = "0"
+
+[node name="accuracy" type="HBoxContainer" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/accuracy"]
+layout_mode = 2
+theme = SubResource("Theme_p6jab")
+text = "Accuracy "
+vertical_alignment = 1
+uppercase = true
+
+[node name="label2" type="Label" parent="GameplayUI/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/accuracy"]
+layout_mode = 2
+text = "100%"
+
+[node name="HitMarker" type="TextureRect" parent="GameplayUI/GameplayUI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("6_efh5s")
+
+[node name="AnimationKill" type="AnimationPlayer" parent="GameplayUI/GameplayUI"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_s0jl0")
+}
+
+[node name="PressAny" type="Label" parent="GameplayUI/GameplayUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -269.5
+offset_top = -318.0
+offset_right = 269.5
+offset_bottom = -257.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(269, 30)
+text = "Shoot to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameplayUI/GameplayUI/PressAny"]
+libraries = {
+"": SubResource("AnimationLibrary_y2pta")
+}
+autoplay = "idle"
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -227,203 +366,8 @@ script = ExtResource("3_tavht")
 
 [node name="Player" parent="." instance=ExtResource("4_50ilh")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GameplayUI" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_agxdx")
-script = ExtResource("5_of43n")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameplayUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = -50.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="CanvasLayer/GameplayUI/MarginContainer"]
-custom_minimum_size = Vector2(300, 200)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fembj")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 302.0
-grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="time" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/time"]
-layout_mode = 2
-theme = SubResource("Theme_p6jab")
-text = "Time "
-vertical_alignment = 1
-uppercase = true
-
-[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/time"]
-layout_mode = 2
-text = "60 s"
-
-[node name="score" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/score"]
-layout_mode = 2
-theme = SubResource("Theme_p6jab")
-text = "Score "
-vertical_alignment = 1
-uppercase = true
-
-[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/score"]
-layout_mode = 2
-text = "0"
-
-[node name="accuracy" type="HBoxContainer" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="label" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/accuracy"]
-layout_mode = 2
-theme = SubResource("Theme_p6jab")
-text = "Accuracy "
-vertical_alignment = 1
-uppercase = true
-
-[node name="label2" type="Label" parent="CanvasLayer/GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/accuracy"]
-layout_mode = 2
-text = "100%"
-
-[node name="HitMarker" type="TextureRect" parent="CanvasLayer/GameplayUI"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(16, 16)
-texture = ExtResource("6_efh5s")
-
-[node name="AnimationKill" type="AnimationPlayer" parent="CanvasLayer/GameplayUI"]
-root_node = NodePath("../../..")
-libraries = {
-"": SubResource("AnimationLibrary_s0jl0")
-}
-
-[node name="PressAny" type="Label" parent="CanvasLayer/GameplayUI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -269.5
-offset_top = -318.0
-offset_right = 269.5
-offset_bottom = -257.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(269, 30)
-text = "Shoot to start"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GameplayUI/PressAny"]
-libraries = {
-"": SubResource("AnimationLibrary_y2pta")
-}
-autoplay = "idle"
-
-[node name="PauseManager" type="Node" parent="CanvasLayer"]
-script = ExtResource("7_ffgmh")
-
-[node name="Pause" type="Control" parent="CanvasLayer/PauseManager"]
-process_mode = 2
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7_gwa7l")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseManager/Pause"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0745098, 0.0745098, 0.0745098, 0.34902)
-metadata/_edit_use_anchors_ = true
-
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/PauseManager/Pause"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -153.0
-offset_top = -105.0
-offset_right = 153.0
-offset_bottom = 105.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/PauseManager/Pause/Buttons"]
-layout_mode = 2
-text = "Pause"
-horizontal_alignment = 1
-
-[node name="Resume" type="Button" parent="CanvasLayer/PauseManager/Pause/Buttons"]
-layout_mode = 2
-text = "Resume"
-icon = ExtResource("7_7rabg")
-alignment = 0
-
-[node name="Menu" type="Button" parent="CanvasLayer/PauseManager/Pause/Buttons"]
-layout_mode = 2
-text = "Menu"
-icon = ExtResource("8_6pksd")
-alignment = 0
-
-[node name="EndGameCanvas" parent="CanvasLayer" instance=ExtResource("11_hrjw4")]
-visible = false
-
 [node name="DestroyedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_xv1t2")
 script = ExtResource("13_mss18")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="shooted" from="Player" to="CanvasLayer/GameplayUI" method="_on_player_shoot"]
-[connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Resume" to="CanvasLayer/PauseManager" method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseManager/Pause/Buttons/Menu" to="CanvasLayer/PauseManager" method="_on_menu_pressed"]

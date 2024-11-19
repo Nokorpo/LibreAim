@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -10,7 +10,7 @@ func _notification(what: int) -> void:
 
 func trigger_pause(new_pause_state: bool) -> void:
 	get_tree().paused = new_pause_state
-	$Pause.visible = new_pause_state
+	visible = new_pause_state
 	if (new_pause_state):
 		$Pause/Buttons/Resume.grab_focus()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -1,15 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpoik4f7kx6aj"]
+[gd_scene load_steps=11 format=3 uid="uid://cpoik4f7kx6aj"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_412ve"]
-[ext_resource type="Script" path="res://scenes/game_world/end_game_canvas/end_game_canvas.gd" id="2_yb1ar"]
+[ext_resource type="Script" path="res://scenes/game_world/end_game_ui/end_game_ui.gd" id="2_yb1ar"]
 [ext_resource type="Texture2D" uid="uid://c67itufrdktq0" path="res://assets/images/icons/replay.svg" id="3_3y3at"]
 [ext_resource type="Texture2D" uid="uid://dd5ad41ec0su" path="res://assets/images/gamemodes/missing.svg" id="3_co2ru"]
-[ext_resource type="Texture2D" uid="uid://bpmyh0dukwim3" path="res://scenes/game_world/end_game_canvas/high_score_panel.svg" id="4_iveiv"]
+[ext_resource type="Texture2D" uid="uid://bpmyh0dukwim3" path="res://scenes/game_world/end_game_ui/high_score_panel.svg" id="4_iveiv"]
 [ext_resource type="Texture2D" uid="uid://bhbhhys4d8rhp" path="res://assets/images/icons/home.svg" id="4_orngi"]
-[ext_resource type="Script" path="res://scenes/game_world/end_game_canvas/progress_chart.gd" id="7_68ev1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvp45"]
-bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+[ext_resource type="Script" path="res://scenes/game_world/end_game_ui/progress_chart.gd" id="7_68ev1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88eqq"]
 bg_color = Color(0.160784, 0.160784, 0.160784, 1)
@@ -28,17 +25,18 @@ corner_radius_bottom_left = 50
 [sub_resource type="Gradient" id="Gradient_nnx5e"]
 colors = PackedColorArray(0.160784, 0.160784, 0.160784, 1, 1, 0.709804, 0.27451, 1)
 
-[node name="EndGameCanvas" type="Panel"]
+[node name="EndGameUI" type="CanvasLayer"]
+script = ExtResource("2_yb1ar")
+
+[node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_412ve")
-theme_override_styles/panel = SubResource("StyleBoxFlat_qvp45")
-script = ExtResource("2_yb1ar")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -47,34 +45,37 @@ grow_vertical = 2
 theme_override_constants/margin_left = 200
 theme_override_constants/margin_right = 200
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Gamemode" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Gamemode" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.270588, 0.352941, 0.392157, 1)
 theme_override_font_sizes/font_size = 36
 text = "GAMEMODE"
 horizontal_alignment = 1
 
-[node name="GamemodeIcon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="GamemodeIcon" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 texture = ExtResource("3_co2ru")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Margin2" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Margin2" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Container" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Container" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 88.08)
 layout_mode = 2
 
-[node name="NewHighScore" type="TextureRect" parent="MarginContainer/VBoxContainer/Container"]
+[node name="NewHighScore" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/Container"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 560.0
 offset_bottom = 50.0
@@ -82,7 +83,7 @@ pivot_offset = Vector2(280, 25)
 texture = ExtResource("4_iveiv")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Container/NewHighScore"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Container/NewHighScore"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,7 +95,8 @@ theme_override_font_sizes/font_size = 38
 text = "NEW HIGH SCORE"
 horizontal_alignment = 1
 
-[node name="CurrentHighScore" type="PanelContainer" parent="MarginContainer/VBoxContainer/Container"]
+[node name="CurrentHighScore" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/Container"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 offset_right = 560.0
@@ -102,24 +104,25 @@ offset_bottom = 50.0
 pivot_offset = Vector2(280, 25)
 theme_override_styles/panel = SubResource("StyleBoxFlat_88eqq")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Container/CurrentHighScore"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Container/CurrentHighScore"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
 theme_override_font_sizes/font_size = 32
 text = "CURRENT HIGH SCORE: 0"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Score" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Score" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
@@ -127,17 +130,18 @@ theme_override_font_sizes/font_size = 36
 text = "SCORE"
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score"]
+[node name="Value" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Score"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.709804, 0.27451, 1)
 theme_override_font_sizes/font_size = 64
 text = "0"
 vertical_alignment = 2
 
-[node name="Accuracy" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Accuracy" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
@@ -145,32 +149,34 @@ theme_override_font_sizes/font_size = 36
 text = "ACCURACY"
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy"]
+[node name="Value" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accuracy"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
 theme_override_font_sizes/font_size = 36
 text = "100%"
 vertical_alignment = 2
 
-[node name="Margin" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Margin" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Replay" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Replay" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Replay"
 icon = ExtResource("3_3y3at")
 alignment = 0
 
-[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="MainMenu" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Back to main menu"
 icon = ExtResource("4_orngi")
 alignment = 0
 
-[node name="ProgressChart" type="Panel" parent="."]
+[node name="ProgressChart" type="Panel" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 920.0
 offset_top = 215.0
@@ -179,7 +185,7 @@ offset_bottom = 865.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ocgsg")
 script = ExtResource("7_68ev1")
 
-[node name="Label" type="Label" parent="ProgressChart"]
+[node name="Label" type="Label" parent="Panel/ProgressChart"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -190,7 +196,7 @@ theme_override_font_sizes/font_size = 24
 text = "SCORE LAST GAMES"
 horizontal_alignment = 1
 
-[node name="Line2D" type="Line2D" parent="ProgressChart"]
+[node name="Line2D" type="Line2D" parent="Panel/ProgressChart"]
 position = Vector2(50, 550)
 points = PackedVector2Array(0, 0, 70, 0, 140, 0, 210, 0, 280, 0, 350, 0, 420, 0, 490, 0, 560, 0, 630, 0, 700, 0)
 width = 8.0
@@ -200,5 +206,5 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

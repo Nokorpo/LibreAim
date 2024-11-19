@@ -8,14 +8,15 @@ var _hitted_shots: int = 0
 ## Number of shots missed by the player
 var _missed_shots: int = 0
 
-@onready var _timer: Timer = $Timer
-@onready var _gameplay_ui: Control = $CanvasLayer/GameplayUI
+@export var _timer: Timer
+@export var _gameplay_ui: GameplayUI
 
 func _ready() -> void:
 	if Global.current_gamemode:
 		_timer.wait_time = Global.current_gamemode.time
 	_update_world_appareance()
 	$Player.connect("missed", Callable(self, "_on_target_missed"))
+	_gameplay_ui.initialize(_timer, $Player)
 
 func _process(_delta: float) -> void:
 	if _timer.is_stopped():
@@ -29,10 +30,10 @@ func _on_timer_timeout() -> void:
 	var high_score := DataManager.get_high_score(Global.current_gamemode.id)
 	DataManager.save_high_score(Global.current_gamemode.id, _get_score())
 	$Player.queue_free()
-	$CanvasLayer/PauseManager.queue_free()
-	$CanvasLayer/EndGameCanvas.set_score(_get_score(), high_score, _get_accuracy())
-	$CanvasLayer/GameplayUI.visible = false
-	$CanvasLayer/EndGameCanvas.visible = true
+	$PauseUI.queue_free()
+	$EndGameUI.set_score(_get_score(), high_score, _get_accuracy())
+	$GameplayUI.visible = false
+	$EndGameUI.visible = true
 
 func _on_target_destroyed() -> void:
 	_play_destroyed_sound()
