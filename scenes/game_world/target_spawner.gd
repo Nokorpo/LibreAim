@@ -8,11 +8,13 @@ var _packed_target: PackedScene = preload("res://scenes/enemies/target.tscn")
 @export var velocity: Vector3
 
 func _ready() -> void:
+	if Global.current_gamemode.is_empty():
+		Global.current_gamemode = Global.gamemodes["random"]
 	min_position = _get_min_position()
 	max_position = _get_max_position()
 	_spawn_initial_targets()
 
-func _spawn_initial_targets():
+func _spawn_initial_targets() -> void:
 	for target: int in range(Global.current_gamemode.initial_targets):
 		_spawn_target()
 
