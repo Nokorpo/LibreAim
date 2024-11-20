@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=23 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_2h7x4"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
@@ -11,24 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings/settings.tscn" id="8_1n7gf"]
 [ext_resource type="Texture2D" uid="uid://crtp1xg7nyhki" path="res://assets/images/icons/folder.svg" id="8_cvdmj"]
 [ext_resource type="PackedScene" uid="uid://bx5lej1m0kvgb" path="res://scenes/main_menu/select_gamemode.tscn" id="9_lii3m"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqr84"]
-content_margin_left = 50.0
-content_margin_top = 25.0
-content_margin_bottom = 25.0
-bg_color = Color(0.160784, 0.160784, 0.160784, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5knyr"]
-content_margin_left = 50.0
-content_margin_top = 25.0
-content_margin_bottom = 25.0
-bg_color = Color(0.16, 0.16, 0.16, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v38qo"]
-content_margin_left = 50.0
-content_margin_top = 25.0
-content_margin_bottom = 25.0
-bg_color = Color(0.2, 0.2, 0.2, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfoy0"]
 
@@ -48,23 +30,8 @@ bg_color = Color(0.2, 0.2, 0.2, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mk0sv"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_t2vp1"]
-content_margin_top = 4.0
-content_margin_right = 0.0
-content_margin_bottom = 4.0
-color = Color(0.160784, 0.160784, 0.160784, 1)
-thickness = 5
-vertical = true
-
 [sub_resource type="Theme" id="Theme_8521u"]
-Button/colors/font_color = Color(0.67451, 0.67451, 0.67451, 1)
-Button/constants/h_separation = 30
 Button/font_sizes/font_size = 24
-Button/styles/disabled = SubResource("StyleBoxFlat_nqr84")
-Button/styles/focus = SubResource("StyleBoxFlat_5knyr")
-Button/styles/hover = SubResource("StyleBoxFlat_v38qo")
-Button/styles/normal = SubResource("StyleBoxFlat_nqr84")
-Button/styles/pressed = SubResource("StyleBoxFlat_nqr84")
 CheckButton/styles/disabled = SubResource("StyleBoxEmpty_pfoy0")
 CheckButton/styles/hover = SubResource("StyleBoxEmpty_03gfj")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_csy66")
@@ -75,9 +42,6 @@ ColorPickerButton/styles/disabled = SubResource("StyleBoxEmpty_it8v6")
 ColorPickerButton/styles/focus = SubResource("StyleBoxEmpty_bufrq")
 ColorPickerButton/styles/hover = SubResource("StyleBoxEmpty_46pqr")
 ColorPickerButton/styles/normal = SubResource("StyleBoxEmpty_mk0sv")
-Label/colors/font_color = Color(0.898039, 0.898039, 0.898039, 1)
-Label/font_sizes/font_size = 16
-VSeparator/styles/separator = SubResource("StyleBoxLine_t2vp1")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5srfh"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
@@ -111,6 +75,7 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="LeftControl/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 42
 text = "Libre Aim"
 
 [node name="Label" type="Label" parent="LeftControl/VBoxContainer/HBoxContainer/VBoxContainer"]

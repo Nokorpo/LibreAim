@@ -7,11 +7,16 @@ content_margin_right = 50.0
 content_margin_bottom = 25.0
 bg_color = Color(0.160784, 0.160784, 0.160784, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bk2jx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15sq2"]
 content_margin_left = 50.0
 content_margin_top = 25.0
 content_margin_bottom = 25.0
-bg_color = Color(0.16, 0.16, 0.16, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijt1d"]
 content_margin_left = 50.0
@@ -30,13 +35,13 @@ vertical = true
 
 [resource]
 Button/colors/font_color = Color(0.67451, 0.67451, 0.67451, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 30
 Button/font_sizes/font_size = 38
 Button/styles/disabled = SubResource("StyleBoxFlat_66yw7")
-Button/styles/focus = SubResource("StyleBoxFlat_bk2jx")
+Button/styles/focus = SubResource("StyleBoxFlat_15sq2")
 Button/styles/hover = SubResource("StyleBoxFlat_ijt1d")
 Button/styles/normal = SubResource("StyleBoxFlat_66yw7")
 Button/styles/pressed = SubResource("StyleBoxFlat_66yw7")
 Label/colors/font_color = Color(0.898039, 0.898039, 0.898039, 1)
-Label/font_sizes/font_size = 57
 VSeparator/styles/separator = SubResource("StyleBoxLine_nufsd")
