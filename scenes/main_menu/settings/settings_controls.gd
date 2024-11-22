@@ -21,6 +21,7 @@ func _ready() -> void:
 		game.add_item(sens)
 	sensitivity.value = data_wrapper.get_data("sensitivity")
 	var selected = data_wrapper.get_data("sensitivity_game")
+	#game.select(selected)
 	for i in range(game.item_count):
 		if selected == game.get_item_text(i):
 			game.select(i)
