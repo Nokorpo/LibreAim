@@ -6,6 +6,10 @@ class_name GameplayUI
 @onready var _score = $GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/score/label2
 @onready var _timer_label = $GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/time/label2
 @onready var _accuracy = $GameplayUI/MarginContainer/Panel/MarginContainer/VBoxContainer/accuracy/label2
+
+## Feedback that tells the player to shoot to start the game
+@export var _start_feedback: Node
+
 var _timer: Timer
 
 func initialize(new_timer: Timer, player: PlayerManager) -> void:
@@ -27,5 +31,4 @@ func update_timer_ui(time_left: float) -> void:
 func _on_player_shoot() -> void:
 	if _timer != null and _timer.is_stopped():
 		_timer.start()
-		if get_node_or_null("PressAny") != null:
-			get_node("PressAny").queue_free()
+		_start_feedback.queue_free()

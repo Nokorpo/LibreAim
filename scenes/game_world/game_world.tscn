@@ -164,8 +164,9 @@ visible = false
 [node name="EndGameUI" parent="." instance=ExtResource("11_hrjw4")]
 visible = false
 
-[node name="GameplayUI" type="CanvasLayer" parent="."]
+[node name="GameplayUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_start_feedback")]
 script = ExtResource("5_of43n")
+_start_feedback = NodePath("GameplayUI/PressAny")
 
 [node name="GameplayUI" type="Control" parent="GameplayUI"]
 layout_mode = 3
