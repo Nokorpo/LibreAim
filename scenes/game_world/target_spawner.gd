@@ -1,7 +1,7 @@
 extends Node3D
 
 ## Packed scene of the target
-var _packed_target: PackedScene = preload("res://scenes/enemies/target.tscn")
+var _packed_target: PackedScene = preload("res://scenes/target/target.tscn")
 
 @export var min_position: Vector3
 @export var max_position: Vector3
