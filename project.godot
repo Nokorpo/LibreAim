@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://scenes/autoload/global.gd"
-DataManager="*res://scenes/autoload/data_manager.gd"
+SaveManager="*res://scenes/autoload/save_manager.gd"
 DisplayManager="*res://scenes/autoload/display_manager.gd"
 OverlayUi="*res://scenes/autoload/overlay_ui.tscn"
 CustomResourceManager="*res://scenes/autoload/custom_resource_manager.gd"

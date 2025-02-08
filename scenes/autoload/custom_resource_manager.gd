@@ -1,7 +1,7 @@
 extends Node
 
 const USER_PATH: String = "user://custom_resources/"
-const DEFAULT_PATH :String = "res://default/custom_resources/"
+const DEFAULT_PATH :String = "res://assets/default_data/custom_resources/"
 
 
 ## Returns full paths with USER_PATH or DEFAULT_PATH already included
@@ -20,7 +20,7 @@ func get_default_file_list(partial_path: String, extension: String = "") -> Pack
 	var full_path := DEFAULT_PATH + partial_path
 	return _get_file_list_raw(full_path, extension)
 
-func file_exists(path :String) -> bool:
+func file_exists(path: String) -> bool:
 	var partial_path := _ensure_path_is_partial(path)
 	var default_path := DEFAULT_PATH + partial_path
 	if FileAccess.file_exists(default_path):
@@ -30,13 +30,13 @@ func file_exists(path :String) -> bool:
 		return true
 	return false
 
-func get_image(full_path :String) -> Texture2D:
+func get_image(full_path: String) -> Texture2D:
 	if full_path.begins_with(DEFAULT_PATH):
 		return load(full_path)
 	var image := Image.load_from_file(full_path)
 	return ImageTexture.create_from_image(image)
 
-func get_sound(full_path :String) -> AudioStream:
+func get_sound(full_path: String) -> AudioStream:
 	if full_path.begins_with(DEFAULT_PATH):
 		return load(full_path)
 	return AudioStreamOggVorbis.load_from_file(full_path)

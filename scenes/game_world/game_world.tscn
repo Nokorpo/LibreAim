@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scenes/game_world/gameplay_ui/gameplay_ui.gd" id="5_of43n"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
 [ext_resource type="PackedScene" uid="uid://cpoik4f7kx6aj" path="res://scenes/game_world/end_game_ui/end_game_ui.tscn" id="11_hrjw4"]
-[ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://default/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
+[ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://assets/default_data/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
 [ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
 
 [sub_resource type="Theme" id="Theme_agxdx"]

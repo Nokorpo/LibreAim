@@ -30,7 +30,8 @@ func initialize() -> void:
 
 func _get_last_games() -> Array:
 	var last_games: Array = []
-	var cfg := DataManager.get_config(DataManager.PROGRESS_PATH + Global.current_gamemode.id)
+	var cfg := ConfigFile.new()
+	cfg.load(HighScoreManager.get_progress_path(Global.current_gamemode.id))
 	var reverse_sections = cfg.get_sections().duplicate()
 	reverse_sections.reverse()
 	for section in reverse_sections:

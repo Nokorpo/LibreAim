@@ -4,17 +4,13 @@ extends VBoxContainer
 @onready var fps_limit_slider = $FPSLimitSlider
 @onready var fps_limit_label = $FPSLimitLabel
 
-var data_wrapper:DataManager.SectionWrapper:
-	get:
-		return DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "video")
-
-func _on_fps_limit_slider_value_changed(value):
-	data_wrapper.set_data("fps_limit", value)
+func _on_fps_limit_slider_value_changed(value) -> void:
+	SaveManager.settings.set_data("world", "fps_limit", value)
 	DisplayManager.set_max_fps(value)
 	update_label()
 
-func _ready():
-	fps_limit_slider.value = data_wrapper.get_data("fps_limit")
+func _ready() -> void:
+	fps_limit_slider.value = SaveManager.settings.get_data("video", "fps_limit")
 	
 	update_label()
 

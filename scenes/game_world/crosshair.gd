@@ -36,16 +36,18 @@ func _on_options_refresh_crosshair() -> void:
 	queue_redraw()
 
 func _load_save() -> void:
-	var wrapper := DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "crosshair")
-	_dot_enable = wrapper.get_data("dot_enable")
-	_dot_size = wrapper.get_data("dot_size")
-	_length = wrapper.get_data("length")
-	_thickness = wrapper.get_data("thickness")
-	_gap = wrapper.get_data("gap")
-	_enable_outline = wrapper.get_data("enable_outline")
-	_outline_width = wrapper.get_data("outline_width")
-	_color = wrapper.get_data("color")
-	_outline_color = wrapper.get_data("outline_color")
+	var save_file: SaveManager.SaveFile = SaveManager.settings
+	var setting := "crosshair"
+	
+	_dot_enable = save_file.get_data(setting, "dot_enable")
+	_dot_size = save_file.get_data(setting, "dot_size")
+	_length = save_file.get_data(setting, "length")
+	_thickness = save_file.get_data(setting, "thickness")
+	_gap = save_file.get_data(setting, "gap")
+	_enable_outline = save_file.get_data(setting, "enable_outline")
+	_outline_width = save_file.get_data(setting, "outline_width")
+	_color = save_file.get_data(setting, "color")
+	_outline_color = save_file.get_data(setting, "outline_color")
 
 func _load_crosshair() -> void:
 	current_crosshair["dot"] = [

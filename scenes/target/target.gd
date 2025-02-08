@@ -60,7 +60,7 @@ func _set_health_slider() -> void:
 
 func _set_target_material() -> void:
 	var material_override = _mesh_instance.get_mesh().get_material()
-	var col = DataManager.get_data(DataManager.SETTINGS_FILE_PATH, "world", "target_color")
+	var col = SaveManager.settings.get_data("world", "target_color")
 	material_override.set_albedo(col)
 	material_override.set_emission(col)
 	_mesh_instance.material_override = material_override

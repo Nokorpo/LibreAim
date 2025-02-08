@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://driiesvyeknwv"
-path.s3tc="res://.godot/imported/flat.png-187d379e2361b719ea04ed5366fdc786.s3tc.ctex"
+uid="uid://sjurqjp3bdi2"
+path.s3tc="res://.godot/imported/stone.png-ee5b27fb0eb5f188155e05345ce314c5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://default/custom_resources/world_textures/flat.png"
-dest_files=["res://.godot/imported/flat.png-187d379e2361b719ea04ed5366fdc786.s3tc.ctex"]
+source_file="res://assets/default_data/custom_resources/world_textures/stone.png"
+dest_files=["res://.godot/imported/stone.png-ee5b27fb0eb5f188155e05345ce314c5.s3tc.ctex"]
 
 [params]
 

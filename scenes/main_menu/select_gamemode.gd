@@ -42,7 +42,7 @@ func _set_current_gamemode_description(type: String) -> void:
 	description.text = "%s\nTime: %s s\nHigh score: %s"\
 		% [str(Global.gamemodes[type].description),\
 		Global.gamemodes[type].time, \
-		DataManager.get_high_score(Global.gamemodes[type].id)]
+		HighScoreManager.get_high_score(Global.gamemodes[type].id)]
 
 ## Loads the gamemode
 func _start_gamemode() -> void:

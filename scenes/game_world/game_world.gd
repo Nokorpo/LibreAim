@@ -27,8 +27,8 @@ func _process(_delta: float) -> void:
 func _on_timer_timeout() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_timer.stop()
-	var high_score := DataManager.get_high_score(Global.current_gamemode.id)
-	DataManager.save_high_score(Global.current_gamemode.id, _get_score())
+	var high_score := HighScoreManager.get_high_score(Global.current_gamemode.id)
+	HighScoreManager.save_high_score(Global.current_gamemode.id, _get_score())
 	$Player.queue_free()
 	$PauseUI.queue_free()
 	$EndGameUI.set_score(_get_score(), high_score, _get_accuracy())
@@ -72,5 +72,4 @@ func _get_accuracy() -> float:
 func _update_world_appareance() -> void:
 	var world_material: StandardMaterial3D = preload("res://assets/material_default.tres")
 	world_material.albedo_texture = Global.get_current_world_texture()
-	var wrapper = DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "world")
-	$DirectionalLight3D.light_color = wrapper.get_data("world_color")
+	$DirectionalLight3D.light_color = SaveManager.settings.get_data("world", "world_color")

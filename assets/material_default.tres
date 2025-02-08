@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dsqe2mx1kgicf"]
 
-[ext_resource type="Texture2D" uid="uid://dpwdl2106eu1o" path="res://default/custom_resources/world_textures/checkerboard.png" id="1_e15ga"]
+[ext_resource type="Texture2D" uid="uid://dpwdl2106eu1o" path="res://assets/default_data/custom_resources/world_textures/checkerboard.png" id="1_e15ga"]
 
 [resource]
 albedo_texture = ExtResource("1_e15ga")

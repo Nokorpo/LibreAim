@@ -23,9 +23,8 @@ func _on_import_pressed() -> void:
 
 func _on_export_file_dialog_file_selected(path: String) -> void:
 	var cfg := ConfigFile.new()
-	var wrapper := DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "crosshair")
-	for key in wrapper.get_keys():
-		cfg.set_value(wrapper.section, key, wrapper.get_data(key))
+	for key in SaveManager.settings.get_file().get_section_keys("crosshair"):
+		cfg.set_value("crosshair", key, SaveManager.settings.get_data("crosshair", key))
 	cfg.save(path)
 
 func _on_import_file_dialog_file_selected(path: String) -> void:
@@ -34,9 +33,9 @@ func _on_import_file_dialog_file_selected(path: String) -> void:
 	if err != OK:
 		push_warning("Could not import crosshair %s"%path)
 		return
-	var wrapper := DataManager.get_wrapper(DataManager.SETTINGS_FILE_PATH, "crosshair")
-	for key in cfg.get_section_keys(wrapper.section):
-		wrapper.set_data(key, cfg.get_value(wrapper.section, key))
+	for key in SaveManager.settings.get_file().get_section_keys("crosshair"):
+		SaveManager.settings.set_data("crosshair", key, \
+			cfg.get_value("crosshair", key))
 	_load_saved()
 	_queue_refresh_crosshair()
 
@@ -68,7 +67,7 @@ func _on_outline_color_color_changed(color: Color) -> void:
 	change_value("outline_color", color)
 
 func change_value(key: String, value) -> void:
-	DataManager.set_data(DataManager.SETTINGS_FILE_PATH, "crosshair", key, value)
+	SaveManager.settings.set_data("crosshair", key, value)
 	_queue_refresh_crosshair()
 
 func _queue_refresh_crosshair():
