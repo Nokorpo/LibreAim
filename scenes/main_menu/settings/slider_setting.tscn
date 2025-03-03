@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://db0ivgs28q5rr"]
 
-[ext_resource type="Script" path="res://scenes/main_menu/settings/slider_setting.gd" id="1_0c23u"]
+[ext_resource type="Script" uid="uid://5eiruc5jlimu" path="res://scenes/main_menu/settings/slider_setting.gd" id="1_0c23u"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_3nqkf"]
 

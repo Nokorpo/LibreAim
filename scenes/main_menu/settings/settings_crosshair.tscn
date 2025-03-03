@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://dcqej3022gbdk"]
 
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_crosshair.gd" id="1_8jhp0"]
+[ext_resource type="Script" uid="uid://cqb0m6137q6y8" path="res://scenes/main_menu/settings/settings_crosshair.gd" id="1_8jhp0"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="2_a8xsi"]
-[ext_resource type="Script" path="res://scenes/game_world/crosshair.gd" id="3_uw2kl"]
+[ext_resource type="Script" uid="uid://coxbsxucgposx" path="res://scenes/game_world/crosshair.gd" id="3_uw2kl"]
 [ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="4_2iwqj"]
 [ext_resource type="Texture2D" uid="uid://dfccfxiw0aqif" path="res://assets/images/icons/export-file.svg" id="5_i2t3j"]
 [ext_resource type="Texture2D" uid="uid://btgrnb8ku7dyk" path="res://assets/images/icons/import-file.svg" id="6_bq5ho"]

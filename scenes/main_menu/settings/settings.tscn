@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cropshnueuiqr"]
 
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings.gd" id="1_4ilr3"]
+[ext_resource type="Script" uid="uid://hadqd3kotmfk" path="res://scenes/main_menu/settings/settings.gd" id="1_4ilr3"]
 [ext_resource type="PackedScene" uid="uid://dcqej3022gbdk" path="res://scenes/main_menu/settings/settings_crosshair.tscn" id="2_ofn7e"]
 [ext_resource type="PackedScene" uid="uid://defuaijvpgkhn" path="res://scenes/main_menu/settings/settings_video.tscn" id="3_exihx"]
 [ext_resource type="PackedScene" uid="uid://1lrvcwbqgnw5" path="res://scenes/main_menu/settings/settings_controls.tscn" id="4_l5su2"]

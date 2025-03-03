@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://1lrvcwbqgnw5"]
 
-[ext_resource type="Script" path="res://scenes/main_menu/settings/settings_controls.gd" id="1_04o0j"]
+[ext_resource type="Script" uid="uid://b1guc21rrjgcn" path="res://scenes/main_menu/settings/settings_controls.gd" id="1_04o0j"]
 [ext_resource type="PackedScene" uid="uid://db0ivgs28q5rr" path="res://scenes/main_menu/settings/slider_setting.tscn" id="2_ktgul"]
 [ext_resource type="Texture2D" uid="uid://ql8v8tau18u1" path="res://assets/images/icons/checkbox_checked.svg" id="3_uc5cd"]
 

@@ -1,15 +1,15 @@
 [gd_scene load_steps=30 format=3 uid="uid://cdbhv0p0jfr75"]
 
-[ext_resource type="Script" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
-[ext_resource type="Script" path="res://scenes/game_world/world_mesh.gd" id="2_nbo86"]
+[ext_resource type="Script" uid="uid://bw403cdwa6w7u" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
+[ext_resource type="Script" uid="uid://dwyx06nsevwk4" path="res://scenes/game_world/world_mesh.gd" id="2_nbo86"]
 [ext_resource type="PackedScene" uid="uid://dcd6yn8pmwkf" path="res://scenes/game_world/pause_ui/pause_ui.tscn" id="2_tp74x"]
-[ext_resource type="Script" path="res://scenes/game_world/target_spawner.gd" id="3_tavht"]
+[ext_resource type="Script" uid="uid://7eouyjvbgjo0" path="res://scenes/game_world/target_spawner.gd" id="3_tavht"]
 [ext_resource type="PackedScene" uid="uid://dkiet13jnna2m" path="res://scenes/game_world/player/player.tscn" id="4_50ilh"]
-[ext_resource type="Script" path="res://scenes/game_world/gameplay_ui/gameplay_ui.gd" id="5_of43n"]
+[ext_resource type="Script" uid="uid://cf8557cuxp315" path="res://scenes/game_world/gameplay_ui/gameplay_ui.gd" id="5_of43n"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
 [ext_resource type="PackedScene" uid="uid://cpoik4f7kx6aj" path="res://scenes/game_world/end_game_ui/end_game_ui.tscn" id="11_hrjw4"]
 [ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://assets/default_data/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
-[ext_resource type="Script" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
+[ext_resource type="Script" uid="uid://d0234x8uu2y3k" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
 
 [sub_resource type="Theme" id="Theme_agxdx"]
 Label/font_sizes/font_size = 42
@@ -78,8 +78,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s0jl0"]
 _data = {
-"RESET": SubResource("Animation_8dsmr"),
-"kill": SubResource("Animation_jsqua")
+&"RESET": SubResource("Animation_8dsmr"),
+&"kill": SubResource("Animation_jsqua")
 }
 
 [sub_resource type="Animation" id="Animation_ybjr1"]
@@ -116,8 +116,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y2pta"]
 _data = {
-"RESET": SubResource("Animation_ybjr1"),
-"idle": SubResource("Animation_8c12g")
+&"RESET": SubResource("Animation_ybjr1"),
+&"idle": SubResource("Animation_8c12g")
 }
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]

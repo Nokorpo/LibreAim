@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7w6oa4fydjyq"]
 
-[ext_resource type="Script" path="res://scenes/game_world/bullet_hole.gd" id="1_a25ui"]
+[ext_resource type="Script" uid="uid://daosvdneli0st" path="res://scenes/game_world/bullet_hole.gd" id="1_a25ui"]
 [ext_resource type="Texture2D" uid="uid://cqospwtedgwrg" path="res://assets/images/hole.png" id="2_bi3vi"]
 
 [node name="BulletHole" type="Sprite3D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx5lej1m0kvgb"]
 
-[ext_resource type="Script" path="res://scenes/main_menu/select_gamemode.gd" id="1_4by86"]
+[ext_resource type="Script" uid="uid://blgmmigbqfjhr" path="res://scenes/main_menu/select_gamemode.gd" id="1_4by86"]
 [ext_resource type="Texture2D" uid="uid://drihvhiutdffn" path="res://assets/images/gamemodes/random.svg" id="2_et2sy"]
 [ext_resource type="Texture2D" uid="uid://db8p3tq5cc85j" path="res://assets/images/icons/play-big.svg" id="3_0b1an"]
 

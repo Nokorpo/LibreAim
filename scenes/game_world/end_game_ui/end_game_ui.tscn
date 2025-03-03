@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://cpoik4f7kx6aj"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_412ve"]
-[ext_resource type="Script" path="res://scenes/game_world/end_game_ui/end_game_ui.gd" id="2_yb1ar"]
+[ext_resource type="Script" uid="uid://k8a5gnev5p3s" path="res://scenes/game_world/end_game_ui/end_game_ui.gd" id="2_yb1ar"]
 [ext_resource type="Texture2D" uid="uid://c67itufrdktq0" path="res://assets/images/icons/replay.svg" id="3_3y3at"]
 [ext_resource type="Texture2D" uid="uid://dd5ad41ec0su" path="res://assets/images/gamemodes/missing.svg" id="3_co2ru"]
 [ext_resource type="Texture2D" uid="uid://bpmyh0dukwim3" path="res://scenes/game_world/end_game_ui/high_score_panel.svg" id="4_iveiv"]
 [ext_resource type="Texture2D" uid="uid://bhbhhys4d8rhp" path="res://assets/images/icons/home.svg" id="4_orngi"]
-[ext_resource type="Script" path="res://scenes/game_world/end_game_ui/progress_chart.gd" id="7_68ev1"]
+[ext_resource type="Script" uid="uid://c8nd0mqignnpe" path="res://scenes/game_world/end_game_ui/progress_chart.gd" id="7_68ev1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88eqq"]
 bg_color = Color(0.160784, 0.160784, 0.160784, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://uux8dcfhe1ob"]
 
-[ext_resource type="Script" path="res://scenes/target/target.gd" id="1_nte11"]
-[ext_resource type="Script" path="res://scenes/target/health_slider.gd" id="2_usxmj"]
+[ext_resource type="Script" uid="uid://dguvlnaoi8ut7" path="res://scenes/target/target.gd" id="1_nte11"]
+[ext_resource type="Script" uid="uid://bomdvkontdslh" path="res://scenes/target/health_slider.gd" id="2_usxmj"]
 [ext_resource type="AudioStream" uid="uid://kf70w8cqg0y" path="res://scenes/target/hit.ogg" id="3_o7ev4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_do5mn"]
@@ -59,8 +59,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nqfqo"]
 _data = {
-"RESET": SubResource("Animation_adj6b"),
-"shot": SubResource("Animation_7m7wm")
+&"RESET": SubResource("Animation_adj6b"),
+&"shot": SubResource("Animation_7m7wm")
 }
 
 [node name="Target" type="CharacterBody3D" groups=["Target"]]
@@ -82,7 +82,7 @@ script = ExtResource("2_usxmj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HealthSlider"]
 libraries = {
-"": SubResource("AnimationLibrary_nqfqo")
+&"": SubResource("AnimationLibrary_nqfqo")
 }
 autoplay = "RESET"
 
