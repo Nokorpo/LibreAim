@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=32 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" uid="uid://bw403cdwa6w7u" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
 [ext_resource type="Script" uid="uid://dwyx06nsevwk4" path="res://scenes/game_world/world_mesh.gd" id="2_nbo86"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dkiet13jnna2m" path="res://scenes/game_world/player/player.tscn" id="4_50ilh"]
 [ext_resource type="Script" uid="uid://cf8557cuxp315" path="res://scenes/game_world/gameplay_ui/gameplay_ui.gd" id="5_of43n"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
+[ext_resource type="Script" uid="uid://bxhkdvu8k5owt" path="res://scenes/target/behavior/behavior_linearmovement.gd" id="8_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://cpoik4f7kx6aj" path="res://scenes/game_world/end_game_ui/end_game_ui.tscn" id="11_hrjw4"]
 [ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://assets/default_data/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
 [ext_resource type="Script" uid="uid://d0234x8uu2y3k" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
@@ -153,6 +154,10 @@ data = PackedVector3Array(12, 0, 12, -12, 0, 12, 12, 0, -12, -12, 0, 12, -12, 0,
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gsn2x"]
 plane = Plane(0, 0, 1, 0)
 
+[sub_resource type="Resource" id="Resource_4vb8v"]
+script = ExtResource("8_4vb8v")
+metadata/_custom_type_script = "uid://bxhkdvu8k5owt"
+
 [node name="World" type="Node3D" node_paths=PackedStringArray("_timer", "_gameplay_ui")]
 script = ExtResource("1_4pv4x")
 _timer = NodePath("Timer")
@@ -272,7 +277,7 @@ texture = ExtResource("6_efh5s")
 [node name="AnimationKill" type="AnimationPlayer" parent="GameplayUI/GameplayUI"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_s0jl0")
+&"": SubResource("AnimationLibrary_s0jl0")
 }
 
 [node name="PressAny" type="Label" parent="GameplayUI/GameplayUI"]
@@ -295,7 +300,7 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameplayUI/GameplayUI/PressAny"]
 libraries = {
-"": SubResource("AnimationLibrary_y2pta")
+&"": SubResource("AnimationLibrary_y2pta")
 }
 autoplay = "idle"
 
@@ -364,6 +369,7 @@ shape = SubResource("WorldBoundaryShape3D_gsn2x")
 [node name="TargetSpawner" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 2, -10)
 script = ExtResource("3_tavht")
+behavior = SubResource("Resource_4vb8v")
 
 [node name="Player" parent="." instance=ExtResource("4_50ilh")]
 

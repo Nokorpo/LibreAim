@@ -1,4 +1,6 @@
 extends CharacterBody3D
+class_name Target
+## A target for the player to shoot at
 
 signal destroyed ## When player destroys the target
 signal hitted ## When player when player hits the target
@@ -14,41 +16,26 @@ var health: float = 0.0:
 			queue_free()
 var min_position: Vector3
 var max_position: Vector3
-
-var _current_velocity: Vector3 = Vector3.ZERO
+var movement_behavior: TargetMovementBehavior
 
 @onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
 
-func _physics_process(delta: float) -> void:
-	if _current_velocity != Vector3.ZERO:
-		## TODO: Refactor this ugly code
-		if position.x > max_position.x:
-			_current_velocity = _current_velocity.bounce(Vector3(1, 0, 0))
-		if position.y > max_position.y:
-			_current_velocity = _current_velocity.bounce(Vector3(0, 1, 0))
-		if position.z > max_position.z:
-			_current_velocity = _current_velocity.bounce(Vector3(0, 0, 1))
-		if position.x < min_position.x:
-			_current_velocity = _current_velocity.bounce(Vector3(-1, 0, 0))
-		if position.y < min_position.y:
-			_current_velocity = _current_velocity.bounce(Vector3(0, -1, 0))
-		if position.z < min_position.z:
-			_current_velocity = _current_velocity.bounce(Vector3(0, 0, -1))
-		move_and_collide(_current_velocity * delta)
-
-func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}) -> void:
+func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}, behavior: TargetMovementBehavior = TargetMovementBehavior.new()) -> void:
 	await ready
 	var collision_shape: CollisionShape3D = $CollisionShape3D
 	collision_shape.shape.radius = size.radius
 	collision_shape.shape.height = size.height
 	_mesh_instance.mesh.radius = size.radius
 	_mesh_instance.mesh.height = size.height
-	_current_velocity = Vector3(randf_range(-movement.x, movement.x),\
-		 randf_range(-movement.y, movement.y), 0)
+	behavior.init(min_position, max_position, movement)
+	movement_behavior = behavior
 	
 	_set_health()
 	_set_health_slider()
 	_set_target_material()
+
+func _physics_process(delta: float) -> void:
+	move_and_collide(movement_behavior.move_process(delta, position))
 
 func _set_health() -> void:
 	max_health = Global.current_gamemode.health

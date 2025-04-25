@@ -6,6 +6,7 @@ var _packed_target: PackedScene = preload("res://scenes/target/target.tscn")
 @export var min_position: Vector3
 @export var max_position: Vector3
 @export var velocity: Vector3
+@export var behavior: TargetMovementBehavior
 
 func _ready() -> void:
 	if Global.current_gamemode.is_empty():
@@ -20,8 +21,8 @@ func _spawn_initial_targets() -> void:
 
 func _spawn_target() -> void:
 	var spawn_position: Vector3 = _get_valid_target_spawn_position()
-	var target: Node3D = _packed_target.instantiate()
-	target.init(Global.current_gamemode.size, Global.current_gamemode.movement)
+	var target: Target = _packed_target.instantiate()
+	target.init(Global.current_gamemode.size, Global.current_gamemode.movement, behavior.duplicate())
 	target.min_position = min_position
 	target.max_position = max_position
 	target.connect("destroyed", Callable(self, "_on_target_destroyed"))
