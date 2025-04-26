@@ -52,6 +52,9 @@ func get_sound(full_path: String) -> AudioStream:
 		return load(full_path)
 	return AudioStreamOggVorbis.load_from_file(full_path)
 
+func copy_sample_custom_resources() -> void:
+	_copy_dir_recursively("res://assets/sample_custom_resources/", USER_PATH)
+
 func _ensure_path_is_partial(path :String) -> String:
 	if path.begins_with(USER_PATH):
 		return path.right(-USER_PATH.length())
@@ -95,3 +98,17 @@ func _extension_matches(path: String, extension: String) -> bool:
 	if extension == "":
 		return true
 	return path.get_extension() == extension
+
+## Copies a complete file structure into another location
+func _copy_dir_recursively(source: String, destination: String) -> void:
+	DirAccess.make_dir_recursive_absolute(destination)
+	
+	var source_dir = DirAccess.open(source)
+	
+	for filename in source_dir.get_files():
+		if filename.get_extension() != "import" and \
+			!FileAccess.file_exists(destination + filename):
+			source_dir.copy(source + filename, destination + filename)
+	
+	for dir in source_dir.get_directories():
+		_copy_dir_recursively(source + dir + "/", destination + dir + "/")

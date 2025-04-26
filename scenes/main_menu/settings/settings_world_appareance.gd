@@ -21,7 +21,7 @@ func _on_world_texture_item_selected(index) -> void:
 
 func _ready() -> void:
 	var i = 0
-	for path:String in Global.get_world_textures():
+	for path: String in Global.get_world_textures():
 		world_texture.add_icon_item(CustomResourceManager.get_image(path), path.get_file(), i)
 		world_texture.set_item_metadata(i, path)
 		i+=1

@@ -9,6 +9,7 @@ var current_scenario : Dictionary
 
 func _ready() -> void:
 	Input.set_use_accumulated_input(false)
+	CustomResourceManager.copy_sample_custom_resources()
 	_load_scenarios()
 
 ## Returns the value of a key of the current scenario
