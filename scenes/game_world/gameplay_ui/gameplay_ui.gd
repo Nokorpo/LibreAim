@@ -23,7 +23,7 @@ func target_destroyed(score: int, accuracy: float) -> void:
 
 func update_score(score: int, accuracy: float) -> void:
 	_score.set_text(str(score))
-	_accuracy.set_text(str(snappedf(accuracy, 1)) + "%")
+	_accuracy.set_text(str(snappedf(accuracy, 0.1)) + "%")
 
 func update_timer_ui(time_left: float) -> void:
 	_timer_label.set_text("%.f s" % time_left)
