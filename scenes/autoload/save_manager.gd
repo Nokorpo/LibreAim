@@ -16,6 +16,8 @@ class SaveFile:
 	var _file := ConfigFile.new()
 
 	func initialize(new_path: String, new_default_data_path: String = "") -> void:
+		if not DirAccess.dir_exists_absolute(new_path.get_base_dir()):
+			DirAccess.make_dir_recursive_absolute(new_path.get_base_dir())
 		_path = new_path
 		_default_data_path = new_default_data_path
 		if !FileAccess.file_exists(_path):
@@ -52,3 +54,10 @@ class SaveFile:
 		if default_file.has_section_key(category, id):
 			return default_file.get_value(category, id)
 		return null
+
+	## Resets file to default value
+	func set_default_data(category: String, id: String) -> void:
+		var default_data: Variant = get_default_data(category, id)
+		if default_data != null:
+			_file.set_value(category, id, default_data)
+			save_data()
