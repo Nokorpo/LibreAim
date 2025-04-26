@@ -1,6 +1,9 @@
 extends TargetMovementBehavior
 class_name TargetMovementBehaviorLinearmovement
 
+## Max velocity of the target
+@export var max_velocity: Vector3 = Vector3.ZERO
+
 var min_position: Vector3
 var max_position: Vector3
 

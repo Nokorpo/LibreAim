@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_412ve"]
 [ext_resource type="Script" uid="uid://k8a5gnev5p3s" path="res://scenes/game_world/end_game_ui/end_game_ui.gd" id="2_yb1ar"]
 [ext_resource type="Texture2D" uid="uid://c67itufrdktq0" path="res://assets/images/icons/replay.svg" id="3_3y3at"]
-[ext_resource type="Texture2D" uid="uid://dd5ad41ec0su" path="res://assets/images/gamemodes/missing.svg" id="3_co2ru"]
+[ext_resource type="Texture2D" uid="uid://dd5ad41ec0su" path="res://assets/images/missing.svg" id="3_co2ru"]
 [ext_resource type="Texture2D" uid="uid://bpmyh0dukwim3" path="res://scenes/game_world/end_game_ui/high_score_panel.svg" id="4_iveiv"]
 [ext_resource type="Texture2D" uid="uid://bhbhhys4d8rhp" path="res://assets/images/icons/home.svg" id="4_orngi"]
 [ext_resource type="Script" uid="uid://c8nd0mqignnpe" path="res://scenes/game_world/end_game_ui/progress_chart.gd" id="7_68ev1"]
@@ -50,7 +50,7 @@ layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Gamemode" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Scenario" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.270588, 0.352941, 0.392157, 1)
@@ -58,7 +58,7 @@ theme_override_font_sizes/font_size = 36
 text = "GAMEMODE"
 horizontal_alignment = 1
 
-[node name="GamemodeIcon" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="ScenarioIcon" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r1y7o5b1hdud"
-path="res://.godot/imported/tracking.svg-29df28c108fd2ebe1b543d8d3dae07d2.ctex"
+uid="uid://b4mjku8eh5vvo"
+path="res://.godot/imported/icon.svg-b4be977fbd16db9021a5dcfa68a6d827.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/gamemodes/tracking.svg"
-dest_files=["res://.godot/imported/tracking.svg-29df28c108fd2ebe1b543d8d3dae07d2.ctex"]
+source_file="res://assets/default_data/custom_resources/scenarios/moving/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-b4be977fbd16db9021a5dcfa68a6d827.ctex"]
 
 [params]
 

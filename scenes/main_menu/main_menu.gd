@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	_hide_options()
-	_right_panel.get_node("SelectGamemode").visible = true
+	_right_panel.get_node("SelectScenario").visible = true
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -28,4 +28,3 @@ func _on_user_folder_pressed():
 func _hide_options() -> void:
 	for child in _right_panel.get_children():
 		child.visible = false 
-

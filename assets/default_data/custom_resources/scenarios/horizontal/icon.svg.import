@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4mjku8eh5vvo"
-path="res://.godot/imported/moving.svg-34ebd76fa5eb5a5d1c346d06e062097b.ctex"
+uid="uid://bvrpxiiw01jlc"
+path="res://.godot/imported/icon.svg-bc2545ca95f2dcca5a7286d2dbb1d941.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/gamemodes/moving.svg"
-dest_files=["res://.godot/imported/moving.svg-34ebd76fa5eb5a5d1c346d06e062097b.ctex"]
+source_file="res://assets/default_data/custom_resources/scenarios/horizontal/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-bc2545ca95f2dcca5a7286d2dbb1d941.ctex"]
 
 [params]
 

@@ -1,13 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://cdbhv0p0jfr75"]
+[gd_scene load_steps=21 format=3 uid="uid://cdbhv0p0jfr75"]
 
 [ext_resource type="Script" uid="uid://bw403cdwa6w7u" path="res://scenes/game_world/game_world.gd" id="1_4pv4x"]
-[ext_resource type="Script" uid="uid://dwyx06nsevwk4" path="res://scenes/game_world/world_mesh.gd" id="2_nbo86"]
 [ext_resource type="PackedScene" uid="uid://dcd6yn8pmwkf" path="res://scenes/game_world/pause_ui/pause_ui.tscn" id="2_tp74x"]
-[ext_resource type="Script" uid="uid://7eouyjvbgjo0" path="res://scenes/game_world/target_spawner.gd" id="3_tavht"]
 [ext_resource type="PackedScene" uid="uid://dkiet13jnna2m" path="res://scenes/game_world/player/player.tscn" id="4_50ilh"]
 [ext_resource type="Script" uid="uid://cf8557cuxp315" path="res://scenes/game_world/gameplay_ui/gameplay_ui.gd" id="5_of43n"]
 [ext_resource type="Texture2D" uid="uid://1xnrooyjmggn" path="res://assets/images/hit_marker.svg" id="6_efh5s"]
-[ext_resource type="Script" uid="uid://bxhkdvu8k5owt" path="res://scenes/target/behavior/behavior_linearmovement.gd" id="8_4vb8v"]
 [ext_resource type="PackedScene" uid="uid://cpoik4f7kx6aj" path="res://scenes/game_world/end_game_ui/end_game_ui.tscn" id="11_hrjw4"]
 [ext_resource type="AudioStream" uid="uid://c1ons03xoggga" path="res://assets/default_data/custom_resources/destroy_sounds/beep.ogg" id="12_xv1t2"]
 [ext_resource type="Script" uid="uid://d0234x8uu2y3k" path="res://scenes/game_world/destroyed_sound.gd" id="13_mss18"]
@@ -121,42 +118,17 @@ _data = {
 &"idle": SubResource("Animation_8c12g")
 }
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hein3"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gakb1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_i8euj"]
-sky_material = SubResource("ProceduralSkyMaterial_hein3")
+sky_material = SubResource("ProceduralSkyMaterial_gakb1")
 
-[sub_resource type="Environment" id="Environment_mlohy"]
+[sub_resource type="Environment" id="Environment_pon8i"]
 background_mode = 1
 background_color = Color(0.0666667, 0.129412, 0.227451, 1)
 sky = SubResource("Sky_i8euj")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_5avlg"]
-size = Vector2(24, 8)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1kpnf"]
-data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h7lj4"]
-data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7igs4"]
-data = PackedVector3Array(12, 0, 4, -12, 0, 4, 12, 0, -4, -12, 0, 4, -12, 0, -4, 12, 0, -4)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_lv1jd"]
-size = Vector2(24, 24)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bmlc6"]
-data = PackedVector3Array(12, 0, 12, -12, 0, 12, 12, 0, -12, -12, 0, 12, -12, 0, -12, 12, 0, -12)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gsn2x"]
-plane = Plane(0, 0, 1, 0)
-
-[sub_resource type="Resource" id="Resource_4vb8v"]
-script = ExtResource("8_4vb8v")
-metadata/_custom_type_script = "uid://bxhkdvu8k5owt"
 
 [node name="World" type="Node3D" node_paths=PackedStringArray("_timer", "_gameplay_ui")]
 script = ExtResource("1_4pv4x")
@@ -306,70 +278,11 @@ autoplay = "idle"
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.998198, 0.0464176, 0.0380308, -0.0421491, 0.0912349, 0.994937, 0.0427129, -0.994747, 0.093027, 0, 20, 0)
-light_color = Color(0.360784, 0.615686, 1, 1)
-light_bake_mode = 1
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_mlohy")
+environment = SubResource("Environment_pon8i")
 
-[node name="Geometry" type="Node3D" parent="."]
-
-[node name="Walls" type="Node3D" parent="Geometry"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 21)
-mesh = SubResource("PlaneMesh_5avlg")
-script = ExtResource("2_nbo86")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Walls/MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_1kpnf")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Geometry/Walls"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -12, 4, 9)
-mesh = SubResource("PlaneMesh_5avlg")
-script = ExtResource("2_nbo86")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Walls/MeshInstance3D2/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_h7lj4")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Geometry/Walls"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 12, 4, 9)
-mesh = SubResource("PlaneMesh_5avlg")
-script = ExtResource("2_nbo86")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Walls/MeshInstance3D3/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_7igs4")
-
-[node name="Floor" type="MeshInstance3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
-mesh = SubResource("PlaneMesh_lv1jd")
-script = ExtResource("2_nbo86")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_bmlc6")
-
-[node name="PlayerWall" type="StaticBody3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/PlayerWall"]
-shape = SubResource("WorldBoundaryShape3D_gsn2x")
-
-[node name="TargetSpawner" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 2, -10)
-script = ExtResource("3_tavht")
-behavior = SubResource("Resource_4vb8v")
+[node name="LevelSpawner" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("4_50ilh")]
 

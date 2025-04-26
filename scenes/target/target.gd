@@ -20,25 +20,25 @@ var movement_behavior: TargetMovementBehavior
 
 @onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
 
-func init(size = {"radius": .5, "height": 1}, movement = {"x": 0, "y": 0}, behavior: TargetMovementBehavior = TargetMovementBehavior.new()) -> void:
+func init(size = Vector2(1.0, 2.0), behavior: TargetMovementBehavior = TargetMovementBehavior.new(), new_health: float = 0.0) -> void:
 	await ready
 	var collision_shape: CollisionShape3D = $CollisionShape3D
-	collision_shape.shape.radius = size.radius
-	collision_shape.shape.height = size.height
-	_mesh_instance.mesh.radius = size.radius
-	_mesh_instance.mesh.height = size.height
-	behavior.init(min_position, max_position, movement)
+	collision_shape.shape.radius = size.x
+	collision_shape.shape.height = size.y
+	_mesh_instance.mesh.radius = size.x
+	_mesh_instance.mesh.height = size.y
+	behavior.init(min_position, max_position, behavior.max_velocity)
 	movement_behavior = behavior
 	
-	_set_health()
+	_set_health(new_health)
 	_set_health_slider()
 	_set_target_material()
 
 func _physics_process(delta: float) -> void:
 	move_and_collide(movement_behavior.move_process(delta, position))
 
-func _set_health() -> void:
-	max_health = Global.current_gamemode.health
+func _set_health(new_health: float) -> void:
+	max_health = new_health
 	health = max_health
 
 func _set_health_slider() -> void:

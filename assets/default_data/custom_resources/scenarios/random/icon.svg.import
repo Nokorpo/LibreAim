@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvrpxiiw01jlc"
-path="res://.godot/imported/horizontal.svg-21d6eb80caaf9bcea75d60a4b44c95b0.ctex"
+uid="uid://l85ioboyhtrv"
+path="res://.godot/imported/icon.svg-8f6287938d1d484870e089e8f56b4805.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/gamemodes/horizontal.svg"
-dest_files=["res://.godot/imported/horizontal.svg-21d6eb80caaf9bcea75d60a4b44c95b0.ctex"]
+source_file="res://assets/default_data/custom_resources/scenarios/random/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-8f6287938d1d484870e089e8f56b4805.ctex"]
 
 [params]
 

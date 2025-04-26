@@ -3,7 +3,6 @@ extends Node
 const USER_PATH: String = "user://custom_resources/"
 const DEFAULT_PATH :String = "res://assets/default_data/custom_resources/"
 
-
 ## Returns full paths with USER_PATH or DEFAULT_PATH already included
 ## If 'extension' argument is empty, will ignore extensions entirely
 func get_file_list(partial_path: String, extension: String = "", include_default: bool = true) -> PackedStringArray:
@@ -14,11 +13,23 @@ func get_file_list(partial_path: String, extension: String = "", include_default
 		list = get_default_file_list(partial_path, extension) + list
 	return list
 
+func get_folder_list(partial_path: String, include_default: bool = true) -> PackedStringArray:
+	var full_path := USER_PATH + partial_path
+	DirAccess.make_dir_recursive_absolute(full_path)
+	var list := _get_folder_list_raw(full_path)
+	if include_default:
+		list = get_default_folder_list(partial_path) + list
+	return list
+
 ## Returns full paths with DEFAULT_PATH already included
 ## If 'extension' argument is empty, will ignore extensions entirely
 func get_default_file_list(partial_path: String, extension: String = "") -> PackedStringArray:
 	var full_path := DEFAULT_PATH + partial_path
 	return _get_file_list_raw(full_path, extension)
+
+func get_default_folder_list(partial_path: String) -> PackedStringArray:
+	var full_path := DEFAULT_PATH + partial_path
+	return _get_folder_list_raw(full_path)
 
 func file_exists(path: String) -> bool:
 	var partial_path := _ensure_path_is_partial(path)
@@ -48,7 +59,17 @@ func _ensure_path_is_partial(path :String) -> String:
 		return path.right(-DEFAULT_PATH.length())
 	return path
 
-func _get_file_list_raw(full_path :String, extension :String) -> PackedStringArray:
+func _get_folder_list_raw(full_path: String) -> PackedStringArray:
+	var list := PackedStringArray()
+	var dir = DirAccess.open(full_path)
+	if dir == null:
+		return list
+	for dir_name: String in dir.get_directories():
+		var path := full_path + "/" + dir_name + "/"
+		list.append(path)
+	return list
+
+func _get_file_list_raw(full_path: String, extension: String) -> PackedStringArray:
 	var list := PackedStringArray()
 	var dir = DirAccess.open(full_path)
 	if dir == null:
@@ -58,11 +79,11 @@ func _get_file_list_raw(full_path :String, extension :String) -> PackedStringArr
 	# runs in editor produce duplicates because it has both .import and original file
 	var duplicate_checks := {}
 	
-	for file_name in dir.get_files():
+	for file_name: String in dir.get_files():
 		if is_default and file_name.get_extension() == "import":
 			file_name = file_name.replace('.import', '')
 		if _extension_matches(file_name, extension):
-			var path := full_path + "/"+file_name
+			var path := full_path + "/" + file_name
 			if duplicate_checks.has(path):
 				continue
 			list.append(path)

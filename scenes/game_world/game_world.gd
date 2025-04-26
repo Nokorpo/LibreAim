@@ -8,13 +8,17 @@ var _hitted_shots: int = 0
 ## Number of shots missed by the player
 var _missed_shots: int = 0
 
+var _scenario: Scenario
 @export var _timer: Timer
 @export var _gameplay_ui: GameplayUI
 
 func _ready() -> void:
-	if Global.current_gamemode:
-		_timer.wait_time = Global.current_gamemode.time
-	_update_world_appareance()
+	if Global.current_scenario:
+		_timer.wait_time = Global.current_scenario.time
+	_load_scenario()
+	_scenario.target_destroyed.connect(_on_target_destroyed)
+	_scenario.target_missed.connect(_on_target_missed)
+	_scenario.target_hitted.connect(_on_target_hitted)
 	$Player.connect("missed", Callable(self, "_on_target_missed"))
 	_gameplay_ui.initialize(_timer, $Player)
 
@@ -27,8 +31,8 @@ func _process(_delta: float) -> void:
 func _on_timer_timeout() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_timer.stop()
-	var high_score := HighScoreManager.get_high_score(Global.current_gamemode.id)
-	HighScoreManager.save_high_score(Global.current_gamemode.id, _get_score())
+	var high_score := HighScoreManager.get_high_score(Global.current_scenario.id)
+	HighScoreManager.save_high_score(Global.current_scenario.id, _get_score())
 	$Player.queue_free()
 	$PauseUI.queue_free()
 	$EndGameUI.set_score(_get_score(), high_score, _get_accuracy())
@@ -54,9 +58,9 @@ func _play_destroyed_sound() -> void:
 	destroyed_sound.play()
 
 func _get_score() -> int:
-	if Global.current_gamemode:
-		var score = _hitted_shots * Global.current_gamemode.score_per_hit
-		if Global.current_gamemode.accuracy_multiplier:
+	if Global.current_scenario:
+		var score = _hitted_shots * Global.current_scenario.score_per_hit
+		if Global.current_scenario.accuracy_multiplier:
 			score = score * (_get_accuracy() / 100)
 		return score
 	else:
@@ -69,7 +73,9 @@ func _get_accuracy() -> float:
 		return 0
 	return (float(_hitted_shots) / (float(_hitted_shots) + float(_missed_shots))) * 100
 
-func _update_world_appareance() -> void:
-	var world_material: StandardMaterial3D = preload("res://assets/material_default.tres")
-	world_material.albedo_texture = Global.get_current_world_texture()
-	$DirectionalLight3D.light_color = SaveManager.settings.get_data("world", "world_color")
+func _load_scenario() -> void:
+	var scenario_resource = load(Global.current_scenario.path + "scenario.tscn")
+	var new_scenario: Node = scenario_resource.instantiate()
+	%LevelSpawner.add_child(new_scenario)
+	new_scenario.initialize()
+	_scenario = new_scenario

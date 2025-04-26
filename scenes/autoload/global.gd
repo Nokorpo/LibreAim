@@ -1,33 +1,40 @@
 extends Node
 
 const TEXTURES_FOLDER := "world_textures"
-const GAMEMODES_FOLDER := "gamemodes"
+const SCENARIOS_FOLDER := "scenarios"
 const DESTROY_SOUNDS_FOLDER := "destroy_sounds"
 
-var gamemodes : Dictionary
-var current_gamemode : Dictionary
+var scenarios : Dictionary
+var current_scenario : Dictionary
 
 func _ready() -> void:
 	Input.set_use_accumulated_input(false)
-	_load_gamemodes()
+	_load_scenarios()
 
-func get_current_gamemode_value(value: String) -> Variant:
-	if Global.current_gamemode.is_empty():
-		Global.current_gamemode = Global.gamemodes["random"]
-	return current_gamemode[value]
+## Returns the value of a key of the current scenario
+func get_current_scenario_value(value: String) -> Variant:
+	if Global.current_scenario.is_empty():
+		Global.current_scenario = Global.scenarios["random"]
+	return current_scenario[value]
 
 func get_world_textures() -> PackedStringArray:
 	return CustomResourceManager.get_file_list(TEXTURES_FOLDER, "png")
 
-func get_gamemodes() -> PackedStringArray:
-	return CustomResourceManager.get_file_list(GAMEMODES_FOLDER, "cfg")
+## Returns a list of paths to all scenarios
+func get_scenarios() -> PackedStringArray:
+	return CustomResourceManager.get_folder_list(SCENARIOS_FOLDER)
 
-## Returns the gamemode thumbnail
-func get_gamemode_thumbnail(id: String) -> CompressedTexture2D:
-	var texture_path = "res://assets/images/gamemodes/%s.svg" % id
+## Returns the thumbnail
+func get_scenario_thumbnail(path: String) -> Texture2D:
+	var texture_path = "%sicon.svg" % path
 	if ResourceLoader.exists(texture_path):
 		return load(texture_path)
-	return load("res://assets/images/gamemodes/missing.svg")
+	elif FileAccess.file_exists(path + "icon.svg"):
+		var image := Image.load_from_file(texture_path)
+		if image != null:
+			return ImageTexture.create_from_image(image)
+	
+	return load("res://assets/images/missing.svg")
 
 func get_destroy_sounds() -> PackedStringArray:
 	return CustomResourceManager.get_file_list(DESTROY_SOUNDS_FOLDER, "ogg")
@@ -50,15 +57,20 @@ func get_current_hit_sound() -> AudioStream:
 	var sound := CustomResourceManager.get_sound(current_sound)
 	return sound
 
-func _load_gamemodes() -> void:
-	for path: String in Global.get_gamemodes():
+func _load_scenarios() -> void:
+	for path: String in Global.get_scenarios():
+		if !FileAccess.file_exists(path + "scenario.tscn"):
+			break
 		var config = ConfigFile.new()
-		config.load(path)
+		config.load(path + "info.cfg")
+		if !config.has_section_key("metadata", "id"):
+			break
 		var id = config.get_value("metadata", "id")
-		var this_gamemode : Dictionary = { }
+		var this_scenario: Dictionary = { }
 		
-		this_gamemode.id = id
+		this_scenario.id = id
 		for section: String in config.get_sections():
 			for key: String in config.get_section_keys(section):
-				this_gamemode[key] = config.get_value(section, key)
-		gamemodes[id] = this_gamemode
+				this_scenario[key] = config.get_value(section, key)
+		this_scenario["path"] = path
+		scenarios[id] = this_scenario

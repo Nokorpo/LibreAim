@@ -29,16 +29,16 @@ func _input(event: InputEvent) -> void:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
-	if Global.current_gamemode and Global.current_gamemode.health == 0:
+	if Global.current_scenario and Global.current_scenario.shoot_machinegun == false:
 		if event.is_action_pressed("shoot"):
 			_shoot(1)
 	if event.is_action_pressed("jump") \
-		and ((Global.current_gamemode and Global.current_gamemode.player_movement) \
-		or Global.current_gamemode.is_empty()):
+		and ((Global.current_scenario and Global.current_scenario.player_movement) \
+		or Global.current_scenario.is_empty()):
 		_jump()
 
 func _process(delta: float) -> void:
-	if Global.current_gamemode and Global.current_gamemode.health > 0:
+	if Global.current_scenario and Global.current_scenario.shoot_machinegun == true:
 		current_shoot_cooldown += delta
 		if current_shoot_cooldown > SHOOT_COOLDOWN:
 			if Input.is_action_pressed("shoot"):
@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 	_handle_joypad_rotation(delta)
 
 func _physics_process(delta: float) -> void:
-	if (Global.current_gamemode and Global.current_gamemode.player_movement) or Global.current_gamemode.is_empty():
+	if (Global.current_scenario and Global.current_scenario.player_movement) or Global.current_scenario.is_empty():
 		_handle_gravity(delta)
 		var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 		var movement_velocity := Vector3(input.x, 0, input.y) * SPEED

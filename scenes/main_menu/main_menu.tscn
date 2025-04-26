@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="5_nidys"]
 [ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings/settings.tscn" id="8_1n7gf"]
 [ext_resource type="Texture2D" uid="uid://crtp1xg7nyhki" path="res://assets/images/icons/folder.svg" id="8_cvdmj"]
-[ext_resource type="PackedScene" uid="uid://bx5lej1m0kvgb" path="res://scenes/main_menu/select_gamemode.tscn" id="9_lii3m"]
+[ext_resource type="PackedScene" uid="uid://bx5lej1m0kvgb" path="res://scenes/main_menu/select_scenario.tscn" id="9_lii3m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfoy0"]
 
@@ -134,7 +134,7 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_8521u")
 theme_override_styles/panel = SubResource("StyleBoxFlat_5srfh")
 
-[node name="SelectGamemode" parent="RightControl" instance=ExtResource("9_lii3m")]
+[node name="SelectScenario" parent="RightControl" instance=ExtResource("9_lii3m")]
 layout_mode = 1
 
 [node name="Settings" parent="RightControl" instance=ExtResource("8_1n7gf")]

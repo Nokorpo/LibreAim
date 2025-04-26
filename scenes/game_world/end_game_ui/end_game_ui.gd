@@ -2,9 +2,9 @@ extends Node
 ## Canvas shown when game ends
 
 func _ready() -> void:
-	%Gamemode.text = Global.get_current_gamemode_value("title")
-	%GamemodeIcon.texture = \
-		Global.get_gamemode_thumbnail(Global.get_current_gamemode_value("id"))
+	%Scenario.text = Global.get_current_scenario_value("title")
+	%ScenarioIcon.texture = \
+		Global.get_scenario_thumbnail(Global.get_current_scenario_value("path"))
 
 func set_score(score: int, high_score: int, accuracy: int) -> void:
 	%Replay.grab_focus()

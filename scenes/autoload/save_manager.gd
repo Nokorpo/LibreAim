@@ -42,9 +42,6 @@ class SaveFile:
 		if _file.has_section_key(category, id):
 			return _file.get_value(category, id, default)
 		elif default == null:
-			print(category)
-			print(id)
-			print(get_default_data(category, id))
 			return get_default_data(category, id)
 		else:
 			return default

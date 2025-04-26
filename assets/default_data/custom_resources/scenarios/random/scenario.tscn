@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bibt2wcjwd86u"]
+
+[ext_resource type="Script" uid="uid://eap3623705g4" path="res://scenes/game_world/scenario/scenario.gd" id="1_xogef"]
+[ext_resource type="PackedScene" uid="uid://dagqtbldaccgh" path="res://scenes/game_world/scenario/sample_world_geometry.tscn" id="2_xogef"]
+[ext_resource type="Script" uid="uid://7eouyjvbgjo0" path="res://scenes/game_world/target_spawner.gd" id="3_tfn8e"]
+[ext_resource type="Script" uid="uid://bxhkdvu8k5owt" path="res://scenes/target/behavior/behavior_linearmovement.gd" id="4_aotl8"]
+
+[sub_resource type="Resource" id="Resource_ncddh"]
+script = ExtResource("4_aotl8")
+max_velocity = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://bxhkdvu8k5owt"
+
+[node name="Scenario" type="Node3D" node_paths=PackedStringArray("_light")]
+script = ExtResource("1_xogef")
+_light = NodePath("DirectionalLight3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.998198, 0.0464176, 0.0380308, -0.0421491, 0.0912349, 0.994937, 0.0427129, -0.994747, 0.093027, 0, 20, 0)
+light_color = Color(0.360784, 0.615686, 1, 1)
+light_bake_mode = 1
+
+[node name="Geometry" parent="." instance=ExtResource("2_xogef")]
+
+[node name="TargetSpawner" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 2, -10)
+script = ExtResource("3_tfn8e")
+initial_targets = 3
+min_position = Vector3(-5, -2, 0)
+max_position = Vector3(5, 2, 0)
+behavior = SubResource("Resource_ncddh")
