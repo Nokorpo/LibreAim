@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 4.2333332 4.2333333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="scenario.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#fc7f7f;stroke-width:0.396875;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1"
+       width="3.1885638"
+       height="3.2267001"
+       x="0.51861882"
+       y="0.45847753"
+       rx="0.48874429"
+       ry="0.48874429" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#fc7f7f;stroke-width:0.396875;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 1.7094779,2.0718275 H 0.98829488"
+       id="path3-9-6-6"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#fc7f7f;stroke-width:0.396875;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 2.1129006,3.1964332 V 2.4752502"
+       id="path3-9-6-6-9"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#fc7f7f;stroke-width:0.396875;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 2.1129006,1.6684048 V 0.94722182"
+       id="path3-9-6-6-9-4"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#fc7f7f;stroke-width:0.396875;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 3.2375064,2.0718276 H 2.5163234"
+       id="path3-9-6-6-0"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

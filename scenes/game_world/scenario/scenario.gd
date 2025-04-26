@@ -1,5 +1,7 @@
-extends Node3D
+@tool
+@icon("res://scenes/game_world/scenario/scenario.svg")
 class_name Scenario
+extends Node3D
 ## A custom training scenario to be played
 
 @warning_ignore("unused_signal")
@@ -10,6 +12,12 @@ signal target_missed
 signal target_hitted
 
 @export var _light: DirectionalLight3D
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings = []
+	if _light == null:
+		warnings.append("There should be a light node.")
+	return warnings
 
 func initialize() -> void:
 	_update_world_appareance()
