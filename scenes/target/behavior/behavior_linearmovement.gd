@@ -1,5 +1,6 @@
-extends TargetMovementBehavior
 class_name TargetMovementBehaviorLinearmovement
+extends TargetMovementBehavior
+## A target movement behavior that moves linearly in a straight line
 
 ## Max velocity of the target
 @export var max_velocity: Vector3 = Vector3.ZERO
@@ -7,9 +8,9 @@ class_name TargetMovementBehaviorLinearmovement
 var min_position: Vector3
 var max_position: Vector3
 
-func init(new_min_position: Vector3, new_max_position, movement = {"x": 0, "y": 0}) -> void:
-	_current_velocity = Vector3(randf_range(-movement.x, movement.x),\
-		 randf_range(-movement.y, movement.y), 0)
+func init(new_min_position: Vector3, new_max_position: Vector3) -> void:
+	_current_velocity = Vector3(randf_range(-max_velocity.x, max_velocity.x),\
+		 randf_range(-max_velocity.y, max_velocity.y), 0)
 	min_position = new_min_position
 	max_position = new_max_position
 

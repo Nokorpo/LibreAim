@@ -1,5 +1,5 @@
-extends CharacterBody3D
 class_name Target
+extends CharacterBody3D
 ## A target for the player to shoot at
 
 signal destroyed ## When player destroys the target
@@ -27,7 +27,7 @@ func init(size = Vector2(1.0, 2.0), behavior: TargetMovementBehavior = TargetMov
 	collision_shape.shape.height = size.y
 	_mesh_instance.mesh.radius = size.x
 	_mesh_instance.mesh.height = size.y
-	behavior.init(min_position, max_position, behavior.max_velocity)
+	behavior.init(min_position, max_position)
 	movement_behavior = behavior
 	
 	_set_health(new_health)

@@ -3,12 +3,11 @@
 [ext_resource type="Script" uid="uid://eap3623705g4" path="res://scenes/game_world/scenario/scenario.gd" id="1_xogef"]
 [ext_resource type="PackedScene" uid="uid://dagqtbldaccgh" path="res://scenes/game_world/scenario/sample_world_geometry.tscn" id="2_xogef"]
 [ext_resource type="Script" uid="uid://7eouyjvbgjo0" path="res://scenes/game_world/target_spawner.gd" id="3_tfn8e"]
-[ext_resource type="Script" uid="uid://bxhkdvu8k5owt" path="res://scenes/target/behavior/behavior_linearmovement.gd" id="4_aotl8"]
+[ext_resource type="Script" uid="uid://bw3onig2m2r3s" path="res://scenes/target/behavior/behavior_static.gd" id="4_8xptx"]
 
-[sub_resource type="Resource" id="Resource_ncddh"]
-script = ExtResource("4_aotl8")
-max_velocity = Vector3(0, 0, 0)
-metadata/_custom_type_script = "uid://bxhkdvu8k5owt"
+[sub_resource type="Resource" id="Resource_u06mb"]
+script = ExtResource("4_8xptx")
+metadata/_custom_type_script = "uid://bw3onig2m2r3s"
 
 [node name="Scenario" type="Node3D" node_paths=PackedStringArray("_light")]
 script = ExtResource("1_xogef")
@@ -27,4 +26,4 @@ script = ExtResource("3_tfn8e")
 size = Vector2(1, 0.5)
 min_position = Vector3(-15, 0, 0)
 max_position = Vector3(15, 0, 0)
-behavior = SubResource("Resource_ncddh")
+behavior = SubResource("Resource_u06mb")
