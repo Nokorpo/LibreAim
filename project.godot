@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="LibreAim"
-config/version="v0.2.0-alpha"
+config/version="0.3"
 run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+config/convert_text_resources_to_binary=false
 
 [autoload]
 

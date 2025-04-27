@@ -1,6 +1,6 @@
 ![LibreAim](https://img.itch.zone/aW1nLzE3MTA3NTQzLnBuZw==/original/8acskw.png)
 
-Free and open source FPS aim trainer made with Godot 4.3.
+Free and open source FPS aim trainer made with Godot 4.4.
 
 - **✏️ Customizable**: Libre Aim is open source, and offers a lot of customization settings.
 - **🕊️ Lightweight**: This is a training tool, it doesn't need fancy graphics, but it needs to run on low-end machines, give a high ammount of fps, and have minimal input lag.
@@ -19,6 +19,6 @@ Free and open source FPS aim trainer made with Godot 4.3.
 ## Free, open source
 Libre Aim is open source. Feel free to do whatever you want with it: Fork it, modify it,  use the code for other projects...
 
-You can also contribute to the project, we have a [Discord community](discord.gg/u2Hm8sMagF)!
+You can also contribute to the project, we have a [Discord community](https://discord.com/invite/u2Hm8sMagF)!
 
 ![Screenshot](https://img.itch.zone/aW1nLzE3MTA3NjMyLmpwZw==/original/OJpGqx.jpg)
