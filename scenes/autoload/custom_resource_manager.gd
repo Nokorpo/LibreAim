@@ -32,16 +32,6 @@ func get_default_folder_list(partial_path: String) -> PackedStringArray:
 	var full_path := DEFAULT_PATH + partial_path
 	return _get_folder_list_raw(full_path)
 
-func file_exists(path: String) -> bool:
-	var partial_path := _ensure_path_is_partial(path)
-	var default_path := DEFAULT_PATH + partial_path
-	if FileAccess.file_exists(default_path):
-		return true
-	var user_path := USER_PATH + partial_path
-	if FileAccess.file_exists(user_path):
-		return true
-	return false
-
 func get_image(full_path: String) -> Texture2D:
 	if full_path.begins_with(DEFAULT_PATH):
 		return load(full_path)
@@ -55,13 +45,6 @@ func get_sound(full_path: String) -> AudioStream:
 
 func copy_sample_custom_resources() -> void:
 	_copy_dir_recursively("res://assets/sample_custom_resources/", USER_PATH)
-
-func _ensure_path_is_partial(path :String) -> String:
-	if path.begins_with(USER_PATH):
-		return path.right(-USER_PATH.length())
-	elif path.begins_with(DEFAULT_PATH):
-		return path.right(-DEFAULT_PATH.length())
-	return path
 
 func _get_folder_list_raw(full_path: String) -> PackedStringArray:
 	var list := PackedStringArray()

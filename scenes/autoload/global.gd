@@ -44,7 +44,7 @@ func get_destroy_sounds() -> PackedStringArray:
 
 func get_current_world_texture() -> Texture2D:
 	var current_texture = SaveManager.settings.get_data("world", "world_texture")
-	if not CustomResourceManager.file_exists(current_texture):
+	if not FileAccess.file_exists(current_texture):
 		push_warning("Texture not found: %s" % current_texture)
 		current_texture = SaveManager.settings.get_default_data("world", "world_texture")
 		SaveManager.settings.set_data("world", "world_texture", current_texture)
@@ -53,7 +53,7 @@ func get_current_world_texture() -> Texture2D:
 
 func get_current_hit_sound() -> AudioStream:
 	var current_sound = SaveManager.settings.get_data("audio", "hit_sound")
-	if not CustomResourceManager.file_exists(current_sound):
+	if not FileAccess.file_exists(current_sound):
 		push_warning("Sound not found: %s" % current_sound)
 		current_sound = SaveManager.settings.get_default_data("audio", "hit_sound")
 		SaveManager.settings.set_data("audio", "hit_sound", current_sound)
