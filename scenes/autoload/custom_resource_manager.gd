@@ -1,4 +1,5 @@
 extends Node
+## Manages the custom resources that users can add
 
 const USER_PATH: String = "user://custom_resources/"
 const DEFAULT_PATH :String = "res://assets/default_data/custom_resources/"

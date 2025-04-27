@@ -1,5 +1,5 @@
+class_name SettingsAudio
 extends Control
-class_name Audio
 ## Audio settings
 
 @onready var option_button := $OptionButton

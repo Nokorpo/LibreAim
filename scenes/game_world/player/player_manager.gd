@@ -1,5 +1,5 @@
-extends CharacterBody3D
 class_name PlayerManager
+extends CharacterBody3D
 ## First person character controller
 
 signal shooted ## When player shoots
@@ -16,19 +16,19 @@ var jumps: Array[bool] = [true, true]
 var gravity: float = 0.0
 var current_shoot_cooldown: float
 
-@onready var camera = $Head/Camera3D
-@onready var raycast = $Head/Camera3D/RayCast3D
-@onready var bullet_hole = preload("res://scenes/game_world/bullet_hole.tscn")
+@onready var _camera = $Head/Camera3D
+@onready var _raycast = $Head/Camera3D/RayCast3D
+@onready var _bullet_hole = preload("res://scenes/game_world/bullet_hole.tscn")
 
 func _ready() -> void:
-	camera.fov = SaveManager.settings.get_data("video", "fov")
+	_camera.fov = SaveManager.settings.get_data("video", "fov")
 	mouse_sensitivity = _get_mouse_sensitivity()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
-		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
+		_camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
+		_camera.rotation.x = clamp(_camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
 	if Global.current_scenario and Global.current_scenario.shoot_machinegun == false:
 		if event.is_action_pressed("shoot"):
 			_shoot(1)
@@ -69,8 +69,8 @@ func _handle_joypad_rotation(delta: float) -> void:
 	var joypad_dir: Vector2 = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 	if joypad_dir.length() > 0:
 		rotate_y(deg_to_rad(-joypad_dir.x * mouse_sensitivity * delta * 1000))
-		camera.rotate_x(deg_to_rad(-joypad_dir.y * mouse_sensitivity * delta * 1000))
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
+		_camera.rotate_x(deg_to_rad(-joypad_dir.y * mouse_sensitivity * delta * 1000))
+		_camera.rotation.x = clamp(_camera.rotation.x, deg_to_rad(-MAX_CAMERA_ANGLE), deg_to_rad(MAX_CAMERA_ANGLE))
 
 func _handle_gravity(delta: float) -> void:
 	gravity += 20 * delta
@@ -88,15 +88,15 @@ func _jump() -> void:
 
 func _shoot(damage: float) -> void:
 	shooted.emit()
-	if raycast.is_colliding():
-		var target = raycast.get_collider()
+	if _raycast.is_colliding():
+		var target = _raycast.get_collider()
 		if target != null:
-			var bullet_hole_instance = bullet_hole.instantiate()
+			var bullet_hole_instance = _bullet_hole.instantiate()
 			
 			target.add_child(bullet_hole_instance)
-			bullet_hole_instance.global_transform.origin = raycast.get_collision_point() + raycast.get_collision_normal() * 0.001
-			if abs(raycast.get_collision_normal().dot(Vector3.FORWARD)) != 1:
-				bullet_hole_instance.look_at(bullet_hole_instance.global_position + raycast.get_collision_normal(), Vector3.FORWARD )
+			bullet_hole_instance.global_transform.origin = _raycast.get_collision_point() + _raycast.get_collision_normal() * 0.001
+			if abs(_raycast.get_collision_normal().dot(Vector3.FORWARD)) != 1:
+				bullet_hole_instance.look_at(bullet_hole_instance.global_position + _raycast.get_collision_normal(), Vector3.FORWARD )
 			
 			if target.is_in_group("Target"):
 				target.health -= damage

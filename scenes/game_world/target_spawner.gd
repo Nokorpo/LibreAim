@@ -1,5 +1,5 @@
-extends Node3D
 class_name TargetSpawner
+extends Node3D
 ## Spawns targets
 
 ## Packed scene of the target

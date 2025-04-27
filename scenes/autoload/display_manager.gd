@@ -1,4 +1,5 @@
 extends Node
+## Manages the application window
 
 signal window_mode_updated(window_mode: DisplayServer.WindowMode)
 

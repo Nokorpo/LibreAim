@@ -1,5 +1,5 @@
-extends Node
 class_name GameplayUI
+extends Node
 ## Gameplay UI with game stats
 
 @onready var _animation_kill = $GameplayUI/AnimationKill

@@ -1,5 +1,5 @@
-extends Resource
 class_name TargetMovementBehavior
+extends Resource
 ## Base class to define a target movement behavior
 
 @warning_ignore("unused_private_class_variable")

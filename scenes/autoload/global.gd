@@ -1,4 +1,6 @@
 extends Node
+## Manages some stuff that should be loaded when game starts
+# Maby this should have another name, or should be organized in another way
 
 const TEXTURES_FOLDER := "world_textures"
 const SCENARIOS_FOLDER := "scenarios"

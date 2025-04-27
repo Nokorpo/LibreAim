@@ -1,5 +1,5 @@
-extends TargetMovementBehavior
 class_name TargetMovementBehaviorStatic
+extends TargetMovementBehavior
 ## A target movement behavior that doesn't move
 
 func init(_new_min_position: Vector3, _new_max_position: Vector3) -> void:
