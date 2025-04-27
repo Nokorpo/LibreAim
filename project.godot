@@ -33,6 +33,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [input]
 
 ui_accept={
