@@ -2,6 +2,8 @@ class_name Target
 extends CharacterBody3D
 ## A target for the player to shoot at
 
+const HEALTH_SLIDER = preload("res://scenes/target/health_slider/health_slider.tscn")
+
 signal destroyed ## When player destroys the target
 signal hitted ## When player when player hits the target
 
@@ -19,6 +21,7 @@ var max_position: Vector3
 var movement_behavior: TargetMovementBehavior
 
 @onready var _mesh_instance := $CollisionShape3D/MeshInstance3D
+var _health_slider: HealthSlider
 
 func init(size = Vector2(1.0, 2.0), behavior: TargetMovementBehavior = TargetMovementBehavior.new(), new_health: float = 0.0) -> void:
 	await ready
@@ -43,7 +46,10 @@ func _set_health(new_health: float) -> void:
 
 func _set_health_slider() -> void:
 	if health > 0:
-		$HealthSlider.enable()
+		_health_slider = HEALTH_SLIDER.instantiate()
+		add_child(_health_slider)
+		_health_slider.position.y = ($CollisionShape3D/MeshInstance3D.mesh.height / 2) + 0.4
+		hitted.connect(_health_slider._on_target_hitted)
 
 func _set_target_material() -> void:
 	var material_override = _mesh_instance.get_mesh().get_material()

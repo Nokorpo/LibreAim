@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmbneydx4xrji"]
+
+[ext_resource type="Script" uid="uid://bomdvkontdslh" path="res://scenes/target/health_slider/health_slider.gd" id="1_nflju"]
+[ext_resource type="AudioStream" uid="uid://kf70w8cqg0y" path="res://scenes/target/hit.ogg" id="2_kcaou"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18ew3"]
+shading_mode = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4njml"]
+material = SubResource("StandardMaterial3D_18ew3")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="Animation" id="Animation_adj6b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7m7wm"]
+resource_name = "shot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(2, -2, 1),
+"update": 0,
+"values": [Color(1, 0.294118, 0.360784, 1), Color(1, 0.372549, 0.431808, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqfqo"]
+_data = {
+&"RESET": SubResource("Animation_adj6b"),
+&"shot": SubResource("Animation_7m7wm")
+}
+
+[node name="HealthSlider" type="MeshInstance3D"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_4njml")
+script = ExtResource("1_nflju")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nqfqo")
+}
+autoplay = "RESET"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kcaou")
+volume_db = -10.0
