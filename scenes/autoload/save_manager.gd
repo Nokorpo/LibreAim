@@ -3,12 +3,16 @@ extends Node
 
 var settings: SaveFile
 var highscores: SaveFile
+var statistics: SaveFile
 
 func _ready() -> void:
 	settings = SaveFile.new()
 	settings.initialize("user://data/settings.cfg", "res://assets/default_data/data/settings.cfg")
 	highscores = SaveFile.new()
 	highscores.initialize("user://data/highscores.cfg")
+	statistics = SaveFile.new()
+	statistics.initialize("user://data/statistics.cfg")
+
 
 class SaveFile:
 	var _path: String

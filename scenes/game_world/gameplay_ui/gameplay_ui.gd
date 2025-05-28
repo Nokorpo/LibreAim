@@ -18,6 +18,8 @@ func initialize(new_timer: Timer, player: PlayerManager) -> void:
 
 func target_destroyed(score: int, accuracy: float) -> void:
 	update_score(score, accuracy)
+	var current_score: int = SaveManager.statistics.get_data("totalTargetsDestroyed", Global.current_scenario.id, 0)
+	SaveManager.statistics.set_data("totalTargetsDestroyed", Global.current_scenario.id, current_score + 1)
 	_animation_kill.play("RESET")
 	_animation_kill.play("kill")
 
