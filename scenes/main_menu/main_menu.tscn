@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c8on0ngoa3108"]
+[gd_scene load_steps=25 format=3 uid="uid://c8on0ngoa3108"]
 
 [ext_resource type="Theme" uid="uid://caf1fphx2xqt0" path="res://assets/themes/main_menu.tres" id="1_2h7x4"]
 [ext_resource type="Script" uid="uid://dw5gwf5bgcody" path="res://scenes/main_menu/main_menu.gd" id="1_p06gh"]
@@ -8,9 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://c4b2m50txi00g" path="res://icon.svg" id="3_kq7as"]
 [ext_resource type="Texture2D" uid="uid://tkfbioukscgd" path="res://assets/images/icons/git.svg" id="4_nuriq"]
 [ext_resource type="Texture2D" uid="uid://cmrheauks0nru" path="res://assets/images/icons/cross.svg" id="5_nidys"]
+[ext_resource type="Texture2D" uid="uid://biyjdk1b3ntar" path="res://assets/images/icons/statistics.svg" id="7_qel0l"]
 [ext_resource type="PackedScene" uid="uid://cropshnueuiqr" path="res://scenes/main_menu/settings/settings.tscn" id="8_1n7gf"]
 [ext_resource type="Texture2D" uid="uid://crtp1xg7nyhki" path="res://assets/images/icons/folder.svg" id="8_cvdmj"]
 [ext_resource type="PackedScene" uid="uid://bx5lej1m0kvgb" path="res://scenes/main_menu/select_scenario.tscn" id="9_lii3m"]
+[ext_resource type="Script" uid="uid://fs2apxtartaq" path="res://scenes/main_menu/statistics.gd" id="13_rrgl4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfoy0"]
 
@@ -107,6 +109,13 @@ text = "Settings"
 icon = ExtResource("3_8dqwy")
 alignment = 0
 
+[node name="Statistics" type="Button" parent="LeftControl/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Statistics"
+icon = ExtResource("7_qel0l")
+alignment = 0
+
 [node name="UserFolder" type="Button" parent="LeftControl/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -135,14 +144,41 @@ theme = SubResource("Theme_8521u")
 theme_override_styles/panel = SubResource("StyleBoxFlat_5srfh")
 
 [node name="SelectScenario" parent="RightControl" instance=ExtResource("9_lii3m")]
+visible = false
 layout_mode = 1
 
 [node name="Settings" parent="RightControl" instance=ExtResource("8_1n7gf")]
 visible = false
 layout_mode = 1
 
+[node name="Statistics" type="VBoxContainer" parent="RightControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_rrgl4")
+
+[node name="Label" type="Label" parent="RightControl/Statistics"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 57
+text = "Statistics"
+
+[node name="Scenarios" type="VBoxContainer" parent="RightControl/Statistics"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="RightControl/Statistics/Scenarios"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Total targets destroyed:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RightControl/Statistics/Scenarios"]
+layout_mode = 2
+text = "\\t trtrtrtrttr"
+
 [connection signal="pressed" from="LeftControl/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="LeftControl/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="LeftControl/VBoxContainer/Statistics" to="." method="_on_statistics_pressed"]
 [connection signal="pressed" from="LeftControl/VBoxContainer/UserFolder" to="." method="_on_user_folder_pressed"]
 [connection signal="pressed" from="LeftControl/VBoxContainer/SourceCode" to="." method="_on_source_code_pressed"]
 [connection signal="pressed" from="LeftControl/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
