@@ -5,7 +5,7 @@ extends VBoxContainer
 @onready var fps_limit_label = $FPSLimitLabel
 
 func _on_fps_limit_slider_value_changed(value) -> void:
-	SaveManager.settings.set_data("world", "fps_limit", value)
+	SaveManager.settings.set_data("video", "fps_limit", value)
 	DisplayManager.set_max_fps(value)
 	update_label()
 
